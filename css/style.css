@@ -349,6 +349,7 @@ h1,h2,h3,p{ margin:0; }
 .cta{ background:var(--c-navy); text-align:center; }
 .cta__banner-wrap{ width:100%; }
 .cta__banner{ width:100%; display:block; }
+.cta__mobile{ display:none; }
 
 /* =========================================================
    Footer
@@ -470,11 +471,18 @@ h1,h2,h3,p{ margin:0; }
   .review__grid{ grid-template-columns:1fr; margin-top:24px; gap:14px; }
   .review-card{ padding:20px; }
 
-  /* the source banner is an ultra-wide PC asset (2880x628) with the illustration
-     off to the right; on mobile we crop to a taller window focused on the left
-     text block instead of squishing the whole thing down to ~80px tall. */
-  .cta__banner-wrap{ height:220px; overflow:hidden; }
-  .cta__banner{ width:100%; height:100%; object-fit:cover; object-position:left center; }
+  /* the PC banner is one flattened 2880x628 image with baked-in text — squishing
+     or stacking crops of it made this section too tall on mobile, so instead we
+     build the copy as real left-aligned HTML text plus the standalone illustration
+     asset, kept to one compact block instead of the wide PC banner. */
+  .cta{ padding:40px 0; }
+  .cta__banner-wrap{ display:none; }
+  .cta__mobile{ display:flex; align-items:center; gap:12px; padding:0 20px; text-align:left; }
+  .cta__mobile-text{ flex:1; min-width:0; }
+  .cta__mobile-eyebrow{ font-size:11px; font-weight:700; color:var(--c-mint); }
+  .cta__mobile-title{ margin-top:8px; font-size:18px; font-weight:800; color:#fff; line-height:1.35; }
+  .cta__mobile-desc{ margin-top:8px; font-size:12px; color:#aebbd4; line-height:1.55; }
+  .cta__mobile-illust{ display:block; width:192px; flex-shrink:0; }
 
   .footer{ padding:36px 0 96px; }
   .footer__inner{ flex-direction:column; gap:28px; }
