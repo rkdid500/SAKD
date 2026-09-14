@@ -21,6 +21,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---- 히어로 비주얼: intro webp를 2.4초 재생한 뒤 floating-loop webp로 전환 ----
+  // 두 webp 모두 처음부터 <img src>가 걸려 있어 브라우저가 병렬로 미리 로드하므로,
+  // 전환 시점엔 이미 로드가 끝난 loop 이미지의 opacity만 올려서 깜빡임 없이 바뀐다.
+  // Animated WebP는 종료 이벤트가 없어 타이머로만 전환 시점을 판단한다.
+  (function initHeroVisual() {
+    const introImg = document.getElementById('heroVisualIntro');
+    const loopImg = document.getElementById('heroVisualLoop');
+    if (!introImg || !loopImg) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      // 정적 대표 프레임 에셋이 없어, 최선의 대안으로 intro 전환 없이 loop만 바로 노출한다.
+      introImg.classList.remove('is-active');
+      loopImg.classList.add('is-active');
+      return;
+    }
+
+    const timerId = setTimeout(() => {
+      loopImg.classList.add('is-active');
+      introImg.classList.remove('is-active');
+    }, 2400);
+
+    window.addEventListener('beforeunload', () => clearTimeout(timerId), { once: true });
+  })();
+
   // ---- Category tabs (visual state only; wiring to real filtering comes later) ----
   const catButtons = document.querySelectorAll('.cat-tabs__item');
   catButtons.forEach(btn => {

@@ -71,6 +71,7 @@ h1,h2,h3,p{ margin:0; }
 .btn--text:hover{ color:var(--c-text); }
 .btn--sm{ padding:9px 18px; font-size:14px; }
 .btn--lg{ padding:15px 30px; font-size:16px; }
+.btn.btn--primary.btn--lg{ margin-top:28px; }
 .btn--block{ display:flex; width:100%; }
 
 /* =========================================================
@@ -154,45 +155,28 @@ h1,h2,h3,p{ margin:0; }
 /* =========================================================
    Hero
 ========================================================= */
-.hero{ background:linear-gradient(180deg,#f3fbf8 0%, #f7f9fb 60%, #fff 100%); padding:64px 0 76px; }
+.hero{ background:linear-gradient(180deg,#f3fbf8 0%, #f7f9fb 60%, #fff 100%); padding:64px 0 76px; overflow:hidden; }
 .hero__inner{
   max-width:var(--container); margin:0 auto; padding:0 24px;
-  display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  display:flex; align-items:center; gap:clamp(24px,6vw,80px);
 }
+.hero__left{ flex:0 0 42%; max-width:42%; }
+.hero__right{ flex:0 0 50%; max-width:50%; display:flex; justify-content:center; }
 .hero__eyebrow{ font-size:14px; font-weight:700; color:var(--c-mint-dark); margin-bottom:14px; }
 .hero__title{ font-size:38px; font-weight:800; line-height:1.35; color:var(--c-navy); letter-spacing:-0.5px; }
 .hero__desc{ margin-top:20px; font-size:15.5px; color:var(--c-text-sub); line-height:1.7; }
-.hero__note{ margin-top:16px; font-size:13px; color:var(--c-text-mute); }
-.btn.btn--primary.btn--lg{ margin-top:28px; }
+.hero__note{ margin-top:16px; font-size:14px; color:var(--c-text-mute); line-height:1.6; }
 
-.hero-card{
-  background:#fff; border-radius:var(--radius-lg); padding:28px;
-  box-shadow:var(--shadow-card-lg); border:1px solid var(--c-border);
+/* hero visual: intro webp plays once, then swaps to the floating-loop webp (js/main.js) */
+.hero__visual{
+  position:relative; width:100%; max-width:680px;
+  aspect-ratio:1280 / 732;
 }
-.hero-card__title{ font-size:19px; font-weight:800; color:var(--c-navy); }
-.hero-card__desc{ margin-top:6px; font-size:13.5px; color:var(--c-text-mute); }
-.hero-card__grid{ margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.hero-card__item{
-  border:1px solid var(--c-border); border-radius:var(--radius-md); padding:16px;
-  transition:border-color .15s ease, box-shadow .15s ease;
+.hero__visual-img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:contain; opacity:0; transition:opacity .35s ease;
 }
-.hero-card__item:hover{ border-color:var(--c-mint); box-shadow:var(--shadow-card); }
-.hero-card__row{ display:flex; align-items:center; justify-content:space-between; }
-.hero-card__code{
-  width:32px; height:32px; border-radius:9px; display:flex; align-items:center; justify-content:center;
-  font-weight:800; font-size:14px; color:#fff;
-}
-.hero-card__code--internet{ background:var(--c-mint); }
-.hero-card__code--phone{ background:#4c7cf0; }
-.hero-card__code--insurance{ background:#9c7cf0; }
-.hero-card__code--funeral{ background:#f0a24c; }
-.badge{ font-size:11px; font-weight:700; padding:4px 8px; border-radius:999px; }
-.badge--live{ background:var(--c-mint-100); color:var(--c-mint-dark); }
-.badge--soon{ background:var(--c-bg-soft); color:var(--c-text-mute); }
-.hero-card__name{ margin-top:12px; font-size:15.5px; font-weight:800; color:var(--c-navy); }
-.hero-card__sub{ margin-top:3px; font-size:12.5px; color:var(--c-text-mute); }
-.hero-card__link{ display:inline-block; margin-top:10px; font-size:12.5px; font-weight:700; color:var(--c-mint-dark); }
-.hero-card__link:hover{ text-decoration:underline; }
+.hero__visual-img.is-active{ opacity:1; }
 
 /* =========================================================
    상품마다 중요한 기준 — intro grid
@@ -582,8 +566,9 @@ h1,h2,h3,p{ margin:0; }
   .compare__grid{ grid-template-columns:1fr; }
   .plan-card--featured{ order:-1; transform:none; }
   .review__grid{ grid-template-columns:1fr; }
-  .hero__inner{ grid-template-columns:1fr; }
-  .hero__right{ order:-1; }
+  .hero__inner{ flex-direction:column; }
+  .hero__left{ flex:0 0 auto; max-width:100%; }
+  .hero__right{ flex:0 0 auto; max-width:100%; width:100%; margin-top:32px; }
 
   .why__cards{ grid-template-columns:1fr 1fr; }
   .why__c:last-child{ grid-column:span 2; }
@@ -610,10 +595,15 @@ h1,h2,h3,p{ margin:0; }
   .cat-tabs__list{ gap:6px; }
   .cat-tabs__item{ padding:6px 18px; font-size:14px; }
 
-  /* mobile hero banner replaces desktop hero visuals */
+  /* mobile hero banner (product promo) shows above the brand intro hero */
   .mobile-banner{ display:block; margin:16px; }
 
-  .hero{ display:none; }
+  .hero{ padding:36px 0 48px; }
+  .hero__inner{ padding:0 20px; text-align:center; }
+  .hero__title{ font-size:28px; }
+  .hero__desc{ font-size:14.5px; }
+  .hero__right{ margin-top:28px; }
+  .hero__visual{ max-width:100%; }
 
   .cat-intro{ padding:68px 0 44px; }
   .cat-intro__inner{ padding:0 16px; }
