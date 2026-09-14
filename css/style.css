@@ -337,6 +337,7 @@ h1,h2,h3,p{ margin:0; }
   text-align:center; font-size:clamp(20px,2.6vw,32px); font-weight:800;
   letter-spacing:-0.02em; line-height:1.3; margin-bottom:clamp(18px,2.2vw,30px); color:var(--c-navy);
 }
+.why__h-mint{ color:#0d9678; }
 
 .why__stats{
   display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(10px,1.6vw,20px);
@@ -614,7 +615,7 @@ h1,h2,h3,p{ margin:0; }
 
   .hero{ display:none; }
 
-  .cat-intro{ padding:44px 0; }
+  .cat-intro{ padding:68px 0 44px; }
   .cat-intro__inner{ padding:0 16px; }
   .section-title{ font-size:22px; }
   .cat-intro__grid{ grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
