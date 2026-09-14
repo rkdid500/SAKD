@@ -104,13 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const dots = Array.from(dotsWrap.children);
 
         const swiper = new Swiper(swiperEl, {
-          speed: 600,
-          effect: 'creative',
+          speed: 400,
+          effect: 'slide',
           allowTouchMove: true,
-          creativeEffect: {
-            prev: { opacity: 0, rotate: [0, 0, -45] },
-            next: { opacity: 0, rotate: [0, 0, 45] }
-          },
           on: {
             slideChange(sw) {
               dots.forEach((dot, i) => dot.classList.toggle('is-active', i === sw.activeIndex));

@@ -509,11 +509,13 @@ h1,h2,h3,p{ margin:0; }
   .compare__head{ display:block; }
   .compare__all{ display:inline-block; margin-top:8px; }
 
-  .soon{ display:block; padding:0 16px; }
+  .soon{
+    display:block; padding:0 16px;
+    background:linear-gradient(180deg, #eafaf3 0%, #eef9f4 100%);
+  }
   .soon__inner{ padding:0; }
   .principle{
     display:block; padding:32px 20px 36px; border-radius:28px;
-    background:linear-gradient(180deg, #eafaf3 0%, #eef9f4 100%);
   }
   .principle .section-title{ text-align:left; font-size:26px; line-height:1.4; }
   .principle__highlight{ color:var(--c-mint-dark); }

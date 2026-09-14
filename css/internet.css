@@ -11,7 +11,8 @@
 .inet-hero__eyebrow{ font-size:14px; font-weight:800; color:var(--c-mint-dark); }
 .inet-hero__title{ margin-top:14px; font-size:38px; font-weight:900; line-height:1.35; color:var(--c-navy); letter-spacing:-0.5px; }
 .inet-hero__desc{ margin-top:20px; font-size:15.5px; color:var(--c-text-sub); line-height:1.7; max-width:440px; }
-.inet-hero__actions{ margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
+.inet-hero__actions{ margin-top:28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.inet-hero__actions .btn.btn--primary.btn--lg{ margin-top:0; }
 .inet-hero__note{ margin-top:16px; font-size:13px; color:var(--c-text-mute); }
 
 .inet-finder{
