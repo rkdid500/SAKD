@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>인터넷 비교 - 싹딜</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/internet.css">
+</head>
+<body>
+
+<!-- ===================== Header ===================== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="sakd.html" class="logo">
+      <img src="images/싹딜 로고.png" alt="싹딜">
+    </a>
+
+    <nav class="gnb">
+      <a href="#" class="gnb__link">상품 비교</a>
+      <a href="#" class="gnb__link">혜택·이벤트</a>
+      <a href="#" class="gnb__link">이용 가이드</a>
+      <a href="#" class="gnb__link">고객 후기</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="#" class="btn btn--text">로그인</a>
+      <a href="#" class="btn btn--primary btn--sm">회원가입</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" class="mobile-menu__link">상품 비교</a>
+    <a href="#" class="mobile-menu__link">혜택·이벤트</a>
+    <a href="#" class="mobile-menu__link">이용 가이드</a>
+    <a href="#" class="mobile-menu__link">고객 후기</a>
+    <div class="mobile-menu__actions">
+      <a href="#" class="btn btn--outline btn--block">로그인</a>
+      <a href="#" class="btn btn--primary btn--block">회원가입</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== Category Tabs ===================== -->
+<nav class="cat-tabs">
+  <div class="cat-tabs__inner">
+    <ul class="cat-tabs__list">
+      <li><a class="cat-tabs__item is-active" href="인터넷.html" data-cat="internet">인터넷</a></li>
+      <li><a class="cat-tabs__item" href="phone.html" data-cat="phone">스마트폰</a></li>
+      <li><a class="cat-tabs__item" href="insurance.html" data-cat="insurance">보험</a></li>
+      <li><a class="cat-tabs__item" href="funeral.html" data-cat="funeral">상조</a></li>
+    </ul>
+    <ul class="cat-tabs__list cat-tabs__list--sub">
+      <li><a href="#">비교 가이드</a></li>
+      <li><a href="#">자주 묻는 질문</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== 히어로 + 요금 찾기 ===================== -->
+  <section class="inet-hero">
+    <div class="inet-hero__inner">
+      <div class="inet-hero__left">
+        <p class="inet-hero__eyebrow">인터넷 가입·변경 비교</p>
+        <h1 class="inet-hero__title">복잡한 인터넷 요금,<br>싹딜에서 한 번에</h1>
+        <p class="inet-hero__desc">우리 집에 필요한 속도와 결합 조건만 고르면 예상 월요금과 혜택을 바로 확인할 수 있어요.</p>
+        <div class="inet-hero__actions">
+          <a href="#plans" class="btn btn--primary btn--lg">내 조건 확인하기</a>
+          <a href="#plans" class="btn btn--outline btn--lg">대표 요금제 보기</a>
+        </div>
+        <p class="inet-hero__note">상담 무료 · 가입 강요 없음 · 통신사 조건 비교</p>
+      </div>
+
+      <div class="inet-hero__right">
+        <div class="inet-finder">
+          <h2 class="inet-finder__title">내게 맞는 요금 찾기</h2>
+          <p class="inet-finder__desc">3가지만 선택하면 예상 금액을 보여드려요.</p>
+
+          <div class="inet-finder__group">
+            <p class="inet-finder__label">1. 필요한 상품</p>
+            <div class="inet-finder__options" data-group="product">
+              <button type="button" class="inet-chip is-active" data-value="internet">인터넷</button>
+              <button type="button" class="inet-chip" data-value="internet-tv">인터넷+TV</button>
+              <button type="button" class="inet-chip" data-value="internet-tv-phone">인터넷+TV+폰</button>
+            </div>
+          </div>
+
+          <div class="inet-finder__group">
+            <p class="inet-finder__label">2. 사용 인원과 용도</p>
+            <div class="inet-finder__options" data-group="usage">
+              <button type="button" class="inet-chip" data-value="1-2">1~2인</button>
+              <button type="button" class="inet-chip is-active" data-value="family">가족·게임</button>
+              <button type="button" class="inet-chip" data-value="work">고속 작업</button>
+            </div>
+          </div>
+
+          <div class="inet-finder__group">
+            <p class="inet-finder__label">3. 휴대폰 통신사</p>
+            <select class="inet-finder__select">
+              <option>결합 안 함 / 잘 모르겠어요</option>
+              <option>SKT</option>
+              <option>KT</option>
+              <option>LG U+</option>
+            </select>
+          </div>
+
+          <div class="inet-finder__result">
+            <div class="inet-finder__result-main">
+              <p class="inet-finder__result-label">예상 월 납부금</p>
+              <p class="inet-finder__result-price">33,000<span>원</span></p>
+            </div>
+            <p class="inet-finder__result-benefit">최대 23만원 혜택</p>
+          </div>
+
+          <button type="button" class="btn btn--primary btn--block inet-finder__submit">이 조건으로 상담받기</button>
+          <p class="inet-finder__disclaimer">지역과 결합 조건에 따라 실제 금액이 달라질 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 신뢰 배지 ===================== -->
+  <section class="inet-trust">
+    <div class="inet-trust__inner">
+      <div class="inet-trust__item">
+        <p class="inet-trust__title">통신 3사 비교</p>
+        <p class="inet-trust__desc">KT · SK · LG U+</p>
+      </div>
+      <div class="inet-trust__item">
+        <p class="inet-trust__title">조건별 맞춤 추천</p>
+        <p class="inet-trust__desc">필요한 상품만 안내</p>
+      </div>
+      <div class="inet-trust__item">
+        <p class="inet-trust__title">설치까지 한 번에</p>
+        <p class="inet-trust__desc">상담부터 일정 안내까지</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 누적 판매량 카운터 ===================== -->
+  <section class="inet-counter">
+    <div class="inet-counter__inner">
+      <p class="inet-counter__eyebrow">사은품 당일 지급 약속!</p>
+      <h2 class="inet-counter__title">싹딜에서 최대 지원금 받아가세요</h2>
+
+      <div class="inet-counter__card">
+        <video class="inet-counter__video" src="images/9월 누적 판매량 · 지표 카드.webm" autoplay muted loop playsinline></video>
+      </div>
+      <p class="inet-counter__caption">※ 위 누적 판매량은 서비스 소개를 위한 예시 수치이며, 실제 집계와 다를 수 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 많이 찾는 대표 요금제 ===================== -->
+  <section class="inet-plans" id="plans">
+    <div class="inet-plans__inner">
+      <p class="inet-plans__eyebrow">POPULAR PLANS</p>
+      <h2 class="inet-plans__title">많이 찾는 대표 요금제</h2>
+      <p class="inet-plans__desc">생활 방식에 가까운 상품부터 비교해보세요.</p>
+
+      <div class="inet-plans__toggle">
+        <button type="button" class="inet-toggle-btn is-active">인터넷만</button>
+        <button type="button" class="inet-toggle-btn">인터넷 + TV</button>
+      </div>
+
+      <div class="inet-plans__grid">
+        <article class="inet-plan-card">
+          <p class="inet-plan-card__tag">가볍게 사용한다면</p>
+          <h3 class="inet-plan-card__name">100M 실속형</h3>
+          <p class="inet-plan-card__desc">검색, 쇼핑, 영상 시청 중심</p>
+          <p class="inet-plan-card__price">월 <strong>22,000원</strong>부터</p>
+          <dl class="inet-plan-card__meta">
+            <div><dt>추천 가구</dt><dd>1~2인</dd></div>
+            <div><dt>예상 혜택</dt><dd>최대 20만원</dd></div>
+          </dl>
+          <a href="#" class="btn btn--outline btn--block">조건 확인</a>
+        </article>
+
+        <article class="inet-plan-card inet-plan-card--featured">
+          <span class="inet-plan-card__badge">가장 많이 선택</span>
+          <p class="inet-plan-card__tag">여러 기기를 함께 쓴다면</p>
+          <h3 class="inet-plan-card__name">500M 추천형</h3>
+          <p class="inet-plan-card__desc">OTT, 게임, 재택근무까지 여유롭게</p>
+          <p class="inet-plan-card__price">월 <strong>33,000원</strong>부터</p>
+          <dl class="inet-plan-card__meta">
+            <div><dt>추천 가구</dt><dd>3~4인</dd></div>
+            <div><dt>예상 혜택</dt><dd>최대 23만원</dd></div>
+          </dl>
+          <a href="#" class="btn btn--primary btn--block">조건 확인</a>
+        </article>
+
+        <article class="inet-plan-card">
+          <p class="inet-plan-card__tag">빠른 작업이 중요하다면</p>
+          <h3 class="inet-plan-card__name">1G 고속형</h3>
+          <p class="inet-plan-card__desc">방송, 대용량 업로드, 전문 작업</p>
+          <p class="inet-plan-card__price">월 <strong>38,500원</strong>부터</p>
+          <dl class="inet-plan-card__meta">
+            <div><dt>추천 환경</dt><dd>고용량 사용</dd></div>
+            <div><dt>예상 혜택</dt><dd>최대 32만원</dd></div>
+          </dl>
+          <a href="#" class="btn btn--outline btn--block">조건 확인</a>
+        </article>
+      </div>
+
+      <p class="inet-plans__caption">표시된 금액과 혜택은 디자인 시안용 예시이며, 실제 상담 시 최신 조건을 확인해야 합니다.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 신청 3단계 ===================== -->
+  <section class="inet-steps">
+    <div class="inet-steps__inner">
+      <p class="inet-steps__eyebrow">HOW IT WORKS</p>
+      <h2 class="inet-steps__title">신청은 세 단계면 충분해요</h2>
+
+      <div class="inet-steps__grid">
+        <div class="inet-step">
+          <span class="inet-step__num">1</span>
+          <p class="inet-step__title">조건 선택</p>
+          <p class="inet-step__desc">필요한 상품과 사용 환경을 간단히 선택합니다.</p>
+        </div>
+        <div class="inet-step">
+          <span class="inet-step__num">2</span>
+          <p class="inet-step__title">맞춤 상담</p>
+          <p class="inet-step__desc">결합 할인과 설치 가능 여부를 정확하게 확인합니다.</p>
+        </div>
+        <div class="inet-step">
+          <span class="inet-step__num">3</span>
+          <p class="inet-step__title">설치 안내</p>
+          <p class="inet-step__desc">최종 조건 확인 후 원하는 일정에 설치를 진행합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA 배너 ===================== -->
+  <section class="inet-cta-wrap">
+    <div class="inet-cta">
+      <div class="inet-cta__text">
+        <p class="inet-cta__title">어떤 요금제가 맞는지 모르겠다면</p>
+        <p class="inet-cta__desc">현재 사용 중인 통신사만 알려주세요. 비교부터 도와드릴게요.</p>
+      </div>
+      <div class="inet-cta__actions">
+        <a href="#" class="btn btn--outline-light">전화 상담</a>
+        <a href="#plans" class="btn btn--primary">30초 조건 확인</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="inet-faq">
+    <div class="inet-faq__inner">
+      <p class="inet-faq__eyebrow">FAQ</p>
+      <h2 class="inet-faq__title">자주 묻는 질문</h2>
+
+      <div class="inet-faq__list">
+        <details class="inet-faq__item" open>
+          <summary>상담만 받고 가입하지 않아도 되나요?</summary>
+          <p>네, 요금 비교와 상담은 무료이며, 안내받은 내용을 확인한 뒤 가입 여부를 결정할 수 있습니다.</p>
+        </details>
+        <details class="inet-faq__item">
+          <summary>표시된 월요금이 실제 납부금인가요?</summary>
+          <p>표시된 금액은 예시이며, 실제 납부금은 지역·결합 조건·프로모션에 따라 달라질 수 있습니다.</p>
+        </details>
+        <details class="inet-faq__item">
+          <summary>어떤 속도를 선택해야 하나요?</summary>
+          <p>동시 접속 기기 수와 사용 목적(영상 시청, 재택근무, 게임 등)에 따라 상담을 통해 안내해 드립니다.</p>
+        </details>
+        <details class="inet-faq__item">
+          <summary>설치까지 얼마나 걸리나요?</summary>
+          <p>지역과 일정에 따라 다르며, 상담 시 가능한 방문 설치 일정을 함께 안내해 드립니다.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== Footer ===================== -->
+<footer class="inet-footer">
+  <div class="inet-footer__inner">
+    <div class="inet-footer__brand">
+      <p class="inet-footer__logo">싹딜</p>
+      <p class="inet-footer__tagline">인터넷 요금 비교 서비스</p>
+    </div>
+    <p class="inet-footer__disclaimer">본 페이지의 요금과 혜택은 디자인 시안용 예시이며,<br>실제 계약 전 상품 정보와 관련 고지를 준수해야 합니다.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/internet.js"></script>
+</body>
+</html>

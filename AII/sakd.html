@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>싹딜 - 생활상품 비교의 기준</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="preload" as="image" href="images/ssakdeal-hero-right-intro@2x.webp">
+<link rel="preload" as="image" href="images/ssakdeal-hero-right-floating-loop@2x.webp">
+</head>
+<body>
+
+<!-- ===================== Header ===================== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="sakd.html" class="logo">
+      <img src="images/싹딜 로고.png" alt="싹딜">
+    </a>
+
+    <nav class="gnb">
+      <a href="#" class="gnb__link">상품 비교</a>
+      <a href="#" class="gnb__link">혜택·이벤트</a>
+      <a href="#" class="gnb__link">이용 가이드</a>
+      <a href="#" class="gnb__link">고객 후기</a>
+    </nav>
+
+    <div class="header__actions">
+      <a href="#" class="btn btn--text">로그인</a>
+      <a href="#" class="btn btn--primary btn--sm">회원가입</a>
+    </div>
+
+    <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#" class="mobile-menu__link">상품 비교</a>
+    <a href="#" class="mobile-menu__link">혜택·이벤트</a>
+    <a href="#" class="mobile-menu__link">이용 가이드</a>
+    <a href="#" class="mobile-menu__link">고객 후기</a>
+    <div class="mobile-menu__actions">
+      <a href="#" class="btn btn--outline btn--block">로그인</a>
+      <a href="#" class="btn btn--primary btn--block">회원가입</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== Category Tabs ===================== -->
+<nav class="cat-tabs">
+  <div class="cat-tabs__inner">
+    <ul class="cat-tabs__list">
+      <li><a class="cat-tabs__item" href="인터넷.html" data-cat="internet">인터넷</a></li>
+      <li><a class="cat-tabs__item" href="phone.html" data-cat="phone">스마트폰</a></li>
+      <li><a class="cat-tabs__item" href="insurance.html" data-cat="insurance">보험</a></li>
+      <li><a class="cat-tabs__item" href="funeral.html" data-cat="funeral">상조</a></li>
+    </ul>
+    <ul class="cat-tabs__list cat-tabs__list--sub">
+      <li><a href="#">비교 가이드</a></li>
+      <li><a href="#">자주 묻는 질문</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== Mobile Hero Banner ===================== -->
+  <section class="mobile-banner">
+    <img src="images/모바일_배너.png" alt="인터넷 요금 비교 - 내 조건에 맞는 인터넷을 찾아보세요. 속도와 결합 조건까지 한눈에 비교해요." class="mobile-banner__img">
+  </section>
+
+  <!-- ===================== Hero ===================== -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__left">
+        <p class="hero__eyebrow">생활상품 비교, 한 곳에서</p>
+        <h1 class="hero__title">복잡한 생활상품,<br>싹 비교하고 결정하세요</h1>
+        <p class="hero__desc">인터넷부터 스마트폰, 보험, 상조까지 조건과 혜택을 <br>한눈에 비교해드려요.</p>
+        <p class="hero__note">필요한 조건만 쉽게 확인하고, 내 기준으로 선택하세요.</p>
+      </div>
+
+      <div class="hero__right">
+        <div class="hero__visual">
+          <img
+            id="heroVisualIntro"
+            class="hero__visual-img hero__visual-img--intro is-active"
+            src="images/ssakdeal-hero-right-intro@2x.webp"
+            alt=""
+            aria-hidden="true"
+            width="1280" height="732">
+          <img
+            id="heroVisualLoop"
+            class="hero__visual-img hero__visual-img--loop"
+            src="images/ssakdeal-hero-right-floating-loop@2x.webp"
+            alt=""
+            aria-hidden="true"
+            width="1280" height="732">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 상품 카테고리 소개 ===================== -->
+  <section class="cat-intro">
+    <div class="cat-intro__inner">
+      <h2 class="section-title">상품마다 중요한 기준은 다르게</h2>
+      <p class="section-desc">카테고리를 바꿔가며 같은 방식으로 핵심 조건과 혜택을 비교할 수 있습니다.</p>
+
+      <div class="cat-intro__grid">
+        <a href="#compare" class="cat-intro__card">
+          <picture>
+            <source media="(max-width: 768px)" srcset="images/모바일_Product Entry · 인터넷.png">
+            <img src="images/PC_Product Entry · 인터넷.png" alt="인터넷 - 속도·결합 할인, 바로가기">
+          </picture>
+        </a>
+
+        <a href="#soon" class="cat-intro__card">
+          <picture>
+            <source media="(max-width: 768px)" srcset="images/모바일_Product Entry · 스마트폰.png">
+            <img src="images/PC_Product Entry · 스마트폰.png" alt="스마트폰 - 기기값·지원금, 바로가기">
+          </picture>
+        </a>
+
+        <a href="#soon" class="cat-intro__card">
+          <picture>
+            <source media="(max-width: 768px)" srcset="images/모바일_Product Entry · 보험.png">
+            <img src="images/PC_Product Entry · 보험.png" alt="보험 - 보장·갱신 조건, 바로가기">
+          </picture>
+        </a>
+
+        <a href="#soon" class="cat-intro__card">
+          <picture>
+            <source media="(max-width: 768px)" srcset="images/모바일_Product Entry · 상조.png">
+            <img src="images/PC_Product Entry · 상조.png" alt="상조 - 총 납입·해약, 바로가기">
+          </picture>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 지금 비교 가능한 인터넷 상품 ===================== -->
+  <section class="compare" id="compare">
+    <div class="compare__inner">
+      <div class="compare__head">
+        <h2 class="section-title section-title--left">지금 비교 가능한 인터넷 상품</h2>
+        <a href="#" class="compare__all">인터넷 전체 보기 →</a>
+      </div>
+      <p class="section-desc section-desc--left">현재 제공 중인 서비스는 충분한 정보를 보여주고, 출시 전 상품은 넣지 않습니다.</p>
+
+      <div class="compare__grid">
+        <div class="plan-card">
+          <p class="plan-card__tag">1~2인 실속형</p>
+          <p class="plan-card__speed">100M</p>
+          <p class="plan-card__desc">동시성 중심</p>
+          <p class="plan-card__price">월 22,000원</p>
+          <p class="plan-card__note">결합 할인·설치비·계약 3년 적용 시</p>
+          <a href="#" class="btn btn--outline btn--block">상세 보기</a>
+        </div>
+
+        <div class="plan-card plan-card--featured">
+          <p class="plan-card__tag">3~4인 추천</p>
+          <p class="plan-card__speed">500M</p>
+          <p class="plan-card__desc">재택·OTT 중심</p>
+          <p class="plan-card__price">월 29,700원</p>
+          <p class="plan-card__note">결합 할인·설치비·계약 3년 적용 시</p>
+          <a href="#" class="btn btn--primary btn--block">추천 조건 비교</a>
+        </div>
+
+        <div class="plan-card">
+          <p class="plan-card__tag">다인 가구</p>
+          <p class="plan-card__speed">1G</p>
+          <p class="plan-card__desc">고용량·다기기</p>
+          <p class="plan-card__price">월 38,500원</p>
+          <p class="plan-card__note">결합 할인·설치비·계약 3년 적용 시</p>
+          <a href="#" class="btn btn--outline btn--block">상세 보기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 어떤 상품이든 같은 원칙으로 (Mobile) ===================== -->
+  <section class="soon" id="soon">
+    <div class="soon__inner">
+      <!-- Mobile-only: 어떤 상품이든 같은 원칙으로 -->
+      <div class="principle">
+        <h2 class="section-title">어떤 상품이든<br><span class="principle__highlight">같은 원칙</span>으로</h2>
+        <div class="principle__list">
+          <div class="principle__item">
+            <span class="principle__num">01</span>
+            <div class="principle__body">
+              <p class="principle__title">총비용 우선</p>
+              <p class="principle__desc">제약기간 전체 비용 표시</p>
+            </div>
+          </div>
+          <div class="principle__item">
+            <span class="principle__num">02</span>
+            <div class="principle__body">
+              <p class="principle__title">조건 분리</p>
+              <p class="principle__desc">필수·해제 의무조건 구분</p>
+            </div>
+          </div>
+          <div class="principle__item">
+            <span class="principle__num">03</span>
+            <div class="principle__body">
+              <p class="principle__title">추천 이유</p>
+              <p class="principle__desc">왜 적합한지 먼저 설명</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 싹딜의 비교 방식 (Desktop, GSAP ScrollTrigger) ===================== -->
+  <section class="method" id="methodSection">
+    <div class="method__pin">
+      <div class="method__inner">
+        <div class="method__col method__col--text">
+          <div class="method__slide is-active" data-step="1">
+            <p class="method__eyebrow">싹딜의 비교 방식</p>
+            <div class="method__progress" aria-hidden="true">
+              <span class="is-active"></span><span></span><span></span>
+            </div>
+            <p class="method__step">STEP 01 · 조건 확인</p>
+            <h2 class="method__title">우리 집 상황부터</h2>
+            <p class="method__desc">사용 패턴·기존 약정·결합 여부를 먼저 확인해요.<br>내 상황에 필요한 조건만 남겨요.</p>
+            <div class="method__tags">
+              <span class="method__tag">사용 패턴</span>
+              <span class="method__tag">기존 약정</span>
+              <span class="method__tag">결합 가능 여부</span>
+            </div>
+          </div>
+
+          <div class="method__slide" data-step="2">
+            <p class="method__eyebrow">싹딜의 비교 방식</p>
+            <div class="method__progress" aria-hidden="true">
+              <span></span><span class="is-active"></span><span></span>
+            </div>
+            <p class="method__step">STEP 02 · 같은 기준으로 비교</p>
+            <h2 class="method__title">혜택과 비용을 함께</h2>
+            <p class="method__desc">월 요금·약정·설치비·혜택을 한눈에 비교해요.<br>받는 혜택과 내는 비용을 함께 봐요.</p>
+            <div class="method__tags">
+              <span class="method__tag">월 요금</span>
+              <span class="method__tag">약정 기간</span>
+              <span class="method__tag">설치비·혜택</span>
+            </div>
+          </div>
+
+          <div class="method__slide" data-step="3">
+            <p class="method__eyebrow">싹딜의 비교 방식</p>
+            <div class="method__progress" aria-hidden="true">
+              <span></span><span></span><span class="is-active"></span>
+            </div>
+            <p class="method__step">STEP 03 · 선택 안내</p>
+            <h2 class="method__title">선택의 이유까지 정리</h2>
+            <p class="method__desc">추천 이유와 확인할 조건을 명확히 설명해요.<br>이해한 뒤 내 상황에 맞게 결정해요.</p>
+            <div class="method__tags">
+              <span class="method__tag">추천 이유</span>
+              <span class="method__tag">확인할 조건</span>
+              <span class="method__tag">내가 결정</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="method__col method__col--visual">
+          <div class="swiper method-swiper" id="methodSwiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="images/PC_Slide Visual · 집·공유기·체크.png" alt="우리 집 상황부터 확인하는 싹딜의 비교 방식">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/PC_3D Image · Step 02.png" alt="혜택과 비용을 함께 비교하는 싹딜의 비교 방식">
+              </div>
+              <div class="swiper-slide">
+                <img src="images/PC_3D Image · Step 03.png" alt="선택의 이유까지 정리하는 싹딜의 비교 방식">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="method__steps">
+        <div class="method__step-box is-active" data-step-box="1">
+          <p class="method__step-label">STEP 01 · 조건 확인</p>
+          <p class="method__step-name">우리 집 상황부터</p>
+        </div>
+        <div class="method__step-box" data-step-box="2">
+          <p class="method__step-label">STEP 02 · 같은 기준으로 비교</p>
+          <p class="method__step-name">혜택과 비용을 함께</p>
+        </div>
+        <div class="method__step-box" data-step-box="3">
+          <p class="method__step-label">STEP 03 · 선택 안내</p>
+          <p class="method__step-name">선택 이유까지 정리</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 싹딜의 비교 방식 (Mobile, GSAP ScrollTrigger + Swiper creative) ===================== -->
+  <section class="method-mobile" id="methodMobileSection">
+    <div class="method-mobile__pin">
+      <div class="swiper method-mobile-swiper" id="methodMobileSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 1.png" alt="STEP 01 · 조건 확인 - 우리 집 상황부터">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 2.png" alt="STEP 02 · 같은 기준으로 비교 - 혜택과 비용을 함께">
+          </div>
+          <div class="swiper-slide">
+            <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 3.png" alt="STEP 03 · 선택 안내 - 선택 이유까지">
+          </div>
+        </div>
+      </div>
+      <div class="method-mobile__dots" id="methodMobileDots">
+        <span class="method-mobile__dot is-active"></span>
+        <span class="method-mobile__dot"></span>
+        <span class="method-mobile__dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 왜 싹딜을 선택해야 할까요 ===================== -->
+  <section class="why" id="why">
+    <div class="why__inner">
+      <h2 class="why__h rv">왜 <span class="why__h-mint">싹딜</span>을 선택해야 할까요?</h2>
+
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <defs>
+          <linearGradient id="whyRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#2fe0ad"/>
+            <stop offset="100%" stop-color="#0c8f6f"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="why__stats rv" data-stagger>
+        <div class="why__stat">
+          <p class="why__k">비교 상담 누적</p>
+          <div class="why__ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="why__ring-track" cx="60" cy="60" r="46"/>
+              <circle class="why__ring-fill" cx="60" cy="60" r="46" style="--ring-pct:81"/>
+            </svg>
+            <div class="why__ring-val"><span data-count="1800" data-suf="+">0+</span></div>
+          </div>
+          <p class="why__note">2023년 서비스 이후 누적</p>
+        </div>
+        <div class="why__stat">
+          <p class="why__k">고객 평균 평점</p>
+          <div class="why__ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="why__ring-track" cx="60" cy="60" r="46"/>
+              <circle class="why__ring-fill" cx="60" cy="60" r="46" style="--ring-pct:90"/>
+            </svg>
+            <div class="why__ring-val"><span data-count="4.9" data-dec="1" data-suf="점">0점</span></div>
+          </div>
+          <p class="why__note">REAL REVIEW 12개 기준</p>
+        </div>
+        <div class="why__stat">
+          <p class="why__k">누적 설치 완료</p>
+          <div class="why__ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="why__ring-track" cx="60" cy="60" r="46"/>
+              <circle class="why__ring-fill" cx="60" cy="60" r="46" style="--ring-pct:75"/>
+            </svg>
+            <div class="why__ring-val"><span data-count="1284" data-suf="+">0+</span></div>
+          </div>
+          <p class="why__note">2026.9월 기준</p>
+        </div>
+      </div>
+
+      <div class="why__cards rv rv-1" data-stagger>
+        <article class="why__c">
+          <div class="why__tx">
+            <p class="why__lb">비교부터 설치까지</p>
+            <h3>찾은 상담사가<br>그대로 도와드립니다</h3>
+            <p class="why__d">같은 담당자가 상담부터 설치까지 끝까지 도와드려요.</p>
+          </div>
+          <div class="why__vis">
+            <div class="why__flow">
+              <span class="why__fi"><b>01</b>조건 확인</span>
+              <span class="why__fi"><b>02</b>비교</span>
+              <span class="why__fi"><b>03</b>신청</span>
+              <span class="why__fi why__fi--on"><b>04</b>설치</span>
+            </div>
+            <div class="why__tags">
+              <span class="why__tag">1:1 상담사 배정</span>
+              <span class="why__tag">조건 재확인</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="why__c">
+          <div class="why__tx">
+            <p class="why__lb">한 곳에서 끝까지</p>
+            <h3>상담·비교·설치가<br>같은 팀 안에서</h3>
+            <p class="why__d">상담·비교·설치를 싹딜 팀이 한 번에 진행해요.</p>
+          </div>
+          <div class="why__vis">
+            <div class="why__process">
+              <div class="why__ps">
+                <span class="why__ps-icon" aria-hidden="true">
+                  <img src="images/emoji-speech-balloon-3d.png" alt="">
+                </span>
+                <span class="why__ps-label">상담</span>
+              </div>
+              <span class="why__ps-arrow" aria-hidden="true">→</span>
+              <div class="why__ps">
+                <span class="why__ps-icon" aria-hidden="true">
+                  <img src="images/emoji-bar-chart-3d.png" alt="">
+                </span>
+                <span class="why__ps-label">비교</span>
+              </div>
+              <span class="why__ps-arrow" aria-hidden="true">→</span>
+              <div class="why__ps">
+                <span class="why__ps-icon" aria-hidden="true">
+                  <img src="images/emoji-wrench-3d.png" alt="">
+                </span>
+                <span class="why__ps-label">설치</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="why__c">
+          <div class="why__tx">
+            <p class="why__lb">감이 아니라 조건으로</p>
+            <h3>말이 아니라<br>조건으로 비교합니다</h3>
+            <p class="why__d">같은 기준으로 우리 서비스도 먼저 점검했어요.</p>
+          </div>
+          <div class="why__vis">
+            <div class="why__score2">
+              <div class="why__chart" id="whyChart">
+                <div class="why__chart-col">
+                  <div class="why__chart-bars">
+                    <i class="why__chart-bar why__chart-bar--a" data-h="58"></i>
+                    <i class="why__chart-bar why__chart-bar--b" data-h="88"></i>
+                  </div>
+                  <p>속도</p>
+                </div>
+                <div class="why__chart-col">
+                  <div class="why__chart-bars">
+                    <i class="why__chart-bar why__chart-bar--a" data-h="70"></i>
+                    <i class="why__chart-bar why__chart-bar--b" data-h="95"></i>
+                  </div>
+                  <p>가격</p>
+                </div>
+                <div class="why__chart-col">
+                  <div class="why__chart-bars">
+                    <i class="why__chart-bar why__chart-bar--a" data-h="40"></i>
+                    <i class="why__chart-bar why__chart-bar--b" data-h="82"></i>
+                  </div>
+                  <p>혜택</p>
+                </div>
+              </div>
+              <div class="why__chart-legend">
+                <span><i class="why__chart-dot why__chart-dot--a"></i>A업체</span>
+                <span><i class="why__chart-dot why__chart-dot--b"></i>싹딜</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="why__caption rv">※ 위 수치는 서비스 소개를 위한 예시이며, 세부 산출 기준은 추후 공개될 예정입니다.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 고객 후기 ===================== -->
+  <section class="review">
+    <div class="review__inner">
+      <div class="review__head">
+        <div class="review__heading">
+          <p class="review__eyebrow">REAL REVIEW</p>
+          <h2 class="section-title section-title--left">싹딜 고객 후기</h2>
+          <p class="section-desc section-desc--left">실제 고객이 남긴 상담과 설치 경험을 확인해 보세요.</p>
+        </div>
+        <div class="review__summary">
+          <a href="#" class="review__more">후기 더보기 <span aria-hidden="true">→</span></a>
+          <p class="review__score"><span class="review__score-star" aria-hidden="true">★</span> 4.9<span class="review__score-count">고객 후기 12개</span></p>
+        </div>
+      </div>
+
+      <div class="review__grid">
+        <article class="review-card">
+          <span class="review-card__photo review-card__photo--1" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-card__body">
+            <p class="review-card__stars">★★★★★</p>
+            <p class="review-card__tag">인터넷 상담</p>
+            <p class="review-card__quote">설치 예약부터 방문까지 일정 안내가 정확해서 기다리는 동안 불편함이 없었어요. 배선도 깔끔하게 정리해 주셔서 만족스러워요.</p>
+            <footer class="review-card__footer">
+              <span class="review-card__name">이*호</span>
+              <time class="review-card__date">2026.09.14</time>
+            </footer>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <span class="review-card__photo review-card__photo--2" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-card__body">
+            <p class="review-card__stars">★★★★★</p>
+            <p class="review-card__tag">인터넷 상담</p>
+            <p class="review-card__quote">월 요금과 결합 조건을 같은 기준으로 비교해 주셔서 우리 집에 맞는 상품을 고르기 쉬웠어요.</p>
+            <footer class="review-card__footer">
+              <span class="review-card__name">심*현</span>
+              <time class="review-card__date">2026.09.13</time>
+            </footer>
+          </div>
+        </article>
+
+        <article class="review-card">
+          <span class="review-card__photo review-card__photo--3" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-card__body">
+            <p class="review-card__stars"><span class="is-filled">★★★★</span><span class="is-empty">★</span></p>
+            <p class="review-card__tag">인터넷 상담</p>
+            <p class="review-card__quote">기존 약정이 끝나가는 시점에 맞춰 상담받았는데, 위약금 없이 갈아탈 수 있는 조건을 잘 짚어주셨어요.</p>
+            <footer class="review-card__footer">
+              <span class="review-card__name">나*식</span>
+              <time class="review-card__date">2026.09.11</time>
+            </footer>
+          </div>
+        </article>
+      </div>
+
+      <div class="review__list">
+        <article class="review-list-card">
+          <span class="review-list-card__thumb review-list-card__thumb--1" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-list-card__body">
+            <p class="review-list-card__tag">인터넷 상담</p>
+            <p class="review-list-card__quote">벽면 배선이 지저분해질까 걱정했는데 몰딩 처리까지 깔끔하게 마무리해 주셨어요.</p>
+            <footer class="review-list-card__footer">
+              <span class="review-list-card__name">박*성</span>
+              <time class="review-list-card__date">2026.09.09</time>
+            </footer>
+          </div>
+        </article>
+
+        <article class="review-list-card">
+          <span class="review-list-card__thumb review-list-card__thumb--2" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-list-card__body">
+            <p class="review-list-card__tag">인터넷 상담</p>
+            <p class="review-list-card__quote">재택근무 때문에 화상회의가 잦은데 설치 후로 끊김 없이 안정적으로 쓰고 있습니다.</p>
+            <footer class="review-list-card__footer">
+              <span class="review-list-card__name">오*화</span>
+              <time class="review-list-card__date">2026.09.07</time>
+            </footer>
+          </div>
+        </article>
+
+        <article class="review-list-card">
+          <span class="review-list-card__thumb review-list-card__thumb--3" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-list-card__body">
+            <p class="review-list-card__tag">인터넷 상담</p>
+            <p class="review-list-card__quote">가족 모두 동시에 스마트폰과 TV를 써도 속도 저하가 없어서 만족스러워요.</p>
+            <footer class="review-list-card__footer">
+              <span class="review-list-card__name">김*우</span>
+              <time class="review-list-card__date">2026.09.05</time>
+            </footer>
+          </div>
+        </article>
+
+        <article class="review-list-card">
+          <span class="review-list-card__thumb review-list-card__thumb--4" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5.5 12a10 10 0 0 1 13 0"/><path d="M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+          <div class="review-list-card__body">
+            <p class="review-list-card__tag">인터넷 상담</p>
+            <p class="review-list-card__quote">이사하면서 새로 설치했는데 원하는 위치에 정확히 배선해 주셔서 편했어요.</p>
+            <footer class="review-list-card__footer">
+              <span class="review-list-card__name">이*라</span>
+              <time class="review-list-card__date">2026.09.02</time>
+            </footer>
+          </div>
+        </article>
+      </div>
+
+      <p class="review__caution">※ 위 후기는 서비스 소개를 위한 가상의 예시입니다. 실제 고객 후기와 상이할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 하단 CTA ===================== -->
+  <section class="cta">
+    <div class="cta__banner-wrap">
+      <img src="images/PC_08 Final Summary CTA · 비교부터 결정까지.png" alt="비교부터 결정까지, 싹딜답게 - 비교는 간단하게, 선택은 분명하게. 내 상황에 맞는 요금과 혜택을 한눈에 비교하고, 이해한 뒤 분명하게 결정하세요." class="cta__banner">
+    </div>
+
+    <!-- Mobile-only: real text (left-aligned, matches PC copy) + standalone illustration side by side -->
+    <div class="cta__mobile">
+      <div class="cta__mobile-text">
+        <p class="cta__mobile-eyebrow">비교부터 결정까지, 싹딜답게</p>
+        <h2 class="cta__mobile-title">비교는 간단하게,<br>선택은 분명하게</h2>
+        <p class="cta__mobile-desc">내 상황에 맞는 요금과 혜택을 한눈에 비교하고,<br>이해한 뒤 분명하게 결정하세요.</p>
+      </div>
+      <img src="images/3D Clay · 비교에서 결정까지.png" alt="상담원과 고객이 태블릿으로 비교 내용을 함께 확인하는 모습" class="cta__mobile-illust">
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== Footer ===================== -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <img src="images/싹딜 로고.png" alt="싹딜" class="footer__logo">
+      <p class="footer__tagline">필요한 모든 것을,<br>가장 합리적인 선택으로</p>
+      <div class="footer__bottom">
+        <span class="footer__copyright">© 2026 싹딜. All rights reserved.</span>
+        <nav class="footer__nav">
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <a href="#">마케팅 정보 수신 동의</a>
+          <a href="#">고객센터</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer__info">
+      <h3 class="footer__info-title">COMPANY INFORMATION</h3>
+      <p class="footer__info-row">COMPANY 제이에이치&nbsp;&nbsp;OWNER 양진혁</p>
+      <p class="footer__info-row">BUSINESS LICENSE 349-03-03198</p>
+      <p class="footer__info-row">ADDRESS 대전광역시 서구 대덕대로 408, 212-17호</p>
+    </div>
+  </div>
+  <div class="footer__blob" aria-hidden="true"></div>
+</footer>
+
+<!-- Mobile fixed bottom bar -->
+<div class="mobile-bar">
+  <button class="mobile-bar__cat" id="mobileBarCat">카테고리</button>
+  <a href="#compare" class="mobile-bar__cta">비교 시작</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
