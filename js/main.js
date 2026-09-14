@@ -129,4 +129,98 @@ document.addEventListener('DOMContentLoaded', () => {
       catTabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
+
+  // ---- 스크롤 리빌(.rv) + 자식 스태거([data-stagger]) ----
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.rv');
+  if (revealEls.length) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach(el => el.classList.add('is-in'));
+    } else {
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          revealIO.unobserve(entry.target);
+          const kids = entry.target.querySelectorAll('[data-stagger] > *');
+          kids.forEach((kid, i) => {
+            kid.style.transitionDelay = (i * 55) + 'ms';
+            kid.classList.add('is-in');
+          });
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      revealEls.forEach(el => revealIO.observe(el));
+
+      // 목차 이동 등으로 화면을 건너뛴 경우, 이미 보이는데 안 켜진 요소를 직접 켬
+      let sweeping = false;
+      const sweep = () => {
+        if (sweeping) return;
+        sweeping = true;
+        requestAnimationFrame(() => {
+          const vh = window.innerHeight || document.documentElement.clientHeight;
+          document.querySelectorAll('.rv:not(.is-in)').forEach(el => {
+            const r = el.getBoundingClientRect();
+            if (r.top < vh * 0.94) el.classList.add('is-in');
+          });
+          sweeping = false;
+        });
+      };
+      window.addEventListener('scroll', sweep, { passive: true });
+      window.addEventListener('resize', sweep, { passive: true });
+      setTimeout(sweep, 400);
+    }
+
+    // data-stagger 컨테이너 자체가 뷰포트에 들어올 때도 자식을 순서대로 표시
+    const staggerEls = document.querySelectorAll('[data-stagger]');
+    if (staggerEls.length && 'IntersectionObserver' in window && !reduceMotion) {
+      const staggerIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          staggerIO.unobserve(entry.target);
+          Array.from(entry.target.children).forEach((kid, i) => {
+            kid.style.transitionDelay = (i * 55) + 'ms';
+            kid.classList.add('is-in');
+          });
+        });
+      }, { threshold: 0.06 });
+      staggerEls.forEach(el => staggerIO.observe(el));
+    } else if (reduceMotion) {
+      staggerEls.forEach(el => Array.from(el.children).forEach(kid => kid.classList.add('is-in')));
+    }
+  }
+
+  // ---- 숫자 카운트업 ([data-count]) ----
+  const countEls = document.querySelectorAll('[data-count]');
+  if (countEls.length) {
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      countEls.forEach(el => {
+        const to = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+        const suf = el.getAttribute('data-suf') || '';
+        el.textContent = to.toLocaleString('ko-KR', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+    } else {
+      const countIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          countIO.unobserve(entry.target);
+          const el = entry.target;
+          const to = parseFloat(el.getAttribute('data-count'));
+          const dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+          const suf = el.getAttribute('data-suf') || '';
+          const duration = 1500;
+          let start = null;
+          function tick(t) {
+            if (start === null) start = t;
+            const p = Math.min((t - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 4);
+            el.textContent = (to * eased).toLocaleString('ko-KR', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.6 });
+      countEls.forEach(el => countIO.observe(el));
+    }
+  }
 });
