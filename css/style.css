@@ -123,12 +123,12 @@ h1,h2,h3,p{ margin:0; }
 .cat-tabs__inner{
   max-width:var(--container); margin:0 auto; padding:0 24px;
   display:flex; align-items:center; justify-content:space-between;
-  height:52px;
+  height:60px;
   overflow-x:auto;
 }
-.cat-tabs__list{ display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.cat-tabs__list{ display:flex; align-items:center; gap:8px; flex-shrink:0; }
 .cat-tabs__item{
-  padding:8px 16px; border-radius:999px; font-size:14px; font-weight:700;
+  padding:8px 24px; border-radius:999px; font-size:15px; font-weight:800;
   color:var(--c-text-sub); white-space:nowrap;
 }
 .cat-tabs__item.is-active{ background:var(--c-navy); color:#fff; }
@@ -484,9 +484,10 @@ h1,h2,h3,p{ margin:0; }
   .mobile-menu{ display:block; }
 
   /* cat tabs: only main list visible, scrollable */
-  .cat-tabs__inner{ padding:0 16px; height:48px; }
+  .cat-tabs__inner{ padding:0 16px; height:50px; }
   .cat-tabs__list--sub{ display:none; }
-  .cat-tabs__item{ padding:7px 14px; font-size:13.5px; }
+  .cat-tabs__list{ gap:6px; }
+  .cat-tabs__item{ padding:6px 18px; font-size:14px; }
 
   /* mobile hero banner replaces desktop hero visuals */
   .mobile-banner{ display:block; margin:16px; }

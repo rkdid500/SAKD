@@ -8,8 +8,8 @@
   max-width:var(--container); margin:0 auto; padding:0 24px;
   display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;
 }
-.inet-hero__eyebrow{ font-size:14px; font-weight:800; color:var(--c-mint-dark); }
-.inet-hero__title{ margin-top:14px; font-size:38px; font-weight:900; line-height:1.35; color:var(--c-navy); letter-spacing:-0.5px; }
+.inet-hero__eyebrow{ font-size:14px; font-weight:700; color:var(--c-mint-dark); }
+.inet-hero__title{ margin-top:14px; font-size:38px; font-weight:800; line-height:1.35; color:var(--c-navy); letter-spacing:-0.5px; }
 .inet-hero__desc{ margin-top:20px; font-size:15.5px; color:var(--c-text-sub); line-height:1.7; max-width:440px; }
 .inet-hero__actions{ margin-top:28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .inet-hero__actions .btn.btn--primary.btn--lg{ margin-top:0; }
@@ -42,7 +42,7 @@
   margin-top:24px; padding:18px 20px; border-radius:14px; background:var(--c-navy); color:#fff;
   display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
 }
-.inet-finder__result-label{ font-size:12.5px; color:#9db0cd; }
+.inet-finder__result-label{ font-size:12.5px; font-weight:600; color:#9db0cd; }
 .inet-finder__result-price{ margin-top:4px; font-size:26px; font-weight:900; }
 .inet-finder__result-price span{ font-size:15px; font-weight:700; margin-left:2px; }
 .inet-finder__result-benefit{ font-size:12.5px; font-weight:700; color:var(--c-mint); white-space:nowrap; }
