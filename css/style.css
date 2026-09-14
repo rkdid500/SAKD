@@ -155,13 +155,13 @@ h1,h2,h3,p{ margin:0; }
 /* =========================================================
    Hero
 ========================================================= */
-.hero{ background:linear-gradient(180deg,#f3fbf8 0%, #f7f9fb 60%, #fff 100%); padding:64px 0 76px; overflow:hidden; }
+.hero{ background:#f3fdfe; padding:64px 0 76px; overflow:hidden; }
 .hero__inner{
   max-width:var(--container); margin:0 auto; padding:0 24px;
   display:flex; align-items:center; gap:clamp(24px,6vw,80px);
 }
-.hero__left{ flex:0 0 42%; max-width:42%; }
-.hero__right{ flex:0 0 50%; max-width:50%; display:flex; justify-content:center; }
+.hero__left{ flex:0 0 39%; max-width:39%; }
+.hero__right{ flex:0 0 55%; max-width:55%; display:flex; justify-content:center; }
 .hero__eyebrow{ font-size:14px; font-weight:700; color:var(--c-mint-dark); margin-bottom:14px; }
 .hero__title{ font-size:38px; font-weight:800; line-height:1.35; color:var(--c-navy); letter-spacing:-0.5px; }
 .hero__desc{ margin-top:20px; font-size:15.5px; color:var(--c-text-sub); line-height:1.7; }
@@ -169,7 +169,7 @@ h1,h2,h3,p{ margin:0; }
 
 /* hero visual: intro webp plays once, then swaps to the floating-loop webp (js/main.js) */
 .hero__visual{
-  position:relative; width:100%; max-width:680px;
+  position:relative; width:100%; max-width:760px;
   aspect-ratio:1280 / 732;
 }
 .hero__visual-img{
@@ -183,13 +183,14 @@ h1,h2,h3,p{ margin:0; }
 ========================================================= */
 .cat-intro{ padding:72px 0; background:#fff; }
 .cat-intro__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
-.cat-intro__grid{ margin-top:40px; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; align-items:start; }
+.cat-intro__grid{ margin-top:40px; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
 .cat-intro__card{
-  display:block; border-radius:var(--radius-lg); overflow:hidden;
+  display:block; position:relative; border-radius:var(--radius-lg); overflow:hidden;
+  aspect-ratio:576 / 548;
   transition:transform .15s ease, box-shadow .15s ease;
 }
 .cat-intro__card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-card-lg); }
-.cat-intro__card img{ width:100%; height:auto; display:block; border-radius:var(--radius-lg); }
+.cat-intro__card img{ width:100%; height:100%; display:block; object-fit:cover; border-radius:var(--radius-lg); }
 
 /* =========================================================
    지금 비교 가능한 인터넷 상품
@@ -319,7 +320,7 @@ h1,h2,h3,p{ margin:0; }
 
 .why__h{
   text-align:center; font-size:clamp(20px,2.6vw,32px); font-weight:800;
-  letter-spacing:-0.02em; line-height:1.3; margin-bottom:clamp(18px,2.2vw,30px); color:var(--c-navy);
+  letter-spacing:-0.02em; line-height:1.3; margin-bottom:clamp(30px,4vw,48px); color:var(--c-navy);
 }
 .why__h-mint{ color:#0d9678; }
 
@@ -368,7 +369,7 @@ h1,h2,h3,p{ margin:0; }
   display:flex; flex-direction:column; transition:border-color .22s ease, transform .22s ease, box-shadow .22s ease;
 }
 .why__c:hover{ border-color:var(--c-mint); transform:translateY(-3px); box-shadow:var(--shadow-card); }
-.why__c > .why__tx{ padding:clamp(16px,1.8vw,22px) clamp(14px,1.6vw,20px) 0; }
+.why__c > .why__tx{ padding:clamp(28px,3.2vw,36px) clamp(14px,1.6vw,20px) 0; }
 .why__lb{ display:inline-flex; align-items:center; gap:7px; font-size:13.5px; font-weight:800; color:var(--c-mint-dark); margin-bottom:9px; }
 .why__lb::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--c-mint); }
 .why__c h3{ text-align:center; font-size:20px; font-weight:800; letter-spacing:-0.02em; line-height:1.35; margin:0 0 8px; color:var(--c-navy); word-break:keep-all; }
@@ -392,11 +393,16 @@ h1,h2,h3,p{ margin:0; }
 .why__ps{ display:flex; flex-direction:column; align-items:center; gap:11px; }
 .why__ps-icon{
   display:flex; align-items:center; justify-content:center; width:74px; height:74px;
-  border-radius:999px; background:var(--c-mint-100); color:var(--c-mint-dark);
+  border-radius:999px;
+  background:radial-gradient(circle at 32% 28%, #ffffff 0%, var(--c-mint-100) 55%, var(--c-mint-200) 100%);
+  box-shadow:0 10px 18px -8px rgba(15,174,134,.45), inset 0 -3px 6px rgba(15,174,134,.12), inset 0 2px 3px rgba(255,255,255,.9);
 }
-.why__ps-icon svg{ width:34px; height:34px; }
+.why__ps-icon img{
+  width:40px; height:40px; object-fit:contain;
+  filter:drop-shadow(0 2px 3px rgba(15,31,63,.15));
+}
 .why__ps-label{ font-size:15px; font-weight:700; color:var(--c-text-sub); }
-.why__ps-arrow{ font-size:22px; font-weight:700; color:var(--c-border); margin-bottom:32px; }
+.why__ps-arrow{ font-size:22px; font-weight:700; color:#8a94a6; margin-bottom:32px; }
 
 /* 카드 3 — 점수 + 그룹 막대 차트 */
 .why__score2{ width:100%; max-width:230px; }
@@ -408,7 +414,10 @@ h1,h2,h3,p{ margin:0; }
 .why__chart{ display:flex; align-items:flex-end; justify-content:space-between; gap:14px; height:96px; }
 .why__chart-col{ display:flex; flex-direction:column; align-items:center; gap:9px; flex:1; height:100%; justify-content:flex-end; }
 .why__chart-bars{ display:flex; align-items:flex-end; gap:5px; height:100%; }
-.why__chart-bar{ display:block; width:11px; border-radius:4px 4px 0 0; }
+.why__chart-bar{
+  display:block; width:11px; border-radius:4px 4px 0 0;
+  height:0; transition:height 1s cubic-bezier(.16,.84,.44,1);
+}
 .why__chart-bar--a{ background:var(--c-border); }
 .why__chart-bar--b{ background:var(--c-mint); }
 .why__chart-col p{ margin:0; font-size:13px; font-weight:700; color:var(--c-text-sub); }
@@ -609,6 +618,7 @@ h1,h2,h3,p{ margin:0; }
   .cat-intro__inner{ padding:0 16px; }
   .section-title{ font-size:22px; }
   .cat-intro__grid{ grid-template-columns:1fr 1fr; gap:12px; margin-top:28px; }
+  .cat-intro__card{ aspect-ratio:340 / 378; }
 
   .compare{ padding:44px 0; }
   .compare__inner{ padding:0 16px; }

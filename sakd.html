@@ -78,7 +78,7 @@
       <div class="hero__left">
         <p class="hero__eyebrow">생활상품 비교, 한 곳에서</p>
         <h1 class="hero__title">복잡한 생활상품,<br>싹 비교하고 결정하세요</h1>
-        <p class="hero__desc">인터넷부터 스마트폰, 보험, 상조까지 조건과 혜택을 한눈에 비교해드려요.</p>
+        <p class="hero__desc">인터넷부터 스마트폰, 보험, 상조까지 조건과 혜택을 <br>한눈에 비교해드려요.</p>
         <p class="hero__note">필요한 조건만 쉽게 확인하고, 내 기준으로 선택하세요.</p>
       </div>
 
@@ -403,17 +403,23 @@
           <div class="why__vis">
             <div class="why__process">
               <div class="why__ps">
-                <span class="why__ps-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4V4z"/></svg></span>
+                <span class="why__ps-icon" aria-hidden="true">
+                  <img src="images/emoji-speech-balloon-3d.png" alt="">
+                </span>
                 <span class="why__ps-label">상담</span>
               </div>
               <span class="why__ps-arrow" aria-hidden="true">→</span>
               <div class="why__ps">
-                <span class="why__ps-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><circle cx="19" cy="18" r="2"/></svg></span>
+                <span class="why__ps-icon" aria-hidden="true">
+                  <img src="images/emoji-bar-chart-3d.png" alt="">
+                </span>
                 <span class="why__ps-label">비교</span>
               </div>
               <span class="why__ps-arrow" aria-hidden="true">→</span>
               <div class="why__ps">
-                <span class="why__ps-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 7l3 3-8 8H6v-3z"/><path d="M13 8l3 3"/></svg></span>
+                <span class="why__ps-icon" aria-hidden="true">
+                  <img src="images/emoji-wrench-3d.png" alt="">
+                </span>
                 <span class="why__ps-label">설치</span>
               </div>
             </div>
@@ -428,25 +434,25 @@
           </div>
           <div class="why__vis">
             <div class="why__score2">
-              <div class="why__chart">
+              <div class="why__chart" id="whyChart">
                 <div class="why__chart-col">
                   <div class="why__chart-bars">
-                    <i class="why__chart-bar why__chart-bar--a" style="height:58%"></i>
-                    <i class="why__chart-bar why__chart-bar--b" style="height:88%"></i>
+                    <i class="why__chart-bar why__chart-bar--a" data-h="58"></i>
+                    <i class="why__chart-bar why__chart-bar--b" data-h="88"></i>
                   </div>
                   <p>속도</p>
                 </div>
                 <div class="why__chart-col">
                   <div class="why__chart-bars">
-                    <i class="why__chart-bar why__chart-bar--a" style="height:70%"></i>
-                    <i class="why__chart-bar why__chart-bar--b" style="height:95%"></i>
+                    <i class="why__chart-bar why__chart-bar--a" data-h="70"></i>
+                    <i class="why__chart-bar why__chart-bar--b" data-h="95"></i>
                   </div>
                   <p>가격</p>
                 </div>
                 <div class="why__chart-col">
                   <div class="why__chart-bars">
-                    <i class="why__chart-bar why__chart-bar--a" style="height:40%"></i>
-                    <i class="why__chart-bar why__chart-bar--b" style="height:82%"></i>
+                    <i class="why__chart-bar why__chart-bar--a" data-h="40"></i>
+                    <i class="why__chart-bar why__chart-bar--b" data-h="82"></i>
                   </div>
                   <p>혜택</p>
                 </div>

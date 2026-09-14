@@ -249,4 +249,25 @@ document.addEventListener('DOMContentLoaded', () => {
       countEls.forEach(el => countIO.observe(el));
     }
   }
+
+  // ---- 비교 막대그래프: 스크롤 진입 시 0에서 목표 높이까지 자라나는 효과 ----
+  const whyChart = document.getElementById('whyChart');
+  if (whyChart) {
+    const bars = Array.from(whyChart.querySelectorAll('.why__chart-bar'));
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      bars.forEach(bar => { bar.style.height = (bar.getAttribute('data-h') || '0') + '%'; });
+    } else {
+      const chartIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          chartIO.unobserve(entry.target);
+          bars.forEach((bar, i) => {
+            bar.style.transitionDelay = (i * 90) + 'ms';
+            bar.style.height = (bar.getAttribute('data-h') || '0') + '%';
+          });
+        });
+      }, { threshold: 0.4 });
+      chartIO.observe(whyChart);
+    }
+  }
 });
