@@ -176,9 +176,10 @@
 
 @media (max-width: 768px){
   .inet-hero{ padding:36px 0 48px; }
-  .inet-hero__inner{ grid-template-columns:1fr; gap:32px; padding:0 16px; }
+  .inet-hero__inner{ grid-template-columns:1fr; gap:32px; padding:0 16px; text-align:center; }
   .inet-hero__title{ font-size:27px; }
-  .inet-hero__desc{ max-width:none; }
+  .inet-hero__desc{ max-width:none; margin-left:auto; margin-right:auto; }
+  .inet-hero__actions{ justify-content:center; }
   .inet-finder{ padding:24px; }
 
   .inet-trust__inner{ grid-template-columns:1fr; gap:16px; padding:24px 16px; }
