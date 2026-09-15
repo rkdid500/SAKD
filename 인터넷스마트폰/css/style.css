@@ -87,11 +87,12 @@ h1,h2,h3,p{ margin:0; }
   height:var(--header-h);
   display:flex; align-items:center; gap:28px;
 }
-.logo img{ height:26px; width:auto; }
+.logo img{ height:36px; width:auto; }
 .gnb{ display:flex; align-items:center; gap:8px; flex:1; }
 .gnb__link{ padding:10px 12px; font-size:15px; font-weight:600; color:var(--c-text-sub); border-radius:8px; }
 .gnb__link:hover{ color:var(--c-text); background:var(--c-bg-soft); }
 .header__actions{ display:flex; align-items:center; gap:6px; }
+.header-cats{ flex:1; margin-left:20px; }
 
 .hamburger{
   display:none; flex-direction:column; justify-content:center; gap:5px;
@@ -596,6 +597,7 @@ h1,h2,h3,p{ margin:0; }
   .gnb, .header__actions{ display:none; }
   .hamburger{ display:flex; }
   .header__inner{ padding:0 16px; gap:0; }
+  .header-cats{ margin-left:12px; }
   .mobile-menu{ display:block; }
 
   /* cat tabs: only main list visible, scrollable */

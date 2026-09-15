@@ -19,12 +19,10 @@
       <img src="images/싹딜 로고.png" alt="싹딜">
     </a>
 
-    <nav class="gnb">
-      <a href="#" class="gnb__link">상품 비교</a>
-      <a href="#" class="gnb__link">혜택·이벤트</a>
-      <a href="#" class="gnb__link">이용 가이드</a>
-      <a href="#" class="gnb__link">고객 후기</a>
-    </nav>
+    <ul class="cat-tabs__list header-cats">
+      <li><a class="cat-tabs__item" href="인터넷.html" data-cat="internet">인터넷</a></li>
+      <li><a class="cat-tabs__item" href="phone.html" data-cat="phone">스마트폰</a></li>
+    </ul>
 
     <div class="header__actions">
       <a href="#" class="btn btn--text">로그인</a>
@@ -38,30 +36,12 @@
 
   <!-- Mobile slide menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#" class="mobile-menu__link">상품 비교</a>
-    <a href="#" class="mobile-menu__link">혜택·이벤트</a>
-    <a href="#" class="mobile-menu__link">이용 가이드</a>
-    <a href="#" class="mobile-menu__link">고객 후기</a>
     <div class="mobile-menu__actions">
       <a href="#" class="btn btn--outline btn--block">로그인</a>
       <a href="#" class="btn btn--primary btn--block">회원가입</a>
     </div>
   </div>
 </header>
-
-<!-- ===================== Category Tabs ===================== -->
-<nav class="cat-tabs">
-  <div class="cat-tabs__inner">
-    <ul class="cat-tabs__list">
-      <li><a class="cat-tabs__item" href="인터넷.html" data-cat="internet">인터넷</a></li>
-      <li><a class="cat-tabs__item" href="phone.html" data-cat="phone">스마트폰</a></li>
-    </ul>
-    <ul class="cat-tabs__list cat-tabs__list--sub">
-      <li><a href="#">비교 가이드</a></li>
-      <li><a href="#">자주 묻는 질문</a></li>
-    </ul>
-  </div>
-</nav>
 
 <main>
 
@@ -72,7 +52,7 @@
       <div class="hero__left">
         <p class="hero__eyebrow">생활상품 비교, 한 곳에서</p>
         <h1 class="hero__title">복잡한 생활상품,<br>싹 비교하고 결정하세요</h1>
-        <p class="hero__desc">인터넷부터 스마트폰, 보험, 상조까지 조건과 혜택을 <br>한눈에 비교해드려요.</p>
+        <p class="hero__desc">인터넷부터 스마트폰 조건과 혜택을 <br>한눈에 비교해드려요.</p>
         <p class="hero__note">필요한 조건만 쉽게 확인하고, 내 기준으로 선택하세요.</p>
       </div>
 
@@ -622,7 +602,6 @@
 
 <!-- Mobile fixed bottom bar -->
 <div class="mobile-bar">
-  <button class="mobile-bar__cat" id="mobileBarCat">카테고리</button>
   <a href="#compare" class="mobile-bar__cta">비교 시작</a>
 </div>
 
