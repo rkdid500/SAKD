@@ -430,6 +430,18 @@ h1,h2,h3,p{ margin:0; }
 .why__chart-dot--a{ background:var(--c-border); }
 .why__chart-dot--b{ background:var(--c-mint); }
 
+/* 카드 1 — 혜택 보장제 */
+.why__guarantee-title{ font-size:clamp(19px,2vw,23px); line-height:1.45; }
+.why__guarantee-highlight{ color:var(--c-mint-dark); }
+.why__guarantee-box{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:14px;
+  background:var(--c-mint-100); border-radius:16px; padding:18px 20px;
+}
+.why__guarantee-box-main{ text-align:left; }
+.why__guarantee-box-label{ margin:0; font-size:12px; font-weight:700; color:var(--c-mint-dark); }
+.why__guarantee-box-value{ margin:2px 0 0; font-size:clamp(28px,3.4vw,36px); font-weight:900; color:var(--c-mint-dark); letter-spacing:-0.02em; }
+.why__guarantee-box-desc{ margin:0; font-size:12px; line-height:1.5; color:var(--c-text-sub); text-align:right; }
+
 .why__caption{ text-align:center; margin-top:16px; font-size:11px; color:var(--c-text-mute); }
 
 /* scroll reveal */
