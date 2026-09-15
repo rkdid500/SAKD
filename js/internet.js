@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- 대표 요금제 카드: 클릭하면 강조 카드와 같은 테두리·효과 적용 ----
+  const planCards = document.querySelectorAll('.inet-plan-card');
+  planCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a, button')) return; // 내부 버튼 클릭은 그대로 동작
+      planCards.forEach(c => c.classList.remove('is-selected'));
+      card.classList.add('is-selected');
+    });
+  });
+
   // ---- FAQ 아코디언: 한 번에 하나만 펼치기 ----
   const faqItems = document.querySelectorAll('.inet-faq__item');
   faqItems.forEach(item => {
