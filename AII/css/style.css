@@ -699,7 +699,7 @@ h1,h2,h3,p{ margin:0; }
   .cta__mobile-eyebrow{ font-size:11px; font-weight:700; color:var(--c-mint); }
   .cta__mobile-title{ margin-top:8px; font-size:18px; font-weight:800; color:#fff; line-height:1.35; }
   .cta__mobile-desc{ margin-top:8px; font-size:12px; color:#aebbd4; line-height:1.55; }
-  .cta__mobile-illust{ display:block; width:192px; flex-shrink:0; }
+  .cta__mobile-illust{ display:block; width:220px; flex-shrink:0; }
 
   .footer{ padding:36px 0 96px; }
   .footer__inner{ flex-direction:column; gap:28px; }
