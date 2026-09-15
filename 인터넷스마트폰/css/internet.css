@@ -11,6 +11,11 @@
 .inet-hero__eyebrow{ font-size:14px; font-weight:700; color:var(--c-mint-dark); }
 .inet-hero__title{ margin-top:14px; font-size:38px; font-weight:800; line-height:1.35; color:var(--c-navy); letter-spacing:-0.5px; }
 .inet-hero__desc{ margin-top:20px; font-size:15.5px; color:var(--c-text-sub); line-height:1.7; max-width:440px; }
+.inet-hero__illust{ display:block; margin:20px 0; width:72%; max-width:312px; }
+
+@media (min-width: 769px){
+  .inet-hero__illust{ width:79%; max-width:343px; margin-left:-44px; }
+}
 .inet-hero__actions{ margin-top:28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .inet-hero__actions .btn.btn--primary.btn--lg{ margin-top:0; }
 .inet-hero__note{ margin-top:16px; font-size:13px; color:var(--c-text-mute); }
@@ -95,8 +100,13 @@
 
 .inet-plans__grid{ margin-top:36px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; text-align:left; }
 .inet-plan-card{ position:relative; background:#fff; border:1px solid var(--c-border); border-radius:var(--radius-lg); padding:28px; display:flex; flex-direction:column; }
-.inet-plan-card--featured{ border:2px solid var(--c-mint); box-shadow:var(--shadow-card-lg); transform:translateY(-6px); }
+.inet-plan-card{ cursor:pointer; transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.inet-plan-card--featured,
+.inet-plan-card.is-selected{ border:2px solid var(--c-mint); box-shadow:var(--shadow-card-lg); transform:translateY(-6px); }
 .inet-plan-card__badge{ position:absolute; top:-13px; left:24px; background:var(--c-mint); color:#fff; font-size:11.5px; font-weight:800; padding:5px 12px; border-radius:999px; }
+.inet-plan-card__head{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+.inet-plan-card__head-text{ flex:1; min-width:0; }
+.inet-plan-card__icon{ width:50%; max-width:190px; flex-shrink:0; object-fit:contain; margin-top:4px; image-rendering:-webkit-optimize-contrast; }
 .inet-plan-card__tag{ font-size:13px; font-weight:700; color:var(--c-text-mute); }
 .inet-plan-card__name{ margin-top:10px; font-size:22px; font-weight:900; color:var(--c-navy); }
 .inet-plan-card__desc{ margin-top:6px; font-size:13px; color:var(--c-text-sub); }
@@ -176,9 +186,11 @@
 
 @media (max-width: 768px){
   .inet-hero{ padding:36px 0 48px; }
-  .inet-hero__inner{ grid-template-columns:1fr; gap:32px; padding:0 16px; }
+  .inet-hero__inner{ grid-template-columns:1fr; gap:32px; padding:0 16px; text-align:center; }
   .inet-hero__title{ font-size:27px; }
-  .inet-hero__desc{ max-width:none; }
+  .inet-hero__desc{ max-width:none; margin-left:auto; margin-right:auto; }
+  .inet-hero__illust{ margin-left:auto; margin-right:auto; }
+  .inet-hero__actions{ justify-content:center; }
   .inet-finder{ padding:24px; }
 
   .inet-trust__inner{ grid-template-columns:1fr; gap:16px; padding:24px 16px; }

@@ -57,13 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- 싹딜의 비교 방식: GSAP ScrollTrigger pinned step transitions (PC + Mobile) ----
-  // Technique matches the reference site (rkdid500.github.io/green car, section02):
-  // the image side is a Swiper.js "creative" effect carousel (rotate + fade) whose
-  // slide is switched via swiper.slideTo() at scroll-progress thresholds. GSAP
-  // ScrollTrigger only owns the pin + scroll-progress tracking, not the image
-  // transform itself. Pin distance is kept short (+=120%) so it doesn't take an
-  // excessive amount of scrolling to get through all 3 steps.
+
   if (window.gsap && window.ScrollTrigger && window.Swiper) {
     gsap.registerPlugin(ScrollTrigger);
     const PIN_DISTANCE = '+=120%';
