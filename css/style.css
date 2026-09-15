@@ -293,10 +293,10 @@ h1,h2,h3,p{ margin:0; }
    Same mechanism as desktop, hidden above 768px.
 ========================================================= */
 .method-mobile{ display:none; background:#fff; }
-.method-mobile__pin{ padding:28px 0 32px; }
+.method-mobile__pin{ padding:16px 0 20px; }
 
 .method-mobile-swiper{
-  position:relative; width:96%; max-width:355px; margin:0 auto;
+  position:relative; width:94%; max-width:560px; margin:0 auto;
   aspect-ratio:1170 / 1692;
   overflow:hidden;
 }
@@ -694,7 +694,7 @@ h1,h2,h3,p{ margin:0; }
      asset, kept to one compact block instead of the wide PC banner. */
   .cta{ padding:40px 0; }
   .cta__banner-wrap{ display:none; }
-  .cta__mobile{ display:flex; align-items:center; gap:12px; padding:0 20px; text-align:left; }
+  .cta__mobile{ display:flex; align-items:center; gap:12px; padding:0 20px 0 34px; text-align:left; }
   .cta__mobile-text{ flex:1; min-width:0; }
   .cta__mobile-eyebrow{ font-size:11px; font-weight:700; color:var(--c-mint); }
   .cta__mobile-title{ margin-top:8px; font-size:18px; font-weight:800; color:#fff; line-height:1.35; }
