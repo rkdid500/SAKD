@@ -133,6 +133,14 @@
 }
 .inet-step__title{ margin-top:18px; font-size:17px; font-weight:800; color:var(--c-navy); }
 .inet-step__desc{ margin-top:8px; font-size:13.5px; color:var(--c-text-sub); line-height:1.6; }
+.inet-step{ position:relative; }
+.inet-step:not(:last-child)::after{
+  content:"";
+  position:absolute; left:50%; bottom:-30px; transform:translateX(-50%) rotate(45deg);
+  width:10px; height:10px;
+  border-right:2px solid var(--c-mint); border-bottom:2px solid var(--c-mint);
+  display:none;
+}
 
 /* ---------- CTA 배너 ---------- */
 .inet-cta-wrap{ padding:0 24px 80px; background:#fff; }
@@ -181,7 +189,8 @@
 @media (max-width: 1024px){
   .inet-plans__grid{ grid-template-columns:1fr; max-width:420px; margin-left:auto; margin-right:auto; }
   .inet-plan-card--featured{ order:-1; transform:none; }
-  .inet-steps__grid{ grid-template-columns:1fr; gap:28px; }
+  .inet-steps__grid{ grid-template-columns:1fr; gap:44px; }
+  .inet-step:not(:last-child)::after{ display:block; }
 }
 
 @media (max-width: 768px){
