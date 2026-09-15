@@ -3,16 +3,18 @@
 ========================================================= */
 
 /* ---------- 프로모션 배너 캐러셀 ---------- */
-.phone-banner{ position:relative; overflow:hidden; }
+.phone-banner{ padding:28px 0 0; background:#fff; }
+.phone-banner__viewport{ max-width:var(--container); margin:0 auto; padding:0 24px; position:relative; }
+.phone-banner__frame{ border-radius:var(--radius-lg); overflow:hidden; }
 .phone-banner__track{ display:flex; transition:transform .5s ease; }
 .phone-banner__slide{
-  flex:0 0 100%; min-height:360px; display:flex; align-items:center;
+  flex:0 0 100%; min-height:340px; display:flex; align-items:center;
   padding:48px 0;
 }
-.phone-banner__slide--1{ background:linear-gradient(120deg, var(--c-navy) 0%, var(--c-navy-600) 100%); }
-.phone-banner__slide--2{ background:linear-gradient(120deg, #4c7cf0 0%, #2f5fd1 100%); }
+.phone-banner__slide--photo{ padding:0; }
+.phone-banner__slide--photo img{ width:100%; height:100%; object-fit:cover; object-position:left center; display:block; }
 .phone-banner__slide--3{ background:linear-gradient(120deg, var(--c-mint) 0%, var(--c-mint-dark) 100%); }
-.phone-banner__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; width:100%; }
+.phone-banner__inner{ max-width:var(--container); margin:0 auto; padding:0 40px; width:100%; }
 .phone-banner__eyebrow{ font-size:14px; font-weight:800; color:rgba(255,255,255,.75); letter-spacing:.06em; }
 .phone-banner__title{ margin-top:14px; font-size:36px; font-weight:900; line-height:1.35; color:#fff; letter-spacing:-0.5px; }
 .phone-banner__desc{ margin-top:16px; font-size:15px; color:rgba(255,255,255,.85); line-height:1.6; max-width:420px; }
@@ -20,16 +22,16 @@
 
 .phone-banner__arrow{
   position:absolute; top:50%; transform:translateY(-50%);
-  width:40px; height:40px; border-radius:999px; background:rgba(255,255,255,.16);
-  color:#fff; font-size:22px; line-height:1; display:flex; align-items:center; justify-content:center;
-  backdrop-filter:blur(2px);
+  width:40px; height:40px; border-radius:999px; background:rgba(255,255,255,.5);
+  color:var(--c-navy); font-size:22px; line-height:1; display:flex; align-items:center; justify-content:center;
+  backdrop-filter:blur(2px); box-shadow:var(--shadow-card);
 }
-.phone-banner__arrow:hover{ background:rgba(255,255,255,.28); }
-.phone-banner__arrow--prev{ left:20px; }
-.phone-banner__arrow--next{ right:20px; }
+.phone-banner__arrow:hover{ background:rgba(255,255,255,.8); }
+.phone-banner__arrow--prev{ left:36px; }
+.phone-banner__arrow--next{ right:36px; }
 
-.phone-banner__dots{ position:absolute; left:50%; bottom:18px; transform:translateX(-50%); display:flex; gap:7px; }
-.phone-banner__dot{ width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.4); }
+.phone-banner__dots{ position:absolute; left:50%; bottom:14px; transform:translateX(-50%); display:flex; gap:7px; }
+.phone-banner__dot{ width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.5); }
 .phone-banner__dot.is-active{ background:#fff; width:20px; border-radius:999px; }
 
 /* ---------- 진입 경로 3카드 ---------- */
@@ -112,6 +114,13 @@
 
 .device-card .btn{ margin-top:16px; }
 
+.phone-devices__more{
+  display:inline-flex; align-items:center; gap:6px; margin:28px auto 0;
+  padding:11px 26px; border-radius:999px; border:1px solid var(--c-border); background:#fff;
+  font-size:13.5px; font-weight:700; color:var(--c-text-sub);
+}
+.phone-devices__more[hidden]{ display:none; }
+
 .phone-devices__caption{ margin-top:24px; font-size:12px; color:var(--c-text-mute); }
 
 /* ---------- 가입 혜택 그리드 ---------- */
@@ -186,13 +195,17 @@
     margin-top:4px; font-size:11.5px; -webkit-line-clamp:2;
   }
 
-  .phone-banner__slide{ min-height:300px; padding:40px 0; }
-  .phone-banner__inner{ padding:0 16px; }
-  .phone-banner__title{ font-size:25px; }
-  .phone-banner__desc{ font-size:13.5px; }
-  .phone-banner__arrow{ width:34px; height:34px; font-size:18px; }
-  .phone-banner__arrow--prev{ left:10px; }
-  .phone-banner__arrow--next{ right:10px; }
+  .phone-banner{ padding-top:16px; }
+  .phone-banner__viewport{ padding:0 16px; }
+  .phone-banner__frame{ border-radius:16px; }
+  .phone-banner__slide{ min-height:240px; padding:32px 0; }
+  .phone-banner__inner{ padding:0 20px; }
+  .phone-banner__title{ font-size:22px; }
+  .phone-banner__desc{ font-size:13px; }
+  .phone-banner__slide .btn.btn--lg{ padding:11px 22px; font-size:13.5px; }
+  .phone-banner__arrow{ width:30px; height:30px; font-size:16px; }
+  .phone-banner__arrow--prev{ left:8px; }
+  .phone-banner__arrow--next{ right:8px; }
 
   .phone-entry{ margin-top:0; padding-top:44px; }
   .phone-entry__inner{ padding:0 16px; }
@@ -203,8 +216,24 @@
   .phone-devices{ padding:48px 0; }
   .phone-devices__inner{ padding:0 16px; }
   .phone-devices__title{ font-size:24px; }
-  .phone-devices__grid{ grid-template-columns:1fr; max-width:420px; margin-left:auto; margin-right:auto; }
-  .device-card--featured{ order:-1; }
+  .phone-devices__grid{ grid-template-columns:repeat(2,1fr); gap:10px; max-width:none; margin-left:0; margin-right:0; }
+  .device-card--featured{ order:-1; transform:none; }
+
+  .device-card{ padding:12px; border-radius:14px; }
+  .device-card__badges{ top:-8px; left:10px; gap:4px; }
+  .device-badge{ font-size:9px; padding:3px 7px; }
+  .device-card__visual{ height:76px; border-radius:10px; margin-top:2px; }
+  .device-card__visual svg{ width:28px; }
+  .device-card__name{ margin-top:10px; font-size:13.5px; }
+  .device-card__storage{ margin-top:2px; font-size:10.5px; }
+  .device-card__price{ margin-top:8px; padding-top:8px; }
+  .device-card__list-price{ font-size:10px; }
+  .device-card__discount{ display:none; }
+  .device-card__final{ margin-top:6px; font-size:10.5px; }
+  .device-card__final strong{ font-size:16px; margin-left:2px; }
+  .device-card__meta{ margin-top:8px; gap:4px; }
+  .device-tag{ font-size:9px; padding:3px 7px; }
+  .device-card .btn{ margin-top:10px; padding:9px; font-size:12px; }
 
   .phone-benefits{ padding:48px 0; }
   .phone-benefits__inner{ padding:0 16px; }
