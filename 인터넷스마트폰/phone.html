@@ -54,62 +54,17 @@
           <a href="#devices" class="phone-banner__slide phone-banner__slide--photo">
             <img src="images/갤럭시배너.png" alt="갤럭시 S26 시리즈 최대 혜택으로 만나보세요">
           </a>
-          <div class="phone-banner__slide phone-banner__slide--3">
-            <div class="phone-banner__inner">
-              <p class="phone-banner__eyebrow">3사 비교</p>
-              <h1 class="phone-banner__title">SKT·KT·LG U+<br>한 번에 비교하고 선택</h1>
-              <p class="phone-banner__desc">통신 3사 조건을 한 번에 비교해서 가장 유리한 곳으로 가입하세요.</p>
-              <a href="#devices" class="btn btn--primary btn--lg">3사 비교하기</a>
-            </div>
-          </div>
+          <a href="#devices" class="phone-banner__slide phone-banner__slide--photo">
+            <img src="images/폴드8배너.png" alt="Galaxy Z Fold8 - 펼치면 더 넓게, 일상은 더 가볍게">
+          </a>
+          <a href="#devices" class="phone-banner__slide phone-banner__slide--photo phone-banner__slide--contain">
+            <img src="images/통신사배너.png" alt="SKT·KT·LG U+ 한 번에 비교하고 선택 - 통신 3사 비교">
+          </a>
         </div>
       </div>
       <button type="button" class="phone-banner__arrow phone-banner__arrow--prev" aria-label="이전 배너">‹</button>
       <button type="button" class="phone-banner__arrow phone-banner__arrow--next" aria-label="다음 배너">›</button>
       <div class="phone-banner__dots"></div>
-    </div>
-  </section>
-
-  <!-- ===================== 진입 경로 3카드 ===================== -->
-  <section class="phone-entry">
-    <div class="phone-entry__inner">
-      <div class="phone-entry__grid">
-        <a href="#devices" class="entry-card">
-          <span class="entry-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="3" y="4" width="18" height="12" rx="2" stroke="var(--c-mint-dark)" stroke-width="1.6"/>
-              <line x1="8" y1="20" x2="16" y2="20" stroke="var(--c-mint-dark)" stroke-width="1.6" stroke-linecap="round"/>
-              <line x1="12" y1="16" x2="12" y2="20" stroke="var(--c-mint-dark)" stroke-width="1.6"/>
-            </svg>
-          </span>
-          <h3 class="entry-card__title">온라인 셀프비교</h3>
-          <p class="entry-card__desc">셀프가입, 무료상담 없이 바로 비교</p>
-          <span class="entry-card__arrow">가격표 보기 →</span>
-        </a>
-
-        <a href="tel:1800-0000" class="entry-card">
-          <span class="entry-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M5 4h3l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2C10 21 3 14 3 6a2 2 0 0 1 2-2Z" stroke="var(--c-mint-dark)" stroke-width="1.6" stroke-linejoin="round"/>
-            </svg>
-          </span>
-          <h3 class="entry-card__title">전화 상담</h3>
-          <p class="entry-card__desc">전문 상담사가 1:1로 맞춤 안내</p>
-          <span class="entry-card__arrow">상담 연결 →</span>
-        </a>
-
-        <a href="#" class="entry-card">
-          <span class="entry-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z" stroke="var(--c-mint-dark)" stroke-width="1.6" stroke-linejoin="round"/>
-              <circle cx="12" cy="9" r="2.4" stroke="var(--c-mint-dark)" stroke-width="1.6"/>
-            </svg>
-          </span>
-          <h3 class="entry-card__title">매장 찾기</h3>
-          <p class="entry-card__desc">가까운 매장에서 직접 상담·개통</p>
-          <span class="entry-card__arrow">매장 검색 →</span>
-        </a>
-      </div>
     </div>
   </section>
 
@@ -219,10 +174,13 @@
       <h2 class="phone-devices__title">지금 가장 저렴하게 사는 방법</h2>
       <p class="phone-devices__desc">출고가부터 공시지원금, 싹딜 추가할인까지 — 최종 기기값을 그대로 보여드려요.</p>
 
-      <div class="phone-devices__filter">
-        <button type="button" class="phone-filter-btn is-active" data-filter="all">전체</button>
-        <button type="button" class="phone-filter-btn" data-filter="apple">아이폰</button>
-        <button type="button" class="phone-filter-btn" data-filter="samsung">갤럭시</button>
+      <div class="phone-devices__filter-row">
+        <div class="phone-devices__filter">
+          <button type="button" class="phone-filter-btn is-active" data-filter="all">전체</button>
+          <button type="button" class="phone-filter-btn" data-filter="apple">아이폰</button>
+          <button type="button" class="phone-filter-btn" data-filter="samsung">갤럭시</button>
+        </div>
+        <a href="phone-order.html" class="phone-devices__more">더보기 <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="phone-devices__grid">
@@ -240,19 +198,16 @@
           <h3 class="device-card__name">아이폰 18 프로맥스</h3>
           <p class="device-card__storage">256GB · 티타늄 블랙</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>2,200,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-151,000원</span></li>
-              <li>싹딜 추가할인 <span>-330,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>1,719,000원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">2,200,000원</s>
+              <span class="device-card__discount-badge">-481,000원</span>
+            </div>
+            <p class="device-card__final"><strong>1,719,000원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">SKT</span>
           </div>
-          <a href="#" class="btn btn--primary btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--primary btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="apple">
@@ -268,103 +223,16 @@
           <h3 class="device-card__name">아이폰 18 프로</h3>
           <p class="device-card__storage">256GB · 딥블루</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,991,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-300,000원</span></li>
-              <li>싹딜 추가할인 <span>-330,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>1,361,000원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,991,000원</s>
+              <span class="device-card__discount-badge">-630,000원</span>
+            </div>
+            <p class="device-card__final"><strong>1,361,000원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">LG U+</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
-        </article>
-
-        <article class="device-card" data-brand="apple">
-          <div class="device-card__badges">
-            <span class="device-badge device-badge--new">NEW</span>
-          </div>
-          <div class="device-card__visual device-card__visual--self">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
-              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="device-card__name">아이폰 17 프로맥스</h3>
-          <p class="device-card__storage">256GB · 코스믹 오렌지</p>
-          <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,980,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-151,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>1,428,000원</strong></p>
-          </div>
-          <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
-            <span class="device-tag device-tag--carrier">LG U+</span>
-          </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
-        </article>
-
-        <article class="device-card" data-brand="apple">
-          <div class="device-card__badges">
-            <span class="device-badge device-badge--hot">HOT</span>
-          </div>
-          <div class="device-card__visual device-card__visual--apple-dark">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
-              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="device-card__name">아이폰 17 프로</h3>
-          <p class="device-card__storage">256GB · 딥블루</p>
-          <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,782,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-550,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>831,000원</strong></p>
-          </div>
-          <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
-            <span class="device-tag device-tag--carrier">SKT</span>
-          </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
-        </article>
-
-        <article class="device-card" data-brand="apple">
-          <div class="device-card__badges">
-            <span class="device-badge device-badge--sale">최대할인</span>
-          </div>
-          <div class="device-card__visual device-card__visual--apple-blue">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
-              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="device-card__name">아이폰 17</h3>
-          <p class="device-card__storage">128GB · 라벤더</p>
-          <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,287,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-550,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>336,000원</strong></p>
-          </div>
-          <div class="device-card__meta">
-            <span class="device-tag">기기변경</span>
-            <span class="device-tag">공시지원</span>
-            <span class="device-tag device-tag--carrier">KT</span>
-          </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="samsung">
@@ -381,47 +249,16 @@
           <h3 class="device-card__name">갤럭시 Z 폴드8</h3>
           <p class="device-card__storage">256GB · 블루 섀도우</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>2,278,100원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>1,377,100원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">2,278,100원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>1,377,100원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">SKT</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
-        </article>
-
-        <article class="device-card" data-brand="samsung">
-          <div class="device-card__badges">
-            <span class="device-badge device-badge--new">NEW</span>
-          </div>
-          <div class="device-card__visual device-card__visual--samsung-purple">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
-              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <h3 class="device-card__name">갤럭시 Z 폴드8 울트라</h3>
-          <p class="device-card__storage">256GB · 바이올렛 쉐도우</p>
-          <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>2,577,300원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>1,676,300원</strong></p>
-          </div>
-          <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
-            <span class="device-tag device-tag--carrier">LG U+</span>
-          </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="samsung">
@@ -437,19 +274,116 @@
           <h3 class="device-card__name">갤럭시 Z 플립8</h3>
           <p class="device-card__storage">256GB · 코랄 오렌지</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,683,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>782,000원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,683,000원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>782,000원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">KT</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
+        </article>
+
+        <article class="device-card" data-brand="apple">
+          <div class="device-card__badges">
+            <span class="device-badge device-badge--new">NEW</span>
+          </div>
+          <div class="device-card__visual device-card__visual--self">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
+              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="device-card__name">아이폰 17 프로맥스</h3>
+          <p class="device-card__storage">256GB · 코스믹 오렌지</p>
+          <div class="device-card__price">
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,980,000원</s>
+              <span class="device-card__discount-badge">-552,000원</span>
+            </div>
+            <p class="device-card__final"><strong>1,428,000원</strong></p>
+          </div>
+          <div class="device-card__meta">
+            <span class="device-tag device-tag--carrier">LG U+</span>
+          </div>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
+        </article>
+
+        <article class="device-card" data-brand="apple">
+          <div class="device-card__badges">
+            <span class="device-badge device-badge--hot">HOT</span>
+          </div>
+          <div class="device-card__visual device-card__visual--apple-dark">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
+              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="device-card__name">아이폰 17 프로</h3>
+          <p class="device-card__storage">256GB · 딥블루</p>
+          <div class="device-card__price">
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,782,000원</s>
+              <span class="device-card__discount-badge">-951,000원</span>
+            </div>
+            <p class="device-card__final"><strong>831,000원</strong></p>
+          </div>
+          <div class="device-card__meta">
+            <span class="device-tag device-tag--carrier">SKT</span>
+          </div>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
+        </article>
+
+        <article class="device-card" data-brand="apple">
+          <div class="device-card__badges">
+            <span class="device-badge device-badge--sale">최대할인</span>
+          </div>
+          <div class="device-card__visual device-card__visual--apple-blue">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
+              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="device-card__name">아이폰 17</h3>
+          <p class="device-card__storage">128GB · 라벤더</p>
+          <div class="device-card__price">
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,287,000원</s>
+              <span class="device-card__discount-badge">-951,000원</span>
+            </div>
+            <p class="device-card__final"><strong>336,000원</strong></p>
+          </div>
+          <div class="device-card__meta">
+            <span class="device-tag device-tag--carrier">KT</span>
+          </div>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
+        </article>
+
+        <article class="device-card" data-brand="samsung">
+          <div class="device-card__badges">
+            <span class="device-badge device-badge--new">NEW</span>
+          </div>
+          <div class="device-card__visual device-card__visual--samsung-purple">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="4" y="1.5" width="16" height="21" rx="3.2" stroke="#fff" stroke-width="1.6"/>
+              <line x1="9" y1="19" x2="15" y2="19" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="device-card__name">갤럭시 Z 폴드8 울트라</h3>
+          <p class="device-card__storage">256GB · 바이올렛 쉐도우</p>
+          <div class="device-card__price">
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">2,577,300원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>1,676,300원</strong></p>
+          </div>
+          <div class="device-card__meta">
+            <span class="device-tag device-tag--carrier">LG U+</span>
+          </div>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="samsung">
@@ -465,19 +399,16 @@
           <h3 class="device-card__name">갤럭시 S26 울트라</h3>
           <p class="device-card__storage">256GB · 티타늄 그레이</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,797,400원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>896,400원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,797,400원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>896,400원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">LG U+</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="samsung">
@@ -493,19 +424,16 @@
           <h3 class="device-card__name">갤럭시 S26</h3>
           <p class="device-card__storage">256GB · 아이스 블루</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,254,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>353,000원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,254,000원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>353,000원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">번호이동</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">SKT</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="samsung">
@@ -521,19 +449,16 @@
           <h3 class="device-card__name">갤럭시 Z 폴드7</h3>
           <p class="device-card__storage">256GB · 블루 섀도우</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>2,379,300원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>1,478,300원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">2,379,300원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>1,478,300원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">기기변경</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">SKT</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
 
         <article class="device-card" data-brand="samsung">
@@ -549,23 +474,18 @@
           <h3 class="device-card__name">갤럭시 Z 플립7</h3>
           <p class="device-card__storage">256GB · 블루 블랙</p>
           <div class="device-card__price">
-            <p class="device-card__list-price">출고가 <s>1,485,000원</s></p>
-            <ul class="device-card__discount">
-              <li>공시지원금 할인 <span>-500,000원</span></li>
-              <li>싹딜 추가할인 <span>-401,000원</span></li>
-            </ul>
-            <p class="device-card__final">기기값<strong>584,000원</strong></p>
+            <div class="device-card__price-top">
+              <s class="device-card__list-price">1,485,000원</s>
+              <span class="device-card__discount-badge">-901,000원</span>
+            </div>
+            <p class="device-card__final"><strong>584,000원</strong></p>
           </div>
           <div class="device-card__meta">
-            <span class="device-tag">기기변경</span>
-            <span class="device-tag">공시지원</span>
             <span class="device-tag device-tag--carrier">KT</span>
           </div>
-          <a href="#" class="btn btn--outline btn--block">가격 확인</a>
+          <a href="phone-order.html" class="btn btn--outline btn--block">가격 확인</a>
         </article>
       </div>
-
-      <button type="button" id="deviceMoreBtn" class="phone-devices__more" hidden>더보기 <span aria-hidden="true">↓</span></button>
 
       <p class="phone-devices__caption">표시된 금액과 혜택은 디자인 시안용 예시이며, 실제 상담 시 최신 조건을 확인해야 합니다.</p>
     </div>

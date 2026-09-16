@@ -459,7 +459,7 @@ h1,h2,h3,p{ margin:0; }
 
 .review__head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; margin-bottom:32px; }
 .review__eyebrow{ font-size:12px; font-weight:900; color:var(--c-mint-dark); letter-spacing:.12em; }
-.review__heading .section-title{ margin-top:8px; font-size:34px; font-weight:900; letter-spacing:-1px; line-height:1.3; }
+.review__heading .section-title{ margin-top:8px; font-size:34px; font-weight:900; letter-spacing:-1px; line-height:1.3; text-align:left; }
 .review__heading .section-desc{ margin-top:10px; font-size:15.5px; }
 
 .review__summary{ display:flex; flex-direction:column; align-items:flex-end; gap:10px; flex-shrink:0; }

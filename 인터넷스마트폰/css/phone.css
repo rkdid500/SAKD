@@ -8,17 +8,12 @@
 .phone-banner__frame{ border-radius:var(--radius-lg); overflow:hidden; }
 .phone-banner__track{ display:flex; transition:transform .5s ease; }
 .phone-banner__slide{
-  flex:0 0 100%; min-height:340px; display:flex; align-items:center;
+  flex:0 0 100%; min-height:380px; display:flex; align-items:center;
   padding:48px 0;
 }
 .phone-banner__slide--photo{ padding:0; }
 .phone-banner__slide--photo img{ width:100%; height:100%; object-fit:cover; object-position:left center; display:block; }
-.phone-banner__slide--3{ background:linear-gradient(120deg, var(--c-mint) 0%, var(--c-mint-dark) 100%); }
-.phone-banner__inner{ max-width:var(--container); margin:0 auto; padding:0 40px; width:100%; }
-.phone-banner__eyebrow{ font-size:14px; font-weight:800; color:rgba(255,255,255,.75); letter-spacing:.06em; }
-.phone-banner__title{ margin-top:14px; font-size:36px; font-weight:900; line-height:1.35; color:#fff; letter-spacing:-0.5px; }
-.phone-banner__desc{ margin-top:16px; font-size:15px; color:rgba(255,255,255,.85); line-height:1.6; max-width:420px; }
-.phone-banner__slide .btn{ margin-top:26px; }
+.phone-banner__slide--contain img{ object-fit:contain; }
 
 .phone-banner__arrow{
   position:absolute; top:50%; transform:translateY(-50%);
@@ -34,29 +29,9 @@
 .phone-banner__dot{ width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.5); }
 .phone-banner__dot.is-active{ background:#fff; width:20px; border-radius:999px; }
 
-/* ---------- 진입 경로 3카드 ---------- */
-.phone-entry{ padding-top:56px; background:#fff; position:relative; z-index:2; }
-.phone-entry__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
-.phone-entry__grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.entry-card{
-  background:#fff; border:1px solid var(--c-border); border-radius:var(--radius-lg);
-  box-shadow:var(--shadow-card-lg); padding:26px 22px; text-align:left;
-  display:flex; flex-direction:column; gap:10px;
-  transition:border-color .15s ease, transform .15s ease;
-}
-.entry-card:hover{ border-color:var(--c-mint); transform:translateY(-3px); }
-.entry-card__icon{
-  width:44px; height:44px; border-radius:12px; background:var(--c-mint-100);
-  display:flex; align-items:center; justify-content:center; flex-shrink:0;
-}
-.entry-card__icon svg{ width:22px; height:22px; }
-.entry-card__title{ margin-top:4px; font-size:16.5px; font-weight:900; color:var(--c-navy); }
-.entry-card__desc{ font-size:13px; color:var(--c-text-mute); }
-.entry-card__arrow{ margin-top:auto; font-size:13px; font-weight:700; color:var(--c-mint-dark); }
-
 /* ---------- 후기: 데스크톱은 큰 사진 카드, 모바일은 컴팩트 썸네일 카드 ---------- */
 .review__list{ display:none; }
-.review__eyebrow{ font-weight:600; }
+.review__eyebrow{ font-weight:700; }
 
 /* ---------- 기기 가격 비교 ---------- */
 .phone-devices{ padding:80px 0; background:var(--c-bg-soft); text-align:center; }
@@ -65,61 +40,59 @@
 .phone-devices__title{ margin-top:10px; font-size:30px; font-weight:900; color:var(--c-navy); }
 .phone-devices__desc{ margin-top:10px; font-size:15px; color:var(--c-text-sub); }
 
-.phone-devices__filter{ margin-top:28px; display:inline-flex; gap:8px; padding:4px; border-radius:999px; background:#fff; border:1px solid var(--c-border); flex-wrap:wrap; justify-content:center; }
+.phone-devices__filter-row{ margin-top:28px; display:flex; align-items:center; justify-content:center; gap:14px; flex-wrap:wrap; }
+.phone-devices__filter{ display:inline-flex; gap:8px; padding:4px; border-radius:999px; background:#fff; border:1px solid var(--c-border); flex-wrap:wrap; justify-content:center; }
 .phone-filter-btn{ padding:9px 20px; border-radius:999px; font-size:13.5px; font-weight:700; color:var(--c-text-sub); }
 .phone-filter-btn.is-active{ background:var(--c-navy); color:#fff; }
 
-.phone-devices__grid{ margin-top:36px; display:grid; grid-template-columns:repeat(3,1fr); gap:20px; text-align:left; }
+.phone-devices__grid{ margin-top:36px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px; text-align:left; }
 
 .device-card{
   position:relative; background:#fff; border:1px solid var(--c-border); border-radius:var(--radius-lg);
-  padding:22px; display:flex; flex-direction:column; cursor:pointer;
+  padding:16px; display:flex; flex-direction:column; cursor:pointer;
   transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
 }
 .device-card[hidden]{ display:none; }
 .device-card--featured,
-.device-card.is-selected{ border:2px solid var(--c-mint); box-shadow:var(--shadow-card-lg); transform:translateY(-6px); }
-.device-card__badges{ position:absolute; top:-12px; left:20px; display:flex; gap:6px; }
-.device-badge{ font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px; color:#fff; }
+.device-card.is-selected{ border:2px solid var(--c-mint); box-shadow:var(--shadow-card-lg); transform:translateY(-4px); }
+.device-card__badges{ position:absolute; top:-10px; left:14px; display:flex; gap:5px; }
+.device-badge{ font-size:10.5px; font-weight:800; padding:3px 9px; border-radius:999px; color:#fff; }
 .device-badge--hot{ background:#ef5a4c; }
 .device-badge--new{ background:var(--c-mint); }
 .device-badge--sale{ background:var(--c-navy); }
 
 .device-card__visual{
-  height:132px; border-radius:14px; display:flex; align-items:center; justify-content:center;
-  margin-top:6px;
+  height:88px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+  margin-top:4px;
 }
-.device-card__visual svg{ width:46px; height:auto; }
+.device-card__visual svg{ width:34px; height:auto; }
 .device-card__visual--apple-dark{ background:linear-gradient(135deg, var(--c-navy) 0%, var(--c-navy-600) 100%); }
 .device-card__visual--apple-blue{ background:linear-gradient(135deg, #4c7cf0 0%, #2f5fd1 100%); }
 .device-card__visual--samsung-mint{ background:linear-gradient(135deg, var(--c-mint) 0%, var(--c-mint-dark) 100%); }
 .device-card__visual--samsung-purple{ background:linear-gradient(135deg, #9c7cf0 0%, #7a54e0 100%); }
 .device-card__visual--self{ background:linear-gradient(135deg, #f0a24c 0%, #d9852c 100%); }
 
-.device-card__name{ margin-top:16px; font-size:18px; font-weight:900; color:var(--c-navy); }
-.device-card__storage{ margin-top:4px; font-size:12.5px; color:var(--c-text-mute); }
+.device-card__name{ margin-top:12px; font-size:15.5px; font-weight:900; color:var(--c-navy); }
+.device-card__storage{ margin-top:2px; font-size:11.5px; color:var(--c-text-mute); }
 
-.device-card__price{ margin-top:14px; padding-top:14px; border-top:1px solid var(--c-border); }
-.device-card__list-price{ font-size:12.5px; color:var(--c-text-mute); }
-.device-card__list-price s{ text-decoration:line-through; }
-.device-card__discount{ margin-top:6px; display:flex; flex-direction:column; gap:3px; }
-.device-card__discount li{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--c-text-sub); }
-.device-card__discount li span{ color:#ef5a4c; font-weight:700; }
-.device-card__final{ margin-top:10px; font-size:13px; color:var(--c-text-sub); }
-.device-card__final strong{ font-size:24px; font-weight:900; color:var(--c-navy); margin-left:4px; }
+.device-card__price{ margin-top:10px; padding-top:10px; border-top:1px solid var(--c-border); }
+.device-card__price-top{ display:flex; align-items:center; justify-content:space-between; gap:6px; }
+.device-card__list-price{ font-size:11.5px; color:var(--c-text-mute); text-decoration:line-through; }
+.device-card__discount-badge{ flex-shrink:0; font-size:11px; font-weight:800; color:#ef5a4c; background:#fdeceb; padding:3px 8px; border-radius:999px; white-space:nowrap; }
+.device-card__final{ margin-top:6px; }
+.device-card__final strong{ font-size:20px; font-weight:900; color:var(--c-navy); }
 
-.device-card__meta{ margin-top:14px; display:flex; gap:6px; flex-wrap:wrap; }
+.device-card__meta{ margin-top:10px; display:flex; gap:6px; flex-wrap:wrap; }
 .device-tag{ font-size:11.5px; font-weight:700; padding:4px 10px; border-radius:999px; background:var(--c-mint-100); color:var(--c-mint-dark); }
 .device-tag--carrier{ background:var(--c-bg-soft); color:var(--c-text-sub); }
 
-.device-card .btn{ margin-top:16px; }
+.device-card .btn{ margin-top:12px; padding:11px; font-size:13.5px; }
 
 .phone-devices__more{
-  display:inline-flex; align-items:center; gap:6px; margin:28px auto 0;
-  padding:11px 26px; border-radius:999px; border:1px solid var(--c-border); background:#fff;
+  display:inline-flex; align-items:center; gap:6px;
+  padding:9px 20px; border-radius:999px; border:1px solid var(--c-border); background:#fff;
   font-size:13.5px; font-weight:700; color:var(--c-text-sub);
 }
-.phone-devices__more[hidden]{ display:none; }
 
 .phone-devices__caption{ margin-top:24px; font-size:12px; color:var(--c-text-mute); }
 
@@ -174,7 +147,7 @@
    RESPONSIVE — mobile
 ========================================================= */
 @media (max-width: 1024px){
-  .phone-devices__grid{ grid-template-columns:repeat(2,1fr); }
+  .phone-devices__grid{ grid-template-columns:repeat(3,1fr); }
   .device-card--featured{ transform:none; }
   .phone-benefits__grid{ grid-template-columns:repeat(2,1fr); }
 }
@@ -199,19 +172,9 @@
   .phone-banner__viewport{ padding:0 16px; }
   .phone-banner__frame{ border-radius:16px; }
   .phone-banner__slide{ min-height:240px; padding:32px 0; }
-  .phone-banner__inner{ padding:0 20px; }
-  .phone-banner__title{ font-size:22px; }
-  .phone-banner__desc{ font-size:13px; }
-  .phone-banner__slide .btn.btn--lg{ padding:11px 22px; font-size:13.5px; }
   .phone-banner__arrow{ width:30px; height:30px; font-size:16px; }
   .phone-banner__arrow--prev{ left:8px; }
   .phone-banner__arrow--next{ right:8px; }
-
-  .phone-entry{ margin-top:0; padding-top:44px; }
-  .phone-entry__inner{ padding:0 16px; }
-  .phone-entry__grid{ grid-template-columns:1fr; gap:12px; }
-  .entry-card{ flex-direction:row; align-items:center; padding:18px 16px; }
-  .entry-card__arrow{ margin-top:0; margin-left:auto; }
 
   .phone-devices{ padding:48px 0; }
   .phone-devices__inner{ padding:0 16px; }
@@ -228,9 +191,9 @@
   .device-card__storage{ margin-top:2px; font-size:10.5px; }
   .device-card__price{ margin-top:8px; padding-top:8px; }
   .device-card__list-price{ font-size:10px; }
-  .device-card__discount{ display:none; }
-  .device-card__final{ margin-top:6px; font-size:10.5px; }
-  .device-card__final strong{ font-size:16px; margin-left:2px; }
+  .device-card__discount-badge{ font-size:9.5px; padding:2px 6px; }
+  .device-card__final{ margin-top:6px; }
+  .device-card__final strong{ font-size:16px; }
   .device-card__meta{ margin-top:8px; gap:4px; }
   .device-tag{ font-size:9px; padding:3px 7px; }
   .device-card .btn{ margin-top:10px; padding:9px; font-size:12px; }

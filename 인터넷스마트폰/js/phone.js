@@ -26,13 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => goTo(current + 1), 5000);
   }
 
-  // ---- 기기 가격 비교: 브랜드 필터 탭 + 모바일 더보기 ----
+  // ---- 기기 가격 비교: 브랜드 필터 탭 ----
   const filterButtons = document.querySelectorAll('.phone-filter-btn');
   const deviceCards = Array.from(document.querySelectorAll('.device-card'));
-  const moreBtn = document.getElementById('deviceMoreBtn');
-  const MOBILE_QUERY = window.matchMedia('(max-width: 768px)');
   const PAGE_SIZE = 4;
-  let expanded = false;
 
   const renderDevices = () => {
     const activeBtn = document.querySelector('.phone-filter-btn.is-active');
@@ -40,34 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const matching = deviceCards.filter(card => target === 'all' || card.dataset.brand === target);
 
     deviceCards.forEach(card => { card.hidden = !matching.includes(card); });
-
-    const shouldPaginate = MOBILE_QUERY.matches && !expanded;
-    if (shouldPaginate) {
-      matching.forEach((card, i) => { if (i >= PAGE_SIZE) card.hidden = true; });
-    }
-
-    if (moreBtn) {
-      moreBtn.hidden = !(MOBILE_QUERY.matches && !expanded && matching.length > PAGE_SIZE);
-    }
+    matching.forEach((card, i) => { if (i >= PAGE_SIZE) card.hidden = true; });
   };
 
   filterButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       filterButtons.forEach(b => b.classList.remove('is-active'));
       btn.classList.add('is-active');
-      expanded = false;
       renderDevices();
     });
-  });
-
-  moreBtn?.addEventListener('click', () => {
-    expanded = true;
-    renderDevices();
-  });
-
-  MOBILE_QUERY.addEventListener('change', () => {
-    expanded = false;
-    renderDevices();
   });
 
   renderDevices();
