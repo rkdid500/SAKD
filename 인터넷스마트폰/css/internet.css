@@ -153,6 +153,39 @@
 .inet-cta__desc{ margin-top:8px; font-size:13.5px; color:#aebbd4; }
 .inet-cta__actions{ display:flex; gap:10px; flex-shrink:0; }
 
+/* ---------- 인터넷 후기 ---------- */
+.inet-review{ padding:64px 0; background:var(--c-bg-soft); }
+.inet-review__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
+.inet-review__head{ display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
+.inet-review__eyebrow{ font-size:13px; font-weight:800; color:var(--c-mint-dark); letter-spacing:.08em; }
+.inet-review__title{ margin-top:8px; font-size:24px; font-weight:900; color:var(--c-navy); }
+.inet-review__arrows{ display:flex; gap:8px; flex-shrink:0; }
+.inet-review__arrow{
+  width:34px; height:34px; border-radius:999px; border:1px solid var(--c-border); background:#fff;
+  color:var(--c-navy); font-size:18px; line-height:1; display:flex; align-items:center; justify-content:center;
+  transition:border-color .15s ease, color .15s ease;
+}
+.inet-review__arrow:hover{ border-color:var(--c-mint); color:var(--c-mint-dark); }
+
+.inet-review__track{
+  margin-top:24px; display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+  scroll-behavior:smooth; padding-bottom:6px; -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.inet-review__track::-webkit-scrollbar{ display:none; }
+
+.inet-review-card{
+  flex:0 0 240px; scroll-snap-align:start; background:#fff; border:1px solid var(--c-border);
+  border-radius:14px; padding:18px; display:flex; flex-direction:column; gap:8px;
+}
+.inet-review-card__stars{ font-size:13px; color:#f5a623; letter-spacing:1px; }
+.inet-review-card__stars .is-empty{ color:#e2e6ec; }
+.inet-review-card__tag{ font-size:12.5px; font-weight:800; color:var(--c-navy); }
+.inet-review-card__quote{
+  font-size:12.5px; color:var(--c-text-sub); line-height:1.55; flex:1;
+  display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+}
+.inet-review-card__footer{ display:flex; justify-content:space-between; font-size:11px; color:var(--c-text-mute); margin-top:4px; }
+
 /* ---------- FAQ ---------- */
 .inet-faq{ padding:80px 0 96px; background:#fff; text-align:center; }
 .inet-faq__inner{ max-width:820px; margin:0 auto; padding:0 24px; }

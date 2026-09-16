@@ -29,6 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---- 인터넷 후기: 화살표 클릭 + 자동 한 칸씩 스크롤 ----
+  const reviewTrack = document.getElementById('inetReviewTrack');
+  if (reviewTrack) {
+    const cardStep = () => {
+      const card = reviewTrack.querySelector('.inet-review-card');
+      return card ? card.getBoundingClientRect().width + 14 : 240;
+    };
+    const atEnd = () => reviewTrack.scrollLeft + reviewTrack.clientWidth >= reviewTrack.scrollWidth - 4;
+    const advance = (dir) => {
+      reviewTrack.scrollLeft = (dir > 0 && atEnd()) ? 0 : reviewTrack.scrollLeft + dir * cardStep();
+    };
+    document.getElementById('inetReviewPrev')?.addEventListener('click', () => advance(-1));
+    document.getElementById('inetReviewNext')?.addEventListener('click', () => advance(1));
+
+    let autoplay = setInterval(() => advance(1), 3000);
+    const pauseAutoplay = () => { clearInterval(autoplay); };
+    const resumeAutoplay = () => { clearInterval(autoplay); autoplay = setInterval(() => advance(1), 3000); };
+    reviewTrack.addEventListener('mouseenter', pauseAutoplay);
+    reviewTrack.addEventListener('mouseleave', resumeAutoplay);
+    reviewTrack.addEventListener('touchstart', pauseAutoplay, { passive: true });
+  }
+
   // ---- FAQ 아코디언: 한 번에 하나만 펼치기 ----
   const faqItems = document.querySelectorAll('.inet-faq__item');
   faqItems.forEach(item => {
