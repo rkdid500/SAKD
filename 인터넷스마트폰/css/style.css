@@ -151,12 +151,6 @@ h1,h2,h3,p{ margin:0; }
 .section-desc--left{ text-align:left; }
 
 /* =========================================================
-   Mobile-only hero banner (hidden on desktop)
-========================================================= */
-.mobile-banner{ display:none; }
-.mobile-banner__img{ width:100%; border-radius:var(--radius-lg); display:block; }
-
-/* =========================================================
    Hero
 ========================================================= */
 .hero{ background:#f3fdfe; padding:64px 0 76px; overflow:hidden; }

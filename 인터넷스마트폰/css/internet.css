@@ -16,8 +16,6 @@
 @media (min-width: 769px){
   .inet-hero__illust{ width:79%; max-width:343px; margin-left:-44px; }
 }
-.inet-hero__actions{ margin-top:28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-.inet-hero__actions .btn.btn--primary.btn--lg{ margin-top:0; }
 .inet-hero__note{ margin-top:16px; font-size:13px; color:var(--c-text-mute); }
 
 .inet-finder{
@@ -136,11 +134,15 @@
 .inet-step{ position:relative; }
 .inet-step:not(:last-child)::after{
   content:"";
-  position:absolute; left:50%; bottom:-30px; transform:translateX(-50%) rotate(45deg);
+  position:absolute; top:50%; right:-22px; transform:translateY(-50%) rotate(-45deg);
   width:10px; height:10px;
   border-right:2px solid var(--c-mint); border-bottom:2px solid var(--c-mint);
-  display:none;
 }
+
+/* ---------- 혜택 보장 배너 ---------- */
+.inet-new-section{ padding:24px 0 48px; background:#fff; }
+.inet-new-section__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
+.inet-benefit-banner-img{ display:block; margin:0 auto; width:100%; max-width:800px; height:auto; border-radius:var(--radius-lg); }
 
 /* ---------- CTA 배너 ---------- */
 .inet-cta-wrap{ padding:0 24px 80px; background:#fff; }
@@ -223,16 +225,20 @@
   .inet-plans__grid{ grid-template-columns:1fr; max-width:420px; margin-left:auto; margin-right:auto; }
   .inet-plan-card--featured{ order:-1; transform:none; }
   .inet-steps__grid{ grid-template-columns:1fr; gap:44px; }
-  .inet-step:not(:last-child)::after{ display:block; }
+  .inet-step:not(:last-child)::after{
+    top:auto; right:auto; left:50%; bottom:-30px; transform:translateX(-50%) rotate(45deg);
+  }
 }
 
 @media (max-width: 768px){
+  .inet-new-section{ padding:16px 0 32px; }
+  .inet-new-section__inner{ padding:0 16px; }
+
   .inet-hero{ padding:36px 0 48px; }
   .inet-hero__inner{ grid-template-columns:1fr; gap:32px; padding:0 16px; text-align:center; }
   .inet-hero__title{ font-size:27px; }
   .inet-hero__desc{ max-width:none; margin-left:auto; margin-right:auto; }
   .inet-hero__illust{ margin-left:auto; margin-right:auto; }
-  .inet-hero__actions{ justify-content:center; }
   .inet-finder{ padding:24px; }
 
   .inet-trust__inner{ grid-template-columns:1fr; gap:16px; padding:24px 16px; }
