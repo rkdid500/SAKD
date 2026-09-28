@@ -12,8 +12,7 @@
   padding:48px 0;
 }
 .phone-banner__slide--photo{ padding:0; }
-.phone-banner__slide--photo img{ width:100%; height:100%; object-fit:cover; object-position:left center; display:block; }
-.phone-banner__slide--contain img{ object-fit:contain; }
+.phone-banner__slide--photo img{ width:100%; height:100%; object-fit:contain; object-position:center center; display:block; }
 
 .phone-banner__arrow{
   position:absolute; top:50%; transform:translateY(-50%);
