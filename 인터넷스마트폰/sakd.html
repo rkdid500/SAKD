@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>싹딜 - 생활상품 비교의 기준</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="preload" as="image" href="images/ssakdeal-hero-right-intro@2x.webp">
 <link rel="preload" as="image" href="images/ssakdeal-hero-right-floating-loop@2x.webp">
@@ -176,7 +174,7 @@
     </div>
   </section>
 
-  <!-- ===================== 싹딜의 비교 방식 (Desktop, GSAP ScrollTrigger) ===================== -->
+  <!-- ===================== 싹딜의 비교 방식 (Desktop, 네이티브 sticky 스크롤) ===================== -->
   <section class="method" id="methodSection">
     <div class="method__pin">
       <div class="method__inner">
@@ -228,17 +226,15 @@
         </div>
 
         <div class="method__col method__col--visual">
-          <div class="swiper method-swiper" id="methodSwiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="images/PC_Slide Visual · 집·공유기·체크.png" alt="우리 집 상황부터 확인하는 싹딜의 비교 방식">
-              </div>
-              <div class="swiper-slide">
-                <img src="images/PC_3D Image · Step 02.png" alt="혜택과 비용을 함께 비교하는 싹딜의 비교 방식">
-              </div>
-              <div class="swiper-slide">
-                <img src="images/PC_3D Image · Step 03.png" alt="선택의 이유까지 정리하는 싹딜의 비교 방식">
-              </div>
+          <div class="method__visual" id="methodVisual">
+            <div class="method__visual-slide is-active" data-visual-step="1">
+              <img src="images/PC_Slide Visual · 집·공유기·체크.png" alt="우리 집 상황부터 확인하는 싹딜의 비교 방식">
+            </div>
+            <div class="method__visual-slide" data-visual-step="2">
+              <img src="images/PC_3D Image · Step 02.png" alt="혜택과 비용을 함께 비교하는 싹딜의 비교 방식">
+            </div>
+            <div class="method__visual-slide" data-visual-step="3">
+              <img src="images/PC_3D Image · Step 03.png" alt="선택의 이유까지 정리하는 싹딜의 비교 방식">
             </div>
           </div>
         </div>
@@ -261,20 +257,18 @@
     </div>
   </section>
 
-  <!-- ===================== 싹딜의 비교 방식 (Mobile, GSAP ScrollTrigger + Swiper creative) ===================== -->
+  <!-- ===================== 싹딜의 비교 방식 (Mobile, 네이티브 스와이프) ===================== -->
   <section class="method-mobile" id="methodMobileSection">
     <div class="method-mobile__pin">
-      <div class="swiper method-mobile-swiper" id="methodMobileSwiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 1.png" alt="STEP 01 · 조건 확인 - 우리 집 상황부터">
-          </div>
-          <div class="swiper-slide">
-            <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 2.png" alt="STEP 02 · 같은 기준으로 비교 - 혜택과 비용을 함께">
-          </div>
-          <div class="swiper-slide">
-            <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 3.png" alt="STEP 03 · 선택 안내 - 선택 이유까지">
-          </div>
+      <div class="method-mobile__track" id="methodMobileTrack">
+        <div class="method-mobile__slide">
+          <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 1.png" alt="STEP 01 · 조건 확인 - 우리 집 상황부터">
+        </div>
+        <div class="method-mobile__slide">
+          <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 2.png" alt="STEP 02 · 같은 기준으로 비교 - 혜택과 비용을 함께">
+        </div>
+        <div class="method-mobile__slide">
+          <img src="images/08 Mobile · 싹딜의 비교 방식 · Slider 3.png" alt="STEP 03 · 선택 안내 - 선택 이유까지">
         </div>
       </div>
       <div class="method-mobile__dots" id="methodMobileDots">
@@ -603,9 +597,6 @@
   <a href="#compare" class="mobile-bar__cta">비교 시작</a>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

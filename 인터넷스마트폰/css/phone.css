@@ -29,9 +29,16 @@
 .phone-banner__dot{ width:7px; height:7px; border-radius:999px; background:rgba(255,255,255,.5); }
 .phone-banner__dot.is-active{ background:#fff; width:20px; border-radius:999px; }
 
-/* ---------- 후기: 데스크톱은 큰 사진 카드, 모바일은 컴팩트 썸네일 카드 ---------- */
-.review__list{ display:none; }
+/* ---------- 후기: 자동 재생 스와이퍼 (네이티브 스크롤 스냅, 외부 라이브러리 없음) ---------- */
 .review__eyebrow{ font-weight:700; }
+.review__track-wrap{ overflow:hidden; }
+.review__track{
+  display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-behavior:smooth;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none;
+}
+.review__track::-webkit-scrollbar{ display:none; }
+.review__track .review-card{ flex:0 0 calc((100% - 40px) / 3); scroll-snap-align:start; }
+.review-card__photo--4{ background:linear-gradient(135deg, #f0a24c 0%, #d9852c 100%); }
 
 /* ---------- 기기 가격 비교 ---------- */
 .phone-devices{ padding:80px 0; background:var(--c-bg-soft); text-align:center; }
@@ -159,17 +166,8 @@
   .review{ padding-top:64px; }
   .review__heading .section-title{ margin-top:14px; font-size:24px; font-weight:800; text-align:left; }
   .review__heading .section-desc{ margin-top:14px; text-align:left; }
-  .review__grid{ display:none; }
-  .review__list{
-    display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:0;
-  }
-  .review-list-card{ grid-template-columns:56px 1fr; padding:10px; gap:8px; }
-  .review-list-card__thumb{ width:56px; height:56px; border-radius:9px; }
-  .review-list-card__body .review-card__stars{ font-size:11px; }
-  .review-list-card__tag{ margin-top:4px; font-size:12.5px; }
-  .review-list-card__quote{
-    margin-top:4px; font-size:11.5px; -webkit-line-clamp:2;
-  }
+  .review__track{ gap:12px; }
+  .review__track .review-card{ flex:0 0 82%; }
 
   .phone-banner{ padding-top:16px; }
   .phone-banner__viewport{ padding:0 16px; }

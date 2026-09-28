@@ -26,6 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(() => goTo(current + 1), 5000);
   }
 
+  // ---- 실제 개통 후기: 3초마다 한 칸씩 자동 스와이프(네이티브 스크롤 스냅, 외부 라이브러리 없음) ----
+  (function initPhoneReviewSwiper() {
+    const reviewTrack = document.getElementById('phoneReviewTrack');
+    if (!reviewTrack) return;
+
+    const cardStep = () => {
+      const card = reviewTrack.querySelector('.review-card');
+      if (!card) return 0;
+      const gap = parseFloat(getComputedStyle(reviewTrack).columnGap || getComputedStyle(reviewTrack).gap || '0');
+      return card.getBoundingClientRect().width + gap;
+    };
+    const advance = () => {
+      const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+      if (reviewTrack.scrollLeft >= maxScroll - 2) {
+        reviewTrack.scrollLeft = 0;
+      } else {
+        reviewTrack.scrollLeft = Math.min(maxScroll, reviewTrack.scrollLeft + cardStep());
+      }
+    };
+
+    let autoplay = setInterval(advance, 3000);
+    const pause = () => clearInterval(autoplay);
+    const resume = () => { clearInterval(autoplay); autoplay = setInterval(advance, 3000); };
+    reviewTrack.addEventListener('mouseenter', pause);
+    reviewTrack.addEventListener('mouseleave', resume);
+    reviewTrack.addEventListener('touchstart', pause, { passive: true });
+  })();
+
   // ---- 기기 가격 비교: 브랜드 필터 탭 ----
   const filterButtons = document.querySelectorAll('.phone-filter-btn');
   const deviceCards = Array.from(document.querySelectorAll('.device-card'));

@@ -6,6 +6,12 @@
       "runtimeExecutable": "powershell.exe",
       "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", ".claude/server.ps1"],
       "port": 8934
+    },
+    {
+      "name": "newsakd",
+      "runtimeExecutable": "powershell.exe",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", "Set-Location C:/Users/user/Desktop/newsakd; npm run dev"],
+      "port": 5173
     }
   ]
 }

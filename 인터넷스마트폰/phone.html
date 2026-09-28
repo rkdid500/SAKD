@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>스마트폰 비교 - 싹딜</title>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/phone.css">
 </head>
@@ -58,7 +57,7 @@
           <a href="#devices" class="phone-banner__slide phone-banner__slide--photo">
             <img src="images/폴드8배너.png" alt="Galaxy Z Fold8 - 펼치면 더 넓게, 일상은 더 가볍게">
           </a>
-          <a href="#devices" class="phone-banner__slide phone-banner__slide--photo phone-banner__slide--contain">
+          <a href="#devices" class="phone-banner__slide phone-banner__slide--photo">
             <img src="images/통신사배너.png" alt="SKT·KT·LG U+ 한 번에 비교하고 선택 - 통신 3사 비교">
           </a>
         </div>
@@ -84,84 +83,60 @@
         </div>
       </div>
 
-      <div class="review__grid">
-        <article class="review-card">
-          <span class="review-card__photo review-card__photo--1" aria-hidden="true"></span>
-          <div class="review-card__body">
-            <p class="review-card__stars">★★★★★</p>
-            <p class="review-card__tag">아이폰 17 프로 · 번호이동</p>
-            <p class="review-card__quote">공시지원금과 싹딜 추가할인이 얼마인지 처음부터 명확하게 보여줘서 다른 곳 안 알아봐도 됐어요.</p>
-            <footer class="review-card__footer">
-              <span class="review-card__name">정*영</span>
-              <time class="review-card__date">2026.09.14</time>
-            </footer>
-          </div>
-        </article>
+      <div class="review__track-wrap">
+        <div class="review__track" id="phoneReviewTrack">
+          <article class="review-card">
+            <span class="review-card__photo review-card__photo--1" aria-hidden="true"></span>
+            <div class="review-card__body">
+              <p class="review-card__stars">★★★★★</p>
+              <p class="review-card__tag">아이폰 17 프로 · 번호이동</p>
+              <p class="review-card__quote">공시지원금과 싹딜 추가할인이 얼마인지 처음부터 명확하게 보여줘서 다른 곳 안 알아봐도 됐어요.</p>
+              <footer class="review-card__footer">
+                <span class="review-card__name">정*영</span>
+                <time class="review-card__date">2026.09.14</time>
+              </footer>
+            </div>
+          </article>
 
-        <article class="review-card">
-          <span class="review-card__photo review-card__photo--2" aria-hidden="true"></span>
-          <div class="review-card__body">
-            <p class="review-card__stars">★★★★★</p>
-            <p class="review-card__tag">갤럭시 S26 · 기기변경</p>
-            <p class="review-card__quote">신용카드 가입 권유 없이 딱 필요한 조건만 안내해주셔서 깔끔하게 개통했습니다.</p>
-            <footer class="review-card__footer">
-              <span class="review-card__name">전*별</span>
-              <time class="review-card__date">2026.09.13</time>
-            </footer>
-          </div>
-        </article>
+          <article class="review-card">
+            <span class="review-card__photo review-card__photo--2" aria-hidden="true"></span>
+            <div class="review-card__body">
+              <p class="review-card__stars">★★★★★</p>
+              <p class="review-card__tag">갤럭시 S26 · 기기변경</p>
+              <p class="review-card__quote">신용카드 가입 권유 없이 딱 필요한 조건만 안내해주셔서 깔끔하게 개통했습니다.</p>
+              <footer class="review-card__footer">
+                <span class="review-card__name">전*별</span>
+                <time class="review-card__date">2026.09.13</time>
+              </footer>
+            </div>
+          </article>
 
-        <article class="review-card">
-          <span class="review-card__photo review-card__photo--3" aria-hidden="true"></span>
-          <div class="review-card__body">
-            <p class="review-card__stars"><span class="is-filled">★★★★</span><span class="is-empty">★</span></p>
-            <p class="review-card__tag">갤럭시 Z 플립7 · 기기변경</p>
-            <p class="review-card__quote">기존 통신사 그대로 기기변경했는데 공시지원금 조건을 꼼꼼히 비교해주셔서 만족스러웠어요.</p>
-            <footer class="review-card__footer">
-              <span class="review-card__name">김*나</span>
-              <time class="review-card__date">2026.09.11</time>
-            </footer>
-          </div>
-        </article>
-      </div>
+          <article class="review-card">
+            <span class="review-card__photo review-card__photo--3" aria-hidden="true"></span>
+            <div class="review-card__body">
+              <p class="review-card__stars"><span class="is-filled">★★★★</span><span class="is-empty">★</span></p>
+              <p class="review-card__tag">갤럭시 Z 플립7 · 기기변경</p>
+              <p class="review-card__quote">기존 통신사 그대로 기기변경했는데 공시지원금 조건을 꼼꼼히 비교해주셔서 만족스러웠어요.</p>
+              <footer class="review-card__footer">
+                <span class="review-card__name">김*나</span>
+                <time class="review-card__date">2026.09.11</time>
+              </footer>
+            </div>
+          </article>
 
-      <!-- 모바일 전용: 썸네일+텍스트 2열 컴팩트 카드 -->
-      <div class="review__list">
-        <article class="review-list-card">
-          <span class="review-list-card__thumb review-list-card__thumb--1" aria-hidden="true"></span>
-          <div class="review-list-card__body">
-            <p class="review-card__stars">★★★★★</p>
-            <p class="review-list-card__tag">정*영 고객님</p>
-            <p class="review-list-card__quote">공시지원금과 추가할인을 처음부터 명확하게 보여줘서 좋았어요...</p>
-          </div>
-        </article>
-
-        <article class="review-list-card">
-          <span class="review-list-card__thumb review-list-card__thumb--2" aria-hidden="true"></span>
-          <div class="review-list-card__body">
-            <p class="review-card__stars">★★★★★</p>
-            <p class="review-list-card__tag">전*별 고객님</p>
-            <p class="review-list-card__quote">불필요한 권유 없이 깔끔하게 개통했습니다...</p>
-          </div>
-        </article>
-
-        <article class="review-list-card">
-          <span class="review-list-card__thumb review-list-card__thumb--3" aria-hidden="true"></span>
-          <div class="review-list-card__body">
-            <p class="review-card__stars"><span class="is-filled">★★★★</span><span class="is-empty">★</span></p>
-            <p class="review-list-card__tag">김*나 고객님</p>
-            <p class="review-list-card__quote">공시지원금 조건을 꼼꼼히 비교해주셔서 만족스러웠어요...</p>
-          </div>
-        </article>
-
-        <article class="review-list-card">
-          <span class="review-list-card__thumb review-list-card__thumb--4" aria-hidden="true"></span>
-          <div class="review-list-card__body">
-            <p class="review-card__stars">★★★★★</p>
-            <p class="review-list-card__tag">서*정 고객님</p>
-            <p class="review-list-card__quote">상담원분이 친절하게 비교해주셔서 만족합니다...</p>
-          </div>
-        </article>
+          <article class="review-card">
+            <span class="review-card__photo review-card__photo--4" aria-hidden="true"></span>
+            <div class="review-card__body">
+              <p class="review-card__stars">★★★★★</p>
+              <p class="review-card__tag">아이폰 18 프로 · 기기변경</p>
+              <p class="review-card__quote">상담원분이 친절하게 조건을 비교해주셔서 믿고 진행할 수 있었어요.</p>
+              <footer class="review-card__footer">
+                <span class="review-card__name">서*정</span>
+                <time class="review-card__date">2026.09.10</time>
+              </footer>
+            </div>
+          </article>
+        </div>
       </div>
 
       <p class="review__caution">본 후기는 디자인 시안용 예시이며, 실제 서비스 오픈 전 고객 후기로 교체될 예정입니다.</p>

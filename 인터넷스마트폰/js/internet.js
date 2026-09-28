@@ -1,4 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- 프로모션 배너 캐러셀 (네이티브 구현, 외부 라이브러리 없음) ----
+  const heroBannerTrack = document.getElementById('inetHeroBannerTrack');
+  if (heroBannerTrack) {
+    const slides = Array.from(heroBannerTrack.children);
+    const dotsWrap = document.querySelector('.inet-hero-banner__dots');
+    const dots = slides.map((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'inet-hero-banner__dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', `${i + 1}번째 배너로 이동`);
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    let current = 0;
+    const goTo = (index) => {
+      current = (index + slides.length) % slides.length;
+      heroBannerTrack.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+    };
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    document.querySelector('.inet-hero-banner__arrow--prev')?.addEventListener('click', () => goTo(current - 1));
+    document.querySelector('.inet-hero-banner__arrow--next')?.addEventListener('click', () => goTo(current + 1));
+
+    if (slides.length > 1) {
+      setInterval(() => goTo(current + 1), 5000);
+    }
+  }
+
   // ---- 요금 찾기 카드: 그룹별 단일 선택 칩 ----
   document.querySelectorAll('.inet-finder__options').forEach(group => {
     const chips = Array.from(group.querySelectorAll('.inet-chip'));
@@ -36,9 +65,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const card = reviewTrack.querySelector('.inet-review-card');
       return card ? card.getBoundingClientRect().width + 14 : 240;
     };
-    const atEnd = () => reviewTrack.scrollLeft + reviewTrack.clientWidth >= reviewTrack.scrollWidth - 4;
     const advance = (dir) => {
-      reviewTrack.scrollLeft = (dir > 0 && atEnd()) ? 0 : reviewTrack.scrollLeft + dir * cardStep();
+      const maxScroll = reviewTrack.scrollWidth - reviewTrack.clientWidth;
+      if (dir > 0) {
+        if (reviewTrack.scrollLeft >= maxScroll - 2) {
+          reviewTrack.scrollLeft = 0;
+        } else {
+          reviewTrack.scrollLeft = Math.min(maxScroll, reviewTrack.scrollLeft + cardStep());
+        }
+      } else {
+        reviewTrack.scrollLeft = Math.max(0, reviewTrack.scrollLeft - cardStep());
+      }
     };
     document.getElementById('inetReviewPrev')?.addEventListener('click', () => advance(-1));
     document.getElementById('inetReviewNext')?.addEventListener('click', () => advance(1));

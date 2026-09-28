@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인터넷 비교 - 싹딜</title>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/internet.css">
 </head>
@@ -44,61 +43,67 @@
 
 <main>
 
-  <!-- ===================== 히어로 + 요금 찾기 ===================== -->
-  <section class="inet-hero">
-    <div class="inet-hero__inner">
-      <div class="inet-hero__left">
-        <p class="inet-hero__eyebrow">인터넷 가입·변경 비교</p>
-        <h1 class="inet-hero__title">복잡한 인터넷 요금,<br>싹딜에서 한 번에</h1>
-        <p class="inet-hero__desc">우리 집에 필요한 속도와 결합 조건만 고르면 <br>예상 월요금과 혜택을 바로 확인할 수 있어요.</p>
-        <img src="images/Codex 이미지 2026년 9월 15일 오전 10_18_42 1.png" alt="와이파이 공유기와 체크리스트, 동전으로 표현한 인터넷 요금 절약 이미지" class="inet-hero__illust">
-        <p class="inet-hero__note">상담 무료 · 가입 강요 없음 · 통신사 조건 비교</p>
-      </div>
-
-      <div class="inet-hero__right">
-        <div class="inet-finder">
-          <h2 class="inet-finder__title">내게 맞는 요금 찾기</h2>
-          <p class="inet-finder__desc">3가지만 선택하면 예상 금액을 보여드려요.</p>
-
-          <div class="inet-finder__group">
-            <p class="inet-finder__label">1. 필요한 상품</p>
-            <div class="inet-finder__options" data-group="product">
-              <button type="button" class="inet-chip is-active" data-value="internet">인터넷</button>
-              <button type="button" class="inet-chip" data-value="internet-tv">인터넷+TV</button>
-              <button type="button" class="inet-chip" data-value="internet-tv-phone">인터넷+TV+폰</button>
-            </div>
+  <!-- ===================== 프로모션 배너 캐러셀 (네이티브 구현, 외부 라이브러리 없음) ===================== -->
+  <section class="inet-hero-banner">
+    <div class="inet-hero-banner__viewport">
+      <div class="inet-hero-banner__frame">
+        <div class="inet-hero-banner__track" id="inetHeroBannerTrack">
+          <div class="inet-hero-banner__slide">
+            <img src="images/인터넷 가입·변경 비교 배너.png" alt="인터넷 가입·변경 비교 - 복잡한 인터넷 요금, 싹딜에서 한 번에">
           </div>
-
-          <div class="inet-finder__group">
-            <p class="inet-finder__label">2. 사용 인원과 용도</p>
-            <div class="inet-finder__options" data-group="usage">
-              <button type="button" class="inet-chip" data-value="1-2">1~2인</button>
-              <button type="button" class="inet-chip is-active" data-value="family">가족·게임</button>
-              <button type="button" class="inet-chip" data-value="work">고속 작업</button>
-            </div>
-          </div>
-
-          <div class="inet-finder__group">
-            <p class="inet-finder__label">3. 휴대폰 통신사</p>
-            <select class="inet-finder__select">
-              <option>결합 안 함 / 잘 모르겠어요</option>
-              <option>SKT</option>
-              <option>KT</option>
-              <option>LG U+</option>
-            </select>
-          </div>
-
-          <div class="inet-finder__result">
-            <div class="inet-finder__result-main">
-              <p class="inet-finder__result-label">예상 월 납부금</p>
-              <p class="inet-finder__result-price">33,000<span>원</span></p>
-            </div>
-            <p class="inet-finder__result-benefit">최대 47만원 혜택</p>
-          </div>
-
-          <button type="button" class="btn btn--primary btn--block inet-finder__submit">이 조건으로 상담받기</button>
-          <p class="inet-finder__disclaimer">지역과 결합 조건에 따라 실제 금액이 달라질 수 있습니다.</p>
         </div>
+      </div>
+      <button type="button" class="inet-hero-banner__arrow inet-hero-banner__arrow--prev" aria-label="이전 배너">‹</button>
+      <button type="button" class="inet-hero-banner__arrow inet-hero-banner__arrow--next" aria-label="다음 배너">›</button>
+      <div class="inet-hero-banner__dots"></div>
+    </div>
+  </section>
+
+  <!-- ===================== 내게 맞는 요금 찾기 ===================== -->
+  <section class="inet-finder-section">
+    <div class="inet-finder-section__inner">
+      <div class="inet-finder">
+        <h2 class="inet-finder__title">내게 맞는 요금 찾기</h2>
+        <p class="inet-finder__desc">3가지만 선택하면 예상 금액을 보여드려요.</p>
+
+        <div class="inet-finder__group">
+          <p class="inet-finder__label">1. 필요한 상품</p>
+          <div class="inet-finder__options" data-group="product">
+            <button type="button" class="inet-chip is-active" data-value="internet">인터넷</button>
+            <button type="button" class="inet-chip" data-value="internet-tv">인터넷+TV</button>
+            <button type="button" class="inet-chip" data-value="internet-tv-phone">인터넷+TV+폰</button>
+          </div>
+        </div>
+
+        <div class="inet-finder__group">
+          <p class="inet-finder__label">2. 사용 인원과 용도</p>
+          <div class="inet-finder__options" data-group="usage">
+            <button type="button" class="inet-chip" data-value="1-2">1~2인</button>
+            <button type="button" class="inet-chip is-active" data-value="family">가족·게임</button>
+            <button type="button" class="inet-chip" data-value="work">고속 작업</button>
+          </div>
+        </div>
+
+        <div class="inet-finder__group">
+          <p class="inet-finder__label">3. 휴대폰 통신사</p>
+          <select class="inet-finder__select">
+            <option>결합 안 함 / 잘 모르겠어요</option>
+            <option>SKT</option>
+            <option>KT</option>
+            <option>LG U+</option>
+          </select>
+        </div>
+
+        <div class="inet-finder__result">
+          <div class="inet-finder__result-main">
+            <p class="inet-finder__result-label">예상 월 납부금</p>
+            <p class="inet-finder__result-price">33,000<span>원</span></p>
+          </div>
+          <p class="inet-finder__result-benefit">최대 47만원 혜택</p>
+        </div>
+
+        <button type="button" class="btn btn--primary btn--block inet-finder__submit">이 조건으로 상담받기</button>
+        <p class="inet-finder__disclaimer">지역과 결합 조건에 따라 실제 금액이 달라질 수 있습니다.</p>
       </div>
     </div>
   </section>
