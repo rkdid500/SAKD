@@ -131,23 +131,7 @@
 /* ---------- 신청 3단계 ---------- */
 .inet-steps{ padding:80px 0; background:#fff; text-align:center; }
 .inet-steps__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
-.inet-steps__eyebrow{ font-size:13px; font-weight:800; color:var(--c-mint-dark); letter-spacing:.08em; }
-.inet-steps__title{ margin-top:10px; font-size:28px; font-weight:900; color:var(--c-navy); }
-.inet-steps__grid{ margin-top:44px; display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
-.inet-step__num{
-  display:inline-flex; align-items:center; justify-content:center;
-  width:44px; height:44px; border-radius:999px; background:var(--c-mint); color:#fff;
-  font-size:17px; font-weight:900;
-}
-.inet-step__title{ margin-top:18px; font-size:17px; font-weight:800; color:var(--c-navy); }
-.inet-step__desc{ margin-top:8px; font-size:13.5px; color:var(--c-text-sub); line-height:1.6; }
-.inet-step{ position:relative; }
-.inet-step:not(:last-child)::after{
-  content:"";
-  position:absolute; top:50%; right:-22px; transform:translateY(-50%) rotate(-45deg);
-  width:10px; height:10px;
-  border-right:2px solid var(--c-mint); border-bottom:2px solid var(--c-mint);
-}
+.inet-steps__img{ display:block; margin:0 auto; width:100%; max-width:1200px; height:auto; border-radius:var(--radius-lg); }
 
 /* ---------- 혜택 보장 배너 ---------- */
 .inet-new-section{ padding:24px 0 48px; background:#fff; }
@@ -234,10 +218,6 @@
 @media (max-width: 1024px){
   .inet-plans__grid{ grid-template-columns:1fr; max-width:420px; margin-left:auto; margin-right:auto; }
   .inet-plan-card--featured{ order:-1; transform:none; }
-  .inet-steps__grid{ grid-template-columns:1fr; gap:44px; }
-  .inet-step:not(:last-child)::after{
-    top:auto; right:auto; left:50%; bottom:-30px; transform:translateX(-50%) rotate(45deg);
-  }
 }
 
 @media (max-width: 768px){
@@ -269,7 +249,6 @@
 
   .inet-steps{ padding:48px 0; }
   .inet-steps__inner{ padding:0 16px; }
-  .inet-steps__title{ font-size:22px; }
 
   .inet-cta-wrap{ padding:0 16px 48px; }
   .inet-cta{ flex-direction:column; align-items:flex-start; padding:28px 22px; }
