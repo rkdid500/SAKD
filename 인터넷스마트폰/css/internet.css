@@ -129,7 +129,7 @@
 .inet-plans__caption{ margin-top:24px; font-size:12px; color:var(--c-text-mute); }
 
 /* ---------- 신청 3단계 ---------- */
-.inet-steps{ padding:24px 0; background:#fff; text-align:center; }
+.inet-steps{ padding:0; background:#fff; text-align:center; }
 .inet-steps__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
 .inet-steps__img{ display:block; margin:0 auto; width:100%; height:auto; border-radius:var(--radius-lg); }
 
@@ -247,7 +247,7 @@
   .inet-plans__inner{ padding:0 16px; }
   .inet-plans__title{ font-size:24px; }
 
-  .inet-steps{ padding:16px 0; }
+  .inet-steps{ padding:0; }
   .inet-steps__inner{ padding:0 16px; }
 
   .inet-cta-wrap{ padding:0 16px 48px; }
