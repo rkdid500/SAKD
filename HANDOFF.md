@@ -30,3 +30,7 @@
 ## 다음 작업
 
 따로 지시한 다음 작업은 없음 — 디자인 디테일 수정 요청 있으면 스크린샷과 함께 알려줘.
+
+## ⚠️ 별도 진행 중: newsakd 실제 프로젝트로 React 이식 작업
+
+`인터넷스마트폰/phone.html` 디자인을 실제 배포 프로젝트 `C:\Users\user\Desktop\newsakd`(GitHub: `Yh9978/ssakdeal-web-project`)의 `/smartphone` 페이지로 React 이식하는 작업이 진행 중. **자세한 내용은 반드시 `C:\Users\user\Desktop\newsakd\docs\handoff\SMARTPHONE_PAGE_HANDOFF.md` 를 읽을 것** — 커밋 여부, 9일 전 되돌려진 이전 시도, 검증 상태 등이 정리돼 있음. 이 SAKD 폴더 안의 작업과는 별개 저장소/별개 작업이니 혼동하지 말 것.
