@@ -14,16 +14,89 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let current = 0;
+    let autoTimer = null;
+    const startAuto = () => {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => goTo(current + 1), 5000);
+    };
     const goTo = (index) => {
       current = (index + slides.length) % slides.length;
       track.style.transform = `translateX(-${current * 100}%)`;
       dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
     };
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    document.querySelector('.phone-banner__arrow--prev')?.addEventListener('click', () => goTo(current - 1));
-    document.querySelector('.phone-banner__arrow--next')?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); startAuto(); }));
+    document.querySelector('.phone-banner__arrow--prev')?.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+    document.querySelector('.phone-banner__arrow--next')?.addEventListener('click', () => { goTo(current + 1); startAuto(); });
 
-    setInterval(() => goTo(current + 1), 5000);
+    startAuto();
+
+    // ---- 배너 스와이프: 손가락(또는 마우스)으로 밀어서 이전/다음 배너로 이동 (외부 라이브러리 없음) ----
+    const frame = track.parentElement;
+    const SWIPE_RATIO = 0.18; // 배너 폭의 18% 이상 밀면 넘김
+    let startX = 0;
+    let startY = 0;
+    let dragging = false;
+    let dragged = false;
+    let activePointer = null;
+
+    const snapBack = () => {
+      track.classList.remove('is-dragging');
+      track.style.transform = `translateX(-${current * 100}%)`;
+    };
+
+    frame.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true;
+      dragged = false;
+      activePointer = e.pointerId;
+      startX = e.clientX;
+      startY = e.clientY;
+      clearInterval(autoTimer); // 누르고 있는 동안 자동 넘김 일시정지
+    });
+
+    frame.addEventListener('pointermove', (e) => {
+      if (!dragging || e.pointerId !== activePointer) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      if (!dragged) {
+        if (Math.abs(dx) < 6) return;               // 아주 작은 움직임은 무시(탭으로 처리)
+        if (Math.abs(dy) > Math.abs(dx)) return;    // 세로 스크롤 의도면 가로 드래그 안 함
+        dragged = true;
+        track.classList.add('is-dragging');
+        try { frame.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+      // 첫/마지막 배너에서 너무 많이 끌리지 않도록 약간 저항을 준다
+      const atEdge = (current === 0 && dx > 0) || (current === slides.length - 1 && dx < 0);
+      const offset = atEdge ? dx * 0.35 : dx;
+      track.style.transform = `translateX(calc(-${current * 100}% + ${offset}px))`;
+      e.preventDefault();
+    });
+
+    const endDrag = (e) => {
+      if (!dragging || e.pointerId !== activePointer) return;
+      dragging = false;
+      activePointer = null;
+      if (dragged) {
+        const dx = e.clientX - startX;
+        const width = frame.getBoundingClientRect().width;
+        track.classList.remove('is-dragging');
+        if (e.type === 'pointerup' && Math.abs(dx) > width * SWIPE_RATIO) {
+          goTo(dx < 0 ? current + 1 : current - 1);
+        } else {
+          snapBack();
+        }
+      }
+      startAuto();
+      setTimeout(() => { dragged = false; }, 50); // 클릭 차단 플래그는 잠시 뒤 해제
+    };
+    frame.addEventListener('pointerup', endDrag);
+    frame.addEventListener('pointercancel', endDrag);
+
+    // 스와이프 직후에는 배너 링크(#devices)로 이동하지 않도록 클릭 차단
+    frame.addEventListener('click', (e) => {
+      if (dragged) { e.preventDefault(); e.stopPropagation(); dragged = false; }
+    }, true);
+    frame.addEventListener('dragstart', (e) => e.preventDefault()); // 이미지 끌기 방지
   }
 
   // ---- 실제 개통 후기: 3초마다 한 칸씩 자동 스와이프(네이티브 스크롤 스냅, 외부 라이브러리 없음) ----
