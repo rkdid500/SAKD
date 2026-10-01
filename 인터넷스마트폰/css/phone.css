@@ -74,6 +74,8 @@
   margin-top:4px;
 }
 .device-card__visual svg{ width:34px; height:auto; }
+.device-card__visual.device-card__visual--photo{ width:100%; height:auto; aspect-ratio:1; padding:12px; box-sizing:border-box; background:#f3f5f9; border-radius:14px; }
+.device-card__visual--photo img{ display:block; width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply; }
 .device-card__visual--apple-dark{ background:linear-gradient(135deg, var(--c-navy) 0%, var(--c-navy-600) 100%); }
 .device-card__visual--apple-blue{ background:linear-gradient(135deg, #4c7cf0 0%, #2f5fd1 100%); }
 .device-card__visual--samsung-mint{ background:linear-gradient(135deg, var(--c-mint) 0%, var(--c-mint-dark) 100%); }
@@ -186,6 +188,7 @@
   .device-badge{ font-size:9px; padding:3px 7px; }
   .device-card__visual{ height:76px; border-radius:10px; margin-top:2px; }
   .device-card__visual svg{ width:28px; }
+  .device-card__visual.device-card__visual--photo{ height:auto; padding:10px; border-radius:12px; }
   .device-card__name{ margin-top:10px; font-size:13.5px; }
   .device-card__storage{ margin-top:2px; font-size:10.5px; }
   .device-card__price{ margin-top:8px; padding-top:8px; }

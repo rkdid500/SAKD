@@ -82,8 +82,9 @@ document.addEventListener('DOMContentLoaded', () => {
   deviceCards.forEach(card => {
     card.addEventListener('click', (e) => {
       if (e.target.closest('a, button')) return; // 내부 버튼 클릭은 그대로 동작
+      const wasSelected = card.classList.contains('is-selected');
       deviceCards.forEach(c => c.classList.remove('is-selected'));
-      card.classList.add('is-selected');
+      if (!wasSelected) card.classList.add('is-selected'); // 선택된 카드를 다시 누르면 해제
     });
   });
 
