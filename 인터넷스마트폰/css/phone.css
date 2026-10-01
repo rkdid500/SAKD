@@ -7,6 +7,7 @@
 .phone-banner__viewport{ max-width:var(--container); margin:0 auto; padding:0 24px; position:relative; }
 .phone-banner__frame{ border-radius:var(--radius-lg); overflow:hidden; }
 .phone-banner__track{ display:flex; transition:transform .5s ease; }
+.phone-banner__track{ will-change:transform; backface-visibility:hidden; }
 .phone-banner__track.is-dragging{ transition:none; }
 .phone-banner__frame{ touch-action:pan-y; user-select:none; -webkit-user-select:none; }
 .phone-banner__slide img{ -webkit-user-drag:none; user-select:none; }
