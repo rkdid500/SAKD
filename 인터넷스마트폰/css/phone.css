@@ -38,6 +38,8 @@
 .review__track::-webkit-scrollbar{ display:none; }
 .review__track .review-card{ flex:0 0 calc((100% - 40px) / 3); scroll-snap-align:start; }
 .review-card__photo--4{ background:linear-gradient(135deg, #f0a24c 0%, #d9852c 100%); }
+.review-card__photo--5{ background:linear-gradient(135deg, #8b5cf6 0%, #6d3fd6 100%); }
+.review-card__photo--6{ background:linear-gradient(135deg, #ef6b8a 0%, #d24a6c 100%); }
 
 /* ---------- 기기 가격 비교 ---------- */
 .phone-devices{ padding:80px 0; background:var(--c-bg-soft); text-align:center; }
@@ -153,7 +155,12 @@
   .review__heading .section-title{ margin-top:14px; font-size:24px; font-weight:800; text-align:left; }
   .review__heading .section-desc{ margin-top:14px; text-align:left; }
   .review__track{ gap:12px; }
-  .review__track .review-card{ flex:0 0 82%; }
+  .review__track .review-card{ flex:0 0 62%; }
+  .review-card__body{ padding:14px 14px 16px; }
+  .review-card__stars{ font-size:12px; }
+  .review-card__tag{ margin-top:6px; font-size:13.5px; }
+  .review-card__quote{ margin-top:6px; font-size:12px; line-height:1.6; }
+  .review-card__footer{ margin-top:12px; font-size:11px; }
 
   .phone-banner{ padding-top:0; }
   .phone-banner__viewport{ padding:0; }
