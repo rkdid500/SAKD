@@ -164,15 +164,16 @@
   .review-card__quote{ margin-top:6px; font-size:12px; line-height:1.6; }
   .review-card__footer{ margin-top:12px; font-size:11px; }
 
-  .phone-banner{ padding-top:0; }
-  .phone-banner__viewport{ padding:0; }
-  .phone-banner__frame{ border-radius:0; }
+  .phone-banner{ padding-top:10px; }
+  .phone-banner__viewport{ padding:0 16px; }
+  .phone-banner__frame{ border-radius:16px; }
   .phone-banner__slide{ min-height:240px; padding:32px 0; }
   .phone-banner__slide--photo{ min-height:0; padding:0; }
+  .phone-banner__slide--photo picture{ display:block; width:100%; }
   .phone-banner__slide--photo img{ height:auto; }
   .phone-banner__arrow{ width:30px; height:30px; font-size:16px; }
-  .phone-banner__arrow--prev{ left:8px; }
-  .phone-banner__arrow--next{ right:8px; }
+  .phone-banner__arrow--prev{ left:24px; }
+  .phone-banner__arrow--next{ right:24px; }
 
   .phone-devices{ padding:48px 0; }
   .phone-devices__inner{ padding:0 16px; }
