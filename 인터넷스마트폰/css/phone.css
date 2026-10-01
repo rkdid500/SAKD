@@ -158,8 +158,14 @@
 
 @media (max-width: 768px){
   .review{ padding-top:20px; }
-  .review__heading .section-title{ margin-top:14px; font-size:24px; font-weight:800; text-align:left; }
-  .review__heading .section-desc{ margin-top:14px; text-align:left; }
+  .review__eyebrow{ font-size:10.5px; }
+  .review__heading .section-title{ margin-top:6px; font-size:19px; font-weight:800; text-align:left; }
+  .review__heading .section-desc{ margin-top:6px; font-size:12.5px; line-height:1.5; text-align:left; }
+  .review__head{ gap:10px; margin-bottom:14px; }
+  .review__more{ padding:7px 12px; font-size:12px; border-radius:9px; }
+  .review__score{ font-size:16px; }
+  .review__score-count{ margin-top:1px; font-size:10.5px; }
+  .review__caution{ margin-top:14px; font-size:11px; }
   .review__track{ gap:12px; }
   .review__track .review-card{ flex:0 0 62%; }
   .review-card__body{ padding:14px 14px 16px; }
