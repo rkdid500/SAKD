@@ -167,7 +167,7 @@
   .review__score-count{ margin-top:1px; font-size:10.5px; }
   .review__caution{ margin-top:14px; font-size:11px; }
   .review__track{ gap:12px; }
-  .review__track .review-card{ flex:0 0 56%; }
+  .review__track .review-card{ flex:0 0 52%; }
   .review-card__body{ padding:14px 14px 16px; }
   .review-card__stars{ font-size:12px; }
   .review-card__tag{ margin-top:6px; font-size:13.5px; }
