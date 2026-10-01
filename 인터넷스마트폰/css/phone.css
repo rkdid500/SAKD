@@ -157,7 +157,7 @@
 }
 
 @media (max-width: 768px){
-  .review{ padding-top:64px; }
+  .review{ padding-top:20px; }
   .review__heading .section-title{ margin-top:14px; font-size:24px; font-weight:800; text-align:left; }
   .review__heading .section-desc{ margin-top:14px; text-align:left; }
   .review__track{ gap:12px; }
@@ -168,7 +168,7 @@
   .review-card__quote{ margin-top:6px; font-size:12px; line-height:1.6; }
   .review-card__footer{ margin-top:12px; font-size:11px; }
 
-  .phone-banner{ padding-top:10px; }
+  .phone-banner{ padding-top:20px; }
   .phone-banner__viewport{ padding:0 16px; }
   .phone-banner__frame{ border-radius:16px; }
   .phone-banner__slide{ min-height:240px; padding:32px 0; }
