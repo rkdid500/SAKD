@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>스마트폰 비교 - 싹딜</title>
-<link rel="stylesheet" href="css/style.css?v=20261005">
-<link rel="stylesheet" href="css/phone.css?v=20261005">
+<link rel="stylesheet" href="css/style.css?v=20261006">
+<link rel="stylesheet" href="css/phone.css?v=20261006">
 </head>
 <body>
 
@@ -33,7 +33,17 @@
   </div>
 
   <!-- Mobile slide menu -->
+  <div class="mobile-menu-dim" id="mobileMenuDim"></div>
   <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu__head">
+      <span class="mobile-menu__title">메뉴</span>
+      <button type="button" class="mobile-menu__close" id="mobileMenuClose" aria-label="메뉴 닫기"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-menu__nav" aria-label="모바일 메뉴">
+      <a class="mobile-menu__link" href="인터넷.html">인터넷</a>
+      <a class="mobile-menu__link is-current" href="phone.html" aria-current="page">스마트폰</a>
+      <a class="mobile-menu__link" href="review.html">고객후기</a>
+    </nav>
     <div class="mobile-menu__actions">
       <a href="#" class="btn btn--outline btn--block">로그인</a>
       <a href="#" class="btn btn--primary btn--block">회원가입</a>
@@ -531,7 +541,7 @@
   </div>
 </footer>
 
-<script src="js/main.js?v=20261005"></script>
-<script src="js/phone.js?v=20261005"></script>
+<script src="js/main.js?v=20261006"></script>
+<script src="js/phone.js?v=20261006"></script>
 </body>
 </html>

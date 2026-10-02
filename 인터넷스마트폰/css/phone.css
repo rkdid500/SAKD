@@ -118,6 +118,9 @@
 .phone-benefits__inner{ max-width:var(--container); margin:0 auto; padding:0 24px; }
 .phone-benefits__img{ display:block; margin:0 auto; width:100%; height:auto; }
 
+/* 모바일 메뉴: 오른쪽에서 슬라이드로 나오는 사이드 메뉴 (모바일에서만 표시) */
+.mobile-menu-dim, .mobile-menu__head{ display:none; }
+
 /* ---------- FAQ ---------- */
 .phone-faq{ padding:80px 0 96px; background:var(--c-bg-soft); text-align:center; }
 .phone-faq__inner{ max-width:820px; margin:0 auto; padding:0 24px; }
@@ -157,6 +160,33 @@
 }
 
 @media (max-width: 768px){
+  .mobile-menu-dim{
+    display:block; position:fixed; inset:0; z-index:98;
+    background:rgba(0,0,0,.45); opacity:0; pointer-events:none;
+    transition:opacity .28s ease;
+  }
+  .mobile-menu-dim.is-open{ opacity:1; pointer-events:auto; }
+  .mobile-menu{
+    inset:0 0 0 auto; width:66%; z-index:99;
+    padding:0 0 24px; background:#fff; box-shadow:-8px 0 24px rgba(0,0,0,.12);
+    transform:translateX(100%); opacity:1; pointer-events:none;
+    transition:transform .28s ease;
+  }
+  .mobile-menu.is-open{ transform:translateX(0); pointer-events:auto; }
+  .mobile-menu__head{
+    display:flex; align-items:center; justify-content:space-between;
+    height:var(--header-h); padding:0 8px 0 20px; border-bottom:1px solid var(--c-border);
+  }
+  .mobile-menu__title{ font-size:16px; font-weight:800; color:var(--c-navy); }
+  .mobile-menu__close{ position:relative; width:40px; height:40px; }
+  .mobile-menu__close span{ position:absolute; left:10px; top:19px; width:20px; height:2px; background:var(--c-navy); border-radius:2px; }
+  .mobile-menu__close span:first-child{ transform:rotate(45deg); }
+  .mobile-menu__close span:last-child{ transform:rotate(-45deg); }
+  .mobile-menu__nav{ padding:4px 20px 0; }
+  .mobile-menu__link{ font-size:16px; }
+  .mobile-menu__link.is-current{ color:var(--c-mint-dark); }
+  .mobile-menu__actions{ flex-direction:column; padding:0 20px; margin-top:24px; }
+
   .review{ padding-top:20px; }
   .review__eyebrow{ font-size:10.5px; }
   .review__heading .section-title{ margin-top:6px; font-size:19px; font-weight:800; text-align:left; }

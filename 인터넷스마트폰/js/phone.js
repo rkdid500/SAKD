@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- 모바일 사이드 메뉴: 어두운 배경 동기화, 닫기 버튼/배경 클릭/ESC로 닫기 (열기·닫기 토글은 main.js) ----
+  (function initSideMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const dim = document.getElementById('mobileMenuDim');
+    const hamburger = document.getElementById('hamburgerBtn');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    if (!menu || !dim || !hamburger) return;
+
+    const sync = () => dim.classList.toggle('is-open', menu.classList.contains('is-open'));
+    new MutationObserver(sync).observe(menu, { attributes: true, attributeFilter: ['class'] });
+
+    const close = () => { if (menu.classList.contains('is-open')) hamburger.click(); }; // main.js 토글 재사용
+    dim.addEventListener('click', close);
+    closeBtn?.addEventListener('click', close);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+
   // ---- 프로모션 배너 캐러셀 ----
   const track = document.getElementById('phoneBannerTrack');
   if (track) {
