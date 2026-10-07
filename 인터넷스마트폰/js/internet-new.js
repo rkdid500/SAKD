@@ -198,32 +198,34 @@
   });
   renderMatrix();
 
-  /* ---------- 혜택 계산기 ---------- */
-  const calcSelect = $('#calcSelect');
-  calcSelect.innerHTML = CARRIERS.map(c =>
-    '<optgroup label="' + CARRIER_LABEL[c] + '">' +
-    PLANS.filter(p => p.carrier === c).map(p =>
-      '<option value="' + p.id + '">' + planTitle(p) + ' · ' + SPEED_LABEL[p.speed] + '</option>').join('') +
-    '</optgroup>').join('');
-  calcSelect.value = 'k4';
-
-  function renderCalc() {
-    const p = byId(calcSelect.value);
-    const total = p.price * 36;
-    const gift = p.gift * 10000;
-    const mePct = Math.round((total - gift) / total * 100);
-    $('#calcOut').innerHTML =
-      '<div class="cbar"><div class="cbar__me" style="width:' + mePct + '%">내 실제 부담 ' + won(Math.round((total - gift) / 10000)) + '만원</div>' +
-      '<div class="cbar__gift" style="width:' + (100 - mePct) + '%">사은품 ' + p.gift + '만원</div></div>' +
-      '<div class="cbar__cap"><span>3년 총 요금 <b>' + won(Math.round(total / 10000)) + '만원</b></span></div>' +
-      '<div class="cres"><div class="cres__box"><small>월 요금</small><b>' + won(p.price) + '원</b></div>' +
-      '<span class="cres__arrow" aria-hidden="true">→</span>' +
-      '<div class="cres__box cres__box--hot"><small>실질 월</small><b>' + won(realPrice(p)) + '원</b></div></div>' +
-      '<p class="cres__save">한 달 <b>' + won(p.price - realPrice(p)) + '원</b> 절약</p>';
+  /* ---------- 우리 집 맞춤 추천 ---------- */
+  const LIFE = {
+    small:  ['k1', 's2', 'l2'],
+    family: ['k4', 's3', 'l4'],
+    pro:    ['s5', 'l5', 'k7']
+  };
+  const lifeGrid = $('#lifeGrid');
+  function renderLife(key) {
+    lifeGrid.innerHTML = LIFE[key].map(id => {
+      const p = byId(id);
+      return '<article class="lc">' +
+        '<div><span class="cr cr--' + p.carrier + '">' + CARRIER_LABEL[p.carrier] + '</span></div>' +
+        '<h3 class="lc__name">' + planTitle(p) + '</h3>' +
+        '<p class="lc__spec">인터넷 ' + SPEED_LABEL[p.speed] + (p.tv ? ' · ' + p.tv.ch + 'CH' : '') + '</p>' +
+        '<div class="lc__tags"><span class="tag tag--gift">사은품 ' + p.gift + '만원</span><span class="tag tag--soft">실질 월 ' + won(realPrice(p)) + '원</span></div>' +
+        '<p class="lc__price">월 <b>' + won(p.price) + '</b>원</p>' +
+        '<button type="button" class="btn btn--primary btn--block" data-open-apply data-plan="' + p.id + '">신청하기</button>' +
+      '</article>';
+    }).join('');
   }
-  calcSelect.addEventListener('change', renderCalc);
-  $('#calcApply').addEventListener('click', () => openApply(calcSelect.value));
-  renderCalc();
+  $('#lifeTabs').addEventListener('click', (e) => {
+    const b = e.target.closest('.seg__btn');
+    if (!b) return;
+    $$('#lifeTabs .seg__btn').forEach(x => { const on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', String(on)); });
+    renderLife(b.dataset.life);
+    lifeGrid.scrollLeft = 0;
+  });
+  renderLife('small');
 
   /* ---------- 후기 레일 ---------- */
   const revRail = $('#revRail');

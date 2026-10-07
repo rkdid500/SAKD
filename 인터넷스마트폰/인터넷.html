@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인터넷 가입 비교 - 싹딜</title>
-<link rel="stylesheet" href="css/style.css?v=20261007f">
-<link rel="stylesheet" href="css/internet-new.css?v=20261007f">
+<link rel="stylesheet" href="css/style.css?v=20261007g">
+<link rel="stylesheet" href="css/internet-new.css?v=20261007g">
 </head>
 <body>
 
@@ -65,7 +65,7 @@
         <div class="bn__track" id="bnTrack">
           <a class="bn__slide bn__slide--a" href="#matrix" aria-label="배너 1: 요금 비교"></a>
           <button type="button" class="bn__slide bn__slide--b" data-open-apply aria-label="배너 2: 무료 상담 신청"></button>
-          <a class="bn__slide bn__slide--c" href="#calc" aria-label="배너 3: 실질 월 요금 계산"></a>
+          <a class="bn__slide bn__slide--c" href="#recommend" aria-label="배너 3: 맞춤 추천"></a>
         </div>
       </div>
       <button type="button" class="bn__arrow bn__arrow--prev" id="bnPrev" aria-label="이전 배너">‹</button>
@@ -101,22 +101,18 @@
     </div>
   </section>
 
-  <!-- ===================== 4. 혜택 계산기 ===================== -->
-  <section class="sec sec--soft" id="calc">
+  <!-- ===================== 4. 우리 집 맞춤 추천 ===================== -->
+  <section class="sec sec--soft" id="recommend">
     <div class="sec__inner">
       <div class="sec__head">
-        <h2 class="sec__title">사은품 반영, 실질 월 요금은?</h2>
+        <h2 class="sec__title">우리 집에 맞춘 추천 상품</h2>
       </div>
-
-      <div class="calc">
-        <label class="calc__pick">
-          <select id="calcSelect" aria-label="상품 고르기"></select>
-        </label>
-
-        <div class="calc__out" id="calcOut" aria-live="polite"></div>
-
-        <button type="button" class="btn btn--primary btn--lg calc__cta" id="calcApply">이 상품으로 신청하기</button>
+      <div class="seg" id="lifeTabs" role="tablist">
+        <button type="button" class="seg__btn is-active" role="tab" aria-selected="true" data-life="small">1~2인 가구</button>
+        <button type="button" class="seg__btn" role="tab" aria-selected="false" data-life="family">3~4인 가구</button>
+        <button type="button" class="seg__btn" role="tab" aria-selected="false" data-life="pro">재택 · 방송</button>
       </div>
+      <div class="life" id="lifeGrid"></div>
     </div>
   </section>
 
@@ -300,7 +296,7 @@
   </div>
 </div>
 
-<script src="js/main.js?v=20261007f"></script>
-<script src="js/internet-new.js?v=20261007f"></script>
+<script src="js/main.js?v=20261007g"></script>
+<script src="js/internet-new.js?v=20261007g"></script>
 </body>
 </html>

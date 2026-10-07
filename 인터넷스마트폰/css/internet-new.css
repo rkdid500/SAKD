@@ -54,8 +54,7 @@ body{ -webkit-tap-highlight-color:transparent; }
 .btn[disabled]{ opacity:.55; cursor:default; }
 /* style.css 의 .btn.btn--primary.btn--lg{ margin-top:28px } 를 이기기 위한 재정의 */
 .endcta__form .btn.btn--primary.btn--lg,
-#applyForm .btn.btn--primary.btn--lg,
-.calc .btn.btn--primary.btn--lg{ margin-top:0; }
+#applyForm .btn.btn--primary.btn--lg{ margin-top:0; }
 
 .qf__error{ font-size:12.5px; font-weight:700; color:#e0392b; }
 .qf__error:empty{ display:none; }
@@ -156,30 +155,26 @@ body{ -webkit-tap-highlight-color:transparent; }
 .cell--empty{ cursor:default; background:var(--c-bg-soft); color:var(--c-text-mute); font-size:13px; font-weight:700; }
 .cell--empty:hover{ border-color:var(--c-border); box-shadow:none; transform:none; }
 
-/* ---------- 4. 계산기 ---------- */
-.calc{ max-width:760px; margin:0 auto; background:#fff; border:1px solid var(--c-border); border-radius:24px; box-shadow:var(--shadow-card-lg); padding:30px; }
-.calc__pick{ display:flex; flex-direction:column; gap:8px; }
-.calc__pick span{ font-size:13px; font-weight:800; color:var(--c-text-sub); }
-.calc__pick select{
-  width:100%; padding:15px 16px; border-radius:12px; border:1.5px solid var(--c-border); background:#fff;
-  font:inherit; font-size:16px; font-weight:700; color:var(--c-navy);
+/* ---------- 4. 우리 집 맞춤 추천 ---------- */
+.seg{ display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+.seg__btn{
+  padding:11px 22px; border-radius:999px; border:1.5px solid var(--c-border); background:#fff;
+  font-size:15px; font-weight:800; color:var(--c-text-sub); transition:border-color .15s ease, background .15s ease, color .15s ease;
 }
-.calc__out{ margin-top:26px; }
-.cbar{ display:flex; height:54px; border-radius:14px; overflow:hidden; background:var(--c-bg-soft); }
-.cbar__me{ background:var(--c-navy); color:#fff; display:flex; align-items:center; padding:0 16px; font-size:14px; font-weight:800; white-space:nowrap; transition:width .5s cubic-bezier(.22,.61,.36,1); min-width:0; }
-.cbar__gift{ background:var(--gift); color:#fff; display:flex; align-items:center; justify-content:center; padding:0 10px; font-size:14px; font-weight:800; white-space:nowrap; transition:width .5s cubic-bezier(.22,.61,.36,1); min-width:0; overflow:hidden; }
-.cbar__cap{ margin-top:10px; display:flex; justify-content:space-between; gap:10px; font-size:13px; color:var(--c-text-sub); }
-.cbar__cap b{ color:var(--c-navy); font-weight:900; }
-.cres{ margin-top:22px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:12px; text-align:center; }
-.cres__box{ padding:16px 10px; border-radius:16px; background:var(--c-bg-soft); }
-.cres__box small{ display:block; font-size:12.5px; color:var(--c-text-mute); }
-.cres__box b{ display:block; margin-top:4px; font-size:24px; font-weight:900; color:var(--c-navy); letter-spacing:-.6px; }
-.cres__box--hot{ background:var(--c-mint-100); }
-.cres__box--hot b{ color:var(--c-mint-dark); font-size:28px; }
-.cres__arrow{ font-size:22px; color:var(--c-mint-dark); font-weight:900; }
-.cres__save{ margin-top:14px; text-align:center; font-size:14px; color:var(--c-text-sub); }
-.cres__save b{ color:var(--c-mint-dark); font-weight:900; }
-.calc .btn.btn--primary.btn--lg.calc__cta{ margin-top:24px; display:flex; width:100%; padding:17px; border-radius:14px; }
+.seg__btn:hover{ border-color:var(--c-mint); color:var(--c-mint-dark); }
+.seg__btn.is-active{ border-color:var(--c-navy); background:var(--c-navy); color:#fff; }
+.life{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; max-width:960px; margin:0 auto; }
+.lc{
+  background:#fff; border:1px solid var(--c-border); border-radius:20px; padding:24px;
+  display:flex; flex-direction:column; animation:lcIn .35s ease both;
+}
+@keyframes lcIn{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+.lc__name{ margin-top:12px; font-size:20px; font-weight:900; color:var(--c-navy); letter-spacing:-.4px; line-height:1.3; }
+.lc__spec{ margin-top:6px; flex:1; font-size:14px; color:var(--c-text-sub); }
+.lc__tags{ margin-top:16px; display:flex; gap:6px; flex-wrap:wrap; }
+.lc__price{ margin-top:14px; font-size:15px; font-weight:600; color:var(--c-text-sub); }
+.lc__price b{ font-size:28px; font-weight:900; color:var(--c-navy); letter-spacing:-.6px; margin:0 1px; }
+.lc .btn{ margin-top:18px; padding:14px; border-radius:12px; }
 
 /* ---------- 5. 가입 전 확인 ---------- */
 .chk{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; list-style:none; margin:0; padding:0; }
@@ -307,6 +302,9 @@ body.is-locked{ overflow:hidden; }
    Responsive
 ========================================================================= */
 @media (max-width: 1024px){
+  .life{ display:flex; max-width:none; margin:0 -24px; padding:4px 24px 12px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; }
+  .life::-webkit-scrollbar{ display:none; }
+  .lc{ flex:0 0 min(300px,78%); scroll-snap-align:start; }
   .bn__slide{ height:280px; }
   .chk{ grid-template-columns:repeat(2,1fr); }
   .steps{ grid-template-columns:repeat(2,1fr); }
@@ -317,6 +315,10 @@ body.is-locked{ overflow:hidden; }
 }
 
 @media (max-width: 768px){
+  .seg{ gap:6px; margin-bottom:20px; }
+  .seg__btn{ padding:9px 15px; font-size:14px; }
+  .life{ margin:0 -16px; padding:4px 16px 12px; gap:12px; }
+  .lc{ padding:20px; }
   .bn{ padding:16px 0 0; }
   .bn__viewport{ padding:0 16px; }
   .bn__frame{ border-radius:18px; }
@@ -378,13 +380,6 @@ body.is-locked{ overflow:hidden; }
   .cell__name{ font-size:10.5px; margin-top:4px; }
   .cell__meta{ font-size:10.5px; }
 
-  .calc{ padding:20px 16px; border-radius:20px; }
-  .cbar{ height:46px; border-radius:12px; }
-  .cbar__me, .cbar__gift{ font-size:12.5px; padding:0 10px; }
-  .cres{ grid-template-columns:1fr; gap:6px; }
-  .cres__arrow{ transform:rotate(90deg); }
-  .cres__box b{ font-size:21px; }
-  .cres__box--hot b{ font-size:25px; }
 
   .chk{ grid-template-columns:1fr; gap:10px; }
   .chk__item{ padding:20px 18px 22px; border-radius:16px; }
@@ -428,7 +423,6 @@ body.is-locked{ overflow:hidden; }
 }
 
 @media (prefers-reduced-motion: reduce){
-  .modal__sheet, .modal__dim{ animation:none; }
+  .lc, .modal__sheet, .modal__dim{ animation:none; }
   .rail{ scroll-behavior:auto; }
-  .cbar__me, .cbar__gift{ transition:none; }
 }
