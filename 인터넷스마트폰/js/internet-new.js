@@ -15,6 +15,7 @@
     { id: 'k4', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 베이직', ch: 230 }, gift: 45, price: 39600 },
     { id: 'k5', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 45, price: 40700 },
     { id: 'k6', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 모든G',  ch: 250 }, gift: 48, price: 47300 },
+    { id: 'k9', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 에센스', ch: 260 }, gift: 37, price: 38500 },
     { id: 'k8', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: null,                          gift: 28, price: 38500 },
     { id: 'k7', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: { name: '지니 TV 베이직', ch: 230 }, gift: 50, price: 49500 },
     { id: 's1', carrier: 'SK', product: '광랜인터넷',     speed: 100,  tv: null,                          gift: 11, price: 22000 },
@@ -23,6 +24,7 @@
     { id: 's4', carrier: 'SK', product: '기가라이트인터넷', speed: 500, tv: { name: 'Btv ALL', ch: 257 },   gift: 42, price: 47300 },
     { id: 's5', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 28, price: 38500 },
     { id: 's6', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv ALL', ch: 257 },   gift: 48, price: 52800 },
+    { id: 's7', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv New 이코노미', ch: 182 }, gift: 45, price: 47300 },
     { id: 'l1', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: null,                     gift: 20, price: 22000 },
     { id: 'l2', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: { name: '기본형', ch: 223 }, gift: 33, price: 36300 },
     { id: 'l3', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: null,                          gift: 22, price: 33000 },
@@ -198,32 +200,36 @@
   });
   renderMatrix();
 
-  /* ---------- 우리 집 맞춤 추천 ---------- */
+  /* ---------- 우리 집 맞춤 추천 (같은 인터넷에서 TV 구성별 비교 목록) ---------- */
   const LIFE = {
-    small:  ['k1', 's2', 'l2'],
-    family: ['k4', 's3', 'l4'],
-    pro:    ['s5', 'l5', 'k7']
+    small:  ['k1', 'k2', 'k9'],
+    family: ['k3', 'k4', 'k5'],
+    pro:    ['s5', 's6', 's7']
   };
   const lifeGrid = $('#lifeGrid');
   function renderLife(key) {
-    lifeGrid.innerHTML = LIFE[key].map(id => {
-      const p = byId(id);
-      return '<article class="lc">' +
-        '<div><span class="cr cr--' + p.carrier + '">' + CARRIER_LABEL[p.carrier] + '</span></div>' +
-        '<h3 class="lc__name">' + planTitle(p) + '</h3>' +
-        '<p class="lc__spec">인터넷 ' + SPEED_LABEL[p.speed] + (p.tv ? ' · ' + p.tv.ch + 'CH' : '') + '</p>' +
-        '<div class="lc__tags"><span class="tag tag--gift">사은품 ' + p.gift + '만원</span><span class="tag tag--soft">실질 월 ' + won(realPrice(p)) + '원</span></div>' +
-        '<p class="lc__price">월 <b>' + won(p.price) + '</b>원</p>' +
-        '<button type="button" class="btn btn--primary btn--block" data-open-apply data-plan="' + p.id + '">신청하기</button>' +
-      '</article>';
-    }).join('');
+    const plans = LIFE[key].map(byId);
+    const base = plans[0];
+    lifeGrid.innerHTML =
+      '<div class="rec__bar"><span class="cr cr--' + base.carrier + '">' + CARRIER_LABEL[base.carrier] + '</span>' +
+        '<span>' + base.product + ' <i>· ' + SPEED_LABEL[base.speed] + '</i></span></div>' +
+      plans.map(p =>
+        '<button type="button" class="rrow" data-open-apply data-plan="' + p.id + '">' +
+          '<span><span class="rrow__type">' + (p.tv ? '인터넷 + TV' : '인터넷만') + '</span>' +
+            '<span class="rrow__name" style="display:block">' + (p.tv ? p.tv.name : '인터넷만') + '</span>' +
+            '<span class="rrow__sub" style="display:block">' + (p.tv ? p.tv.ch + 'CH' : 'TV 없이') + '</span></span>' +
+          '<span class="rrow__gift"><small>사은품</small><b>' + p.gift + '만원</b></span>' +
+          '<span class="rrow__price">월 <b>' + won(p.price) + '</b>원<span class="rrow__real">실질 월 ' + won(realPrice(p)) + '원</span></span>' +
+          '<span class="rrow__go" aria-hidden="true">›</span>' +
+        '</button>').join('') +
+      '<p class="rec__note">3년 약정 · VAT 포함 · 설치비 별도</p>';
+    lifeGrid.classList.remove('rec'); void lifeGrid.offsetWidth; lifeGrid.classList.add('rec');
   }
   $('#lifeTabs').addEventListener('click', (e) => {
     const b = e.target.closest('.seg__btn');
     if (!b) return;
     $$('#lifeTabs .seg__btn').forEach(x => { const on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', String(on)); });
     renderLife(b.dataset.life);
-    lifeGrid.scrollLeft = 0;
   });
   renderLife('small');
 
