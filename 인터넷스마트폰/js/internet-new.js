@@ -136,127 +136,33 @@
     $('#applyForm').reset();
   });
 
-  /* ---------- 히어로: 단계형 추천 ---------- */
-  const SVG = {
-    plus:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9H4z"/><path d="M12 10v6M9 13h6"/></svg>',
-    swap:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg>',
-    renew: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.5-5.8M20 4v5h-5"/></svg>',
-    net:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 17a8.5 8.5 0 1 1 15 0M12 13l4-4"/></svg>',
-    tv:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2.5"/><path d="M9 21h6"/></svg>'
-  };
-  const QUESTIONS = [
-    { key: 'situation', q: '어떤 상황이세요?', hint: '상황에 따라 챙겨드릴 내용이 달라져요.',
-      opts: [
-        { v: '신규·이사', t: '새로 가입해요', s: '이사하거나 처음 설치해요', ico: SVG.plus },
-        { v: '통신사 변경', t: '통신사를 바꾸고 싶어요', s: '지금 쓰는 곳에서 갈아타요', ico: SVG.swap },
-        { v: '재약정', t: '지금 통신사를 계속 쓸래요', s: '약정이 끝나서 다시 가입해요', ico: SVG.renew }
-      ] },
-    { key: 'speed', q: '집에서 인터넷을 어떻게 쓰세요?', hint: '쓰는 방식에 맞춰 속도를 골라드려요.',
-      opts: [
-        { v: 100,  t: '가볍게 써요', s: '검색·쇼핑·영상 위주, 1~2인', ico: '100M' },
-        { v: 500,  t: '여러 명이 함께 써요', s: 'OTT·게임까지, 3~4인 가족', ico: '500M' },
-        { v: 1000, t: '재택·방송·대용량이에요', s: '빠르고 안정적인 속도가 필요해요', ico: '1G' }
-      ] },
-    { key: 'tv', q: 'TV도 같이 쓰세요?', hint: '결합하면 사은품이 더 커지는 경우가 많아요.',
-      opts: [
-        { v: false, t: '인터넷만 필요해요', s: 'TV는 따로 보거나 안 봐요', ico: SVG.net },
-        { v: true,  t: 'TV도 함께 쓸래요', s: '채널·OTT까지 한 번에', ico: SVG.tv }
-      ] }
-  ];
-
-  const wzBody = $('#wzBody'), wzBack = $('#wzBack'), wzStep = $('#wzStep'), wzBar = $('#wzBar');
-  const wz = { step: 0, ans: {}, pickedId: null };
-
-  function setProgress(step) {
-    $$('i', wzBar).forEach((b, i) => b.classList.toggle('is-on', i <= step));
-    wzStep.textContent = step < 3 ? (step + 1) + ' / 3' : '추천 결과';
-    wzBack.hidden = step === 0;
-  }
-
-  function renderQuestion() {
-    const Q = QUESTIONS[wz.step];
-    setProgress(wz.step);
-    wzBody.innerHTML =
-      '<h2 class="wz__q">' + Q.q + '</h2><p class="wz__hint">' + Q.hint + '</p>' +
-      '<div class="wz__opts">' + Q.opts.map((o, i) =>
-        '<button type="button" class="opt' + (wz.ans[Q.key] === o.v ? ' is-picked' : '') + '" data-i="' + i + '">' +
-          '<span class="opt__ico">' + o.ico + '</span>' +
-          '<span class="opt__txt"><b>' + o.t + '</b><span>' + o.s + '</span></span>' +
-          '<span class="opt__go" aria-hidden="true">›</span></button>').join('') + '</div>';
-  }
-
-  function resultPlans() {
-    return CARRIERS.map(c => bestPlan(c, wz.ans.speed, wz.ans.tv)).filter(Boolean);
-  }
-
-  function renderResult() {
-    setProgress(3);
-    const plans = resultPlans();
-    const cheapest = plans.slice().sort((a, b) => realPrice(a) - realPrice(b))[0];
-    if (!wz.pickedId || !plans.some(p => p.id === wz.pickedId)) wz.pickedId = cheapest.id;
-    const p = byId(wz.pickedId);
-    wzBody.innerHTML =
-      '<div class="wzr">' +
-        '<p class="wzr__label">' + (p.id === cheapest.id ? '싹딜이 고른 우리 집 최적 상품' : '선택하신 상품') + '</p>' +
-        '<div class="wzr__main">' +
-          '<div class="wzr__top"><span class="cr cr--' + p.carrier + '">' + CARRIER_LABEL[p.carrier] + '</span>' +
-            '<span class="tag tag--gift">사은품 ' + p.gift + '만원</span></div>' +
-          '<p class="wzr__name">' + planTitle(p) + '</p>' +
-          '<p class="wzr__spec">인터넷 ' + SPEED_LABEL[p.speed] + (p.tv ? ' · ' + p.tv.ch + 'CH' : ' · 인터넷만') + '</p>' +
-          '<p class="wzr__real">사은품 반영 실질 월<b>' + won(realPrice(p)) + '원</b></p>' +
-          '<p class="wzr__line"><span>월 요금 <b>' + won(p.price) + '원</b></span><span>3년 약정 · VAT 포함</span></p>' +
-        '</div>' +
-        '<div class="wzr__alt">' + plans.map(a =>
-          '<button type="button" class="alt' + (a.id === p.id ? ' is-sel' : '') + '" data-pick="' + a.id + '">' +
-            '<span class="cr cr--' + a.carrier + '">' + CARRIER_LABEL[a.carrier] + '</span>' +
-            '<span class="alt__name">' + planTitle(a) + '</span>' +
-            '<span class="alt__real">실질 ' + won(realPrice(a)) + '원</span></button>').join('') + '</div>' +
-        '<form class="wzr__form" id="wzForm" novalidate>' +
-          '<input type="tel" id="wzPhone" inputmode="numeric" autocomplete="tel" placeholder="연락처 (010-0000-0000)" maxlength="13" aria-label="연락처">' +
-          '<button type="submit" class="btn btn--primary btn--lg">이 조건으로 무료 상담 신청</button>' +
-          '<label class="agree"><input type="checkbox" id="wzAgree"><span>개인정보 수집·이용에 동의합니다. <a href="#" class="agree__link">자세히</a></span></label>' +
-          '<p class="qf__error" id="wzError" role="alert"></p>' +
-        '</form>' +
-      '</div>';
-  }
-
-  function renderWizard() {
-    if (wz.step < 3) renderQuestion(); else renderResult();
-  }
-
-  wzBody.addEventListener('click', (e) => {
-    const opt = e.target.closest('.opt');
-    if (opt) {
-      const Q = QUESTIONS[wz.step];
-      wz.ans[Q.key] = Q.opts[Number(opt.dataset.i)].v;
-      $$('.opt', wzBody).forEach(o => o.classList.toggle('is-picked', o === opt));
-      setTimeout(() => { wz.step += 1; if (wz.step === 3) wz.pickedId = null; renderWizard(); }, 160);
-      return;
-    }
-    const alt = e.target.closest('.alt');
-    if (alt) { wz.pickedId = alt.dataset.pick; renderResult(); }
-  });
-
-  wzBack.addEventListener('click', () => { if (wz.step > 0) { wz.step -= 1; renderWizard(); } });
-
-  wzBody.addEventListener('submit', (e) => {
-    if (e.target.id !== 'wzForm') return;
-    e.preventDefault();
-    const err = $('#wzError');
-    if (!validPhone($('#wzPhone').value)) { err.textContent = '연락처를 010-0000-0000 형식으로 입력해 주세요.'; $('#wzPhone').focus(); return; }
-    if (!$('#wzAgree').checked) { err.textContent = '개인정보 수집·이용에 동의해 주세요.'; return; }
-    const p = byId(wz.pickedId);
-    // TODO: 실제 신청 API 연결 (phone, wz.ans, 선택 상품)
-    setProgress(3);
-    wzBody.innerHTML =
-      '<div class="wz__done"><div class="done-mark" aria-hidden="true"></div>' +
-      '<h3>신청이 접수됐어요</h3><p>' + planTitle(p) + ' 조건으로<br>상담사가 곧 연락드릴게요.</p>' +
-      '<button type="button" class="btn btn--outline btn--block" id="wzRestart">처음부터 다시 해보기</button></div>';
-  });
-  wzBody.addEventListener('click', (e) => {
-    if (e.target.id === 'wzRestart') { wz.step = 0; wz.ans = {}; wz.pickedId = null; renderWizard(); }
-  });
-  renderWizard();
+  /* ---------- 프로모션 배너 캐러셀 (네이티브 구현, 외부 라이브러리 없음) ---------- */
+  (function initBanner() {
+    const track = $('#bnTrack');
+    if (!track) return;
+    const slides = Array.from(track.children);
+    const count = $('#bnCount');
+    let cur = 0, timer = null;
+    const goTo = (i) => {
+      cur = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+      count.textContent = (cur + 1) + ' / ' + slides.length;
+    };
+    const start = () => { clearInterval(timer); timer = setInterval(() => goTo(cur + 1), 5000); };
+    $('#bnPrev').addEventListener('click', () => { goTo(cur - 1); start(); });
+    $('#bnNext').addEventListener('click', () => { goTo(cur + 1); start(); });
+    // 모바일 스와이프
+    let x0 = null;
+    track.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; clearInterval(timer); }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      if (x0 !== null) {
+        const dx = e.changedTouches[0].clientX - x0;
+        if (Math.abs(dx) > 40) goTo(cur + (dx < 0 ? 1 : -1));
+      }
+      x0 = null; start();
+    }, { passive: true });
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+  })();
 
   /* ---------- 3사 × 속도 비교표 ---------- */
   const mxGrid = $('#mxGrid');
@@ -349,6 +255,5 @@
   }
   window.addEventListener('scroll', updatePill, { passive: true });
   window.addEventListener('resize', updatePill, { passive: true });
-  pill.addEventListener('click', () => hero.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   updatePill();
 })();
