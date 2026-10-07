@@ -91,6 +91,7 @@ body{ -webkit-tap-highlight-color:transparent; }
 .ts__item{ text-align:center; padding:0 12px; position:relative; }
 .ts__item:not(:last-child)::after{ content:""; position:absolute; right:0; top:50%; transform:translateY(-50%); width:1px; height:30px; background:var(--c-border); }
 .ts__item b{ display:block; font-size:16px; font-weight:900; color:var(--c-navy); }
+.ts__item span{ display:block; margin-top:3px; font-size:13px; color:var(--c-text-mute); }
 
 /* ---------- Section frame ---------- */
 .sec{ padding:84px 0; background:#fff; }
@@ -349,6 +350,7 @@ body.is-locked{ overflow:hidden; }
   .ts__inner{ grid-template-columns:repeat(2,1fr); padding:18px 16px; row-gap:16px; }
   .ts__item:nth-child(2)::after{ display:none; }
   .ts__item b{ font-size:14.5px; }
+  .ts__item span{ font-size:12px; }
 
   .sec{ padding:52px 0; }
   .sec__inner{ padding:0 16px; }
