@@ -183,7 +183,7 @@
           '<span class="cell__real">' + won(realPrice(p)) + '<small>원</small></span>' +
           '<span class="cell__lbl">실질 월</span>' +
           '<span class="cell__name">' + planTitle(p) + '</span>' +
-          '<span class="cell__meta">월 ' + won(p.price) + ' · 사은품 <b>' + p.gift + '만</b></span></button>';
+          '<span class="cell__meta">사은품 <b>' + p.gift + '만</b></span></button>';
       });
     });
     mxGrid.innerHTML = html;
@@ -214,11 +214,11 @@
     $('#calcOut').innerHTML =
       '<div class="cbar"><div class="cbar__me" style="width:' + mePct + '%">내 실제 부담 ' + won(Math.round((total - gift) / 10000)) + '만원</div>' +
       '<div class="cbar__gift" style="width:' + (100 - mePct) + '%">사은품 ' + p.gift + '만원</div></div>' +
-      '<div class="cbar__cap"><span>3년 총 요금 <b>' + won(Math.round(total / 10000)) + '만원</b> (월 ' + won(p.price) + '원 × 36개월)</span></div>' +
-      '<div class="cres"><div class="cres__box"><small>표시 월 요금</small><b>' + won(p.price) + '원</b></div>' +
+      '<div class="cbar__cap"><span>3년 총 요금 <b>' + won(Math.round(total / 10000)) + '만원</b></span></div>' +
+      '<div class="cres"><div class="cres__box"><small>월 요금</small><b>' + won(p.price) + '원</b></div>' +
       '<span class="cres__arrow" aria-hidden="true">→</span>' +
-      '<div class="cres__box cres__box--hot"><small>사은품 반영 실질 월</small><b>' + won(realPrice(p)) + '원</b></div></div>' +
-      '<p class="cres__save">한 달에 약 <b>' + won(p.price - realPrice(p)) + '원</b>, 3년이면 <b>' + p.gift + '만원</b>을 돌려받는 셈이에요.</p>';
+      '<div class="cres__box cres__box--hot"><small>실질 월</small><b>' + won(realPrice(p)) + '원</b></div></div>' +
+      '<p class="cres__save">한 달 <b>' + won(p.price - realPrice(p)) + '원</b> 절약</p>';
   }
   calcSelect.addEventListener('change', renderCalc);
   $('#calcApply').addEventListener('click', () => openApply(calcSelect.value));

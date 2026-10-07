@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>인터넷 가입 비교 - 싹딜</title>
-<link rel="stylesheet" href="css/style.css?v=20261007b">
-<link rel="stylesheet" href="css/internet-new.css?v=20261007b">
+<link rel="stylesheet" href="css/style.css?v=20261007d">
+<link rel="stylesheet" href="css/internet-new.css?v=20261007d">
 </head>
 <body>
 
@@ -77,10 +77,10 @@
   <!-- ===================== 2. 신뢰 스트립 ===================== -->
   <section class="ts">
     <ul class="ts__inner">
-      <li class="ts__item"><b>통신 3사 비교</b><span>KT · SK · LG U+</span></li>
-      <li class="ts__item"><b>사은품 당일 지급</b><span>설치 완료 당일 약속</span></li>
-      <li class="ts__item"><b>실질 월 요금 안내</b><span>사은품까지 계산해서</span></li>
-      <li class="ts__item"><b>150% 보상</b><span>최고 혜택이 아니라면</span></li>
+      <li class="ts__item"><b>통신 3사 비교</b></li>
+      <li class="ts__item"><b>사은품 당일 지급</b></li>
+      <li class="ts__item"><b>실질 월 요금 안내</b></li>
+      <li class="ts__item"><b>150% 보상</b></li>
     </ul>
   </section>
 
@@ -88,9 +88,7 @@
   <section class="sec" id="matrix">
     <div class="sec__inner">
       <div class="sec__head">
-        <p class="sec__eyebrow">AT A GLANCE</p>
         <h2 class="sec__title">3사를 한 표에서 비교해요</h2>
-        <p class="sec__desc">속도별로 사은품까지 반영했을 때 <b class="hl-mint">가장 싼 상품</b>만 골라 보여드려요. 칸을 누르면 바로 신청할 수 있어요.</p>
       </div>
 
       <div class="tgl" id="mxToggle" role="tablist">
@@ -99,7 +97,7 @@
       </div>
 
       <div class="mx" id="mxGrid" role="table" aria-label="통신 3사 속도별 비교표"></div>
-      <p class="fine fine--center">※ 요금·사은품은 시안용 예시이며 지역·결합 조건에 따라 달라질 수 있어요. 3년 약정 · VAT 포함 · 설치비 별도 기준입니다.</p>
+      <p class="fine fine--center">※ 예시 요금 · 3년 약정 · VAT 포함 · 설치비 별도</p>
     </div>
   </section>
 
@@ -107,15 +105,12 @@
   <section class="sec sec--soft" id="calc">
     <div class="sec__inner">
       <div class="sec__head">
-        <p class="sec__eyebrow">BENEFIT CALCULATOR</p>
-        <h2 class="sec__title">사은품, 실제로 얼마나 이득일까요?</h2>
-        <p class="sec__desc">3년 동안 낼 요금에서 사은품을 빼면 실제 부담이 얼마인지 싹 계산해 드려요.</p>
+        <h2 class="sec__title">사은품 반영, 실질 월 요금은?</h2>
       </div>
 
       <div class="calc">
         <label class="calc__pick">
-          <span>상품 고르기</span>
-          <select id="calcSelect"></select>
+          <select id="calcSelect" aria-label="상품 고르기"></select>
         </label>
 
         <div class="calc__out" id="calcOut" aria-live="polite"></div>
@@ -129,15 +124,13 @@
   <section class="sec" id="check">
     <div class="sec__inner">
       <div class="sec__head">
-        <p class="sec__eyebrow">WE CHECK FOR YOU</p>
-        <h2 class="sec__title">가입 전에 꼭 확인할 것, 싹딜이 대신 챙겨요</h2>
-        <p class="sec__desc">나중에 알면 아쉬운 조건들을 신청 전에 먼저 알려드려요.</p>
+        <h2 class="sec__title">가입 전 확인, 싹딜이 대신해요</h2>
       </div>
       <ul class="chk" data-stagger>
-        <li class="chk__item"><span class="chk__no">01</span><b>지금 약정과 위약금</b><p>쓰고 있는 통신사의 남은 약정을 확인하고, 갈아타도 이득인지 계산해 드려요.</p></li>
-        <li class="chk__item"><span class="chk__no">02</span><b>설치비</b><p>설치비는 통신사·환경마다 달라요. 신청 전에 정확한 금액부터 말씀드려요.</p></li>
-        <li class="chk__item"><span class="chk__no">03</span><b>결합 할인</b><p>쓰고 있는 휴대폰과 묶으면 더 싸지는지, 놓치는 할인이 없는지 살펴봐요.</p></li>
-        <li class="chk__item"><span class="chk__no">04</span><b>사은품 지급 조건</b><p>언제, 어떤 방식으로 받는지 미리 안내해 설치 후에 헷갈리지 않게 해드려요.</p></li>
+        <li class="chk__item"><span class="chk__no">01</span><b>약정 · 위약금 확인</b></li>
+        <li class="chk__item"><span class="chk__no">02</span><b>설치비 안내</b></li>
+        <li class="chk__item"><span class="chk__no">03</span><b>결합 할인 확인</b></li>
+        <li class="chk__item"><span class="chk__no">04</span><b>사은품 지급 조건 안내</b></li>
       </ul>
     </div>
   </section>
@@ -146,15 +139,13 @@
   <section class="sec sec--soft" id="steps">
     <div class="sec__inner">
       <div class="sec__head">
-        <p class="sec__eyebrow">HOW IT WORKS</p>
-        <h2 class="sec__title">신청부터 사은품까지, 4단계면 끝나요</h2>
-        <p class="sec__desc">복잡한 서류도, 매장 방문도 필요 없어요.</p>
+        <h2 class="sec__title">신청은 4단계면 끝나요</h2>
       </div>
       <ol class="steps" data-stagger>
-        <li class="step"><span class="step__no">1</span><b>상담 신청</b><p>연락처만 남기면 30초 만에 접수돼요.</p></li>
-        <li class="step"><span class="step__no">2</span><b>최적 조건 안내</b><p>3사 조건을 비교해 가장 좋은 상품을 안내해요.</p></li>
-        <li class="step"><span class="step__no">3</span><b>설치 일정 확정</b><p>원하는 날짜에 맞춰 방문 설치를 예약해요.</p></li>
-        <li class="step"><span class="step__no">4</span><b>사은품 당일 지급</b><p>설치가 끝나면 사은품을 바로 지급해 드려요.</p></li>
+        <li class="step"><span class="step__no">1</span><b>상담 신청</b></li>
+        <li class="step"><span class="step__no">2</span><b>조건 안내</b></li>
+        <li class="step"><span class="step__no">3</span><b>설치 예약</b></li>
+        <li class="step"><span class="step__no">4</span><b>사은품 지급</b></li>
       </ol>
     </div>
   </section>
@@ -163,11 +154,8 @@
   <section class="gb">
     <div class="gb__inner">
       <div class="gb__text">
-        <p class="gb__eyebrow">PRICE GUARANTEE</p>
         <h2 class="gb__title">최고 혜택이 아니라면,<br><em>150%</em> 돌려드려요</h2>
-        <p class="gb__desc">다른 곳에서 더 좋은 조건을 확인하셨다면 알려주세요. 기준에 맞는 경우 차액의 150%를 보상해 드립니다.</p>
         <button type="button" class="btn btn--primary btn--lg" data-open-apply>혜택 확인하고 신청하기</button>
-        <p class="fine fine--light">※ 보상 대상과 기준은 상담 시 자세히 안내드립니다.</p>
       </div>
       <img class="gb__img" src="images/3D 혜택보장 상담사.png" alt="혜택을 보장하는 싹딜 상담사" loading="lazy">
     </div>
@@ -178,7 +166,6 @@
     <div class="sec__inner">
       <div class="sec__head sec__head--row">
         <div>
-          <p class="sec__eyebrow">REAL REVIEW</p>
           <h2 class="sec__title">실제 가입 고객님의 후기</h2>
         </div>
         <div class="arrows">
@@ -187,11 +174,11 @@
         </div>
       </div>
       <div class="rail rail--rev" id="revRail">
-        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">500M + TV · 신규가입</p><p class="rev__q">설치 기사님이 약속 시간에 딱 맞춰 오셨고, 사은품도 설치 당일에 바로 받았어요.</p><footer class="rev__ft"><span>이*훈</span><time>2026.09.15</time></footer></article>
-        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">500M · 통신사 변경</p><p class="rev__q">위약금 부담 없이 갈아탈 수 있는 조건을 정확히 계산해줘서 바로 결정했어요.</p><footer class="rev__ft"><span>박*지</span><time>2026.09.14</time></footer></article>
-        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">1G · 재택근무</p><p class="rev__q">설치비·사은품 조건까지 한 번에 비교해줘서 다른 곳 알아볼 필요가 없었어요.</p><footer class="rev__ft"><span>최*원</span><time>2026.09.12</time></footer></article>
-        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">100M · 1인 가구</p><p class="rev__q">필요한 속도만 딱 맞춰 추천해줘서 불필요한 비용 없이 알뜰하게 가입했어요.</p><footer class="rev__ft"><span>정*아</span><time>2026.09.10</time></footer></article>
-        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">1G + TV · 이사</p><p class="rev__q">이사 일정에 맞춰 설치 날짜를 잡아줘서 번거로움이 없었어요.</p><footer class="rev__ft"><span>한*수</span><time>2026.09.09</time></footer></article>
+        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">500M + TV · 신규가입</p><p class="rev__q">사은품을 설치 당일에 바로 받았어요.</p><footer class="rev__ft"><span>이*훈</span><time>2026.09.15</time></footer></article>
+        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">500M · 통신사 변경</p><p class="rev__q">위약금까지 계산해줘서 바로 결정했어요.</p><footer class="rev__ft"><span>박*지</span><time>2026.09.14</time></footer></article>
+        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">1G · 재택근무</p><p class="rev__q">한 번에 비교해줘서 편했어요.</p><footer class="rev__ft"><span>최*원</span><time>2026.09.12</time></footer></article>
+        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">100M · 1인 가구</p><p class="rev__q">필요한 속도만 추천받아 알뜰하게 가입했어요.</p><footer class="rev__ft"><span>정*아</span><time>2026.09.10</time></footer></article>
+        <article class="rev"><p class="rev__stars">★★★★★</p><p class="rev__tag">1G + TV · 이사</p><p class="rev__q">이사 일정에 맞춰 설치해줬어요.</p><footer class="rev__ft"><span>한*수</span><time>2026.09.09</time></footer></article>
       </div>
     </div>
   </section>
@@ -200,16 +187,15 @@
   <section class="sec sec--soft" id="faq">
     <div class="sec__inner sec__inner--narrow">
       <div class="sec__head">
-        <p class="sec__eyebrow">FAQ</p>
         <h2 class="sec__title">자주 묻는 질문</h2>
       </div>
       <div class="faq">
-        <details class="faq__item" open><summary>상담만 받고 가입하지 않아도 되나요?</summary><p>네, 상담과 비교는 모두 무료예요. 안내받은 내용을 확인하신 뒤 가입 여부를 편하게 결정하세요.</p></details>
-        <details class="faq__item"><summary>사은품은 언제 받을 수 있나요?</summary><p>설치가 완료된 당일에 지급해 드려요. 지급 방식과 일정은 상담 시 함께 안내드립니다.</p></details>
-        <details class="faq__item"><summary>지금 쓰는 통신사 약정이 남아 있어도 바꿀 수 있나요?</summary><p>가능해요. 남은 약정에 따른 위약금과 새 상품의 혜택을 함께 계산해 갈아타는 것이 이득인지 알려드려요.</p></details>
-        <details class="faq__item"><summary>표시된 월 요금이 실제 납부 금액인가요?</summary><p>표시 금액은 3년 약정·VAT 포함 기준 예시예요. 지역, 결합 조건, 프로모션에 따라 달라질 수 있어 상담 시 정확히 확인해 드려요.</p></details>
-        <details class="faq__item"><summary>설치비는 얼마인가요?</summary><p>설치비는 별도이며 통신사·설치 환경에 따라 달라요. 신청 전에 정확한 금액을 먼저 안내드립니다.</p></details>
-        <details class="faq__item"><summary>이사 때문에 설치 날짜를 정해야 해요.</summary><p>원하시는 날짜와 시간대를 알려주시면 가능한 일정으로 방문 설치를 예약해 드려요.</p></details>
+        <details class="faq__item" open><summary>상담만 받고 가입하지 않아도 되나요?</summary><p>네, 상담은 무료예요.</p></details>
+        <details class="faq__item"><summary>사은품은 언제 받을 수 있나요?</summary><p>설치 완료 당일 지급해 드려요.</p></details>
+        <details class="faq__item"><summary>지금 쓰는 통신사 약정이 남아 있어도 바꿀 수 있나요?</summary><p>가능해요. 위약금을 계산해 이득인지 알려드려요.</p></details>
+        <details class="faq__item"><summary>표시된 월 요금이 실제 납부 금액인가요?</summary><p>3년 약정·VAT 포함 기준이며, 지역·결합에 따라 달라질 수 있어요.</p></details>
+        <details class="faq__item"><summary>설치비는 얼마인가요?</summary><p>별도이며, 신청 전에 정확한 금액을 안내드려요.</p></details>
+        <details class="faq__item"><summary>설치 날짜를 정할 수 있나요?</summary><p>원하는 날짜로 설치를 예약해 드려요.</p></details>
       </div>
     </div>
   </section>
@@ -218,8 +204,7 @@
   <section class="endcta" id="end">
     <div class="endcta__inner">
       <div>
-        <h2 class="endcta__title">아직 고민이세요?<br>연락처만 남겨주세요</h2>
-        <p class="endcta__desc">3사 조건을 비교해 가장 좋은 혜택으로 안내해 드릴게요.</p>
+        <h2 class="endcta__title">연락처만 남겨주세요</h2>
       </div>
       <form class="endcta__form" id="endForm" novalidate>
         <input type="tel" id="endPhone" inputmode="numeric" autocomplete="tel" placeholder="연락처 (010-0000-0000)" maxlength="13" aria-label="연락처">
@@ -315,7 +300,7 @@
   </div>
 </div>
 
-<script src="js/main.js?v=20261007b"></script>
-<script src="js/internet-new.js?v=20261007b"></script>
+<script src="js/main.js?v=20261007d"></script>
+<script src="js/internet-new.js?v=20261007d"></script>
 </body>
 </html>
