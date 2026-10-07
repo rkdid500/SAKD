@@ -61,45 +61,11 @@
   <section class="bn" id="top">
     <div class="bn__viewport">
       <div class="bn__frame">
+        <!-- 배너 디자인 자리: 각 슬라이드 안에 <img> 를 넣으면 됩니다 (현재는 단색 빈 배너) -->
         <div class="bn__track" id="bnTrack">
-          <a class="bn__slide bn__slide--a" href="#matrix">
-            <div class="bn__copy">
-              <p class="bn__eyebrow">인터넷 가입 · 변경 비교</p>
-              <h2 class="bn__title">복잡한 인터넷 요금,<br><em>싹딜</em>에서 한 번에</h2>
-              <p class="bn__sub">우리 집에 필요한 속도만 고르면 3사 혜택을 바로 비교할 수 있어요.</p>
-              <span class="bn__go">3사 요금 비교하기 <span aria-hidden="true">→</span></span>
-            </div>
-            <div class="bn__art" aria-hidden="true">
-              <div class="bn__chips">
-                <span class="bn__chip"><i>KT</i>인터넷 베이직</span>
-                <span class="bn__chip"><i>SK</i>기가라이트</span>
-                <span class="bn__chip"><i>LG U+</i>기가슬림</span>
-              </div>
-            </div>
-          </a>
-          <button type="button" class="bn__slide bn__slide--b" data-open-apply>
-            <div class="bn__copy">
-              <p class="bn__eyebrow">PRICE GUARANTEE</p>
-              <h2 class="bn__title">최고 혜택이 아니라면,<br><em>150%</em> 돌려드립니다!</h2>
-              <p class="bn__sub">더 좋은 조건을 확인하셨다면 알려주세요. 기준에 맞으면 차액의 150%를 보상해 드려요.</p>
-              <span class="bn__go">혜택 확인하고 신청하기 <span aria-hidden="true">→</span></span>
-            </div>
-            <div class="bn__art" aria-hidden="true"><img src="images/3D 혜택보장 상담사.png" alt=""></div>
-          </button>
-          <a class="bn__slide bn__slide--c" href="#calc">
-            <div class="bn__copy">
-              <p class="bn__eyebrow">BENEFIT CALCULATOR</p>
-              <h2 class="bn__title">사은품까지 뺀<br><em>진짜 월 요금</em>은 얼마?</h2>
-              <p class="bn__sub">3년간 낼 요금에서 사은품을 빼고 싹 계산해 드려요.</p>
-              <span class="bn__go">실질 월 요금 계산하기 <span aria-hidden="true">→</span></span>
-            </div>
-            <div class="bn__art" aria-hidden="true">
-              <div class="bn__bar">
-                <div><b>내 부담 98만원</b><b>사은품</b></div>
-                <p>실질 월<strong>27,100원</strong></p>
-              </div>
-            </div>
-          </a>
+          <a class="bn__slide bn__slide--a" href="#matrix" aria-label="배너 1: 3사 요금 비교"></a>
+          <button type="button" class="bn__slide bn__slide--b" data-open-apply aria-label="배너 2: 무료 상담 신청"></button>
+          <a class="bn__slide bn__slide--c" href="#calc" aria-label="배너 3: 실질 월 요금 계산"></a>
         </div>
       </div>
       <button type="button" class="bn__arrow bn__arrow--prev" id="bnPrev" aria-label="이전 배너">‹</button>
