@@ -164,8 +164,9 @@
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
   })();
 
-  /* ---------- 3사 × 속도 비교표 ---------- */
+  /* ---------- 통신사 × 속도 비교표 (CARRIERS 목록 길이만큼 열이 늘어남) ---------- */
   const mxGrid = $('#mxGrid');
+  mxGrid.style.setProperty('--n', CARRIERS.length);
   let mxTv = false;
 
   function renderMatrix() {
