@@ -38,10 +38,11 @@
   const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+' };
   // 통신사 로고: images/carriers/kt.svg · sk.svg · lg.svg (없으면 svg → png → webp 순으로 찾고, 끝내 없으면 글자 배지)
   const carrierMark = (c) => '<span class="cr cr--' + c + '" data-logo="' + c.toLowerCase() + '">' +
-    '<img class="cr__img" src="images/carriers/' + c.toLowerCase() + '.svg" alt="" data-ext="0">' +
+    '<img class="cr__img" src="images/carriers/' + c.toLowerCase() + '.png?v=' + LOGO_V + '" alt="" data-ext="0">' +
     '<span class="cr__txt">' + CARRIER_LABEL[c] + '</span></span>';
   // 로고 이미지가 있으면 글자 배지 대신 표시, 없으면 확장자를 바꿔 가며 찾고 끝내 없으면 글자 배지 유지
-  const LOGO_EXT = ['svg', 'png', 'webp'];
+  const LOGO_EXT = ['png', 'svg', 'webp'];
+  const LOGO_V = '20261012';   // 로고 파일을 바꾸면 이 값도 올려서 캐시 무효화
   document.addEventListener('load', (e) => {
     const img = e.target;
     if (img && img.classList && img.classList.contains('cr__img') && img.naturalWidth > 0) {
@@ -54,7 +55,7 @@
     const next = Number(img.dataset.ext) + 1;
     if (next < LOGO_EXT.length) {
       img.dataset.ext = String(next);
-      img.src = 'images/carriers/' + img.parentElement.dataset.logo + '.' + LOGO_EXT[next];
+      img.src = 'images/carriers/' + img.parentElement.dataset.logo + '.' + LOGO_EXT[next] + '?v=' + LOGO_V;
     }
   }, true);
   const SPEEDS = [100, 500, 1000];
