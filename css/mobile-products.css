@@ -65,7 +65,25 @@
   .mp{ padding-top:56px; }
   .mp__title{ font-size:23px; }
   .mp__desc{ font-size:13px; }
-  .mp__cards{ grid-auto-columns:68%; }
+  /* 모바일: 한 화면에 카드가 2장 가까이 보이도록 카드·이미지·글자를 작게 */
+  .mp__cards{ grid-auto-columns:46%; gap:10px; }
+  .mp-card{ padding:10px; border-radius:14px; }
+  .mp-card--featured{ padding:9px; }
+  .mp-card__badges{ top:-8px; left:10px; gap:4px; }
+  .mp-badge{ font-size:9px; padding:3px 7px; }
+  .mp-card__visual{ position:relative; overflow:hidden; aspect-ratio:1 / .82; padding:0; border-radius:10px; margin-top:2px; }
+  .mp-card__visual img{ position:absolute; inset:8px; width:calc(100% - 16px); height:calc(100% - 16px); }
+  .mp-card__name{ margin-top:9px; font-size:13.5px; }
+  .mp-card__storage{ font-size:10.5px; }
+  .mp-card__price{ margin-top:8px; padding-top:8px; }
+  .mp-card__list{ font-size:10px; }
+  .mp-card__save{ font-size:10px; }
+  .mp-card__save::before{ margin:0 3px; }
+  .mp-card__final{ margin-top:3px; gap:4px; }
+  .mp-card__pct{ font-size:15px; }
+  .mp-card__final strong{ font-size:15px; }
+  .mp-card__meta{ margin-top:8px; }
+  .mp-tag{ font-size:10px; padding:3px 8px; }
   .mp__next{ display:none; }
 }
 
