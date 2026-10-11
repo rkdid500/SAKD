@@ -26,7 +26,7 @@ git pull --ff-only origin master                    # 이미 있으면 항상 �
 | 영역 | 내용 | 주요 파일 |
 |---|---|---|
 | 헤더 + 히어로 | 새 시안 구조(로고 왼쪽, 메뉴·로그인·아이콘 오른쪽), 싹딜 색상 유지. 히어로는 이미지 배너 3장(PC `hero-N.webp` 2880×976 / 모바일 `hero-N-m.webp` 1125×450, `<picture>`) | `css/newlook.css`, `js/hero-new.js`, `images/hero-*.webp` |
-| 메인 구성 | 히어로 → 신뢰 스트립 → **휴대폰 카드** → **인터넷 카드** → 요금 비교표 → 가입 전 확인 → 신청 4단계 → 150% 보장 → 후기 → FAQ → 하단 신청 | `index.html` |
+| 메인 구성 | 히어로 → 신뢰 스트립 → **휴대폰 카드** → **인터넷 카드** → 요금 비교표 → (끝. 비교표 아래는 비워 둠 — 새 내용 추가 예정, 2026-10-12 기존 가입 전 확인·신청 4단계·보장·후기·FAQ·하단 신청 섹션 제거) | `index.html` |
 | 카드 줄 | 휴대폰·인터넷 카드(가로 스크롤, PC는 이전/다음 화살표, 모바일은 한 화면에 2장) | `css/mobile-products.css`, `js/mobile-products.js`, `js/internet-products.js`, `js/carousel-nav.js` |
 | 요금 비교표 | 통신 3사 ↔ **알뜰사 3사** 전환 버튼(글자가 "알뜰사"/"통신 3사"로 바뀜), 인터넷만/+TV 전환, 부드러운 전환 애니메이션 | `js/internet-new.js`, `css/internet-new.css` |
 | 통신사 로고 | 6종 WebP(1600×400, 4:1 통일), 파일이 없으면 글자 배지로 대체 | `images/carriers/*.webp` (원본 PNG는 `images/carriers/original/`) |
