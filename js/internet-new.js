@@ -356,11 +356,12 @@
     const card = revRail.firstElementChild;
     revRail.scrollBy({ left: dir * ((card ? card.getBoundingClientRect().width : 280) + 16), behavior: 'smooth' });
   };
-  $('#revPrev').addEventListener('click', () => railStep(-1));
-  $('#revNext').addEventListener('click', () => railStep(1));
+  // 메인 페이지에서는 후기·하단 신청 영역이 없을 수 있으므로, 있을 때만 동작시킴
+  if ($('#revPrev')) $('#revPrev').addEventListener('click', () => railStep(-1));
+  if ($('#revNext')) $('#revNext').addEventListener('click', () => railStep(1));
 
   /* ---------- 하단 CTA 폼 ---------- */
-  $('#endForm').addEventListener('submit', (e) => {
+  if ($('#endForm')) $('#endForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const err = $('#endError');
     if (!validPhone($('#endPhone').value)) { err.textContent = '연락처를 010-0000-0000 형식으로 입력해 주세요.'; $('#endPhone').focus(); return; }
@@ -376,7 +377,7 @@
   const hero = $('#top'), endSec = $('#end');
   function updatePill() {
     const heroBottom = hero.getBoundingClientRect().bottom;
-    const endTop = endSec.getBoundingClientRect().top;
+    const endTop = endSec ? endSec.getBoundingClientRect().top : Infinity;
     pill.classList.toggle('is-on', heroBottom < 0 && endTop > window.innerHeight * 0.85);
   }
   window.addEventListener('scroll', updatePill, { passive: true });
