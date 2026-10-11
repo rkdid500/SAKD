@@ -441,3 +441,17 @@ body.is-locked{ overflow:hidden; }
   .modal__sheet, .modal__dim{ animation:none; }
   .rail{ scroll-behavior:auto; }
 }
+
+/* ---------- 통신사 로고 (images/carriers/kt|sk|lg .svg/.png/.webp) ----------
+   로고 파일이 있으면 글자 배지 대신 로고만 보이고, 없으면 기존 글자 배지 그대로 */
+.cr__img{ display:none; }
+.cr.has-logo{ background:none; padding:0; border-radius:0; }
+.cr.has-logo .cr__txt{ display:none; }
+.cr.has-logo .cr__img{ display:block; height:26px; width:auto; max-width:96px; object-fit:contain; }
+.mx__h .cr.has-logo{ padding:0; }
+.mx__h .cr.has-logo .cr__img{ height:28px; max-width:110px; }
+.picked__top .cr.has-logo .cr__img,
+.rec__bar .cr.has-logo .cr__img{ height:24px; }
+@media (max-width:768px){
+  .mx__h .cr.has-logo .cr__img{ height:20px; max-width:64px; }
+}

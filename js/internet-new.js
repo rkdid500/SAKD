@@ -36,6 +36,27 @@
   ];
   const CARRIERS = ['KT', 'SK', 'LG'];
   const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+' };
+  // 통신사 로고: images/carriers/kt.svg · sk.svg · lg.svg (없으면 svg → png → webp 순으로 찾고, 끝내 없으면 글자 배지)
+  const carrierMark = (c) => '<span class="cr cr--' + c + '" data-logo="' + c.toLowerCase() + '">' +
+    '<img class="cr__img" src="images/carriers/' + c.toLowerCase() + '.svg" alt="" data-ext="0">' +
+    '<span class="cr__txt">' + CARRIER_LABEL[c] + '</span></span>';
+  // 로고 이미지가 있으면 글자 배지 대신 표시, 없으면 확장자를 바꿔 가며 찾고 끝내 없으면 글자 배지 유지
+  const LOGO_EXT = ['svg', 'png', 'webp'];
+  document.addEventListener('load', (e) => {
+    const img = e.target;
+    if (img && img.classList && img.classList.contains('cr__img') && img.naturalWidth > 0) {
+      img.parentElement.classList.add('has-logo');
+    }
+  }, true);
+  document.addEventListener('error', (e) => {
+    const img = e.target;
+    if (!img || !img.classList || !img.classList.contains('cr__img')) return;
+    const next = Number(img.dataset.ext) + 1;
+    if (next < LOGO_EXT.length) {
+      img.dataset.ext = String(next);
+      img.src = 'images/carriers/' + img.parentElement.dataset.logo + '.' + LOGO_EXT[next];
+    }
+  }, true);
   const SPEEDS = [100, 500, 1000];
   const SPEED_LABEL = { 100: '100M', 500: '500M', 1000: '1G' };
   const SPEED_NOTE = { 100: '1~2인 가구', 500: '3~4인 가구', 1000: '재택 · 방송' };
@@ -87,7 +108,7 @@
   let lastFocus = null;
 
   function pickedHtml(p) {
-    return '<div class="picked__top"><span class="cr cr--' + p.carrier + '">' + CARRIER_LABEL[p.carrier] + '</span>' +
+    return '<div class="picked__top">' + carrierMark(p.carrier) + '' +
       '<span class="picked__name">' + planTitle(p) + '</span></div>' +
       '<div class="picked__row"><span>인터넷 ' + SPEED_LABEL[p.speed] + (p.tv ? ' · ' + p.tv.ch + 'CH' : '') + '</span>' +
       '<span>월 <b>' + won(p.price) + '원</b> · 사은품 <b>' + p.gift + '만원</b></span></div>';
@@ -175,7 +196,7 @@
 
   function renderMatrix() {
     let html = '<div></div>' + CARRIERS.map(c =>
-      '<div class="mx__h" role="columnheader"><span class="cr cr--' + c + '">' + CARRIER_LABEL[c] + '</span></div>').join('');
+      '<div class="mx__h" role="columnheader">' + carrierMark(c) + '</div>').join('');
     SPEEDS.forEach(s => {
       const row = CARRIERS.map(c => bestPlan(c, s, mxTv));
       const min = Math.min.apply(null, row.filter(Boolean).map(realPrice));
@@ -213,7 +234,7 @@
     const plans = LIFE[key].map(byId);
     const base = plans[0];
     lifeGrid.innerHTML =
-      '<div class="rec__bar"><span class="cr cr--' + base.carrier + '">' + CARRIER_LABEL[base.carrier] + '</span>' +
+      '<div class="rec__bar">' + carrierMark(base.carrier) + '' +
         '<span>' + base.product + ' <i>· ' + SPEED_LABEL[base.speed] + '</i></span></div>' +
       plans.map(p =>
         '<button type="button" class="rrow" data-open-apply data-plan="' + p.id + '">' +
