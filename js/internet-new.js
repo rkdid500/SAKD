@@ -34,7 +34,7 @@
     { id: 'l5', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 23, price: 38500 },
     { id: 'l6', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: { name: '프리미엄', ch: 253 }, gift: 47, price: 53900 },
     // ----- 알뜰사 (스카이라이프 · LG 헬로비전 · SKB 알뜰) : 아정당(ajd.co.kr) 요금표, 사은품형/미결합 기준 -----
-    // SKB(알뜰)는 요금표를 확인하지 못해 상품을 넣지 않음 → 표에서 '상담 시 안내'로 표시됨
+    // SKB(알뜰): 요금표에 TV 결합(Btv pop) 상품만 있음 → 인터넷만 칸은 '상담 시 안내'로 표시됨
     { id: 'm1',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: null,                                gift: 10, price: 23100 },
     { id: 'm2',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: null,                                gift: 14, price: 29700 },
     { id: 'm3',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: null,                                gift: 15, price: 35200 },
@@ -46,7 +46,10 @@
     { id: 'm9',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: null,                                gift: 20, price: 33000 },
     { id: 'm10', carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 23, price: 25130 },
     { id: 'm11', carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 31, price: 32890 },
-    { id: 'm12', carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: { name: '헬로tv 플러스', ch: 102 },    gift: 34, price: 34100 }
+    { id: 'm12', carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: { name: '헬로tv 플러스', ch: 102 },    gift: 34, price: 34100 },
+    { id: 'm13', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: { name: 'Btv pop 180', ch: 186 },     gift: 31, price: 35200 },
+    { id: 'm14', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: { name: 'Btv pop 180', ch: 186 },     gift: 35, price: 45100 },
+    { id: 'm15', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: { name: 'Btv pop 180', ch: 186 },     gift: 35, price: 50600 }
   ];
   const CARRIERS = ['KT', 'SK', 'LG'];
   const MVNO_CARRIERS = ['SL', 'HV', 'SB'];   // 알뜰사 3곳: 스카이라이프 · LG 헬로비전 · SKB(알뜰)
