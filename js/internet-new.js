@@ -7,49 +7,52 @@
   'use strict';
 
   /* ---------- 예시 상품 데이터 ---------- */
-  // gift: 사은품(만원), price: 월 요금(원, 3년 약정·VAT 포함 기준, 모바일 미결합)
-  // 가격·사은품: 비교사이트 아정당(ajd.co.kr) 인터넷 요금표 기준 (2026-10-11 확인)
-  //   KT/LG: 통신사별 요금표 / SK: 사은품·100M 요금(SK 500M·1G TV 결합 요금은 자료 없음 → 기존 예시값 유지)
+  // gift: 사은품(만원), price: 월 납부금(원, 3년 약정·VAT·공유기 임대료 포함, 모바일 미결합)
+  // 출처: 싹딜 인터넷 상품 선택 페이지(sakd.co.kr/internet)의 '예상 월 납부금' · '예상 사은품' (2026-10-12 확인)
+  //   (통신사 · 속도 · TV 조합별로 같은 결합 조건에서 가장 저렴한 TV 상품을 대표로 사용)
   const PLANS = [
-    { id: 'k1', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: null,                          gift: 9,  price: 22000 },
-    { id: 'k2', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 베이직', ch: 238 }, gift: 37, price: 38500 },
-    { id: 'k3', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: null,                          gift: 14, price: 33000 },
-    { id: 'k4', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 베이직', ch: 238 }, gift: 45, price: 44000 },
-    { id: 'k5', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 45, price: 45100 },
-    { id: 'k6', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 모든G',  ch: 250 }, gift: 45, price: 51700 },
-    { id: 'k9', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 37, price: 39600 },
+    // KT
+    { id: 'k1', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: null,                          gift: 9,  price: 23100 },
+    { id: 'k2', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 베이직', ch: 238 }, gift: 37, price: 39600 },
+    { id: 'k9', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 에센스', ch: 263 }, gift: 37, price: 44000 },
+    { id: 'k3', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: null,                          gift: 14, price: 34100 },
+    { id: 'k4', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 베이직', ch: 238 }, gift: 45, price: 45100 },
+    { id: 'k5', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 45, price: 46200 },
+    { id: 'k6', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 모든G',  ch: 250 }, gift: 45, price: 52800 },
     { id: 'k8', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: null,                          gift: 14, price: 38500 },
     { id: 'k7', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: { name: '지니 TV 베이직', ch: 238 }, gift: 45, price: 49500 },
-    { id: 's1', carrier: 'SK', product: '광랜인터넷',     speed: 100,  tv: null,                          gift: 11, price: 22000 },
-    { id: 's2', carrier: 'SK', product: '광랜인터넷',     speed: 100,  tv: { name: 'Btv 이코노미', ch: 181 }, gift: 40, price: 34100 },
-    { id: 's3', carrier: 'SK', product: '기가라이트인터넷', speed: 500, tv: null,                         gift: 17, price: 33000 },
-    { id: 's4', carrier: 'SK', product: '기가라이트인터넷', speed: 500, tv: { name: 'Btv ALL', ch: 253 },   gift: 43, price: 47300 },
-    { id: 's5', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 17, price: 38500 },
-    { id: 's6', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv ALL', ch: 253 },   gift: 52, price: 52800 },
-    { id: 's7', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv 이코노미', ch: 181 }, gift: 52, price: 47300 },
-    { id: 'l1', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: null,                     gift: 20, price: 22000 },
-    { id: 'l2', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: { name: '기본형', ch: 225 }, gift: 33, price: 40700 },
-    { id: 'l3', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: null,                          gift: 23, price: 33000 },
-    { id: 'l4', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: { name: '실속형', ch: 219 },    gift: 47, price: 45100 },
-    { id: 'l5', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 23, price: 38500 },
-    { id: 'l6', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: { name: '프리미엄', ch: 253 }, gift: 47, price: 53900 },
-    // ----- 알뜰사 (스카이라이프 · LG 헬로비전 · SKB 알뜰) : 아정당(ajd.co.kr) 요금표, 사은품형/미결합 기준 -----
-    // SKB(알뜰): 요금표에 TV 결합(Btv pop) 상품만 있음 → 인터넷만 칸은 '상담 시 안내'로 표시됨
+    // SK (SKT)
+    { id: 's1', carrier: 'SK', product: '광랜인터넷',       speed: 100,  tv: null,                          gift: 11, price: 23100 },
+    { id: 's2', carrier: 'SK', product: '광랜인터넷',       speed: 100,  tv: { name: 'Btv 이코노미', ch: 182 }, gift: 40, price: 36300 },
+    { id: 's3', carrier: 'SK', product: '기가라이트인터넷', speed: 500,  tv: null,                          gift: 17, price: 34100 },
+    { id: 's4', carrier: 'SK', product: '기가라이트인터넷', speed: 500,  tv: { name: 'Btv 이코노미', ch: 182 }, gift: 43, price: 42900 },
+    { id: 's5', carrier: 'SK', product: '기가인터넷',       speed: 1000, tv: null,                          gift: 17, price: 39600 },
+    { id: 's6', carrier: 'SK', product: '기가인터넷',       speed: 1000, tv: { name: 'Btv ALL', ch: 255 },    gift: 52, price: 55000 },
+    { id: 's7', carrier: 'SK', product: '기가인터넷',       speed: 1000, tv: { name: 'Btv 이코노미', ch: 182 }, gift: 52, price: 48400 },
+    // LG U+
+    { id: 'l1', carrier: 'LG', product: '광랜 인터넷',     speed: 100,  tv: null,                          gift: 20, price: 22000 },
+    { id: 'l2', carrier: 'LG', product: '광랜 인터넷',     speed: 100,  tv: { name: '실속형', ch: 219 },    gift: 33, price: 39600 },
+    { id: 'l3', carrier: 'LG', product: '기가슬림 인터넷', speed: 500,  tv: null,                          gift: 23, price: 33000 },
+    { id: 'l4', carrier: 'LG', product: '기가슬림 인터넷', speed: 500,  tv: { name: '실속형', ch: 219 },    gift: 47, price: 45100 },
+    { id: 'l5', carrier: 'LG', product: '기가 인터넷',     speed: 1000, tv: null,                          gift: 23, price: 38500 },
+    { id: 'l6', carrier: 'LG', product: '기가 인터넷',     speed: 1000, tv: { name: '실속형', ch: 219 },    gift: 47, price: 50600 },
+    // ----- 알뜰사 (스카이라이프 · LG 헬로비전 · SKB 알뜰) -----
+    // SKB(알뜰)는 TV 결합(Btv pop) 상품만 있음 → 인터넷만 칸은 '상담 시 안내'로 표시됨
     { id: 'm1',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: null,                                gift: 10, price: 23100 },
     { id: 'm2',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: null,                                gift: 14, price: 29700 },
     { id: 'm3',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: null,                                gift: 15, price: 35200 },
-    { id: 'm4',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: { name: 'IPTV 베이직', ch: 196 },      gift: 35, price: 31900 },
-    { id: 'm5',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: { name: 'IPTV 베이직', ch: 196 },      gift: 42, price: 37400 },
-    { id: 'm6',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: { name: 'IPTV 베이직', ch: 196 },      gift: 48, price: 42900 },
+    { id: 'm4',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: { name: 'IPTV 베이직', ch: 194 },      gift: 35, price: 31900 },
+    { id: 'm5',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: { name: 'IPTV 베이직', ch: 194 },      gift: 42, price: 37400 },
+    { id: 'm6',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: { name: 'IPTV 베이직', ch: 194 },      gift: 48, price: 42900 },
     { id: 'm7',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: null,                                gift: 13, price: 21890 },
     { id: 'm8',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: null,                                gift: 18, price: 31460 },
     { id: 'm9',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: null,                                gift: 20, price: 33000 },
     { id: 'm10', carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 23, price: 25130 },
     { id: 'm11', carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 31, price: 32890 },
     { id: 'm12', carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: { name: '헬로tv 플러스', ch: 102 },    gift: 34, price: 34100 },
-    { id: 'm13', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: { name: 'Btv pop 180', ch: 186 },     gift: 31, price: 35200 },
-    { id: 'm14', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: { name: 'Btv pop 180', ch: 186 },     gift: 35, price: 45100 },
-    { id: 'm15', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: { name: 'Btv pop 180', ch: 186 },     gift: 35, price: 50600 }
+    { id: 'm13', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: { name: 'Btv pop230', ch: 231 },      gift: 31, price: 31900 },
+    { id: 'm14', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 38500 },
+    { id: 'm15', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 44000 }
   ];
   const CARRIERS = ['KT', 'SK', 'LG'];
   const MVNO_CARRIERS = ['SL', 'HV', 'SB'];   // 알뜰사 3곳: 스카이라이프 · LG 헬로비전 · SKB(알뜰)
