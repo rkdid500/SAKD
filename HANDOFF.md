@@ -1,4 +1,4 @@
-# SAKD 인수인계 (2026-10-08 기준)
+# SAKD 인수인계 (2026-10-12 기준)
 
 저장소: https://github.com/rkdid500/SAKD (branch: `master`) · GitHub Pages 배포
 작업 위치: 저장소 **루트** (2026-10-11 파일 구조 정리: 메인 `index.html` / 인터넷 `internet.html` / 스마트폰 `phone.html`). 보험·상조는 `보험상조/` 폴더에 따로 보관(추후 작업용).
@@ -8,6 +8,59 @@
 > - `pages/` 고객후기(`review.html`), 가격 확인(`phone-order.html`)
 > - `css/` `js/` `images/` `fonts/` 공통 자원
 > - `보험상조/` 보험·상조 작업용 (자체 css/js/images 포함, 아직 화면에 연결 안 됨)
+
+---
+
+## ★ 현재 상태 요약 (2026-10-12 기준 — 회사에서 이어서 작업할 때 이 부분부터 읽으세요)
+
+### 받는 법 / 실행
+```bash
+git clone https://github.com/rkdid500/SAKD.git     # 처음이면
+git pull --ff-only origin master                    # 이미 있으면 항상 먼저
+```
+- 로컬 미리보기: `.claude/launch.json` 의 `sakd-static` 실행(포트 8934) → `http://localhost:8934/index.html`
+  (서버 루트는 저장소 루트. 직접 실행: `powershell -ExecutionPolicy Bypass -File .claude/server.ps1`)
+- 빌드 도구 없음(정적 HTML/CSS/JS). 배포: GitHub Pages `https://rkdid500.github.io/SAKD/`
+
+### 지금까지 된 것 (모두 master 에 반영됨)
+| 영역 | 내용 | 주요 파일 |
+|---|---|---|
+| 헤더 + 히어로 | 새 시안 구조(로고 왼쪽, 메뉴·로그인·아이콘 오른쪽), 싹딜 색상 유지. 히어로는 이미지 배너 3장(PC `hero-N.webp` 2880×976 / 모바일 `hero-N-m.webp` 1125×450, `<picture>`) | `css/newlook.css`, `js/hero-new.js`, `images/hero-*.webp` |
+| 메인 구성 | 히어로 → 신뢰 스트립 → **휴대폰 카드** → **인터넷 카드** → 요금 비교표 → 가입 전 확인 → 신청 4단계 → 150% 보장 → 후기 → FAQ → 하단 신청 | `index.html` |
+| 카드 줄 | 휴대폰·인터넷 카드(가로 스크롤, PC는 이전/다음 화살표, 모바일은 한 화면에 2장) | `css/mobile-products.css`, `js/mobile-products.js`, `js/internet-products.js`, `js/carousel-nav.js` |
+| 요금 비교표 | 통신 3사 ↔ **알뜰사 3사** 전환 버튼(글자가 "알뜰사"/"통신 3사"로 바뀜), 인터넷만/+TV 전환, 부드러운 전환 애니메이션 | `js/internet-new.js`, `css/internet-new.css` |
+| 통신사 로고 | 6종 WebP(1600×400, 4:1 통일), 파일이 없으면 글자 배지로 대체 | `images/carriers/*.webp` (원본 PNG는 `images/carriers/original/`) |
+| 파일 구조 | `index.html`(메인) / `internet.html`(인터넷 탭) / `phone.html`(스마트폰 탭), 후기·가격확인은 `pages/`, 보험·상조는 `보험상조/`(추후 작업용, 아직 화면에 연결 안 됨) | — |
+
+### 데이터가 있는 곳 (실제 값으로 교체할 때)
+- **인터넷 요금·사은품**: `js/internet-new.js` 맨 위 `PLANS` 배열.
+  - 출처: 싹딜 인터넷 상품 선택 페이지(`https://sakd.co.kr/internet`)의 "예상 월 납부금"(3년 약정·VAT·공유기 임대료 포함, 모바일 미결합) / "예상 사은품".
+  - 칸마다 같은 조건에서 가장 저렴한 TV 상품 1개를 대표로 사용. 통신사: KT / SK(=SKT) / LG U+ / 알뜰 SL(스카이라이프)·HV(LG헬로비전)·SB(SKB 알뜰).
+  - `js/internet-products.js` 의 인터넷 카드 9장은 위 `PLANS` 의 인터넷 단독 값과 **같은 값**을 따로 적어 둔 것이니, 바꿀 때 함께 수정.
+- **휴대폰 카드**: `js/mobile-products.js` (스마트폰 페이지 `phone.html` 의 상품·가격과 같은 예시값, 사진은 `images/products/`)
+- **통신사 로고**: `images/carriers/<kt|sk|lg|skylife|lg-hellovision|skb-saving>.webp` — 같은 이름으로 덮어쓰고 `js/internet-new.js` 의 `LOGO_V` 값을 바꿔 캐시 갱신
+
+### 캐시 규칙 (중요)
+HTML 의 css/js 링크에 `?v=값` 이 붙어 있습니다. **CSS/JS 를 고치면 `index.html`(필요하면 `internet.html`)의 해당 `?v=` 값을 올리세요.**
+현재 값: `internet-new.css ?v=20261012g` · `internet-new.js ?v=20261012l` · `mobile-products.css ?v=20261012b` · `internet-products.js ?v=20261012e` · `carousel-nav.js ?v=20261011h`
+
+### 남은 일 / 결정 대기
+- [ ] **인터넷 탭(`internet.html`) 다시 제작** — 사용자가 직접 새로 만든다고 함. 지금은 이전 구성 + 새 요금표/로고만 반영된 상태(맞춤 추천 섹션 `#recommend` 포함. 메인에서는 겹쳐서 삭제함).
+- [ ] **SKB(알뜰)** 는 TV 결합 상품만 있음. "인터넷만" 칸은 싹딜 사이트의 속도 카드 값(22,000 / 28,600 / 34,100원)과 사은품(31/35/35만)을 넣어 둔 상태 → TV 요금이 빠져 "최고 혜택"으로 보이는 문제. 처리 방식(최고 혜택 제외 / "TV 결합 필수" 표시 / 비우기) 결정 필요.
+- [ ] 정수기는 이번 범위에서 **제외**(상품 없음). 시안(바탕화면 `새 홈페이지/index.html`)에서도 뺌.
+- [ ] `보험상조/` 페이지 작업(옛 디자인 그대로). 새 헤더/색상 적용 필요.
+- [ ] 실제 상품 데이터·이미지·대표번호(`1588-0000` 임시)·신청 API 연결(`// TODO: 실제 신청 API 연결`)
+- [ ] 문구: 휴대폰 섹션 설명 "통신사마다 다른 휴대폰 가격, 한 곳에서 확인하세요" 등은 타사와 겹치지 않게 새로 쓴 것. 새 문구 작성 시에도 타사 문구와 똑같지 않게.
+
+### 저장소에 없는 것
+- 바탕화면 `새 홈페이지/index.html · style.css · script.js` — 처음 만든 시안(하이스테이션 구성 참고). 저장소와 무관한 참고용 파일이며, 이어서 쓰려면 별도로 가져가야 함.
+- `images/통신사 로고/` — 로고 고해상도 원본 보관 폴더(`.gitignore`). 같은 내용이 `images/carriers/original/` 에 올라가 있음.
+
+### 이번 작업에서 사용자가 정한 방향(요약)
+- 구조(레이아웃)는 새 시안을 따르되 **색은 기존 싹딜 컬러(민트·네이비)** 유지
+- 타사 사이트와 똑같이 만들지 말 것(문구·구성). 이번 영문 소제목(`MOBILE`, `INTERNET`)은 사용자가 시안대로 요청해서 포함됨
+- 변경하면 `rkdid500/SAKD` master 에 커밋·푸시해서 배포(사용자는 배포 링크로 확인)
+
 
 > 이 파일은 "집에서 이어서 작업"하기 위한 문서야. Claude는 이 파일을 먼저 읽고 시작해줘.
 > (개인 메모리 파일은 회사 PC에만 있어서, 중요한 규칙은 전부 아래에 옮겨 적었음)
