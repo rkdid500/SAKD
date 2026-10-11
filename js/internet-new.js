@@ -36,7 +36,7 @@
   const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+' };
   const SPEEDS = [100, 500, 1000];
   const SPEED_LABEL = { 100: '100M', 500: '500M', 1000: '1G' };
-  const SPEED_NOTE = { 100: '가볍게', 500: '가족용', 1000: '고속' };
+  const SPEED_NOTE = { 100: '1~2인 가구', 500: '3~4인 가구', 1000: '재택 · 방송' };
 
   const $ = (sel, root) => (root || document).querySelector(sel);
   const $$ = (sel, root) => Array.from((root || document).querySelectorAll(sel));
