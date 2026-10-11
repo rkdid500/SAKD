@@ -69,7 +69,7 @@
     '<span class="cr__txt">' + CARRIER_LABEL[c] + '</span></span>';
   // 로고 이미지가 있으면 글자 배지 대신 표시, 없으면 확장자를 바꿔 가며 찾고 끝내 없으면 글자 배지 유지
   const LOGO_EXT = ['png', 'svg', 'webp'];
-  const LOGO_V = '20261012';   // 로고 파일을 바꾸면 이 값도 올려서 캐시 무효화
+  const LOGO_V = '20261012c';   // 로고 파일을 바꾸면 이 값도 올려서 캐시 무효화
   document.addEventListener('load', (e) => {
     const img = e.target;
     if (img && img.classList && img.classList.contains('cr__img') && img.naturalWidth > 0) {

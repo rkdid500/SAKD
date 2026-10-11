@@ -449,13 +449,13 @@ body.is-locked{ overflow:hidden; }
 .cr__img{ display:none; }
 .cr.has-logo{ background:none; padding:0; border-radius:0; line-height:0; }
 .cr.has-logo .cr__txt{ display:none; }
-.cr.has-logo .cr__img{ display:block; width:90px; height:30px; object-fit:contain; }
+.cr.has-logo .cr__img{ display:block; width:120px; max-width:100%; height:auto; aspect-ratio:4 / 1; object-fit:contain; }
 .mx__h .cr.has-logo{ padding:0; }
-.mx__h .cr.has-logo .cr__img{ width:114px; height:38px; }
+.mx__h .cr.has-logo .cr__img{ width:152px; }
 .picked__top .cr.has-logo .cr__img,
-.rec__bar .cr.has-logo .cr__img{ width:84px; height:28px; }
+.rec__bar .cr.has-logo .cr__img{ width:112px; }
 @media (max-width:768px){
-  .mx__h .cr.has-logo .cr__img{ width:84px; height:28px; }
+  .mx__h .cr.has-logo .cr__img{ width:100%; }
 }
 
 /* ---------- 알뜰사 보기 버튼 (표 오른쪽 위) ---------- */
