@@ -6,6 +6,7 @@
 <title>인터넷 가입 비교 - 싹딜</title>
 <link rel="stylesheet" href="css/style.css?v=20261007h">
 <link rel="stylesheet" href="css/internet-new.css?v=20261007h">
+<link rel="stylesheet" href="css/newlook.css?v=20261011b">
 </head>
 <body>
 
@@ -29,6 +30,7 @@
       </a>
       <a href="#" class="btn btn--text">로그인</a>
       <a href="#" class="btn btn--primary btn--sm">회원가입</a>
+      <span class="hd-icons"><button type="button" class="hd-icon" aria-label="검색"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button><a class="hd-icon" href="#" aria-label="내 정보"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></a></span>
     </div>
 
     <button class="hamburger" id="hamburgerBtn" aria-label="메뉴 열기" aria-expanded="false">
@@ -57,21 +59,30 @@
 
 <main>
 
-  <!-- ===================== 1. 프로모션 배너 (각 배너는 해당 섹션으로 이동) ===================== -->
-  <section class="bn" id="top">
-    <div class="bn__viewport">
-      <div class="bn__frame">
-        <!-- 배너 디자인 자리: 각 슬라이드 안에 <img> 를 넣으면 됩니다 (현재는 단색 빈 배너) -->
-        <div class="bn__track" id="bnTrack">
-          <a class="bn__slide bn__slide--a" href="#matrix" aria-label="배너 1: 요금 비교"></a>
-          <button type="button" class="bn__slide bn__slide--b" data-open-apply aria-label="배너 2: 무료 상담 신청"></button>
-          <a class="bn__slide bn__slide--c" href="#recommend" aria-label="배너 3: 맞춤 추천"></a>
-        </div>
-      </div>
-      <button type="button" class="bn__arrow bn__arrow--prev" id="bnPrev" aria-label="이전 배너">‹</button>
-      <button type="button" class="bn__arrow bn__arrow--next" id="bnNext" aria-label="다음 배너">›</button>
-      <span class="bn__count" id="bnCount" aria-live="off">1 / 3</span>
+  <!-- ===================== 1. 히어로 슬라이더 (새 홈페이지 시안) ===================== -->
+  <section class="hs" id="top" aria-label="메인 배너">
+    <div class="hs__track" id="hsTrack">
+      <!-- 배너 이미지: images/hero-N.webp (PC 2880×976, 약 3:1) · hero-N-m.webp (모바일 1125×450). 같은 파일명으로 덮어쓰면 교체됨 -->
+      <a class="hs__slide hs__slide--img" href="#matrix">
+        <picture>
+          <source media="(max-width:768px)" srcset="images/hero-1-m.webp?v=20261011b">
+          <img src="images/hero-1.webp?v=20261011b" width="2880" height="976" alt="인터넷·TV 가입 혜택 최대 138만원 지원. 인터넷·TV부터 휴대폰 결합까지 내 조건에 맞는 혜택을 확인하세요.">
+        </picture>
+      </a>
+      <button type="button" class="hs__slide hs__slide--img" data-open-apply>
+        <picture>
+          <source media="(max-width:768px)" srcset="images/hero-2-m.webp?v=20261011b">
+          <img src="images/hero-2.webp?v=20261011b" width="2880" height="976" alt="지인 소개 이벤트, 5만 원 받아가세요. 참여 및 지급 조건은 이벤트 안내에서 확인해 주세요.">
+        </picture>
+      </button>
+      <a class="hs__slide hs__slide--img" href="review.html">
+        <picture>
+          <source media="(max-width:768px)" srcset="images/hero-3-m.webp?v=20261011b">
+          <img src="images/hero-3.webp?v=20261011b" width="2880" height="976" alt="고객 후기 이벤트, 신세계 상품권 3만원. 참여 방법과 지급 조건은 이벤트 안내에서 확인해 주세요.">
+        </picture>
+      </a>
     </div>
+    <div class="hs__dots" id="hsDots" role="tablist" aria-label="배너 선택"></div>
   </section>
 
   <!-- ===================== 2. 신뢰 스트립 ===================== -->
@@ -298,5 +309,6 @@
 
 <script src="js/main.js?v=20261007h"></script>
 <script src="js/internet-new.js?v=20261007h"></script>
+<script src="js/hero-new.js?v=20261011b"></script>
 </body>
 </html>
