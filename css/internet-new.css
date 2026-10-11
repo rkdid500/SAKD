@@ -455,7 +455,10 @@ body.is-locked{ overflow:hidden; }
 .picked__top .cr.has-logo .cr__img,
 .rec__bar .cr.has-logo .cr__img{ width:112px; }
 @media (max-width:768px){
-  .mx__h .cr.has-logo .cr__img{ width:100%; }
+  /* 모바일: 로고를 작게 (4:1 박스 72×18) */
+  .mx__h .cr.has-logo .cr__img{ width:72px; }
+  .picked__top .cr.has-logo .cr__img,
+  .rec__bar .cr.has-logo .cr__img{ width:88px; }
 }
 
 /* ---------- 알뜰사 보기 버튼 (표 오른쪽 위) ---------- */
