@@ -58,88 +58,75 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  if (window.gsap && window.ScrollTrigger && window.Swiper) {
-    gsap.registerPlugin(ScrollTrigger);
-    const PIN_DISTANCE = '+=120%';
+  // ---- 싹딜의 비교 방식: 데스크톱 스크롤 스크럽(순수 CSS sticky + 스크롤 리스너, 외부 라이브러리 없음) ----
+  (function initMethodDesktop() {
+    const section = document.getElementById('methodSection');
+    const textSlides = section ? Array.from(section.querySelectorAll('.method__slide')) : [];
+    const visualSlides = section ? Array.from(section.querySelectorAll('.method__visual-slide')) : [];
+    const stepBoxes = section ? Array.from(section.querySelectorAll('.method__step-box')) : [];
+    if (!section || !textSlides.length) return;
 
-    ScrollTrigger.matchMedia({
-      '(min-width: 769px)': function () {
-        const section = document.getElementById('methodSection');
-        const pinTarget = section ? section.querySelector('.method__pin') : null;
-        const swiperEl = document.getElementById('methodSwiper');
-        if (!section || !pinTarget || !swiperEl) return;
+    const desktopQuery = window.matchMedia('(min-width: 769px)');
+    let currentIdx = 0;
+    let ticking = false;
 
-        const textSlides = Array.from(section.querySelectorAll('.method__slide'));
-        const stepBoxes = Array.from(section.querySelectorAll('.method__step-box'));
+    const setActiveStep = (idx) => {
+      if (idx === currentIdx) return;
+      currentIdx = idx;
+      stepBoxes.forEach((box, i) => box.classList.toggle('is-active', i === idx));
+      textSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === idx));
+      visualSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === idx));
+    };
 
-        const swiper = new Swiper(swiperEl, {
-          speed: 700,
-          effect: 'creative',
-          allowTouchMove: false,
-          creativeEffect: {
-            prev: { opacity: 0, rotate: [0, 0, -45] },
-            next: { opacity: 0, rotate: [0, 0, 45] }
-          }
-        });
+    const updateProgress = () => {
+      ticking = false;
+      if (!desktopQuery.matches) return;
+      const rect = section.getBoundingClientRect();
+      const scrollable = section.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
+      const idx = Math.min(2, Math.round(progress * 2));
+      setActiveStep(idx);
+    };
 
-        let currentIdx = 0;
-        const setActiveStep = (idx) => {
-          if (idx === currentIdx) return;
-          currentIdx = idx;
-          stepBoxes.forEach((box, i) => box.classList.toggle('is-active', i === idx));
-          textSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === idx));
-          swiper.slideTo(idx);
-        };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateProgress);
+    };
 
-        const st = ScrollTrigger.create({
-          trigger: section,
-          pin: pinTarget,
-          start: 'top top',
-          end: PIN_DISTANCE,
-          scrub: 0.6,
-          snap: {
-            snapTo: [0, 0.5, 1],
-            duration: { min: 0.25, max: 0.6 },
-            ease: 'power2.inOut'
-          },
-          onUpdate: (self) => {
-            const idx = Math.min(2, Math.round(self.progress * 2));
-            setActiveStep(idx);
-          }
-        });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateProgress();
+  })();
 
-        return () => {
-          st.kill();
-          swiper.destroy(true, true);
-        };
-      },
+  // ---- 싹딜의 비교 방식: 모바일 스와이프(네이티브 스크롤 스냅, 외부 라이브러리 없음) ----
+  (function initMethodMobile() {
+    const track = document.getElementById('methodMobileTrack');
+    const dotsWrap = document.getElementById('methodMobileDots');
+    if (!track || !dotsWrap) return;
 
-      '(max-width: 768px)': function () {
-        // Mobile: no scroll-jacking/pin — the section just scrolls past normally.
-        // Steps are switched by swiping the carousel left/right instead.
-        const swiperEl = document.getElementById('methodMobileSwiper');
-        const dotsWrap = document.getElementById('methodMobileDots');
-        if (!swiperEl || !dotsWrap) return;
+    const dots = Array.from(dotsWrap.children);
+    let ticking = false;
 
-        const dots = Array.from(dotsWrap.children);
+    const updateActiveDot = () => {
+      ticking = false;
+      const idx = Math.round(track.scrollLeft / track.clientWidth);
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
+    };
 
-        const swiper = new Swiper(swiperEl, {
-          speed: 400,
-          effect: 'slide',
-          allowTouchMove: true,
-          on: {
-            slideChange(sw) {
-              dots.forEach((dot, i) => dot.classList.toggle('is-active', i === sw.activeIndex));
-            }
-          }
-        });
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(updateActiveDot);
+    }, { passive: true });
 
-        return () => {
-          swiper.destroy(true, true);
-        };
-      }
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+      });
     });
-  }
+  })();
 
   // ---- Mobile bottom bar "카테고리" button scrolls to category tabs ----
   const mobileBarCat = document.getElementById('mobileBarCat');

@@ -23,7 +23,7 @@
   const pct = (p) => Math.round(((p.list - p.final) / p.list) * 100);
 
   list.innerHTML = PHONES.map((p) =>
-    '<a class="mp-card' + (p.featured ? ' mp-card--featured' : '') + '" href="phone-order.html">' +
+    '<a class="mp-card' + (p.featured ? ' mp-card--featured' : '') + '" href="pages/phone-order.html">' +
       (p.badges.length
         ? '<div class="mp-card__badges">' + p.badges.map((b) =>
             '<span class="mp-badge mp-badge--' + b + '">' + b.toUpperCase() + '</span>').join('') + '</div>'

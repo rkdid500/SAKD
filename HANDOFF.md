@@ -1,7 +1,13 @@
 # SAKD 인수인계 (2026-10-08 기준)
 
 저장소: https://github.com/rkdid500/SAKD (branch: `master`) · GitHub Pages 배포
-작업 폴더: **`인터넷스마트폰/` 안에서만** 작업. 루트 사이트(보험·상조 페이지 포함)는 건드리지 말 것. (`인터넷/`·`AII/` 스냅샷 폴더는 2026-10-11에 중복이라 삭제함 — Git 기록에서 복구 가능)
+작업 위치: 저장소 **루트** (2026-10-11 파일 구조 정리: 메인 `index.html` / 인터넷 `internet.html` / 스마트폰 `phone.html`). 보험·상조는 `보험상조/` 폴더에 따로 보관(추후 작업용).
+
+> **파일 구조**
+> - `index.html` 메인 · `internet.html` 인터넷 탭 · `phone.html` 스마트폰 탭
+> - `pages/` 고객후기(`review.html`), 가격 확인(`phone-order.html`)
+> - `css/` `js/` `images/` `fonts/` 공통 자원
+> - `보험상조/` 보험·상조 작업용 (자체 css/js/images 포함, 아직 화면에 연결 안 됨)
 
 > 이 파일은 "집에서 이어서 작업"하기 위한 문서야. Claude는 이 파일을 먼저 읽고 시작해줘.
 > (개인 메모리 파일은 회사 PC에만 있어서, 중요한 규칙은 전부 아래에 옮겨 적었음)
@@ -18,15 +24,15 @@
    이미 받아 둔 컴퓨터면 저장소 폴더에서 `git pull --ff-only origin master` (항상 먼저 최신화)
 2. 저장소 폴더에서 Claude(Claude Code)를 열어요.
 3. 저장소 루트의 **`continue-prompt.md`**를 열어, `---` 아래 내용을 통째로 복사해서 Claude 첫 메시지로 보내요.
-   → Claude가 `HANDOFF.md`를 읽고, 규칙을 이해하고, 로컬 서버를 띄워서 `인터넷.html`이 잘 뜨는지 확인한 뒤 요청을 기다려요.
-4. 로컬 미리보기가 필요하면: Claude Code의 `.claude/launch.json` → `sakd-static` 실행(포트 8934) → 브라우저에서 `http://localhost:8934/인터넷스마트폰/인터넷.html`
+   → Claude가 `HANDOFF.md`를 읽고, 규칙을 이해하고, 로컬 서버를 띄워서 `index.html`이 잘 뜨는지 확인한 뒤 요청을 기다려요.
+4. 로컬 미리보기가 필요하면: Claude Code의 `.claude/launch.json` → `sakd-static` 실행(포트 8934) → 브라우저에서 `http://localhost:8934/index.html`
 5. 수정 요청을 하면 Claude가 고치고 → 커밋 → `git push origin master`까지 해서 배포해요.
-6. 배포 확인: https://rkdid500.github.io/SAKD/인터넷스마트폰/인터넷.html
+6. 배포 확인: https://rkdid500.github.io/SAKD/
    배포에 1~2분, 브라우저 캐시 때문에 예전 화면이 보이면 **Ctrl+F5**.
 
 **꼭 기억할 것**
 
-- 작업은 **`인터넷스마트폰/` 폴더 안에서만** 해요. (루트 사이트는 건드리지 않아요. `인터넷/`·`AII/` 스냅샷은 삭제됨.)
+- 작업은 저장소 루트의 `index.html` / `internet.html` / `phone.html` 과 공통 `css/` `js/` 에서 해요. (`보험상조/`는 추후 작업용 보관 폴더)
 - Claude의 메모리 파일은 **회사 PC에만** 있어요. 집의 Claude는 그걸 못 봐요. 그래서 중요한 규칙은 전부 이 파일(아래 2번)에 적어 뒀어요. 집에서 새로 알게 된 규칙이 있으면 이 파일에 추가하고 푸시해 주세요.
 - 예전 `HANDOFF.md`에 있던 "커밋·푸시는 말할 때만" 규칙은 **없어졌어요.** 지금은 "변경하면 항상 배포"가 규칙이에요.
 - `.claude/launch.json`의 `newsakd-*` 항목과 그 로컬 변경은 **회사 PC 전용**이에요. 집에서는 무시해도 돼요.
@@ -48,11 +54,11 @@ git pull --ff-only origin master                  # 이미 있으면 항상 먼�
 
 - Claude Code: `.claude/launch.json`의 **`sakd-static`** 실행 → 포트 **8934**
 - 직접 실행: `powershell -ExecutionPolicy Bypass -File .claude/server.ps1`
-- 접속: `http://localhost:8934/인터넷스마트폰/인터넷.html`
+- 접속: `http://localhost:8934/index.html`
 - (Python은 없음. Node는 있음 — JS 문법 확인은 `node --check js/internet-new.js`)
 - `.claude/launch.json`의 `newsakd*` 항목은 회사 PC 경로(`C:/Users/user/Desktop/newsakd`)라 집에서는 무시해도 됨.
 
-배포 주소: **https://rkdid500.github.io/SAKD/인터넷스마트폰/인터넷.html**
+배포 주소: **https://rkdid500.github.io/SAKD/**
 
 ---
 
@@ -73,7 +79,7 @@ git pull --ff-only origin master                  # 이미 있으면 항상 먼�
 
 ## 3. 현재 `인터넷.html` 구조 (2026-10-07 전면 개편 완료·배포됨)
 
-파일: `인터넷스마트폰/인터넷.html` + `css/internet-new.css` + `js/internet-new.js` (공통: `css/style.css`, `js/main.js`)
+파일: `internet.html` + `css/internet-new.css` + `js/internet-new.js` (공통: `css/style.css`, `js/main.js`)
 
 위에서 아래 순서:
 
@@ -107,7 +113,7 @@ git pull --ff-only origin master                  # 이미 있으면 항상 먼�
 - [ ] **상단 스트립의 "통신 3사 비교 / KT · SK · LG U+"** 문구를 "통신사 비교"로 바꿀지
 - [ ] 배너 디자인 이미지 (디자인팀 전달 예정 — 현재 단색 자리표시)
 - [ ] 실제 상품 데이터, 대표 전화번호(현재 `1588-0000` 임시), 신청 API
-- [ ] 예전 `css/internet.css`, `js/internet.js`는 이제 어떤 페이지에서도 안 쓰임 — 삭제 여부 미정 (사용자에게 확인 후 삭제)
+- [x] 예전 `css/internet.css`, `js/internet.js`, `components/`는 안 쓰여서 2026-10-11 삭제함 (Git 기록에서 복구 가능)
 - 사용자가 "확인하고 추가 수정사항을 말해주겠다"고 한 상태 → 새 요청을 기다리면 됨
 
 ## 5. 되돌리지 말 것 (사용자가 폐기한 방향)

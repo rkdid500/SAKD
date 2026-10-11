@@ -8,12 +8,12 @@ SAKD 프로젝트를 이어서 작업할 거야. 먼저 아래 순서로 진행�
 
 1. 저장소(https://github.com/rkdid500/SAKD, master)가 로컬에 없으면 clone, 있으면 `git pull --ff-only origin master`로 최신화해줘.
 2. 루트의 `HANDOFF.md`를 끝까지 읽고, 거기 적힌 **작업 규칙**과 **현재 인터넷.html 구조**, **결정 대기 항목**을 요약해서 이해한 대로 말해줘.
-3. 로컬 서버(`.claude/launch.json`의 `sakd-static`, 포트 8934)를 띄우고 `인터넷스마트폰/인터넷.html`이 정상 표시되는지 확인해줘.
+3. 로컬 서버(`.claude/launch.json`의 `sakd-static`, 포트 8934)를 띄우고 `index.html`이 정상 표시되는지 확인해줘.
 4. 그다음 내가 주는 수정 요청을 기다려줘.
 
 작업 시 지킬 것 (HANDOFF.md에 자세히 있음):
-- `인터넷스마트폰/` 폴더 안에서만 작업
-- 변경하면 매번 `rkdid500/SAKD` master에 커밋·푸시해서 배포 (CSS/JS를 고치면 `인터넷.html`의 `?v=` 숫자도 올려서 캐시 무효화)
+- 저장소 루트(index.html / internet.html / phone.html)와 css/ js/ 에서 작업, 보험상조/는 추후 작업용
+- 변경하면 매번 `rkdid500/SAKD` master에 커밋·푸시해서 배포 (CSS/JS를 고치면 각 HTML의 `?v=` 숫자도 올려서 캐시 무효화)
 - 텍스트는 제목+핵심 라벨만, 설명 문장·영문 소제목 금지
 - 비교원(bkw.kr)과 똑같이 만들지 말 것
 - 데스크톱·모바일(375px) 둘 다 확인
