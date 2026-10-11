@@ -225,13 +225,16 @@
       '<p class="rec__note">3년 약정 · VAT 포함 · 설치비 별도</p>';
     lifeGrid.classList.remove('rec'); void lifeGrid.offsetWidth; lifeGrid.classList.add('rec');
   }
-  $('#lifeTabs').addEventListener('click', (e) => {
-    const b = e.target.closest('.seg__btn');
-    if (!b) return;
-    $$('#lifeTabs .seg__btn').forEach(x => { const on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', String(on)); });
-    renderLife(b.dataset.life);
-  });
-  renderLife('small');
+  // 메인 페이지에서는 이 섹션이 없을 수 있으므로, 있을 때만 동작시킴
+  if (lifeGrid && $('#lifeTabs')) {
+    $('#lifeTabs').addEventListener('click', (e) => {
+      const b = e.target.closest('.seg__btn');
+      if (!b) return;
+      $$('#lifeTabs .seg__btn').forEach(x => { const on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', String(on)); });
+      renderLife(b.dataset.life);
+    });
+    renderLife('small');
+  }
 
   /* ---------- 후기 레일 ---------- */
   const revRail = $('#revRail');
