@@ -68,3 +68,6 @@
   .mp__cards{ grid-auto-columns:68%; }
   .mp__next{ display:none; }
 }
+
+/* 인터넷 카드용 BEST 뱃지 */
+.mp-badge--best{ background:var(--c-navy); }
