@@ -264,20 +264,30 @@
   function swapMatrix(update) {
     clearTimeout(mxSwapTimer); clearTimeout(mxDoneTimer);
     if (reduceMotion) { update(); renderMatrix(); return; }
-    const h = mxGrid.offsetHeight;
-    mxGrid.style.minHeight = h + 'px';
+    const startH = mxGrid.offsetHeight;
+    mxGrid.style.height = startH + 'px';      // 사라지는 동안 높이를 고정
     mxGrid.classList.remove('is-in');
     mxGrid.classList.add('is-out');
     mxSwapTimer = setTimeout(() => {
       update();
       renderMatrix();
+      // 새 내용의 높이를 재서, 이전 높이에서 새 높이로 부드럽게 늘어나거나 줄어들게 함
+      mxGrid.style.height = 'auto';
+      const endH = mxGrid.offsetHeight;
+      mxGrid.style.height = startH + 'px';
+      void mxGrid.offsetHeight;
+      mxGrid.style.overflow = 'hidden';
+      mxGrid.style.transition = 'height .32s cubic-bezier(.22,.61,.36,1), opacity .17s ease, transform .17s ease';
+      mxGrid.style.height = endH + 'px';
       mxGrid.classList.remove('is-out');
       void mxGrid.offsetWidth;            // 애니메이션 재시작
       mxGrid.classList.add('is-in');
       mxDoneTimer = setTimeout(() => {
         mxGrid.classList.remove('is-in');
-        mxGrid.style.minHeight = '';
-      }, 380);
+        mxGrid.style.height = '';
+        mxGrid.style.overflow = '';
+        mxGrid.style.transition = '';
+      }, 400);
     }, 170);
   }
 
