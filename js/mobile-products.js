@@ -39,12 +39,5 @@
       '<div class="mp-card__meta"><span class="mp-tag">' + p.carrier + ' · ' + p.join + '</span></div>' +
     '</a>').join('');
 
-  const next = document.getElementById('mpNext');
-  if (next) {
-    next.addEventListener('click', () => {
-      const atEnd = list.scrollLeft + list.clientWidth >= list.scrollWidth - 4;
-      if (atEnd) list.scrollTo({ left: 0, behavior: 'smooth' });
-      else list.scrollBy({ left: list.clientWidth * 0.8, behavior: 'smooth' });
-    });
-  }
+  // 이전/다음 화살표는 js/carousel-nav.js 에서 공통 처리
 })();
