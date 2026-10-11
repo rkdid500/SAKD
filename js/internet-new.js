@@ -32,13 +32,30 @@
     { id: 'l3', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: null,                          gift: 23, price: 33000 },
     { id: 'l4', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: { name: '실속형', ch: 219 },    gift: 47, price: 45100 },
     { id: 'l5', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 23, price: 38500 },
-    { id: 'l6', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: { name: '프리미엄', ch: 253 }, gift: 47, price: 53900 }
+    { id: 'l6', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: { name: '프리미엄', ch: 253 }, gift: 47, price: 53900 },
+    // ----- 알뜰사 (스카이라이프 · LG 헬로비전 · SKB 알뜰) : 아정당(ajd.co.kr) 요금표, 사은품형/미결합 기준 -----
+    // SKB(알뜰)는 요금표를 확인하지 못해 상품을 넣지 않음 → 표에서 '상담 시 안내'로 표시됨
+    { id: 'm1',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: null,                                gift: 10, price: 23100 },
+    { id: 'm2',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: null,                                gift: 14, price: 29700 },
+    { id: 'm3',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: null,                                gift: 15, price: 35200 },
+    { id: 'm4',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: { name: 'IPTV 베이직', ch: 196 },      gift: 35, price: 31900 },
+    { id: 'm5',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: { name: 'IPTV 베이직', ch: 196 },      gift: 42, price: 37400 },
+    { id: 'm6',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: { name: 'IPTV 베이직', ch: 196 },      gift: 48, price: 42900 },
+    { id: 'm7',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: null,                                gift: 13, price: 21890 },
+    { id: 'm8',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: null,                                gift: 18, price: 31460 },
+    { id: 'm9',  carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: null,                                gift: 20, price: 33000 },
+    { id: 'm10', carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 23, price: 25130 },
+    { id: 'm11', carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 31, price: 32890 },
+    { id: 'm12', carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: { name: '헬로tv 플러스', ch: 102 },    gift: 34, price: 34100 }
   ];
   const CARRIERS = ['KT', 'SK', 'LG'];
-  const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+' };
-  // 통신사 로고: images/carriers/kt.svg · sk.svg · lg.svg (없으면 svg → png → webp 순으로 찾고, 끝내 없으면 글자 배지)
-  const carrierMark = (c) => '<span class="cr cr--' + c + '" data-logo="' + c.toLowerCase() + '">' +
-    '<img class="cr__img" src="images/carriers/' + c.toLowerCase() + '.png?v=' + LOGO_V + '" alt="" data-ext="0">' +
+  const MVNO_CARRIERS = ['SL', 'HV', 'SB'];   // 알뜰사 3곳: 스카이라이프 · LG 헬로비전 · SKB(알뜰)
+  const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+', SL: '스카이라이프', HV: 'LG 헬로비전', SB: 'SKB 알뜰' };
+  // 통신사 코드 → images/carriers/ 안의 로고 파일명 (확장자 제외)
+  const LOGO_FILE = { KT: 'kt', SK: 'sk', LG: 'lg', SL: 'skylife', HV: 'lg-hellovision', SB: 'skb-saving' };
+  // 통신사 로고: images/carriers/<파일명>.png (없으면 png → svg → webp 순으로 찾고, 끝내 없으면 글자 배지)
+  const carrierMark = (c) => '<span class="cr cr--' + c + '" data-logo="' + LOGO_FILE[c] + '">' +
+    '<img class="cr__img" src="images/carriers/' + LOGO_FILE[c] + '.png?v=' + LOGO_V + '" alt="" data-ext="0">' +
     '<span class="cr__txt">' + CARRIER_LABEL[c] + '</span></span>';
   // 로고 이미지가 있으면 글자 배지 대신 표시, 없으면 확장자를 바꿔 가며 찾고 끝내 없으면 글자 배지 유지
   const LOGO_EXT = ['png', 'svg', 'webp'];
@@ -194,12 +211,15 @@
   const mxGrid = $('#mxGrid');
   mxGrid.style.setProperty('--n', CARRIERS.length);
   let mxTv = false;
+  let mxMvno = false;   // true: 알뜰사 3곳 보기
 
   function renderMatrix() {
-    let html = '<div></div>' + CARRIERS.map(c =>
+    const cols = mxMvno ? MVNO_CARRIERS : CARRIERS;
+    mxGrid.style.setProperty('--n', cols.length);
+    let html = '<div></div>' + cols.map(c =>
       '<div class="mx__h" role="columnheader">' + carrierMark(c) + '</div>').join('');
     SPEEDS.forEach(s => {
-      const row = CARRIERS.map(c => bestPlan(c, s, mxTv));
+      const row = cols.map(c => bestPlan(c, s, mxTv));
       const min = Math.min.apply(null, row.filter(Boolean).map(realPrice));
       html += '<div class="mx__speed" role="rowheader"><b>' + SPEED_LABEL[s] + '</b><span>' + SPEED_NOTE[s] + '</span></div>';
       row.forEach(p => {
@@ -222,6 +242,16 @@
     mxTv = b.dataset.tv === 'yes';
     renderMatrix();
   });
+  // 알뜰사 버튼: 누르면 알뜰 3사(스카이라이프 · LG 헬로비전 · SKB 알뜰), 다시 누르면 통신 3사
+  const mxMvnoBtn = $('#mxMvno');
+  if (mxMvnoBtn) {
+    mxMvnoBtn.addEventListener('click', () => {
+      mxMvno = !mxMvno;
+      mxMvnoBtn.classList.toggle('is-on', mxMvno);
+      mxMvnoBtn.setAttribute('aria-pressed', String(mxMvno));
+      renderMatrix();
+    });
+  }
   renderMatrix();
 
   /* ---------- 우리 집 맞춤 추천 (같은 인터넷에서 TV 구성별 비교 목록) ---------- */

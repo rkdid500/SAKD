@@ -457,3 +457,14 @@ body.is-locked{ overflow:hidden; }
 @media (max-width:768px){
   .mx__h .cr.has-logo .cr__img{ width:84px; height:28px; }
 }
+
+/* ---------- 알뜰사 보기 버튼 (표 오른쪽 위) ---------- */
+.mx__mvno{ display:flex; justify-content:flex-end; margin:-6px 0 10px; }
+.mvno-btn{
+  height:36px; padding:0 22px; border-radius:999px; background:#e3e6ea; color:var(--c-navy);
+  font-size:14px; font-weight:800; transition:background .15s ease, color .15s ease;
+}
+.mvno-btn:hover{ background:#d5d9df; }
+.mvno-btn.is-on{ background:var(--c-navy); color:#fff; }
+/* 알뜰사 로고가 없을 때의 글자 배지 */
+.cr--SL, .cr--HV, .cr--SB{ background:#5c6675; }
