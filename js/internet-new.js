@@ -252,6 +252,8 @@
       mxMvno = !mxMvno;
       mxMvnoBtn.classList.toggle('is-on', mxMvno);
       mxMvnoBtn.setAttribute('aria-pressed', String(mxMvno));
+      // 알뜰사를 보고 있을 땐 '통신 3사'로, 통신 3사를 보고 있을 땐 '알뜰사'로 글자가 바뀜
+      mxMvnoBtn.textContent = mxMvno ? '통신 3사' : '알뜰사';
       renderMatrix();
     });
   }
