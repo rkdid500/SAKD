@@ -7,30 +7,32 @@
   'use strict';
 
   /* ---------- 예시 상품 데이터 ---------- */
-  // gift: 사은품(만원), price: 월 요금(원, 3년 약정·VAT 포함 기준), speed: 100 | 500 | 1000
+  // gift: 사은품(만원), price: 월 요금(원, 3년 약정·VAT 포함 기준, 모바일 미결합)
+  // 가격·사은품: 비교사이트 아정당(ajd.co.kr) 인터넷 요금표 기준 (2026-10-11 확인)
+  //   KT/LG: 통신사별 요금표 / SK: 사은품·100M 요금(SK 500M·1G TV 결합 요금은 자료 없음 → 기존 예시값 유지)
   const PLANS = [
     { id: 'k1', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: null,                          gift: 9,  price: 22000 },
-    { id: 'k2', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 베이직', ch: 230 }, gift: 37, price: 34100 },
-    { id: 'k3', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: null,                          gift: 20, price: 33000 },
-    { id: 'k4', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 베이직', ch: 230 }, gift: 45, price: 39600 },
-    { id: 'k5', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 45, price: 40700 },
-    { id: 'k6', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 모든G',  ch: 250 }, gift: 48, price: 47300 },
-    { id: 'k9', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 에센스', ch: 260 }, gift: 37, price: 38500 },
-    { id: 'k8', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: null,                          gift: 28, price: 38500 },
-    { id: 'k7', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: { name: '지니 TV 베이직', ch: 230 }, gift: 50, price: 49500 },
+    { id: 'k2', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 베이직', ch: 238 }, gift: 37, price: 38500 },
+    { id: 'k3', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: null,                          gift: 14, price: 33000 },
+    { id: 'k4', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 베이직', ch: 238 }, gift: 45, price: 44000 },
+    { id: 'k5', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 45, price: 45100 },
+    { id: 'k6', carrier: 'KT', product: '인터넷 베이직', speed: 500,  tv: { name: '지니 TV 모든G',  ch: 250 }, gift: 45, price: 51700 },
+    { id: 'k9', carrier: 'KT', product: '인터넷 슬림',   speed: 100,  tv: { name: '지니 TV 라이트', ch: 240 }, gift: 37, price: 39600 },
+    { id: 'k8', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: null,                          gift: 14, price: 38500 },
+    { id: 'k7', carrier: 'KT', product: '인터넷 에센스', speed: 1000, tv: { name: '지니 TV 베이직', ch: 238 }, gift: 45, price: 49500 },
     { id: 's1', carrier: 'SK', product: '광랜인터넷',     speed: 100,  tv: null,                          gift: 11, price: 22000 },
-    { id: 's2', carrier: 'SK', product: '광랜인터넷',     speed: 100,  tv: { name: 'Btv New 이코노미', ch: 182 }, gift: 40, price: 29700 },
+    { id: 's2', carrier: 'SK', product: '광랜인터넷',     speed: 100,  tv: { name: 'Btv 이코노미', ch: 181 }, gift: 40, price: 34100 },
     { id: 's3', carrier: 'SK', product: '기가라이트인터넷', speed: 500, tv: null,                         gift: 17, price: 33000 },
-    { id: 's4', carrier: 'SK', product: '기가라이트인터넷', speed: 500, tv: { name: 'Btv ALL', ch: 257 },   gift: 42, price: 47300 },
-    { id: 's5', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 28, price: 38500 },
-    { id: 's6', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv ALL', ch: 257 },   gift: 48, price: 52800 },
-    { id: 's7', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv New 이코노미', ch: 182 }, gift: 45, price: 47300 },
+    { id: 's4', carrier: 'SK', product: '기가라이트인터넷', speed: 500, tv: { name: 'Btv ALL', ch: 253 },   gift: 43, price: 47300 },
+    { id: 's5', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 17, price: 38500 },
+    { id: 's6', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv ALL', ch: 253 },   gift: 52, price: 52800 },
+    { id: 's7', carrier: 'SK', product: '기가인터넷',     speed: 1000, tv: { name: 'Btv 이코노미', ch: 181 }, gift: 52, price: 47300 },
     { id: 'l1', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: null,                     gift: 20, price: 22000 },
-    { id: 'l2', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: { name: '기본형', ch: 223 }, gift: 33, price: 36300 },
-    { id: 'l3', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: null,                          gift: 22, price: 33000 },
-    { id: 'l4', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: { name: '실속tv', ch: 217 },    gift: 40, price: 44000 },
-    { id: 'l5', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 30, price: 38500 },
-    { id: 'l6', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: { name: '프리미엄 TV', ch: 260 }, gift: 50, price: 55000 }
+    { id: 'l2', carrier: 'LG', product: '와이파이기본 광랜안심', speed: 100, tv: { name: '기본형', ch: 225 }, gift: 33, price: 40700 },
+    { id: 'l3', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: null,                          gift: 23, price: 33000 },
+    { id: 'l4', carrier: 'LG', product: '기가슬림',       speed: 500,  tv: { name: '실속형', ch: 219 },    gift: 47, price: 45100 },
+    { id: 'l5', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: null,                          gift: 23, price: 38500 },
+    { id: 'l6', carrier: 'LG', product: '기가인터넷',     speed: 1000, tv: { name: '프리미엄', ch: 253 }, gift: 47, price: 53900 }
   ];
   const CARRIERS = ['KT', 'SK', 'LG'];
   const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+' };

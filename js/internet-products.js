@@ -11,12 +11,12 @@
     { carrier: 'KT',    product: '인터넷 슬림',        speed: 100,  gift: 9,  price: 22000 },
     { carrier: 'SK',    product: '광랜인터넷',          speed: 100,  gift: 11, price: 22000 },
     { carrier: 'LG U+', product: '와이파이기본 광랜안심', speed: 100,  gift: 20, price: 22000 },
-    { carrier: 'KT',    product: '인터넷 베이직',       speed: 500,  gift: 20, price: 33000 },
+    { carrier: 'KT',    product: '인터넷 베이직',       speed: 500,  gift: 14, price: 33000 },
     { carrier: 'SK',    product: '기가라이트인터넷',     speed: 500,  gift: 17, price: 33000 },
-    { carrier: 'LG U+', product: '기가슬림',            speed: 500,  gift: 22, price: 33000 },
-    { carrier: 'KT',    product: '인터넷 에센스',       speed: 1000, gift: 28, price: 38500 },
-    { carrier: 'SK',    product: '기가인터넷',          speed: 1000, gift: 28, price: 38500 },
-    { carrier: 'LG U+', product: '기가인터넷',          speed: 1000, gift: 30, price: 38500 },
+    { carrier: 'LG U+', product: '기가슬림',            speed: 500,  gift: 23, price: 33000 },
+    { carrier: 'KT',    product: '인터넷 에센스',       speed: 1000, gift: 14, price: 38500 },
+    { carrier: 'SK',    product: '기가인터넷',          speed: 1000, gift: 17, price: 38500 },
+    { carrier: 'LG U+', product: '기가인터넷',          speed: 1000, gift: 23, price: 38500 },
   ];
   const SPEED = { 100: { label: '100M', img: 'images/100M.png' }, 500: { label: '500M', img: 'images/500M.png' }, 1000: { label: '1G', img: 'images/1G.png' } };
 
