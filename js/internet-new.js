@@ -64,12 +64,19 @@
   // 통신사 코드 → images/carriers/ 안의 로고 파일명 (확장자 제외)
   const LOGO_FILE = { KT: 'kt', SK: 'sk', LG: 'lg', SL: 'skylife', HV: 'lg-hellovision', SB: 'skb-saving' };
   // 통신사 로고: images/carriers/<파일명>.webp (없으면 webp → png → svg 순으로 찾고, 끝내 없으면 글자 배지)
-  const carrierMark = (c) => '<span class="cr cr--' + c + '" data-logo="' + LOGO_FILE[c] + '">' +
+  // 미리 불러 둔 로고는 처음부터 로고 모양(has-logo)으로 그려서, 전환 때 글자 배지가 번쩍이지 않게 함
+  const logoReady = new Set();
+  const carrierMark = (c) => '<span class="cr cr--' + c + (logoReady.has(LOGO_FILE[c]) ? ' has-logo' : '') + '" data-logo="' + LOGO_FILE[c] + '">' +
     '<img class="cr__img" src="images/carriers/' + LOGO_FILE[c] + '.webp?v=' + LOGO_V + '" alt="" data-ext="0">' +
     '<span class="cr__txt">' + CARRIER_LABEL[c] + '</span></span>';
   // 로고 이미지가 있으면 글자 배지 대신 표시, 없으면 확장자를 바꿔 가며 찾고 끝내 없으면 글자 배지 유지
   const LOGO_EXT = ['webp', 'png', 'svg'];
   const LOGO_V = '20261012d';   // 로고 파일을 바꾸면 이 값도 올려서 캐시 무효화
+  Object.keys(LOGO_FILE).forEach((k) => {   // 모든 통신사 로고를 미리 내려받아 둠
+    const f = LOGO_FILE[k], im = new Image();
+    im.onload = () => logoReady.add(f);
+    im.src = 'images/carriers/' + f + '.webp?v=' + LOGO_V;
+  });
   document.addEventListener('load', (e) => {
     const img = e.target;
     if (img && img.classList && img.classList.contains('cr__img') && img.naturalWidth > 0) {
@@ -232,10 +239,10 @@
       const row = cols.map(c => bestPlan(c, s, mxTv));
       const min = Math.min.apply(null, row.filter(Boolean).map(realPrice));
       html += '<div class="mx__speed" role="rowheader"><b>' + SPEED_LABEL[s] + '</b><span>' + SPEED_NOTE[s] + '</span></div>';
-      row.forEach(p => {
+      row.forEach((p, ci) => {
         if (!p) {
           // SKB(알뜰)는 TV 결합 상품만 있어서 '인터넷만' 칸이 비어 있음
-          const msg = (c === 'SB' && !mxTv) ? 'TV 결합 전용' : '상담 시 안내';
+          const msg = (cols[ci] === 'SB' && !mxTv) ? 'TV 결합 전용' : '상담 시 안내';
           html += '<div class="cell cell--empty">' + msg + '</div>'; return;
         }
         const best = realPrice(p) === min;
@@ -249,23 +256,50 @@
     });
     mxGrid.innerHTML = html;
   }
+
+  // 표 전환을 부드럽게: 현재 표를 살짝 흐리게 사라지게 → 내용 교체 → 다시 나타나게.
+  // 전환 중에는 표 높이를 고정해서 아래 내용이 위아래로 출렁이지 않게 함.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let mxSwapTimer = null, mxDoneTimer = null;
+  function swapMatrix(update) {
+    clearTimeout(mxSwapTimer); clearTimeout(mxDoneTimer);
+    if (reduceMotion) { update(); renderMatrix(); return; }
+    const h = mxGrid.offsetHeight;
+    mxGrid.style.minHeight = h + 'px';
+    mxGrid.classList.remove('is-in');
+    mxGrid.classList.add('is-out');
+    mxSwapTimer = setTimeout(() => {
+      update();
+      renderMatrix();
+      mxGrid.classList.remove('is-out');
+      void mxGrid.offsetWidth;            // 애니메이션 재시작
+      mxGrid.classList.add('is-in');
+      mxDoneTimer = setTimeout(() => {
+        mxGrid.classList.remove('is-in');
+        mxGrid.style.minHeight = '';
+      }, 380);
+    }, 170);
+  }
+
   $('#mxToggle').addEventListener('click', (e) => {
     const b = e.target.closest('.tgl__btn');
     if (!b) return;
     $$('#mxToggle .tgl__btn').forEach(x => { const on = x === b; x.classList.toggle('is-active', on); x.setAttribute('aria-selected', String(on)); });
-    mxTv = b.dataset.tv === 'yes';
-    renderMatrix();
+    const wantTv = b.dataset.tv === 'yes';
+    if (wantTv === mxTv) return;
+    swapMatrix(() => { mxTv = wantTv; });
   });
   // 알뜰사 버튼: 누르면 알뜰 3사(스카이라이프 · LG 헬로비전 · SKB 알뜰), 다시 누르면 통신 3사
   const mxMvnoBtn = $('#mxMvno');
   if (mxMvnoBtn) {
     mxMvnoBtn.addEventListener('click', () => {
-      mxMvno = !mxMvno;
-      mxMvnoBtn.classList.toggle('is-on', mxMvno);
-      mxMvnoBtn.setAttribute('aria-pressed', String(mxMvno));
+      const next = !mxMvno;
+      // 버튼 상태와 글자는 바로 바꾸고, 표는 부드럽게 전환
+      mxMvnoBtn.classList.toggle('is-on', next);
+      mxMvnoBtn.setAttribute('aria-pressed', String(next));
       // 알뜰사를 보고 있을 땐 '통신 3사'로, 통신 3사를 보고 있을 땐 '알뜰사'로 글자가 바뀜
-      mxMvnoBtn.textContent = mxMvno ? '통신 3사' : '알뜰사';
-      renderMatrix();
+      mxMvnoBtn.textContent = next ? '통신 3사' : '알뜰사';
+      swapMatrix(() => { mxMvno = next; });
     });
   }
   renderMatrix();

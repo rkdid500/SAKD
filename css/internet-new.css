@@ -473,3 +473,15 @@ body.is-locked{ overflow:hidden; }
 .mvno-btn.is-on{ background:var(--c-navy); color:#fff; }
 /* 알뜰사 로고가 없을 때의 글자 배지 */
 .cr--SL, .cr--HV, .cr--SB{ background:#5c6675; }
+
+/* ---------- 비교표 전환 애니메이션 (인터넷만/+TV, 통신 3사/알뜰사) ---------- */
+.mx{ transition:opacity .17s ease, transform .17s ease; }
+.mx.is-out{ opacity:0; transform:translateY(6px); }
+.mx.is-in{ animation:mxFadeIn .34s cubic-bezier(.22,.61,.36,1) both; }
+.mx.is-in .cell, .mx.is-in .mx__speed{ animation:mxCellIn .34s cubic-bezier(.22,.61,.36,1) both; }
+.mx.is-in .mx__h{ animation:mxCellIn .3s cubic-bezier(.22,.61,.36,1) both; }
+@keyframes mxFadeIn{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes mxCellIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce){
+  .mx, .mx.is-in, .mx.is-in .cell, .mx.is-in .mx__speed, .mx.is-in .mx__h{ transition:none; animation:none; }
+}
