@@ -63,13 +63,13 @@
   const CARRIER_LABEL = { KT: 'KT', SK: 'SK', LG: 'LG U+', SL: '스카이라이프', HV: 'LG 헬로비전', SB: 'SKB 알뜰' };
   // 통신사 코드 → images/carriers/ 안의 로고 파일명 (확장자 제외)
   const LOGO_FILE = { KT: 'kt', SK: 'sk', LG: 'lg', SL: 'skylife', HV: 'lg-hellovision', SB: 'skb-saving' };
-  // 통신사 로고: images/carriers/<파일명>.png (없으면 png → svg → webp 순으로 찾고, 끝내 없으면 글자 배지)
+  // 통신사 로고: images/carriers/<파일명>.webp (없으면 webp → png → svg 순으로 찾고, 끝내 없으면 글자 배지)
   const carrierMark = (c) => '<span class="cr cr--' + c + '" data-logo="' + LOGO_FILE[c] + '">' +
-    '<img class="cr__img" src="images/carriers/' + LOGO_FILE[c] + '.png?v=' + LOGO_V + '" alt="" data-ext="0">' +
+    '<img class="cr__img" src="images/carriers/' + LOGO_FILE[c] + '.webp?v=' + LOGO_V + '" alt="" data-ext="0">' +
     '<span class="cr__txt">' + CARRIER_LABEL[c] + '</span></span>';
   // 로고 이미지가 있으면 글자 배지 대신 표시, 없으면 확장자를 바꿔 가며 찾고 끝내 없으면 글자 배지 유지
-  const LOGO_EXT = ['png', 'svg', 'webp'];
-  const LOGO_V = '20261012c';   // 로고 파일을 바꾸면 이 값도 올려서 캐시 무효화
+  const LOGO_EXT = ['webp', 'png', 'svg'];
+  const LOGO_V = '20261012d';   // 로고 파일을 바꾸면 이 값도 올려서 캐시 무효화
   document.addEventListener('load', (e) => {
     const img = e.target;
     if (img && img.classList && img.classList.contains('cr__img') && img.naturalWidth > 0) {
