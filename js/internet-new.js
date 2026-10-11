@@ -50,6 +50,10 @@
     { id: 'm10', carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 23, price: 25130 },
     { id: 'm11', carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 31, price: 32890 },
     { id: 'm12', carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: { name: '헬로tv 플러스', ch: 102 },    gift: 34, price: 34100 },
+    // SKB(알뜰) '인터넷만' 칸: 싹딜 사이트(sakd.co.kr/internet)의 SKB 속도 카드 월 요금(공유기 포함)과 예상 사은품
+    { id: 'm16', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: null,                                gift: 31, price: 22000 },
+    { id: 'm17', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: null,                                gift: 35, price: 28600 },
+    { id: 'm18', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: null,                                gift: 35, price: 34100 },
     { id: 'm13', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: { name: 'Btv pop230', ch: 231 },      gift: 31, price: 31900 },
     { id: 'm14', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 38500 },
     { id: 'm15', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 44000 }
@@ -229,7 +233,11 @@
       const min = Math.min.apply(null, row.filter(Boolean).map(realPrice));
       html += '<div class="mx__speed" role="rowheader"><b>' + SPEED_LABEL[s] + '</b><span>' + SPEED_NOTE[s] + '</span></div>';
       row.forEach(p => {
-        if (!p) { html += '<div class="cell cell--empty">상담 시 안내</div>'; return; }
+        if (!p) {
+          // SKB(알뜰)는 TV 결합 상품만 있어서 '인터넷만' 칸이 비어 있음
+          const msg = (c === 'SB' && !mxTv) ? 'TV 결합 전용' : '상담 시 안내';
+          html += '<div class="cell cell--empty">' + msg + '</div>'; return;
+        }
         const best = realPrice(p) === min;
         html += '<button type="button" class="cell' + (best ? ' is-best' : '') + '" role="cell" data-open-apply data-plan="' + p.id + '">' +
           (best ? '<span class="cell__best">최고 혜택</span>' : '') +
