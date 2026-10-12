@@ -37,7 +37,7 @@
     { id: 'l5', carrier: 'LG', product: '기가 인터넷',     speed: 1000, tv: null,                          gift: 23, price: 38500 },
     { id: 'l6', carrier: 'LG', product: '기가 인터넷',     speed: 1000, tv: { name: '실속형', ch: 219 },    gift: 47, price: 50600 },
     // ----- 알뜰사 (스카이라이프 · LG 헬로비전 · SKB 알뜰) -----
-    // SKB(알뜰)는 TV 결합(Btv pop) 상품만 있음 → 인터넷만 칸은 '상담 시 안내'로 표시됨
+    // SKB(알뜰)는 TV 결합(Btv pop) 상품만 있음 → 인터넷만 칸은 데이터 없이 비워 두고 'TV 결합 전용'으로 표시됨
     { id: 'm1',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 100,  tv: null,                                gift: 10, price: 23100 },
     { id: 'm2',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 500,  tv: null,                                gift: 14, price: 29700 },
     { id: 'm3',  carrier: 'SL', product: '스카이라이프 인터넷', speed: 1000, tv: null,                                gift: 15, price: 35200 },
@@ -50,10 +50,6 @@
     { id: 'm10', carrier: 'HV', product: '헬로비전 인터넷',     speed: 100,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 23, price: 25130 },
     { id: 'm11', carrier: 'HV', product: '헬로비전 인터넷',     speed: 500,  tv: { name: '헬로tv 플러스', ch: 102 },    gift: 31, price: 32890 },
     { id: 'm12', carrier: 'HV', product: '헬로비전 인터넷',     speed: 1000, tv: { name: '헬로tv 플러스', ch: 102 },    gift: 34, price: 34100 },
-    // SKB(알뜰) '인터넷만' 칸: 싹딜 사이트(sakd.co.kr/internet)의 SKB 속도 카드 월 요금(공유기 포함)과 예상 사은품
-    { id: 'm16', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: null,                                gift: 31, price: 22000 },
-    { id: 'm17', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: null,                                gift: 35, price: 28600 },
-    { id: 'm18', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: null,                                gift: 35, price: 34100 },
     { id: 'm13', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: { name: 'Btv pop230', ch: 231 },      gift: 31, price: 31900 },
     { id: 'm14', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 38500 },
     { id: 'm15', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 44000 }
