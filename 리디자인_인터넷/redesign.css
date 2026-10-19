@@ -1,0 +1,26 @@
+/* 리디자인 overrides — loaded after the original bundle CSS. Keep original files untouched. */
+
+/* 통신사: no horizontal scroll, all logos visible in a grid */
+.internet-drag-row[aria-label*="통신사"] {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0;
+  overflow: visible;
+  cursor: default;
+  user-select: auto;
+  scroll-snap-type: none;
+}
+.internet-drag-row[aria-label*="통신사"] + .internet-drag-arrow { display: none; }
+.internet-drag-row[aria-label*="통신사"] .internet-choice-card.is-compact {
+  flex-basis: auto;
+  min-height: 70px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+@media (max-width: 700px) {
+  .internet-drag-row[aria-label*="통신사"] { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px !important; }
+  .internet-drag-row[aria-label*="통신사"] .internet-choice-card.is-compact { min-height: 64px !important; padding: 8px !important; }
+}
