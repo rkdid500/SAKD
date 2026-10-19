@@ -57,28 +57,43 @@
     <script>
       /* GitHub Pages shim: the app expects to live at "/" and to have /api/*. Serve it from the sub-folder with static mock data. */
       (function () {
-        var B = '/SAKD/%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9D%B8%ED%84%B0%EB%84%B7';
-        if (location.hostname.indexOf('github.io') === -1) return;
-        history.replaceState(history.state, '', '/internet' + location.search + location.hash);
+        var B = "/SAKD/%EB%A6%AC%EB%94%94%EC%9E%90%EC%9D%B8_%EC%9D%B8%ED%84%B0%EB%84%B7";
+        var D = decodeURIComponent(B);
+        var onPages = location.hostname.indexOf("github.io") !== -1;
+        var strip = function (p) {
+          if (onPages) { if (p.indexOf(B) === 0) p = p.slice(B.length); else if (p.indexOf(D) === 0) p = p.slice(D.length); }
+          return p || "/";
+        };
+        window.__appPath = function () { return strip(location.pathname); };
+        if (!onPages) return;
+        var wrap = function (name) {
+          var orig = history[name].bind(history);
+          history[name] = function (state, title, url) {
+            if (typeof url === "string" && url.charAt(0) === "/" && url.indexOf(B) !== 0 && url.indexOf(D) !== 0) url = B + url;
+            return orig(state, title, url);
+          };
+        };
+        wrap("pushState"); wrap("replaceState");
+        if (window.__appPath() === "/") history.replaceState(history.state, "", "/internet" + location.search + location.hash);
         var realFetch = window.fetch.bind(window);
-        var json = function (b, s) { return new Response(JSON.stringify(b), { status: s || 200, headers: { 'content-type': 'application/json' } }); };
+        var json = function (b, s) { return new Response(JSON.stringify(b), { status: s || 200, headers: { "content-type": "application/json" } }); };
         window.fetch = function (input, init) {
-          var u = new URL(typeof input === 'string' ? input : input.url || String(input), location.href);
-          if (u.origin !== location.origin || u.pathname.indexOf('/api/') !== 0) return realFetch(input, init);
-          var method = String((init && init.method) || (input && input.method) || 'GET').toUpperCase();
-          if (method !== 'GET') return Promise.resolve(new Response(null, { status: 204 }));
+          var u = new URL(typeof input === "string" ? input : input.url || String(input), location.href);
+          if (u.origin !== location.origin || u.pathname.indexOf("/api/") !== 0) return realFetch(input, init);
+          var method = String((init && init.method) || (input && input.method) || "GET").toUpperCase();
+          if (method !== "GET") return Promise.resolve(new Response(null, { status: 204 }));
           var p = u.pathname;
-          if (p === '/api/internet-products') return realFetch(B + '/mock-api/internet-products.json');
-          if (p === '/api/reviews') {
-            return realFetch(B + '/mock-api/reviews.json').then(function (r) { return r.json(); }).then(function (d) {
-              var limit = Number(u.searchParams.get('limit')) || d.items.length, offset = Number(u.searchParams.get('offset')) || 0;
+          if (p === "/api/internet-products") return realFetch(B + "/mock-api/internet-products.json");
+          if (p === "/api/reviews") {
+            return realFetch(B + "/mock-api/reviews.json").then(function (r) { return r.json(); }).then(function (d) {
+              var limit = Number(u.searchParams.get("limit")) || d.items.length, offset = Number(u.searchParams.get("offset")) || 0;
               d.items = d.items.slice(offset, offset + limit); return json(d);
             });
           }
-          if (p === '/api/members/session') return Promise.resolve(json({ authenticated: false, member: null }));
-          if (p === '/api/home-banners') return Promise.resolve(json({ configured: false, banners: [] }));
-          if (p === '/api/csrf') return Promise.resolve(json({ ok: true }));
-          return Promise.resolve(json({ message: 'mock: not available' }, 404));
+          if (p === "/api/members/session") return Promise.resolve(json({ authenticated: false, member: null }));
+          if (p === "/api/home-banners") return Promise.resolve(json({ configured: false, banners: [] }));
+          if (p === "/api/csrf") return Promise.resolve(json({ ok: true }));
+          return Promise.resolve(json({ message: "mock: not available" }, 404));
         };
       })();
     </script>
