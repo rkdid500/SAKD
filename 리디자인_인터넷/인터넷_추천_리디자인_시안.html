@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>싹딜 — 인터넷 견적 미리보기</title><meta name="description" content="싹딜 인터넷 상품 선택 상단 리디자인 시안"><style>
+*{box-sizing:border-box}body{margin:0;color:#172638;background:#f5f7f8;font-family:Pretendard,'Noto Sans KR',Arial,sans-serif;letter-spacing:-.045em}button,a,input{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #0b8e7e;outline-offset:4px}button{color:inherit}header{background:white;border-bottom:1px solid #e9edf0}.nav{max-width:1160px;margin:auto;height:80px;display:flex;align-items:center;gap:58px;padding:0 28px}.logo{font-size:35px;font-weight:1000;font-style:italic;letter-spacing:-.11em;color:#0bb49e}.logo span{color:#132e48}.nav nav{display:flex;gap:34px;align-self:stretch;align-items:center}.nav nav a{text-decoration:none;color:#7a8490;font-weight:700;font-size:14px;height:100%;display:flex;align-items:center}.nav nav a.active{color:#172638;border-bottom:3px solid #09b59e}.nav small{margin-left:auto;color:#86909a;font-size:11px;letter-spacing:.06em}.intro{max-width:1160px;margin:auto;padding:43px 28px 29px;display:flex;justify-content:space-between;align-items:center}.eyebrow{font-size:12px;font-weight:800;color:#079b88;letter-spacing:.09em}.intro h1{font-size:34px;line-height:1.4;margin:10px 0 9px;letter-spacing:-.065em}.intro p{margin:0;color:#77828e;font-size:14px;line-height:1.8}.intro .hint{text-align:right;color:#6c7a87;font-size:12px;line-height:1.9}.hint b{color:#24394a}.layout{max-width:1160px;margin:auto;padding:0 28px 48px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:24px;align-items:start}.config{background:white;border:1px solid #e4e9ec;border-radius:20px;padding:29px 30px}.section+.section{border-top:1px solid #edf0f2;margin-top:27px;padding-top:26px}.title{display:flex;align-items:center;gap:10px;margin-bottom:17px}.num{width:24px;height:24px;border-radius:8px;background:#edf7f5;color:#079f8c;display:grid;place-items:center;font-size:12px;font-weight:800}.title h2{font-size:17px;margin:0}.title .sub{margin-left:auto;font-size:11px;color:#919aa4}.carriers{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.option{border:1px solid #e1e7eb;background:white;border-radius:11px;position:relative;transition:.15s}.option:hover{border-color:#17af9b;background:#fafefd}.option.selected{background:#effbf8;border:1.5px solid #08ad96;box-shadow:0 0 0 1px #08ad960a}.carriers .option{height:57px;font-size:16px;font-weight:800;letter-spacing:-.06em}.carriers .option:nth-child(n+4){font-size:13px}.option.selected:after{content:'✓';position:absolute;right:7px;top:6px;border-radius:50%;background:#0ab59d;color:white;font-size:9px;width:15px;height:15px;display:grid;place-items:center}.kt{color:#222}.kt i{color:#eb3349;font-style:normal}.lg{color:#a50042}.sk{color:#e74427}.sky{color:#2364b8}.hello{color:#d92c80}.combos{display:grid;grid-template-columns:1fr 1fr;gap:10px}.combos button{height:60px;text-align:left;padding:0 17px;font-weight:700;font-size:14px}.symbol{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:#f0f4f6;margin-right:9px;color:#738291}.speeds{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.speed{text-align:left;padding:20px 14px 15px;min-height:145px}.speed strong{display:block;font-size:25px;letter-spacing:-.065em}.speed strong small{font-size:13px;font-weight:500}.speed .use{display:block;color:#84909b;font-size:11px;margin:8px 0 18px}.speed .price{font-size:13px;font-weight:700}.badge{display:block;color:#078c7b;font-size:10px;margin-top:7px}.checkline{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-top:14px;font-size:12px;color:#5e6d79}.checkline label{display:flex;align-items:center;gap:6px;cursor:pointer}input{accent-color:#0aaa93;width:15px;height:15px}.help{color:#8b96a1;font-size:11px}.tv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tv button{padding:16px 13px;text-align:left}.tv strong{font-size:14px;display:block}.tv small{display:block;font-size:11px;color:#84909b;margin:7px 0 13px}.tv b{font-size:12px}.more{border:0;background:none;text-decoration:underline;font-size:11px;color:#74818c;display:block;margin:13px 0 0 auto}.quote{position:sticky;top:20px;background:white;border:1px solid #dfe8e7;border-radius:20px;overflow:hidden;box-shadow:0 12px 30px #213e4710}.quote-head{padding:23px 23px 18px;border-bottom:1px solid #edf1f2;display:flex;align-items:center;justify-content:space-between}.quote-head h2{margin:0;font-size:17px}.live{font-size:10px;color:#079a85;background:#eaf9f4;padding:5px 8px;border-radius:20px;letter-spacing:0}.quote-body{padding:22px 23px}.tags{display:flex;flex-wrap:wrap;gap:6px}.tags span{background:#f1f4f6;font-size:11px;padding:6px 8px;border-radius:5px;color:#5c6b78}.cost-label{margin:28px 0 6px;font-size:12px;color:#667583}.total{font-size:37px;font-weight:850;letter-spacing:-.06em}.total small{font-size:16px;font-weight:500;margin-left:4px}.breakdown{margin:18px 0;font-size:12px;color:#7d8993}.row{display:flex;justify-content:space-between;margin:10px 0}.row b{color:#4b5b69;font-weight:500}.gift{padding:17px 15px;background:#eefaf6;border-radius:10px;display:flex;justify-content:space-between;align-items:center;margin-top:22px;font-size:12px;color:#198b79}.gift strong{font-size:21px}.conditions{font-size:10px;color:#97a1a9;line-height:1.8;margin:12px 0 20px}.primary,.secondary{width:100%;height:48px;border-radius:9px;font-size:13px;font-weight:750}.primary{background:#0baf98;border:1px solid #0baf98;color:white}.primary:hover{background:#089981}.secondary{margin-top:8px;background:white;border:1px solid #dce5e7}.micro{text-align:center;font-size:10px;color:#8d98a1;margin-top:13px}.preview-note{max-width:1104px;margin:0 auto 30px;border:1px dashed #ccd9dc;border-radius:12px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;color:#7a8993;font-size:12px;gap:20px}.preview-note b{display:block;color:#4d6371;margin-bottom:5px}.preview-note a{color:#1c8e7d;white-space:nowrap}.footer{max-width:1104px;margin:0 auto;padding:15px 0 30px;color:#a2adb4;font-size:10px;line-height:1.8}.mobilebar{display:none}dialog{border:1px solid #dce8e5;border-radius:20px;padding:30px;max-width:420px;width:calc(100% - 36px);color:#172638;box-shadow:0 20px 90px #142c4933}dialog::backdrop{background:#102b4366}dialog h2{font-size:22px}dialog p{color:#77848e;font-size:14px;line-height:1.9}dialog .close{float:right;background:none;border:0;font-size:23px}.hidden{display:none!important}
+@media(min-width:1000px){.carriers{grid-template-columns:repeat(6,1fr)}.carriers .option{font-size:15px}.carriers .option:nth-child(n+4){font-size:11px}}@media(max-width:800px){.nav{height:65px;gap:30px;padding:0 20px}.nav nav{gap:22px}.nav small{display:none}.logo{font-size:29px}.intro{padding:29px 20px 22px}.intro h1{font-size:28px}.intro p{font-size:12px}.intro .hint{display:none}.layout{padding:0 16px 25px;grid-template-columns:1fr;gap:16px}.config{padding:23px 18px;border-radius:16px}.quote{position:relative;top:0;border-radius:16px}.quote-head{padding:20px}.quote-body{padding:20px}.cost-label{margin-top:20px}.quote .primary,.quote .secondary{display:none}.micro{display:none}.preview-note{margin:0 16px 20px;padding:18px;display:block;font-size:11px;line-height:1.8}.preview-note a{display:inline-block;margin-top:10px}.footer{margin:0 20px 95px}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:10;background:#ffffffed;backdrop-filter:blur(15px);border-top:1px solid #e2e9eb;padding:12px 18px calc(12px + env(safe-area-inset-bottom));gap:20px;align-items:center;box-shadow:0 -5px 20px #16334808}.mobilebar .primary{width:auto;flex:1}.mobilebar small{font-size:10px;display:block;color:#7d8a94}.mobilebar b{font-size:21px;white-space:nowrap}.speed{padding:17px 11px;min-height:139px}.speed strong{font-size:23px}.title .sub{font-size:10px}.tv button{padding:15px 10px}.tv small{font-size:10px}.checkline .help{font-size:10px}.section+.section{margin-top:23px;padding-top:22px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.intro{padding-bottom:23px}.intro h1{font-size:33px}.intro h1 em{font-style:normal;color:#079e8a}.mode-wrap{max-width:1160px;padding:0 28px 22px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}.modes{display:inline-flex;background:#e8edf0;border-radius:12px;padding:5px;gap:4px}.modes button{border:0;background:none;border-radius:9px;padding:12px 28px;font-weight:750;color:#76828d;font-size:14px}.modes button[aria-selected=true]{background:white;color:#173a42;box-shadow:0 2px 7px #25374912}.mode-caption{font-size:12px;color:#7e8c97}.rec-panel{min-width:0}.personalize{background:#eaf7f3;border:1px solid #cde9df;border-radius:16px;padding:21px 23px;margin-bottom:23px}.personalize-top{display:flex;align-items:center;justify-content:space-between;gap:15px}.personalize h2{font-size:17px;margin:0 0 7px}.personalize p{font-size:12px;color:#648079;line-height:1.7;margin:0}.personalize .start{flex-shrink:0;background:#fff;border:1px solid #a8d6c9;color:#087d69;border-radius:9px;padding:11px 15px;font-size:12px;font-weight:700}.questions{border-top:1px solid #cce5dc;padding-top:18px;margin-top:18px}.questions fieldset{border:0;padding:0;margin:0 0 18px}.questions legend{font-size:13px;font-weight:700;margin-bottom:10px}.answers{display:flex;gap:7px;flex-wrap:wrap}.answers button{background:white;border:1px solid #d5e6df;padding:10px 12px;border-radius:8px;font-size:11px;color:#647b73}.answers button[aria-pressed=true]{background:#0b9d85;color:white;border-color:#0b9d85}.question-bottom{display:flex;align-items:center;gap:15px}.question-bottom .primary{width:auto;padding:0 22px;height:42px}.question-bottom small{font-size:10px;color:#6c867b}.results-heading{display:flex;justify-content:space-between;align-items:center;margin:0 0 13px}.results-heading h2{font-size:18px;margin:0}.results-heading small{font-size:11px;color:#8b99a3}.rec-card{border:1px solid #dfe7ea;border-radius:15px;background:white;margin-bottom:12px;overflow:hidden}.rec-card.chosen{border:1.5px solid #0ba58d;box-shadow:0 5px 20px #164e3f08}.rec-banner{background:#eaf8f3;padding:9px 20px;font-size:11px;color:#18846f;font-weight:700;display:flex;justify-content:space-between}.rec-main{padding:20px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:15px;align-items:center}.rec-kicker{font-size:10px;color:#83919b;margin-bottom:6px}.rec-title{font-size:19px;margin:0 0 7px;font-weight:800}.rec-spec{font-size:12px;color:#546976;margin:0 0 9px}.rec-reason{font-size:11px;color:#8b98a2;line-height:1.7;margin:0}.rec-price{text-align:right;white-space:nowrap}.rec-price small{font-size:10px;color:#84919b}.rec-price strong{display:block;font-size:24px;margin:4px 0 5px}.rec-price span{font-size:11px;color:#168b75}.rec-bottom{border-top:1px solid #edf1f2;margin:0 20px;padding:12px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}.rec-bottom small{font-size:10px;color:#96a1a9}.rec-actions{display:flex;gap:7px}.rec-actions button{border:1px solid #dce6e6;border-radius:7px;background:white;font-size:11px;padding:8px 12px;color:#637881}.rec-actions .pick{background:#173e43;color:white;border-color:#173e43}.rec-card.chosen .pick{background:#0ba58d;border-color:#0ba58d}.rec-disclaimer{font-size:10px;line-height:1.8;color:#8a98a0;margin:15px 3px}.bundle-note{background:#fff7e9;border:1px solid #f1dfbe;border-radius:9px;padding:12px 14px;font-size:11px;color:#927244;margin-bottom:13px;line-height:1.7}.mode-wrap button:focus-visible,.answers button:focus-visible{outline:3px solid #0b8e7e;outline-offset:3px}@media(max-width:800px){.intro h1{font-size:28px}.mode-wrap{padding:0 16px 18px;display:block}.modes{width:100%}.modes button{flex:1;padding:12px 8px}.mode-caption{display:none}.personalize{padding:18px 16px;border-radius:14px;margin-bottom:21px}.personalize-top{gap:10px}.personalize h2{font-size:15px}.personalize p{font-size:11px}.personalize .start{padding:10px;font-size:11px}.results-heading h2{font-size:17px}.rec-main{padding:18px 16px;gap:8px}.rec-title{font-size:17px}.rec-price strong{font-size:21px}.rec-reason{font-size:10px;max-width:195px}.rec-spec{font-size:11px}.rec-bottom{margin:0 16px;flex-wrap:wrap}.rec-bottom small{font-size:9px}.rec-actions{margin-left:auto}.rec-banner{padding:9px 16px}.question-bottom{align-items:flex-start;flex-direction:column;gap:8px}.answers button{font-size:11px;padding:10px}.quote{margin-top:2px}}/* Larger carrier cards: three columns, two rows */
+.carriers{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.carriers .option{height:86px;font-size:23px;border-radius:13px}
+.carriers .option:nth-child(n+4){font-size:18px}
+.carriers .option.selected:after{width:19px;height:19px;font-size:11px;right:9px;top:9px}
+@media(max-width:800px){.carriers{gap:10px}.carriers .option{height:78px;font-size:21px}.carriers .option:nth-child(n+4){font-size:15px}}/* Readable personalized recommendation questions */
+.personalize{padding:25px 26px}
+.personalize h2{font-size:20px;font-weight:800;line-height:1.5}
+.personalize p{font-size:14px;font-weight:500;line-height:1.8}
+.personalize .start{font-size:14px;font-weight:750;padding:13px 17px;min-height:46px}
+.questions{padding-top:22px;margin-top:21px}
+.questions fieldset{margin-bottom:23px}
+.questions legend{font-size:15px;font-weight:800;line-height:1.6;margin-bottom:12px}
+.answers{gap:9px}
+.answers button{font-size:14px;font-weight:650;line-height:1.5;padding:12px 15px;min-height:46px;color:#48645c}
+.answers button[aria-pressed=true]{font-weight:800}
+.question-bottom .primary{font-size:15px;font-weight:800;height:48px;padding:0 24px}
+.question-bottom small{font-size:12px;font-weight:500;line-height:1.7}
+@media(max-width:800px){.personalize{padding:21px 18px}.personalize h2{font-size:18px}.personalize p{font-size:13px}.personalize .start{font-size:13px;padding:12px;min-height:44px}.questions legend{font-size:15px}.answers{gap:8px}.answers button{font-size:13px;padding:11px 13px;min-height:44px}.question-bottom .primary{font-size:14px}.question-bottom small{font-size:12px}}/* Consistent readability across product cards, quote and manual selection */
+body{line-height:1.6}
+.nav nav a{font-size:16px;font-weight:750}
+.intro p{font-size:16px;color:#526574;font-weight:500}
+.intro .hint{font-size:14px;color:#586b78}
+.modes button{font-size:16px;padding:13px 30px}
+.mode-caption{font-size:14px;color:#586b78;font-weight:500}
+.results-heading{margin-bottom:17px;gap:12px}
+.results-heading h2{font-size:22px;font-weight:800;line-height:1.5}
+.results-heading small{font-size:13px;color:#596e7b;font-weight:600}
+.rec-card{margin-bottom:17px;border-radius:16px}
+.rec-banner{padding:11px 23px;font-size:13px;font-weight:750;color:#087c69}
+.rec-main{padding:25px 23px;gap:20px}
+.rec-kicker{font-size:13px;font-weight:650;color:#536b79;margin-bottom:8px}
+.rec-title{font-size:23px;line-height:1.45;font-weight:850;margin-bottom:10px}
+.rec-spec{font-size:15px;font-weight:650;color:#36596a;line-height:1.7;margin-bottom:11px}
+.rec-reason{font-size:14px;font-weight:500;color:#5f7381;line-height:1.8}
+.rec-price small{font-size:13px;font-weight:600;color:#5f7280}
+.rec-price strong{font-size:29px;line-height:1.5;font-weight:850}
+.rec-price span{font-size:13px;font-weight:700;color:#087e6d}
+.rec-bottom{margin:0 23px;padding:15px 0;gap:12px;flex-wrap:wrap}
+.rec-bottom small{font-size:12px;font-weight:550;color:#627581;line-height:1.7}
+.rec-actions{margin-left:auto;gap:9px}
+.rec-actions button{font-size:14px;font-weight:700;min-height:43px;padding:10px 14px;color:#3c5b68}
+.rec-actions .pick{color:white}
+.rec-disclaimer{font-size:13px;font-weight:500;line-height:1.9;color:#637581}
+.bundle-note{font-size:14px;line-height:1.8;color:#785b29;padding:15px 17px}
+.quote-head{padding:24px}
+.quote-head h2{font-size:20px;font-weight:800}
+.live{font-size:12px;font-weight:700;padding:5px 9px}
+.quote-body{padding:24px}
+.tags{gap:7px}
+.tags span{font-size:13px;font-weight:650;padding:6px 9px;color:#46606f}
+.cost-label{font-size:15px;font-weight:650;color:#516976;margin-top:25px}
+.total{font-size:42px;line-height:1.4;font-weight:850}
+.total small{font-size:18px;font-weight:750}
+.breakdown{font-size:14px;font-weight:550;color:#5c707d;margin:20px 0}
+.row{gap:12px;margin:13px 0;align-items:baseline}
+.row b{font-weight:700;color:#354f5e;text-align:right}
+.gift{padding:18px 14px;font-size:14px;font-weight:650;gap:10px;flex-wrap:wrap}
+.gift strong{font-size:25px;font-weight:850;margin-left:auto}
+.conditions{font-size:12px;line-height:1.9;font-weight:500;color:#607582;margin:16px 0 22px}
+.primary,.secondary{font-size:16px;font-weight:800;min-height:52px;height:auto;padding:13px 12px;line-height:1.6}
+.micro{font-size:12px;color:#637784;line-height:1.8}
+.title{gap:11px;margin-bottom:19px;flex-wrap:wrap}
+.title h2{font-size:20px;font-weight:800;line-height:1.5}
+.title .sub{font-size:13px;color:#637784;font-weight:600}
+.num{width:28px;height:28px;font-size:14px;font-weight:800}
+.combos button{height:72px;font-size:17px;font-weight:750;padding:0 18px}
+.symbol{width:32px;height:32px}
+.speed{min-height:178px;padding:23px 16px 18px}
+.speed strong{font-size:30px;font-weight:850}
+.speed strong small{font-size:16px;font-weight:650}
+.speed .use{font-size:13px;font-weight:550;line-height:1.7;color:#5c7380;min-height:44px;margin:10px 0 13px}
+.speed .price{font-size:16px;font-weight:750}
+.badge{font-size:12px;font-weight:700;line-height:1.7}
+.checkline{font-size:14px;font-weight:600;color:#425e6d;flex-wrap:wrap;line-height:1.8}
+.checkline .help{font-size:12px;font-weight:500;color:#647b87}
+input[type=checkbox]{width:18px;height:18px;flex-shrink:0}
+.tv button{padding:20px 15px}
+.tv strong{font-size:17px;font-weight:800}
+.tv small{font-size:13px;font-weight:550;color:#5c7380;line-height:1.7;margin:9px 0 15px}
+.tv b{font-size:15px;font-weight:750}
+.more{font-size:14px;font-weight:650;color:#496773;padding:8px 0}
+.preview-note{font-size:14px;line-height:1.9;color:#607683}
+.preview-note b{font-size:15px;color:#3f5b6b}
+.footer{font-size:12px;color:#647b88;line-height:1.9}
+dialog p{font-size:16px;line-height:1.9;color:#506b79}
+@media(min-width:801px){.layout{grid-template-columns:minmax(0,1fr) 350px}}
+@media(max-width:800px){
+.nav nav a{font-size:14px}.intro p{font-size:14px}.modes button{font-size:15px;padding:13px 8px}
+.results-heading h2{font-size:20px}.results-heading small{font-size:12px}
+.rec-banner{font-size:12px;padding:11px 17px}.rec-main{padding:22px 17px;gap:15px;grid-template-columns:minmax(0,1fr)}
+.rec-kicker{font-size:12px}.rec-title{font-size:21px}.rec-spec{font-size:14px}.rec-reason{font-size:13px;max-width:none}
+.rec-price{text-align:left;border-top:1px solid #edf1f2;padding-top:12px;white-space:normal}.rec-price strong{font-size:28px;margin:2px 0}.rec-price small,.rec-price span{font-size:13px}
+.rec-bottom{margin:0 17px;padding:14px 0}.rec-bottom small{font-size:12px}.rec-actions{width:100%;margin:0}.rec-actions button{flex:1;font-size:14px;min-height:44px}
+.rec-disclaimer{font-size:12px}.bundle-note{font-size:13px}.quote-head h2{font-size:19px}.quote-head,.quote-body{padding:21px}
+.total{font-size:38px}.gift strong{font-size:24px}.conditions,.micro{font-size:12px}
+.title h2{font-size:18px}.title .sub{font-size:12px}.combos button{font-size:15px;height:68px;padding:0 12px}
+.speed{padding:18px 11px;min-height:169px}.speed strong{font-size:26px}.speed strong small{font-size:13px}.speed .use{font-size:12px;min-height:42px}.speed .price{font-size:14px}.badge{font-size:11px}
+.checkline{font-size:14px}.checkline .help{font-size:12px}.tv button{padding:17px 10px}.tv strong{font-size:15px}.tv small{font-size:12px}.tv b{font-size:13px}
+.preview-note{font-size:13px}.preview-note b{font-size:14px}.footer{margin-bottom:110px}
+.mobilebar{gap:14px}.mobilebar small{font-size:12px;font-weight:600;color:#516c7a}.mobilebar b{font-size:23px}.mobilebar .primary{font-size:15px;min-height:48px;padding:11px 8px}
+}/* Clear heading hierarchy and prominent introduction */
+body{font-synthesis:weight}
+.intro{padding-top:48px;padding-bottom:32px;gap:30px;align-items:center}
+.eyebrow{font-size:15px;font-weight:800;line-height:1.6;letter-spacing:.025em;color:#078b79}
+.intro h1{font-size:46px;font-weight:900;line-height:1.32;letter-spacing:-.055em;margin:14px 0 18px;color:#132b40;word-break:keep-all}
+.intro h1 em{font-weight:900;color:#079c87}
+.intro p{font-size:18px;font-weight:600;line-height:1.8;color:#4c6475;word-break:keep-all}
+.intro .hint{font-size:15px;font-weight:550;line-height:1.9;color:#536d7d;flex-shrink:0}
+.intro .hint b{display:inline-block;font-size:18px;font-weight:800;color:#203e54;margin-bottom:7px}
+.modes button{font-size:17px;font-weight:750}.modes button[aria-selected=true]{font-weight:850}
+.mode-caption{font-size:15px;font-weight:600}
+.personalize h2{font-size:23px;font-weight:850;line-height:1.5;letter-spacing:-.045em}
+.personalize p{font-size:15px;font-weight:550}
+.questions legend{font-size:17px;font-weight:800}
+.results-heading h2{font-size:26px;font-weight:850;line-height:1.45;letter-spacing:-.045em;word-break:keep-all}
+.results-heading small{font-size:14px;font-weight:650}
+.rec-title{font-size:25px;font-weight:850;line-height:1.45;letter-spacing:-.045em;word-break:keep-all}
+.quote-head h2{font-size:23px;font-weight:850;line-height:1.4}
+.title h2{font-size:23px;font-weight:850;line-height:1.45;letter-spacing:-.045em;word-break:keep-all}
+.tv strong{font-size:19px;font-weight:800}
+.preview-note b{font-size:17px;font-weight:800}
+dialog h2{font-size:27px;font-weight:850;line-height:1.45}
+@media(min-width:801px) and (max-width:1050px){.intro h1{font-size:40px}.intro .hint{font-size:13px}.intro .hint b{font-size:16px}.intro{gap:20px}}
+@media(max-width:800px){
+.intro{padding:32px 20px 27px;gap:0}
+.eyebrow{font-size:14px;font-weight:800}
+.intro h1{font-size:34px;font-weight:900;line-height:1.35;margin:12px 0 16px}
+.intro h1 em{font-weight:900}
+.intro p{font-size:16px;font-weight:600;line-height:1.8}
+.modes button{font-size:16px;font-weight:750}
+.personalize h2{font-size:21px;font-weight:850}.personalize p{font-size:14px}.questions legend{font-size:16px;font-weight:800}
+.results-heading{align-items:flex-start;flex-wrap:wrap;gap:6px 12px}.results-heading h2{font-size:23px;font-weight:850}.results-heading small{font-size:13px}
+.rec-title{font-size:23px;font-weight:850}.quote-head h2{font-size:22px;font-weight:850}.title h2{font-size:21px;font-weight:850}
+.tv strong{font-size:17px;font-weight:800}.preview-note b{font-size:16px;font-weight:800}dialog h2{font-size:25px}
+}
+@media(max-width:380px){.intro h1{font-size:30px}.intro p{font-size:15px}.personalize-top{align-items:flex-start;flex-wrap:wrap}.personalize h2{font-size:20px}.results-heading h2{font-size:22px}}/* Restore introduction font sizes, retain current weights */
+.intro .eyebrow{font-size:12px}
+.intro h1{font-size:33px}
+.intro p{font-size:16px}
+@media(max-width:800px){.intro .eyebrow{font-size:12px}.intro h1{font-size:28px}.intro p{font-size:14px}}/* Slightly more compact proportions, preserving typography weights */
+.modes button{font-size:15px;padding:11px 25px}
+.mode-caption{font-size:13px}
+.personalize{padding:21px 23px;margin-bottom:20px}
+.personalize h2{font-size:21px}.personalize p{font-size:14px}
+.personalize .start{font-size:13px;padding:11px 15px;min-height:43px}
+.questions{padding-top:19px;margin-top:18px}.questions fieldset{margin-bottom:20px}
+.questions legend{font-size:15px;margin-bottom:10px}
+.answers{gap:8px}.answers button{font-size:13px;padding:10px 13px;min-height:42px}
+.question-bottom .primary{font-size:14px;height:44px;min-height:44px;padding:10px 20px}
+.results-heading{margin-bottom:14px}.results-heading h2{font-size:23px}.results-heading small{font-size:12px}
+.rec-card{margin-bottom:14px}.rec-banner{padding:9px 21px;font-size:12px}
+.rec-main{padding:21px;gap:17px}.rec-kicker{font-size:12px;margin-bottom:6px}
+.rec-title{font-size:22px;margin-bottom:8px}.rec-spec{font-size:14px;margin-bottom:8px}
+.rec-reason{font-size:13px;line-height:1.75}
+.rec-price strong{font-size:26px}.rec-price small,.rec-price span{font-size:12px}
+.rec-bottom{margin:0 21px;padding:12px 0}.rec-bottom small{font-size:11px}
+.rec-actions button{font-size:13px;min-height:39px;padding:8px 12px}
+.rec-disclaimer{font-size:12px}.bundle-note{font-size:13px;padding:12px 15px}
+.quote-head{padding:21px}.quote-head h2{font-size:21px}.live{font-size:11px}
+.quote-body{padding:21px}.tags span{font-size:12px;padding:5px 8px}
+.cost-label{font-size:14px;margin-top:22px}.total{font-size:38px}.total small{font-size:17px}
+.breakdown{font-size:13px;margin:17px 0}.row{margin:11px 0}
+.gift{padding:15px 13px;font-size:13px;margin-top:19px}.gift strong{font-size:23px}
+.conditions{margin:13px 0 19px}.primary,.secondary{font-size:15px;min-height:48px;padding:11px 12px}
+.title h2{font-size:21px}.title .sub{font-size:12px}.num{width:26px;height:26px;font-size:13px}
+.config{padding:26px}.section+.section{padding-top:23px;margin-top:24px}
+.carriers .option{height:79px;font-size:21px}.carriers .option:nth-child(n+4){font-size:16px}
+.combos button{height:66px;font-size:16px}.speed{min-height:164px;padding:20px 14px 16px}
+.speed strong{font-size:28px}.speed strong small{font-size:14px}.speed .price{font-size:15px}.speed .use{margin:8px 0 11px}
+.tv button{padding:18px 13px}.tv strong{font-size:17px}.tv b{font-size:14px}
+.checkline{font-size:13px}.more{font-size:13px}
+@media(max-width:800px){
+.modes button{font-size:14px;padding:11px 8px}
+.personalize{padding:18px 16px}.personalize h2{font-size:19px}.personalize p{font-size:13px}.personalize .start{font-size:12px;min-height:42px}
+.questions legend{font-size:14px}.answers button{font-size:12px;min-height:42px;padding:10px 12px}
+.results-heading h2{font-size:21px}.results-heading small{font-size:12px}
+.rec-banner{padding:9px 16px}.rec-main{padding:19px 16px;gap:12px}.rec-title{font-size:21px}.rec-spec{font-size:13px}.rec-reason{font-size:12px}
+.rec-price strong{font-size:25px}.rec-bottom{margin:0 16px;padding:12px 0}.rec-actions button{font-size:13px;min-height:42px}
+.quote-head,.quote-body{padding:19px}.quote-head h2{font-size:20px}.total{font-size:35px}.gift strong{font-size:22px}
+.config{padding:21px 17px}.title h2{font-size:19px}.carriers .option{height:73px;font-size:20px}.carriers .option:nth-child(n+4){font-size:14px}
+.combos button{height:62px;font-size:14px}.speed{min-height:158px;padding:17px 10px}.speed strong{font-size:25px}.speed strong small{font-size:12px}.speed .price{font-size:13px}
+.tv button{padding:15px 10px}.tv strong{font-size:16px}.tv b{font-size:13px}
+.mobilebar .primary{font-size:14px;min-height:46px}.mobilebar b{font-size:21px}
+}.rec-card{cursor:pointer;touch-action:manipulation}.rec-card:focus-visible{outline:3px solid #087e6d;outline-offset:4px}@media(hover:hover){.rec-card:hover{border-color:#0ba58d}}/* Brighter blue and navy palette with warm benefit accents */
+:root{--accent:#2859ed;--accent-dark:#1943c4;--ink:#172744;--muted:#56677f;--line:#dce4f1;--blue-tint:#edf3ff;--benefit:#b64a0a}
+body{background:#f5f7fd;color:var(--ink)}
+header{background:#fff;border-color:var(--line)}
+.logo{color:var(--accent)}.logo span{color:#172744}
+.nav nav a.active{color:var(--accent);border-color:var(--accent)}
+.eyebrow,.intro .eyebrow{color:var(--accent)}
+.intro h1{color:#15274c}.intro h1 em{color:var(--accent)}
+.intro p,.intro .hint,.mode-caption{color:var(--muted)}.intro .hint b{color:#263e66}
+.modes{background:#e5eafa}.modes button{color:#566787}.modes button[aria-selected=true]{background:#fff;color:var(--accent);box-shadow:0 2px 7px #263b7415}
+.personalize{background:#edf3ff;border-color:#cddcfc}
+.personalize h2{color:#1c3871}.personalize p{color:#506b94}
+.personalize .start{background:#fff;color:#2452d5;border-color:#b7caf7}
+.questions{border-color:#cedcfa}.questions legend{color:#203a68}
+.answers button{color:#405d86;border-color:#ccd9ee;background:#fff}
+.answers button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.question-bottom small{color:#596f91}
+.results-heading h2{color:#182d52}.results-heading small{color:#61718a}
+.rec-card{background:#fff;border-color:var(--line);box-shadow:0 3px 13px #273e6d04}
+.rec-card.chosen{border-color:var(--accent);box-shadow:0 5px 22px #2859ed13}
+.rec-banner{background:#f0f3fb;color:#536b91}
+.rec-card.chosen .rec-banner{background:#e4edff;color:#204fda}
+.rec-title{color:#172d53}.rec-kicker{color:#536d91}.rec-spec{color:#365a91}.rec-reason{color:#60728b}
+.rec-price strong{color:#183c86}.rec-price small{color:#5f7290}.rec-price span{color:var(--benefit)}
+.rec-bottom{border-color:#e6ebf5}.rec-bottom small{color:#677992}
+.rec-actions button{background:#fff;color:#3b5b8e;border-color:#d1dcf0}
+.rec-actions .pick{background:#edf2ff;border-color:#c7d6fb;color:#2852ca}
+.rec-card.chosen .pick{background:var(--accent);border-color:var(--accent);color:#fff}
+.rec-disclaimer{color:#66788f}.bundle-note{background:#fff6e9;border-color:#f5dbac;color:#885611}
+.quote{background:#fff;border-color:#d9e3f8;box-shadow:0 10px 35px #2947730c}
+.quote-head{background:#f7f9ff;border-color:#e2e9fa}.quote-head h2{color:#1a315b}
+.live{background:#e7eeff;color:#2853d4}
+.tags span{background:#edf2fc;color:#46638f}
+.cost-label{color:#536b8e}.total{color:#1e4acb}
+.breakdown{color:#657895}.row b{color:#304f7b}
+.gift{background:#fff2e3;color:#a14e0c;border:1px solid #ffdeba}.gift strong{color:#c6530d}
+.conditions,.micro{color:#637792}
+.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 4px 12px #2859ed17}
+.primary:hover{background:var(--accent-dark);border-color:var(--accent-dark)}
+.secondary{background:#fff;color:#284d96;border-color:#c8d7f4}
+.config{border-color:var(--line)}.section+.section{border-color:#e8edf6}
+.num{background:#e8efff;color:var(--accent)}.title h2{color:#20385d}.title .sub{color:#637998}
+.option{border-color:#dce4f1}.option.selected{background:#edf3ff;border-color:var(--accent);box-shadow:0 0 0 1px #2859ed0a}
+.option.selected:after{background:var(--accent);color:white}
+.symbol{background:#eef2fc;color:#5373a7}.badge{color:#2758d6}
+.checkline{color:#49617f}.checkline .help{color:#6a7f99}input{accent-color:var(--accent)}
+.speed .use,.tv small{color:#617896}.speed .price,.tv b{color:#294b7f}
+.more{color:#345ec2}.preview-note{background:#f8faff;border-color:#cbd9f1;color:#647b97}.preview-note b{color:#36547f}.preview-note a{color:#2859dc}
+.footer{color:#70809b}.mobilebar{background:#ffffffef;border-color:#dbe4f5;box-shadow:0 -5px 25px #2347830c}.mobilebar b{color:#234dca}.mobilebar small{color:#5b7191}
+button:focus-visible,a:focus-visible,input:focus-visible,.mode-wrap button:focus-visible,.answers button:focus-visible,.rec-card:focus-visible{outline-color:#2859ed}
+@media(hover:hover){.option:hover{border-color:#668af3;background:#f6f9ff}.rec-card:hover{border-color:#668af3}.rec-actions button:hover,.secondary:hover{background:#f0f5ff}.answers button:not([aria-pressed=true]):hover{background:#f2f6ff}}/* Diverse accents: emerald actions, coral, violet and amber product cues */
+:root{--accent:#07866d;--accent-dark:#056b57;--ink:#232633;--muted:#606674;--line:#e1e4e9;--blue-tint:#eff9f4;--benefit:#b54718}
+body{background:#f7f8fa;color:var(--ink)}header{border-color:#e6e8ed}
+.logo{color:#0a987c}.logo span{color:#252939}.nav nav a.active{color:#07866d;border-color:#07866d}
+.eyebrow,.intro .eyebrow{color:#07866d}.intro h1{color:#242837}.intro h1 em{color:#07866d}
+.intro p,.intro .hint,.mode-caption{color:#606674}.intro .hint b{color:#343947}
+.modes{background:#e9edf0}.modes button{color:#626b75}.modes button[aria-selected=true]{background:white;color:#08745f;box-shadow:0 2px 7px #263b7410}
+.personalize{background:#f0f8f4;border-color:#cfe7dc;border-left:4px solid #0a9477}.personalize h2{color:#283a34}.personalize p{color:#5c7168}.personalize .start{background:white;color:#08765f;border-color:#a7cfc0}
+.questions{border-color:#d3e5db}.questions legend{color:#303e38}.answers button{background:white;color:#52655c;border-color:#d4dfd9}.answers button[aria-pressed=true]{background:#07866d;border-color:#07866d;color:white}.question-bottom small{color:#66756e}
+.results-heading h2{color:#282c39}.results-heading small{color:#6c7180}
+.rec-card{background:white;border-color:#e0e4ea;box-shadow:0 3px 13px #28324405}.rec-banner{background:#292b36;color:#fff}.rec-card.chosen{border-color:#07866d;box-shadow:0 5px 22px #07866d15}.rec-card.chosen .rec-banner{background:#292b36;color:white}.rec-status{color:#d7dbe5}.rec-card.chosen .rec-status{color:#8df0c3;font-weight:800}
+.rec-banner>span:first-child{border-radius:4px;padding:2px 8px;background:#ffdfd5;color:#92331d}
+.rec-card:nth-child(2) .rec-banner>span:first-child{background:#eae2ff;color:#62409b}
+.rec-card:nth-child(3) .rec-banner>span:first-child{background:#fff0ca;color:#80590b}
+.rec-title{color:#292c38}.rec-kicker{display:inline-block;background:#fff1f0;border:1px solid #f0c1bd;border-radius:5px;padding:3px 8px;color:#9e3e38;font-weight:700}
+.rec-spec{color:#5a526d}.rec-reason{color:#666b78}.rec-price strong{color:#252936}.rec-price small{color:#6d7280}
+.rec-price span{display:inline-block;border-radius:5px;padding:4px 7px;background:#fff3e8;border:1px solid #f5d4b9;color:#a3491f;font-weight:750}
+.rec-card:nth-child(2) .rec-spec{color:#7251a0}.rec-card:nth-child(3) .rec-spec{color:#92651a}
+.rec-bottom{border-color:#eaecf0}.rec-bottom small{color:#6c7380}.rec-actions button{background:white;color:#505866;border-color:#d7dce4}.rec-actions .pick{background:#eaf6ef;border-color:#badbca;color:#08735c}.rec-card.chosen .pick{background:#07866d;border-color:#07866d;color:white}
+.rec-disclaimer{color:#6a707d}.bundle-note{background:#fff7e9;border-color:#eddaad;color:#856019}
+.quote{background:white;border-color:#dfe4e3;box-shadow:0 10px 35px #293e3510}.quote-head{background:#fafbfc;border-color:#e6e9eb}.quote-head h2{color:#282c38}.live{background:#e8f6ee;color:#08735c}
+.tags span{background:#f0f1f5;color:#585d6f}.tags span:nth-child(1){background:#fff0ef;color:#9f413b}.tags span:nth-child(2){background:#f1eaff;color:#71509b}.tags span:nth-child(3){background:#fff4da;color:#87601b}.tags span:nth-child(4){background:#e9f5ed;color:#397454}
+.cost-label{color:#626977}.total{color:#242835}.breakdown{color:#6b707c}.row b{color:#3e4654}.gift{background:#fff2e3;color:#9a4b16;border-color:#f5d8b7}.gift strong{color:#c24e14}.conditions,.micro{color:#69717c}
+.primary{background:#07866d;border-color:#07866d;color:white;box-shadow:0 4px 12px #07866d1a}.primary:hover{background:#056b57;border-color:#056b57}.secondary{background:white;color:#353d49;border-color:#d1d8df}
+.config{border-color:#e1e5e9}.section+.section{border-color:#e8ebee}.title h2{color:#2c303d}.title .sub{color:#6b737e}.num{background:#e6f4ec;color:#08735c}
+.option{border-color:#dfe4e9}.option.selected{background:#eff9f3;border-color:#07866d;box-shadow:0 0 0 1px #07866d0a}.option.selected:after{background:#07866d;color:white}.symbol{background:#f0ecf7;color:#7d5e9f}
+.badge{display:inline-block;background:#f0eaff;color:#7350a1;padding:2px 6px;border-radius:4px}.checkline{color:#56645d}.checkline .help{color:#6c7772}input{accent-color:#07866d}.speed .use,.tv small{color:#6b707c}.speed .price,.tv b{color:#353c4a}
+.more{color:#705395}.preview-note{background:#fafbfc;border-color:#d1d9dd;color:#69767c}.preview-note b{color:#444d57}.preview-note a{color:#08735c}.footer{color:#747b86}.mobilebar{background:#ffffffef;border-color:#dfe6e2;box-shadow:0 -5px 25px #233d2d0a}.mobilebar b{color:#252a36}.mobilebar small{color:#68736e}
+button:focus-visible,a:focus-visible,input:focus-visible,.mode-wrap button:focus-visible,.answers button:focus-visible,.rec-card:focus-visible{outline-color:#07866d}
+@media(hover:hover){.option:hover{border-color:#55a78e;background:#f5fbf7}.rec-card:hover{border-color:#55a78e}.rec-actions button:hover,.secondary:hover{background:#f1f8f4}.answers button:not([aria-pressed=true]):hover{background:#f1f8f4}}/* Harmonized fresh palette: light color bands and a consistent emerald action */
+:root{--accent:#009b7a;--accent-dark:#007b61;--ink:#23343d;--muted:#5c6f79;--line:#dfe9e7;--benefit:#b9511c}
+body{background:#f7faf9;color:#23343d}header{border-color:#e5eeeb}
+.logo{color:#009b7a}.logo span{color:#23343d}.nav nav a.active{color:#00876c;border-color:#00a984}
+.intro h1{color:#213740}.intro h1 em,.eyebrow,.intro .eyebrow{color:#009675}.intro p,.intro .hint,.mode-caption{color:#586f7a}.intro .hint b{color:#314e58}
+.modes{background:#e9f1ee}.modes button{color:#596f69}.modes button[aria-selected=true]{color:#008568;box-shadow:0 2px 8px #225e4310}
+.personalize{background:#edfaf4;border-color:#cbeadc;border-left-color:#00a984}.personalize h2{color:#244b40}.personalize p{color:#57776c}.personalize .start{border-color:#a8dcca;color:#008469}
+.questions{border-color:#cfe8dd}.questions legend{color:#2e5145}.answers button{border-color:#d2e5dc;color:#4a695d}.answers button[aria-pressed=true]{background:#009b7a;border-color:#009b7a;color:#fff}
+.results-heading h2{color:#273e47}.results-heading small{color:#647b80}
+.rec-card{border-color:#dfebe6;box-shadow:0 4px 17px #245e4605}.rec-card.chosen{border-color:#00a984;box-shadow:0 5px 24px #00a98413}
+.rec-banner,.rec-card.chosen .rec-banner{background:#fff0eb;color:#a44d38;border-bottom:1px solid #ffe2d8}
+.rec-banner>span:first-child{background:#ffd9cc;color:#8a3924}.rec-status{color:#a45b47}
+.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner{background:#f2eeff;color:#7250a0;border-bottom-color:#e6ddfb}
+.rec-card:nth-child(2) .rec-banner>span:first-child{background:#e4d9ff;color:#634198}.rec-card:nth-child(2) .rec-status{color:#8064a5}
+.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#fff5e4;color:#95641f;border-bottom-color:#f7e6c6}
+.rec-card:nth-child(3) .rec-banner>span:first-child{background:#ffe5ad;color:#80510e}.rec-card:nth-child(3) .rec-status{color:#976f35}
+.rec-card.chosen .rec-status{background:#dcf6e8;color:#06774f;border:1px solid #a9dfc3;border-radius:5px;padding:2px 7px;font-weight:800}
+.rec-title{color:#263d46}.rec-kicker{background:#fff3f0;border-color:#f5d3ca;color:#ad503d}
+.rec-spec{color:#9a5a45}.rec-card:nth-child(2) .rec-spec{color:#7956a8}.rec-card:nth-child(3) .rec-spec{color:#946922}
+.rec-reason{color:#627781}.rec-price strong{color:#273e47}.rec-price small{color:#687d85}
+.rec-price span{background:#fff3e7;border-color:#f6dcc4;color:#b35825}.rec-bottom{border-color:#e9f0ed}.rec-bottom small{color:#6a7e85}
+.rec-actions button{border-color:#d5e4de;color:#526d65}.rec-actions .pick{background:#e9f8f0;border-color:#bde5d1;color:#00805e}.rec-card.chosen .pick{background:#009b7a;border-color:#009b7a;color:#fff}
+.quote{border-color:#dceae4;box-shadow:0 12px 35px #32634c09}.quote-head{background:#f2faf6;border-color:#e0eee7}.quote-head h2{color:#274339}.live{background:#dff5e9;color:#078057}
+.tags span{background:#e8f6ee;color:#42755c}.tags span:nth-child(1){background:#ffede8;color:#a54d3b}.tags span:nth-child(2){background:#eee7ff;color:#7954ab}.tags span:nth-child(3){background:#fff0cc;color:#90651e}.tags span:nth-child(4){background:#e0f6e8;color:#2e7b51}
+.cost-label{color:#5b746a}.total{color:#243e36}.breakdown{color:#647a73}.row b{color:#3c5c50}
+.gift{background:#fff2e3;border-color:#f5dab8;color:#ac5c24}.gift strong{color:#c35a20}
+.primary{background:#009b7a;border-color:#009b7a;box-shadow:0 4px 12px #009b7a18}.primary:hover{background:#007b61;border-color:#007b61}.secondary{border-color:#cfe2d9;color:#3a6252;background:#fff}
+.conditions,.micro,.rec-disclaimer{color:#667d78}.num{background:#e0f5e9;color:#008761}.title h2{color:#2c4840}
+.option{border-color:#dce9e2}.option.selected{background:#edfaf3;border-color:#00a984}.option.selected:after{background:#009b7a}.symbol{background:#f0e9ff;color:#815eaf}.badge{background:#eee6ff;color:#7950a9}
+.checkline{color:#526e61}input{accent-color:#009b7a}.speed .price,.tv b{color:#355c4b}.speed .use,.tv small{color:#657e73}
+.more{color:#805aab}.preview-note{background:#f5faf7;border-color:#cfe0d6}.preview-note a{color:#00866a}.mobilebar{border-color:#d8eae0}.mobilebar b{color:#25483a}
+button:focus-visible,a:focus-visible,input:focus-visible,.mode-wrap button:focus-visible,.answers button:focus-visible,.rec-card:focus-visible{outline-color:#009b7a}
+@media(hover:hover){.option:hover,.rec-card:hover{border-color:#58bda0}.option:hover,.answers button:not([aria-pressed=true]):hover,.rec-actions button:hover,.secondary:hover{background:#f0faf4}}/* Neutral product specification text */
+.rec-card .rec-spec,.rec-card:nth-child(2) .rec-spec,.rec-card:nth-child(3) .rec-spec{color:#46535e}/* SAKD home visual direction: neutral surfaces with restrained accents */
+:root{--accent:#0a9272;--accent-dark:#08765c;--ink:#0c1f3f;--muted:#5c6675;--line:#e6e9ee;--benefit:#c05224}
+body{background:#f6f8fa;color:#1b2433}header{background:#fff;border-color:#e6e9ee}
+.logo{color:#0fae86}.logo span{color:#0c1f3f}.nav nav a.active{color:#0c1f3f;border-color:#17c79a}
+.intro h1,.intro h1 em{color:#0c1f3f}.eyebrow,.intro .eyebrow{color:#098466}.intro p,.intro .hint,.mode-caption{color:#5c6675}.intro .hint b{color:#0c1f3f}
+.modes{background:#e9edf1}.modes button{color:#5c6675}.modes button[aria-selected=true]{color:#0c1f3f;background:#fff;box-shadow:0 2px 7px #10213f0a}
+.personalize{background:#fff;border:1px solid #e6e9ee}.personalize h2{color:#0c1f3f}.personalize p{color:#5c6675}.personalize .start{color:#087b60;border-color:#b8dfd1;background:#fff}
+.questions{border-color:#e6e9ee}.questions legend{color:#1b2433}.answers button{color:#5c6675;border-color:#dfe4ea;background:#fff}.answers button[aria-pressed=true]{background:#0a9272;border-color:#0a9272;color:#fff}.question-bottom small{color:#687282}
+.results-heading h2,.title h2,.quote-head h2{color:#0c1f3f}.results-heading small,.title .sub{color:#697585}
+.rec-card{background:#fff;border-color:#e6e9ee;box-shadow:none}.rec-card.chosen{border-color:#0fae86;box-shadow:0 5px 20px #10213f06}
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#fff;border-bottom:1px solid #edf0f3;color:#5c6675}
+.rec-banner>span:first-child{background:#fff0eb;color:#b14730;border-radius:5px}
+.rec-card:nth-child(2) .rec-banner>span:first-child{background:#f0eafb;color:#7553a1}
+.rec-card:nth-child(3) .rec-banner>span:first-child{background:#fff3da;color:#936419}
+.rec-card .rec-status,.rec-card:nth-child(2) .rec-status,.rec-card:nth-child(3) .rec-status{background:none;border:0;color:#687282;padding:2px 7px}
+.rec-card.chosen .rec-status{background:#e7f7ef;border:1px solid #c5e9d8;color:#087b59}
+.rec-title{color:#0c1f3f}.rec-kicker{background:#f6f8fa;border:1px solid #e6e9ee;color:#5c6675}
+.rec-card .rec-spec,.rec-card:nth-child(2) .rec-spec,.rec-card:nth-child(3) .rec-spec{color:#354052}.rec-reason{color:#657080}
+.rec-price strong{color:#0c1f3f}.rec-price small{color:#697585}.rec-price span{background:#fff5ec;border-color:#f3dfcd;color:#b35129}
+.rec-bottom{border-color:#e6e9ee}.rec-bottom small{color:#697585}.rec-actions button{background:#fff;border-color:#dce2e9;color:#435269}
+.rec-actions .pick{background:#fff;border-color:#9fd6c3;color:#087b60}.rec-card.chosen .pick{background:#0a9272;border-color:#0a9272;color:#fff}
+.rec-disclaimer,.conditions,.micro{color:#697585}.bundle-note{background:#fff9ee;border-color:#efdfbf;color:#876128}
+.quote{background:#fff;border-color:#e6e9ee;box-shadow:0 8px 24px #10213f06}.quote-head{background:#fff;border-color:#e6e9ee}.live{background:#e7f7ef;color:#087b59}
+.tags span,.tags span:nth-child(1),.tags span:nth-child(2),.tags span:nth-child(3),.tags span:nth-child(4){background:#f1f4f7;color:#526174}
+.cost-label{color:#5c6675}.total{color:#0c1f3f}.breakdown{color:#657080}.row b{color:#354052}
+.gift{background:#fff7ef;border-color:#f4e0ce;color:#aa542b}.gift strong{color:#c05224}
+.primary{background:#0a9272;border-color:#0a9272;color:#fff;box-shadow:none}.primary:hover{background:#08765c;border-color:#08765c}.secondary{background:#fff;border-color:#dce2e9;color:#0c1f3f}
+.config{background:#fff;border-color:#e6e9ee}.section+.section{border-color:#e6e9ee}.num{background:#e7f7ef;color:#087b59}
+.option{background:#fff;border-color:#e0e5eb}.option.selected{background:#f1fbf6;border-color:#0fae86;box-shadow:none}.option.selected:after{background:#0a9272;color:#fff}
+.symbol{background:#f1f4f7;color:#66768b}.badge{background:#f0eafb;color:#7553a1}.checkline{color:#435269}.checkline .help{color:#697585}input{accent-color:#0a9272}
+.speed .price,.tv b{color:#0c1f3f}.speed .use,.tv small{color:#657080}.more{color:#526174}
+.preview-note{background:#fff;border-color:#dce2e9;color:#697585}.preview-note b{color:#354052}.preview-note a{color:#087b60}.footer{color:#738092}
+.mobilebar{background:#ffffffef;border-color:#e6e9ee}.mobilebar b{color:#0c1f3f}.mobilebar small{color:#5c6675}
+button:focus-visible,a:focus-visible,input:focus-visible,.mode-wrap button:focus-visible,.answers button:focus-visible,.rec-card:focus-visible{outline-color:#0a9272}
+@media(hover:hover){.option:hover,.rec-card:hover{border-color:#78c9af}.option:hover,.answers button:not([aria-pressed=true]):hover,.rec-actions button:hover,.secondary:hover{background:#f7fbf9}}/* Recommendation card background matches the SAKD BEST navy badge */
+.rec-card{background:#0c1f3f;border-color:#20365a;color:#fff}
+.rec-card.chosen{border-color:#17c79a;box-shadow:0 0 0 1px #17c79a}
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#0c1f3f;border-bottom-color:#344664;color:#fff}
+.rec-card .rec-title,.rec-card .rec-price strong{color:#fff}
+.rec-card .rec-spec,.rec-card:nth-child(2) .rec-spec,.rec-card:nth-child(3) .rec-spec{color:#e3eaf5}
+.rec-card .rec-reason,.rec-card .rec-price small,.rec-card .rec-bottom small{color:#c4cfe0}
+.rec-card .rec-kicker{background:#1b3152;border-color:#435576;color:#e1e9f5}
+.rec-card .rec-status,.rec-card:nth-child(2) .rec-status,.rec-card:nth-child(3) .rec-status{color:#cbd6e7}
+.rec-card.chosen .rec-status{background:#dff9ed;border-color:#91dcbc;color:#075b40}
+.rec-card .rec-bottom{border-color:#344664}
+.rec-card .rec-actions button{background:#fff;border-color:#dce2e9;color:#243b5e}
+.rec-card .rec-actions .pick{background:#e7f7ef;border-color:#b5e1ce;color:#075f48}
+.rec-card.chosen .rec-actions .pick{background:#0a9272;border-color:#36b996;color:#fff}
+@media(hover:hover){.rec-card:hover{border-color:#70d9b9}.rec-card .rec-actions button:hover{background:#edf6f2}}/* Navy top band, white content, pale navy footer */
+.rec-card{background:#fff;border-color:#dce3ed;color:#1b2433}
+.rec-card.chosen{border-color:#0fae86;box-shadow:0 0 0 1px #0fae86}
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#0c1f3f;border-bottom-color:#0c1f3f}
+.rec-card .rec-main{background:#fff}
+.rec-card .rec-title,.rec-card .rec-price strong{color:#0c1f3f}
+.rec-card .rec-spec,.rec-card:nth-child(2) .rec-spec,.rec-card:nth-child(3) .rec-spec{color:#354052}
+.rec-card .rec-reason,.rec-card .rec-price small,.rec-card .rec-bottom small{color:#657080}
+.rec-card .rec-kicker{background:#f6f8fa;border-color:#e6e9ee;color:#5c6675}
+.rec-card .rec-bottom{background:#edf1f7;border-top:1px solid #dfe6f0;margin:0;padding:12px 21px}
+.rec-card .rec-actions button{background:#fff;border-color:#cfd9e6;color:#243b5e}
+.rec-card .rec-actions .pick{background:#fff;border-color:#9fd6c3;color:#087b60}
+.rec-card.chosen .rec-actions .pick{background:#0a9272;border-color:#0a9272;color:#fff}
+@media(max-width:800px){.rec-card .rec-bottom{margin:0;padding:12px 16px}}/* Softer navy top band */
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#374962;border-bottom-color:#374962}
+.rec-card .rec-status,.rec-card:nth-child(2) .rec-status,.rec-card:nth-child(3) .rec-status{color:#f0f4fa}
+.rec-card.chosen .rec-status{color:#075b40}/* Swap selected card header and selected button backgrounds */
+.rec-card.chosen .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#0a9272;border-bottom-color:#0a9272}
+.rec-card.chosen .rec-actions .pick{background:#374962;border-color:#374962;color:#fff}/* Apply swapped colors to all recommendation cards */
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#0a9272;border-bottom-color:#0a9272}
+.rec-card .rec-actions .pick,.rec-card.chosen .rec-actions .pick{background:#374962;border-color:#374962;color:#fff}
+@media(hover:hover){.rec-card .rec-actions .pick:hover{background:#2c3c53;border-color:#2c3c53;color:#fff}}/* Requested mint background for all recommendation card headers */
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#08C3AE;border-bottom-color:#08C3AE}
+.rec-card .rec-status,.rec-card:nth-child(2) .rec-status,.rec-card:nth-child(3) .rec-status{color:#123e42}
+.rec-card.chosen .rec-status{color:#075b40}/* White page background and clearer component boundaries */
+body{background:#ffffff}
+header{border-bottom-color:#cbd3dd}
+.personalize,.config,.quote,.rec-card{border-color:#bcc7d3}
+.rec-card.chosen{border-color:#0a9272;box-shadow:0 0 0 1px #0a9272}
+.option{border-color:#bbc6d2}
+.option.selected{border-color:#0a9272;box-shadow:0 0 0 1px #0a927226}
+.answers button{border-color:#b9c7d0}
+.answers button[aria-pressed=true]{border-color:#0a9272}
+.personalize .start{border-color:#82b9a7}
+.secondary,.rec-card .rec-actions button{border-color:#aebdcd}
+.rec-card .rec-actions .pick,.rec-card.chosen .rec-actions .pick{border-color:#374962}
+.rec-card .rec-kicker{border-color:#c6cfd9}
+.rec-card .rec-bottom{border-top-color:#c5cfdd}
+.quote-head,.questions,.section+.section{border-color:#cbd4de}
+.preview-note{border-color:#b6c3cf}
+.mobilebar{border-top-color:#bcc7d3}.rec-status:empty{display:none}/* Plain navy recommendation rank labels */
+.rec-card .rec-banner>span:first-child,.rec-card:nth-child(2) .rec-banner>span:first-child,.rec-card:nth-child(3) .rec-banner>span:first-child{background:transparent;border:0;box-shadow:none;color:#0c1f3f;padding:2px 0}/* Carrier identity badges matching reference colors */
+.rec-card .rec-kicker[data-carrier="KT"]{color:#bf303c;background:#fff4f4;border-color:#f3b7bd}
+.rec-card .rec-kicker[data-carrier="LG U+"],.rec-card .rec-kicker[data-carrier="LGU+"]{color:#e82f92;background:#fff3f9;border-color:#f5bfdb}
+.rec-card .rec-kicker[data-carrier="SKT"],.rec-card .rec-kicker[data-carrier="SKB"]{color:#6845ce;background:#f5f2ff;border-color:#ccbef6}
+.carriers .option.lg{color:#e82f92}.carriers .option.sk{color:#6845ce}
+.carriers .option.kt{color:#252936}.carriers .option.kt i{color:#d53742}.intro h1 .hero-word-accent{color:#009C8C}/* Vivid violet benefit accents matching the supplied reference */
+.rec-card .rec-price span{background:#f1edff;border-color:#c9bcff;color:#3619d5}
+.gift{background:#f1edff;border-color:#c9bcff;color:#3619d5}
+.gift strong{color:#3619d5}.rec-card .rec-kicker{display:inline-flex;align-items:center;gap:4px;padding:4px 7px}.rec-kicker .carrier-brand{font-size:14px;font-weight:850;line-height:1}.rec-kicker span{font-size:11px;color:#354052}/* Unify backgrounds with the second emerald composition; retain text colors */
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#0BB39F;border-bottom-color:#0BB39F}
+.rec-card{border-color:#b4d7cf}
+.rec-card.chosen{border-color:#0BB39F;box-shadow:0 0 0 1px #0BB39F}
+.rec-card .rec-actions .pick,.rec-card.chosen .rec-actions .pick{background:#105848;border-color:#105848}
+@media(hover:hover){.rec-card .rec-actions .pick:hover{background:#0c473a;border-color:#0c473a}}/* Match recommendation benefit badges to the emerald composition */
+.rec-card .rec-price span{background:#e2f7ef;border-color:#b9e5d4}/* Emerald text for recommendation benefit badges */
+.rec-card .rec-price span{color:#105848}/* Brighter teal recommendation selection buttons */
+.rec-card .rec-actions .pick,.rec-card.chosen .rec-actions .pick{background:#0BAF9A;border-color:#0BAF9A;color:#fff}
+@media(hover:hover){.rec-card .rec-actions .pick:hover{background:#099c89;border-color:#099c89;color:#fff}}/* White background for the current quote indicator */
+.rec-card.chosen .rec-status{background:#ffffff}/* White recommendation rank text */
+.rec-card .rec-banner>span:first-child,.rec-card:nth-child(2) .rec-banner>span:first-child,.rec-card:nth-child(3) .rec-banner>span:first-child{color:#ffffff}.rec-banner .rank-number{color:#FF4D5E;font-weight:900}/* Centered ranking headline with a coral pink rank */
+.rec-card .rec-banner{position:relative;justify-content:center;min-height:42px;padding-left:110px;padding-right:110px}
+.rec-card .rec-banner>span:first-child,.rec-card:nth-child(2) .rec-banner>span:first-child,.rec-card:nth-child(3) .rec-banner>span:first-child{text-align:center;font-size:14px;font-weight:800;color:#fff}
+.rec-banner .rank-number{color:#ff587a;font-size:inherit;font-weight:900}
+.rec-card .rec-banner .rec-status{position:absolute;right:15px;top:50%;transform:translateY(-50%)}
+@media(max-width:480px){.rec-card .rec-banner{padding-left:88px;padding-right:88px}.rec-card .rec-banner>span:first-child{font-size:13px}.rec-card .rec-banner .rec-status{right:10px;font-size:10px}}/* Keep recommendation rank headlines left aligned */
+.rec-card .rec-banner{justify-content:flex-start;padding-left:21px;padding-right:110px}
+.rec-card .rec-banner>span:first-child,.rec-card:nth-child(2) .rec-banner>span:first-child,.rec-card:nth-child(3) .rec-banner>span:first-child{text-align:left}
+@media(max-width:800px){.rec-card .rec-banner{padding-left:16px}}
+@media(max-width:480px){.rec-card .rec-banner{padding-right:88px}}/* Slightly brighter teal recommendation headers */
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#14C4AF;border-bottom-color:#14C4AF}/* Bright teal consultation call to action */
+.primary.cta{background:#0BAF9A;border-color:#0BAF9A}
+@media(hover:hover){.primary.cta:hover{background:#099c89;border-color:#099c89}}/* Readable toned-down navy recommendation heading */
+.rec-card .rec-banner>span:first-child,.rec-card:nth-child(2) .rec-banner>span:first-child,.rec-card:nth-child(3) .rec-banner>span:first-child{color:#243B53}
+.rec-banner .rank-number{color:#ff587a}/* Consistent green benefit presentation */
+.gift{background:#e2f7ef;border-color:#b9e5d4;color:#105848}
+.gift strong{color:#105848}/* Requested pale mint recommendation header background */
+.rec-card .rec-banner,.rec-card.chosen .rec-banner,.rec-card:nth-child(2) .rec-banner,.rec-card:nth-child(2).chosen .rec-banner,.rec-card:nth-child(3) .rec-banner,.rec-card:nth-child(3).chosen .rec-banner{background:#ABEAE3;border-bottom-color:#ABEAE3}/* Navy selection button only for the currently chosen recommendation */
+.rec-card.chosen .rec-actions .pick{background:#374962;border-color:#374962;color:#fff}
+@media(hover:hover){.rec-card.chosen .rec-actions .pick:hover{background:#2c3c53;border-color:#2c3c53;color:#fff}}/* Carrier logos use the original image assets */
+.carriers .option img{display:block;margin:auto;max-width:62%;max-height:46px;width:auto;height:auto;object-fit:contain;pointer-events:none}
+.carriers .option img.is-hellovision{max-width:74%}
+@media(max-width:800px){.carriers .option img{max-width:66%;max-height:40px}}</style></head><body>
+<header><div class="nav"><a class="logo" aria-label="싹딜" href="#">싹<span>딜</span></a><nav><a class="active" href="#">인터넷</a><a href="https://sakd.co.kr" target="_blank" rel="noopener">싹딜 홈 ↗</a></nav><small>INTERNET, SIMPLY.</small></div></header>
+<main><section class="intro"><div><h1>어떤 <span class="hero-word-accent">인터넷</span>이 좋을지,<br><em><span class="hero-word-accent">싹딜</span>과 함께 찾아보세요.</em></h1><p>추천으로 쉽게 시작하고, 원하는 구성으로 바꿔보세요.</p></div><div class="hint"><b><span style="color:#009C8C">내게 맞는 방법</span>으로 골라보세요</b><br>잘 모르겠다면 추천부터, 익숙하다면 직접 선택.</div></section>
+<div class="mode-wrap"><div class="modes" role="tablist" aria-label="상품 찾는 방법"><button role="tab" id="recommend-tab" aria-selected="true" aria-controls="recommend-panel">추천 상품</button><button role="tab" id="manual-tab" aria-selected="false" aria-controls="manual-panel" tabindex="-1">직접 선택하기</button></div><span class="mode-caption" id="mode-caption">선택이 어렵다면, 추천 구성부터 살펴보세요.</span></div><div class="layout"><section class="rec-panel" id="recommend-panel" role="tabpanel" aria-labelledby="recommend-tab"><div class="personalize"><div class="personalize-top"><div><h2>우리 집 조건으로 더 좁혀볼까요?</h2><p>어려운 통신 용어 없이, 간단한 질문 3개면 돼요.</p></div><button class="start" id="personalize-toggle" aria-expanded="false" aria-controls="questions">맞춤 추천 시작 ↗</button></div><div class="questions hidden" id="questions"><fieldset><legend>1. 주로 어떻게 사용하세요?</legend><div class="answers" data-question="usage"><button data-answer="light" aria-pressed="false">웹서핑·영상 시청</button><button data-answer="work" aria-pressed="false">재택근무·여러 기기</button><button data-answer="upload" aria-pressed="false">대용량 업로드</button><button data-answer="unknown" aria-pressed="true">잘 모르겠어요</button></div></fieldset><fieldset><legend>2. TV도 필요하세요?</legend><div class="answers" data-question="tv"><button data-answer="no" aria-pressed="false">인터넷만</button><button data-answer="yes" aria-pressed="false">TV도 함께</button><button data-answer="unknown" aria-pressed="true">아직 고민 중</button></div></fieldset><fieldset><legend>3. 결합할 휴대폰 통신사가 있나요?</legend><div class="answers" data-question="bundle"><button data-answer="KT" aria-pressed="false">KT</button><button data-answer="LG U+" aria-pressed="false">LG U+</button><button data-answer="SKT" aria-pressed="false">SKT</button><button data-answer="none" aria-pressed="false">결합 안 함</button><button data-answer="unknown" aria-pressed="true">잘 모르겠어요</button></div></fieldset><div class="question-bottom"><button class="primary" id="apply-recommendation">내 조건으로 추천 보기</button><small>개인정보 입력 없이 확인할 수 있어요.</small></div></div></div><div class="results-heading"><h2 id="results-title">이런 구성으로 시작해 보세요</h2><small id="results-count">기본 추천 3가지</small></div><div id="bundle-note" class="bundle-note hidden"></div><div id="recommendations" aria-live="polite"></div><p class="rec-disclaimer">KT는 기존 예시, LG U+·SK는 디자인 확인용 가상 상품입니다. LG·SK의 요금·혜택·구성은 실제 판매 조건이 아니며, 표시 순위는 시안용 추천 순서입니다. 결합 할인 및 실제 상품 데이터는 미연동 상태입니다.</p></section><div class="config hidden" id="manual-panel" role="tabpanel" aria-labelledby="manual-tab">
+<section class="section"><div class="title"><span class="num">1</span><h2>통신사를 선택해 주세요</h2><span class="sub">6개 통신사</span></div><div class="carriers" role="group" aria-label="통신사"><button class="option selected kt" data-carrier="KT" aria-pressed="true"><img src="internet-carriers/kt.png" alt="KT"></button><button class="option lg" data-carrier="LG U+" aria-pressed="false"><img src="internet-carriers/lg-uplus.webp" alt="LG U+"></button><button class="option sk" data-carrier="SKT" aria-pressed="false"><img src="internet-carriers/sk.png" alt="SKT"></button><button class="option sk" data-carrier="SKB" aria-pressed="false"><img src="internet-carriers/skb.png" alt="SKB"></button><button class="option sky" data-carrier="스카이라이프" aria-pressed="false"><img src="internet-carriers/skylife.png" alt="스카이라이프"></button><button class="option hello" data-carrier="LG헬로비전" aria-pressed="false"><img class="is-hellovision" src="internet-carriers/lg-hellovision.png" alt="LG헬로비전"></button></div></section>
+<section class="section"><div class="title"><span class="num">2</span><h2>어떤 상품이 필요하세요?</h2></div><div class="combos" role="group" aria-label="상품 구성"><button class="option" data-combo="solo" aria-pressed="false"><span class="symbol">⌁</span>인터넷만</button><button class="option selected" data-combo="tv" aria-pressed="true"><span class="symbol">▣</span>인터넷 + TV</button></div><div class="checkline"><label><input type="checkbox" id="phone">인터넷전화도 필요해요</label><span class="help" id="phone-note">선택 사항</span></div></section>
+<section class="section"><div class="title"><span class="num">3</span><h2>인터넷 속도를 골라주세요</h2><span class="sub">사용 패턴을 참고하세요</span></div><div class="speeds" role="group" aria-label="인터넷 속도"><button class="option speed" data-speed="0" aria-pressed="false"><strong>100<small> Mbps</small></strong><span class="use">웹서핑 · 가벼운 영상 시청</span><span class="price">월 23,100원</span></button><button class="option speed selected" data-speed="1" aria-pressed="true"><strong>500<small> Mbps</small></strong><span class="use">재택근무 · 여러 기기 연결</span><span class="price">월 28,600원</span><span class="badge">균형 있게 쓰고 싶다면</span></button><button class="option speed" data-speed="2" aria-pressed="false"><strong>1<small> Gbps</small></strong><span class="use">대용량 전송 · 잦은 업로드</span><span class="price">월 33,000원</span></button></div><div class="checkline"><label><input type="checkbox" id="router" checked>와이파이 공유기 포함</label><span class="help">요금은 아래 상세 내역에서 확인</span></div></section>
+<section class="section" id="tv-section"><div class="title"><span class="num">4</span><h2>TV 상품을 골라주세요</h2><span class="sub">주요 상품 먼저 보기</span></div><div class="tv" role="group" aria-label="TV 상품"><button class="option selected" data-tv="0" aria-pressed="true"><strong>베이직</strong><small>238채널 · 기본 구성</small><b>월 16,500원</b></button><button class="option" data-tv="1" aria-pressed="false"><strong>라이트</strong><small>240채널 · 확장 구성</small><b>월 17,600원</b></button><button class="option" data-tv="2" aria-pressed="false"><strong>에센스</strong><small>263채널 · 폭넓은 구성</small><b>월 20,900원</b></button><button class="option extra hidden" data-tv="3" aria-pressed="false"><strong>모든G</strong><small>250채널 · VOD 구성</small><b>월 24,200원</b></button><button class="option extra hidden" data-tv="4" aria-pressed="false"><strong>디즈니+모든G</strong><small>디즈니+ 포함 구성</small><b>월 25,900원</b></button></div><button class="more" id="more" aria-expanded="false">TV 상품 더 보기 ＋</button></section>
+</div><aside class="quote" aria-label="선택한 견적"><div class="quote-head"><h2>나의 인터넷 견적</h2><span class="live">● 실시간 반영</span></div><div class="quote-body"><div class="tags" id="tags"></div><p class="cost-label">예상 월 납부금</p><div class="total" aria-live="polite"><span id="total">45,100</span><small>원</small></div><div class="breakdown"><div class="row"><span>인터넷</span><b id="internet-price"></b></div><div class="row" id="tv-price-row"><span>TV</span><b id="tv-price"></b></div><div class="row"><span>공유기</span><b id="router-state">포함</b></div></div><div class="gift"><span>예상 가입 사은품</span><strong id="gift">450,000원</strong></div><p class="conditions" id="conditions">원본 KT 기본 선택 기준의 예시 견적입니다.<br>약정·결합·장비·설치비 조건은 상담 시 확인해 주세요.</p><button class="primary cta">이 견적으로 상담받기 ↗</button><button class="secondary online">온라인 신청하기</button><div class="micro">미리보기에서는 상담·신청이 접수되지 않아요</div></div></aside></div>
+<section class="preview-note"><div><b>이 아래는 기존 안내 영역으로 이어집니다</b>전체 요금표 · 할인 및 결합 안내 · 설치 안내 · 고객 후기<br>이번 시안에서는 상단 선택·견적 영역만 개선했습니다.</div><a href="https://sakd.co.kr/internet" target="_blank" rel="noopener">기존 페이지 보기 ↗</a></section><div class="footer">싹딜 인터넷 상단 리디자인 · 인터랙티브 미리보기<br>표시 요금과 사은품은 디자인 검토용이며, 실제 가입 조건을 보장하지 않습니다.</div></main>
+<div class="mobilebar"><div><small>예상 월 납부금</small><b id="mobile-total">45,100원</b></div><button class="primary cta">이 견적으로 상담받기</button></div><dialog id="dialog"><button class="close" aria-label="닫기">×</button><div class="eyebrow">DESIGN PREVIEW</div><h2 id="dialog-title">이 견적으로 상담받기</h2><p id="dialog-summary"></p><p>실제 서비스에서는 이 단계에서 이름과 연락처를 입력하도록 연결합니다. 지금은 디자인 미리보기로, 상담이나 가입이 접수되지 않습니다.</p><button class="primary" id="confirm">미리보기 계속하기</button></dialog>
+<script>
+const state={carrier:'KT',combo:'tv',speed:1,tv:0};const prices=[23100,28600,33000],speeds=['100Mbps','500Mbps','1Gbps'],tvPrices=[16500,17600,20900,24200,25900],tvNames=['베이직','라이트','에센스','모든G','디즈니+모든G'];const $=s=>document.querySelector(s),money=n=>n.toLocaleString('ko-KR');function update(){let known=['KT','LG U+','SKT'].includes(state.carrier),total=prices[state.speed]+(state.combo==='tv'?tvPrices[state.tv]:0);$('#tv-section').classList.toggle('hidden',state.combo!=='tv');$('#tv-price-row').classList.toggle('hidden',state.combo!=='tv');$('#tags').replaceChildren(...[state.carrier,speeds[state.speed],state.combo==='tv'?'TV '+tvNames[state.tv]:'인터넷 단독',...($('#router').checked?['공유기']:[])].map(v=>{let e=document.createElement('span');e.textContent=v;return e}));$('#total').textContent=known?money(total):'상담 후 안내';$('#total').nextElementSibling.classList.toggle('hidden',!known);$('#mobile-total').textContent=known?money(total)+'원':'상담 후 안내';$('#internet-price').textContent=known?money(prices[state.speed])+'원':'확인 필요';$('#tv-price').textContent=known?money(tvPrices[state.tv])+'원':'확인 필요';$('#router-state').textContent=$('#router').checked?'포함 · 추가비 확인 필요':'미선택 · 요금 확인 필요';$('#gift').textContent=known&&state.combo==='tv'&&state.speed===1&&state.tv===0?'450,000원':'조건 확인 필요';$('#conditions').innerHTML=known?(state.carrier==='KT'?'원본 KT 상품 금액을 사용한 예시 견적입니다.<br>약정·결합·공유기 제외 시 요금·설치비는 별도 확인이 필요해요.':'LG·SK 요금과 혜택은 디자인 검토용 가상 데이터입니다.<br>실제 판매 요금이나 가입 혜택이 아닙니다.'):'선택 흐름을 확인하기 위한 미리보기입니다.<br>이 통신사의 요금·사은품 데이터는 아직 연동 전이에요.';document.querySelectorAll('.speed .price').forEach((e,i)=>e.textContent=known?'월 '+money(prices[i])+'원':'요금 확인 필요');document.querySelectorAll('.tv b').forEach((e,i)=>e.textContent=known?'월 '+money(tvPrices[i])+'원':'요금 확인 필요');}for(let key of ['carrier','combo','speed','tv'])document.querySelectorAll('[data-'+key+']').forEach(b=>b.addEventListener('click',()=>{state[key]=key==='speed'||key==='tv'?Number(b.dataset[key]):b.dataset[key];document.querySelectorAll('[data-'+key+']').forEach(x=>{x.classList.toggle('selected',x===b);x.setAttribute('aria-pressed',x===b?'true':'false')});update()}));$('#router').addEventListener('change',update);$('#phone').addEventListener('change',()=>{$('#phone-note').textContent=$('#phone').checked?'추가 요금은 상담 시 안내':'선택 사항'});$('#more').onclick=()=>{let open=$('#more').getAttribute('aria-expanded')!=='true';document.querySelectorAll('.extra').forEach(x=>x.classList.toggle('hidden',!open));$('#more').setAttribute('aria-expanded',String(open));$('#more').textContent=open?'주요 상품만 보기 −':'TV 상품 더 보기 ＋'};function show(title){$('#dialog-title').textContent=title;$('#dialog-summary').textContent=[state.carrier,speeds[state.speed],state.combo==='tv'?'TV '+tvNames[state.tv]:'인터넷 단독'].join(' · ');$('#dialog').showModal()}document.querySelectorAll('.cta').forEach(x=>x.onclick=()=>show('이 견적으로 상담받기'));$('.online').onclick=()=>show('온라인 신청하기');$('.close').onclick=$('#confirm').onclick=()=>$('#dialog').close();update();
+
+const answers={usage:'unknown',tv:'unknown',bundle:'unknown'};let customized=false;let recs=[];let currentRec=-1;function setMode(mode){const rec=mode==='recommend';$('#recommend-panel').classList.toggle('hidden',!rec);$('#manual-panel').classList.toggle('hidden',rec);for(const id of ['recommend','manual']){let b=$('#'+id+'-tab');b.setAttribute('aria-selected',String(id===mode));b.tabIndex=id===mode?0:-1}$('#mode-caption').textContent=rec?'선택이 어렵다면, 추천 구성부터 살펴보세요.':'원하는 통신사와 상품을 자유롭게 조합해 보세요.';}$('#recommend-tab').onclick=()=>setMode('recommend');$('#manual-tab').onclick=()=>setMode('manual');for(const id of ['recommend','manual'])$('#'+id+'-tab').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const next=id==='recommend'?'manual':'recommend';setMode(next);$('#'+next+'-tab').focus()}});$('#personalize-toggle').onclick=()=>{const open=$('#personalize-toggle').getAttribute('aria-expanded')!=='true';$('#questions').classList.toggle('hidden',!open);$('#personalize-toggle').setAttribute('aria-expanded',String(open));$('#personalize-toggle').textContent=open?'질문 접기 −':'맞춤 추천 시작 ↗'};document.querySelectorAll('[data-question]').forEach(group=>group.querySelectorAll('button').forEach(b=>b.onclick=()=>{answers[group.dataset.question]=b.dataset.answer;group.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)))}));
+function makeRec(speed,combo,title,reason){return{speed,combo,title,reason}}function renderRecs(){if(!customized){recs=[makeRec(0,'solo','가볍게 쓰는 인터넷','웹서핑과 영상 시청 위주라면 이 구성부터.'),makeRec(1,'solo','여러 기기를 여유롭게','재택근무와 여러 기기 동시 사용을 고려했어요.'),makeRec(1,'tv','인터넷과 TV를 함께','인터넷과 기본 TV 상품을 한 번에 비교해요.')]}else{let speed=answers.usage==='light'?0:answers.usage==='upload'?2:1;let combo=answers.tv==='yes'?'tv':'solo';let reasons={light:'웹서핑·영상 시청 중심으로 답하셔서 추천해요.',work:'재택근무·여러 기기 사용을 고려한 구성이에요.',upload:'대용량 업로드를 자주 하는 사용을 고려했어요.',unknown:'속도를 잘 모르실 때 비교를 시작할 기본 구성이에요.'};recs=[makeRec(speed,combo,'내 조건에 맞춘 기본 추천',reasons[answers.usage]),makeRec(speed===0?1:speed-1,combo,speed===0?'속도에 여유를 더하면':'월요금을 더 낮추면','속도와 월요금의 차이를 함께 비교해 보세요.'),makeRec(speed,combo==='tv'?'solo':'tv',combo==='tv'?'TV가 필요 없다면':'TV도 함께 본다면','TV 포함 여부에 따른 요금 차이를 확인해 보세요.')]}$('#results-title').textContent=customized?'답변에 맞춰 이렇게 골라봤어요':'이런 구성으로 시작해 보세요';$('#results-count').textContent=customized?'추천 1개 + 비교 구성 2개':'기본 추천 3가지';let bundle=answers.bundle;$('#bundle-note').classList.toggle('hidden',!customized||bundle==='none');$('#bundle-note').textContent=bundle==='unknown'?'결합 가능 여부를 모르셔도 괜찮아요. 아래는 결합 할인 전 요금이며, 상담에서 추가 할인을 확인할 수 있어요.':bundle==='KT'?'KT 휴대폰 결합 가능 여부를 확인해 보세요. 아래 금액에는 결합 할인이 적용되지 않았어요.':bundle+' 휴대폰을 사용 중이시군요. 아래 해당 통신사 구성은 디자인 검토용 가상 예시이며 결합 할인은 적용되지 않았습니다.';$('#recommendations').replaceChildren(...recs.map((r,i)=>{r.carrier=["KT","LG U+","SKT"][i];let card=document.createElement('article');card.className='rec-card';card.dataset.rec=i;let total=prices[r.speed]+(r.combo==='tv'?tvPrices[0]:0);card.innerHTML='<div class="rec-banner"><span>'+('<strong class="rank-number">'+String(i+1)+'위</strong> 추천 상품')+'</span><span class="rec-status"></span></div><div class="rec-main"><div><div class="rec-kicker" data-carrier="'+r.carrier+'"><strong class="carrier-brand">'+({'KT':'kt','LG U+':'U+','SKT':'T'}[r.carrier])+'</strong> <span>'+({'KT':'KT','LG U+':'LG','SKT':'SK'}[r.carrier])+'</span></div><h3 class="rec-title">'+r.title+'</h3><p class="rec-spec">'+speeds[r.speed]+(r.combo==='tv'?' · 베이직 238채널':' · 와이파이 공유기 포함')+'</p><p class="rec-reason">'+r.reason+'</p></div><div class="rec-price"><small>예상 월요금</small><strong>'+money(total)+'<small> 원</small></strong><span>'+(r.speed===1&&r.combo==='tv'?'예상 사은품 450,000원':'사은품 조건 확인')+'</span></div></div><div class="rec-bottom"><small>'+('결합 할인 전 예시 요금')+'</small><div class="rec-actions"><button class="edit">구성 바꿔보기</button><button class="pick">견적에 담기</button></div></div>';card.tabIndex=0;
+card.setAttribute('aria-label',r.title+' 선택');
+card.addEventListener('click',event=>{if(event.target.closest('button,a,input,select,textarea'))return;pickRec(i)});
+card.addEventListener('keydown',event=>{if(event.target!==card)return;if(event.key==='Enter'||event.key===' '){event.preventDefault();pickRec(i)}});
+card.querySelector('.pick').onclick=()=>pickRec(i);card.querySelector('.edit').onclick=()=>{pickRec(i);setMode('manual');$('#manual-tab').focus()};return card}));pickRec(customized?0:2)}function pickRec(i){let r=recs[i];currentRec=i;document.querySelector('.carriers [data-carrier="'+r.carrier+'"]').click();document.querySelector('[data-combo="'+r.combo+'"]').click();document.querySelector('[data-speed="'+r.speed+'"]').click();document.querySelector('[data-tv="0"]').click();$('#router').checked=true;update();document.querySelectorAll('[data-rec]').forEach(c=>{let on=Number(c.dataset.rec)===i;c.classList.toggle('chosen',on);c.querySelector('.rec-status').textContent=on?'✓ 현재 견적':'';c.querySelector('.pick').textContent=on?'선택됨 ✓':'견적에 담기';c.querySelector('.pick').setAttribute('aria-pressed',String(on))})}$('#apply-recommendation').onclick=()=>{customized=true;renderRecs();$('#questions').classList.add('hidden');$('#personalize-toggle').setAttribute('aria-expanded','false');$('#personalize-toggle').textContent='조건 수정하기 ↗';$('#results-title').tabIndex=-1;$('#results-title').focus()};renderRecs();
+</script></body></html>
