@@ -22,7 +22,10 @@ const sendJson = (res, body, status = 200) => {
 
 http.createServer((req, res) => {
   const url = new URL(req.url, 'http://localhost');
-  const pathname = decodeURIComponent(url.pathname);
+  // Patched asset URLs carry the GitHub Pages prefix; strip it so local serving works too.
+  const pagesBase = '/SAKD/리디자인_인터넷';
+  let pathname = decodeURIComponent(url.pathname);
+  if (pathname.startsWith(pagesBase)) pathname = pathname.slice(pagesBase.length) || '/';
 
   if (pathname.startsWith('/api/')) {
     if (req.method !== 'GET') { res.writeHead(204); return res.end(); }
