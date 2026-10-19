@@ -1,0 +1,1 @@
+function e(e){return Number.isFinite(e)?`${Math.round(e).toLocaleString(`ko-KR`)}원`:`0원`}var t=e=>e>=1024&&e%1024==0?`${e/1024}TB`:`${e}GB`;export{e as n,t};

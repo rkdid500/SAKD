@@ -1,0 +1,1 @@
+var e=`/assets/sakd-preconsent-C-FMuYqc.png`;export{e as t};

@@ -8,10 +8,22 @@
       "port": 8934
     },
     {
+      "name": "redesign-internet",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["리디자인_인터넷/serve.mjs", "8935"],
+      "port": 8935
+    },
+    {
       "name": "newsakd",
       "runtimeExecutable": "powershell.exe",
       "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", "Set-Location C:/Users/user/Desktop/newsakd; npm run dev"],
       "port": 5173
+    },
+    {
+      "name": "newsakd-redesign-branch",
+      "runtimeExecutable": "powershell.exe",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", "Set-Location C:/Users/user/Desktop/newsakd-smartphone-wt; npx vite --host 127.0.0.1 --port 5174"],
+      "port": 5174
     }
   ]
 }

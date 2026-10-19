@@ -1,0 +1,1 @@
+var e=`/assets/banner-referral-s-DtbojV.webp`,t=`/assets/banner-review-DErBpNzO.webp`;export{e as n,t};
