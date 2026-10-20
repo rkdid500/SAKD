@@ -503,7 +503,7 @@ body.is-locked{ overflow:hidden; }
 }
 
 /* ---------- 상담 신청 모달: 선택 상품 요약 (로고 | 이름·속도 | 월 금액·사은품) ---------- */
-.picked{ margin-top:18px; padding:16px 36px 16px 44px; border-radius:18px; background:var(--c-bg-soft); border:1px solid var(--c-border);
+.picked{ margin-top:18px; padding:16px 36px 16px 16px; border-radius:18px; background:var(--c-bg-soft); border:1px solid var(--c-border);
   display:flex; align-items:center; gap:25px; }
 .picked .cr.has-logo{ flex:0 0 46px; width:46px; min-width:0; display:flex; justify-content:center; }
 .picked__info{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:4px; }
