@@ -328,10 +328,12 @@ body.is-locked{ overflow:hidden; }
   .rrow{ grid-template-columns:minmax(0,1fr) auto auto; gap:10px; padding:16px 2px; }
   .rrow__go{ display:none; }
   .rrow__name{ font-size:16px; }
-  .rrow__gift b{ font-size:15px; }
-  .rrow__gift{ min-width:54px; }
-  .rrow__price{ min-width:96px; }
-  .rrow__price b{ font-size:20px; }
+  .rrow__gift b{ font-size:17px; }
+  .rrow__gift small{ font-size:13px; font-weight:800; color:#4a566b; }
+  .rrow__gift{ min-width:60px; }
+  .rrow__price{ min-width:108px; font-size:15px; }
+  .rrow__price b{ font-size:23px; }
+  .rrow__real{ font-size:13.5px; }
   .seg{ gap:6px; margin-bottom:20px; }
   .seg__btn{ padding:9px 15px; font-size:14px; }
   .bn{ padding:16px 0 0; }
