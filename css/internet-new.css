@@ -471,7 +471,7 @@ body.is-locked{ overflow:hidden; }
 }
 .mvno-btn:hover{ background:#d5d9df; }
 .mvno-more{
-  display:inline-flex; align-items:center; height:36px; padding:0 22px; border-radius:999px; background:#fff; color:var(--c-navy);
+  display:inline-flex; align-items:center; height:36px; padding:0 22px; border-radius:10px; background:#fff; color:var(--c-navy);
   border:1px solid var(--c-navy); font-size:14px; font-weight:800; transition:background .15s ease, color .15s ease;
 }
 .mvno-more:hover{ background:var(--c-navy); color:#fff; }
