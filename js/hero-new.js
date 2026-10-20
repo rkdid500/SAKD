@@ -48,14 +48,14 @@
   });
 
   track.addEventListener('pointerdown', function (e) {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;   // 터치는 아래 touch 이벤트로 처리
     W = track.parentElement.clientWidth;
     if (idx >= total) { idx = 0; }
     down = true; moved = false; lock = null; sx = lastX = e.clientX; sy = e.clientY; dx = 0; vel = 0; lastT = performance.now(); pid = e.pointerId;
     place(0, false); clearInterval(timer);
   });
   track.addEventListener('pointermove', function (e) {
-    if (!down) return;
+    if (!down || e.pointerType !== 'mouse') return;
     const mx = e.clientX - sx, my = e.clientY - sy;
     if (lock === null && (Math.abs(mx) > 6 || Math.abs(my) > 6)) {
       lock = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
@@ -79,7 +79,39 @@
     }
     play();
   }
-  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (t) { track.addEventListener(t, end); });
+  ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (t) { track.addEventListener(t, function (e) { if (e.pointerType === 'mouse') end(); }); });
+  /* 터치(모바일): 가로로 움직이면 배너를 따라 움직이고 세로면 페이지 스크롤 */
+  let tx = 0, ty = 0, tlock = null;
+  track.addEventListener('touchstart', function (e) {
+    const t = e.touches[0];
+    W = track.parentElement.clientWidth;
+    if (idx >= total) idx = 0;
+    down = true; moved = false; tlock = null; tx = lastX = t.clientX; ty = t.clientY; dx = 0; vel = 0; lastT = performance.now();
+    place(0, false); clearInterval(timer);
+  }, { passive: true });
+  track.addEventListener('touchmove', function (e) {
+    if (!down) return;
+    const t = e.touches[0], mx = t.clientX - tx, my = t.clientY - ty;
+    if (tlock === null && (Math.abs(mx) > 6 || Math.abs(my) > 6)) tlock = Math.abs(mx) > Math.abs(my) ? 'x' : 'y';
+    if (tlock !== 'x') return;
+    if (e.cancelable) e.preventDefault();
+    moved = true; dx = mx;
+    const n = performance.now();
+    if (n > lastT) vel = 0.8 * vel + 0.2 * ((t.clientX - lastX) / (n - lastT));
+    lastX = t.clientX; lastT = n;
+    place(dx, false);
+  }, { passive: false });
+  function tend() {
+    if (!down) return;
+    down = false;
+    if (tlock === 'x') {
+      const far = Math.abs(dx) > W * 0.15, flick = Math.abs(vel) > 0.5;
+      go(idx + ((far || flick) ? ((dx < 0 || vel < -0.5) ? 1 : -1) : 0));
+    } else { place(0, true); }
+    play();
+  }
+  track.addEventListener('touchend', tend);
+  track.addEventListener('touchcancel', tend);
   track.addEventListener('click', function (e) { if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; } }, true);
   track.addEventListener('dragstart', function (e) { e.preventDefault(); });
   window.addEventListener('resize', function () { W = track.parentElement.clientWidth; place(0, false); });
