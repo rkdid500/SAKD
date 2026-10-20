@@ -309,5 +309,29 @@
 <script src="js/why-recommend.js?v=20261020a"></script>
 <script src="js/internet-new.js?v=20261021e"></script>
 <script src="js/hero-new.js?v=20261011b"></script>
+<script>
+/* 미리보기(GitHub Pages) 전용: 브라우저가 저장해 둔 예전 페이지를 쓰고 있으면, 최신 버전으로 한 번 자동 새로고침 */
+(function () {
+  try {
+    if (location.hostname.indexOf("github.io") === -1) return;
+    var vers = function (doc) {
+      return Array.prototype.map.call(doc.querySelectorAll("link[rel=stylesheet][href],script[src]"), function (n) {
+        var u = n.getAttribute("href") || n.getAttribute("src"); var m = u.match(/?v=(w+)/); return m ? u.split("?")[0] + m[1] : "";
+      }).join("|");
+    };
+    var mine = vers(document);
+    fetch(location.pathname + "?_c=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.text(); })
+      .then(function (t) {
+        var latest = vers(new DOMParser().parseFromString(t, "text/html"));
+        if (!latest || latest === mine) return;
+        var key = "sakd-fresh-" + latest.length + "-" + latest.slice(-30);
+        if (sessionStorage.getItem(key)) return;
+        sessionStorage.setItem(key, "1");
+        location.replace(location.pathname + "?_v=" + Date.now());
+      }).catch(function () {});
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>
