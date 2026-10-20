@@ -395,7 +395,7 @@ body.is-locked{ overflow:hidden; }
   .cell__real small{ font-size:11.5px; }
   .cell__lbl{ font-size:10px; }
   .cell__name{ font-size:11.5px; margin-top:4px; }
-  .cell__meta{ font-size:12.5px; }
+  .cell__meta{ font-size:12.5px; font-weight:700; color:#4a566b; }
   .cell__meta b{ font-size:13.5px; }
 
 
