@@ -21,6 +21,9 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
 .slider{max-width:880px;margin:0 auto;position:relative}
 .track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:28px}
 .track::-webkit-scrollbar{display:none}
+.track{cursor:grab;overscroll-behavior-x:contain}
+.track.is-drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.track img{-webkit-user-drag:none}
 .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:20px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(12,31,63,.12)}
 .nav:hover{background:var(--navy);color:#fff}
 .nav.prev{left:-22px}.nav.next{right:-22px}
@@ -111,6 +114,11 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
   function cur(){return Math.round(track.scrollLeft/track.clientWidth)}
   function go(i){track.scrollTo({left:i*track.clientWidth,behavior:"smooth"})}
   function sync(){var c=cur();for(var i=0;i<dots.children.length;i++)dots.children[i].setAttribute("aria-current",i===c?"true":"false");prev.hidden=c===0;next.hidden=c===slides.length-1}
+  /* 마우스 드래그로 넘기기 (터치·트랙패드는 기본 스크롤로 동작) */
+  var down=false,sx=0,sl=0,moved=false;
+  track.addEventListener("pointerdown",function(e){if(e.pointerType!=="mouse"||e.button!==0)return;down=true;moved=false;sx=e.clientX;sl=track.scrollLeft});
+  window.addEventListener("pointermove",function(e){if(!down)return;var dx=e.clientX-sx;if(!moved&&Math.abs(dx)>5){moved=true;track.classList.add("is-drag")}if(moved)track.scrollLeft=sl-dx});
+  window.addEventListener("pointerup",function(e){if(!down)return;down=false;if(!moved)return;var dx=e.clientX-sx,c=Math.round(sl/track.clientWidth);track.classList.remove("is-drag");go(Math.max(0,Math.min(slides.length-1,Math.abs(dx)>track.clientWidth*0.15?c+(dx<0?1:-1):c)))});
   prev.onclick=function(){go(cur()-1)};next.onclick=function(){go(cur()+1)};
   track.addEventListener("scroll",function(){requestAnimationFrame(sync)},{passive:true});
   window.addEventListener("resize",sync);sync();
