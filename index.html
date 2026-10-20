@@ -190,10 +190,10 @@
         </label>
         <div class="field-row">
           <label class="field">
-            <span>현재 이용 통신사 <i>(선택)</i></span>
-            <select id="apCarrier">
-              <option value="">선택 안 함</option>
-              <option>KT</option><option>SK브로드밴드</option><option>LG U+</option><option>기타 / 없음</option>
+            <span>현재 이용 통신사</span>
+            <select id="apCarrier" required>
+              <option value="" selected disabled hidden>통신사를 선택해 주세요</option>
+              <option>KT</option><option>SK</option><option>SK브로드밴드</option><option>LG U+</option><option>LG헬로비전</option><option>스카이라이프</option><option>잘 모르겠음</option>
             </select>
           </label>
           <label class="field">
@@ -224,7 +224,7 @@
 </div>
 
 <script src="js/main.js?v=20261007h"></script>
-<script src="js/internet-new.js?v=20261021d"></script>
+<script src="js/internet-new.js?v=20261021e"></script>
 <script src="js/hero-new.js?v=20261011b"></script>
 <script src="js/internet-products.js?v=20261012e"></script>
 <script src="js/carousel-nav.js?v=20261011h"></script>

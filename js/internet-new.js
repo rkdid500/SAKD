@@ -183,6 +183,7 @@
     const name = $('#apName').value.trim();
     if (!name) { err.textContent = '이름을 입력해 주세요.'; $('#apName').focus(); return; }
     if (!validPhone($('#apPhone').value)) { err.textContent = '연락처를 010-0000-0000 형식으로 입력해 주세요.'; $('#apPhone').focus(); return; }
+    if (!$('#apCarrier').value) { err.textContent = '현재 이용 통신사를 선택해 주세요.'; $('#apCarrier').focus(); return; }
     if (!$('#apAgree').checked) { err.textContent = '개인정보 수집·이용에 동의해 주세요.'; return; }
     err.textContent = '';
     // TODO: 실제 신청 API 연결 (name, phone, selectedPlan, 현재 통신사, 통화 시간)
