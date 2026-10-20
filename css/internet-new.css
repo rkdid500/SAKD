@@ -453,12 +453,12 @@ body.is-locked{ overflow:hidden; }
 .cr.has-logo .cr__img{ display:block; width:120px; max-width:100%; height:auto; aspect-ratio:4 / 1; object-fit:contain; }
 .mx__h .cr.has-logo{ padding:0; }
 .mx__h .cr.has-logo .cr__img{ width:152px; }
-.picked .cr.has-logo .cr__img{ width:96px; }
+.picked .cr.has-logo .cr__img{ width:132px; max-width:none; }
 .rec__bar .cr.has-logo .cr__img{ width:112px; }
 @media (max-width:768px){
   /* 모바일: 로고를 작게 (4:1 박스 72×18) */
   .mx__h .cr.has-logo .cr__img{ width:92px; }
-  .picked .cr.has-logo .cr__img{ width:64px; }
+  .picked .cr.has-logo .cr__img{ width:108px; max-width:none; }
   .rec__bar .cr.has-logo .cr__img{ width:88px; }
 }
 
@@ -505,7 +505,7 @@ body.is-locked{ overflow:hidden; }
 /* ---------- 상담 신청 모달: 선택 상품 요약 (로고 | 이름·속도 | 월 금액·사은품) ---------- */
 .picked{ margin-top:18px; padding:16px 20px; border-radius:18px; background:var(--c-bg-soft); border:1px solid var(--c-border);
   display:flex; align-items:center; gap:18px; }
-.picked .cr.has-logo{ flex:0 0 96px; display:flex; justify-content:center; }
+.picked .cr.has-logo{ flex:0 0 92px; display:flex; justify-content:center; }
 .picked__info{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:4px; }
 .picked__name{ font-size:18px; font-weight:900; color:var(--c-navy); letter-spacing:-.03em; }
 .picked__spd{ font-size:14px; color:var(--c-text-sub); }
@@ -515,7 +515,7 @@ body.is-locked{ overflow:hidden; }
 .picked__gift{ font-size:16px; font-weight:900; color:var(--gift); white-space:nowrap; }
 @media (max-width:768px){
   .picked{ padding:14px 14px; gap:10px; }
-  .picked .cr.has-logo{ flex-basis:64px; }
+  .picked .cr.has-logo{ flex-basis:70px; }
   .picked__name{ font-size:15.5px; }
   .picked__spd{ font-size:12.5px; }
   .picked__price b{ font-size:16px; }
