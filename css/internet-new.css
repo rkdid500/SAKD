@@ -503,7 +503,7 @@ body.is-locked{ overflow:hidden; }
 }
 
 /* ---------- 상담 신청 모달: 선택 상품 요약 (로고 | 이름·속도 | 월 금액·사은품) ---------- */
-.picked{ margin-top:18px; padding:16px 36px 16px 20px; border-radius:18px; background:var(--c-bg-soft); border:1px solid var(--c-border);
+.picked{ margin-top:18px; padding:16px 36px 16px 36px; border-radius:18px; background:var(--c-bg-soft); border:1px solid var(--c-border);
   display:flex; align-items:center; gap:18px; }
 .picked .cr.has-logo{ flex:0 0 46px; width:46px; min-width:0; display:flex; justify-content:center; }
 .picked__info{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:4px; }
@@ -514,7 +514,7 @@ body.is-locked{ overflow:hidden; }
 .picked__price b{ font-size:16px; font-weight:900; color:var(--c-navy); }
 .picked__gift{ font-size:14.5px; font-weight:900; color:var(--gift); white-space:nowrap; }
 @media (max-width:768px){
-  .picked{ padding:12px 26px 12px 14px; gap:12px; }
+  .picked{ padding:12px 24px 12px 28px; gap:12px; }
   .picked .cr.has-logo{ flex-basis:36px; width:36px; }
   .picked__name{ font-size:14.5px; }
   .picked__spd{ font-size:12.5px; }
