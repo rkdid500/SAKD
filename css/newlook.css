@@ -133,8 +133,10 @@
   .hs__dots{ bottom:10px; }
 }
 
-/* ---------- 배너 크기 제한 (PC): 넓은 화면에서 너무 커 보이지 않게 가운데 1200px ---------- */
+/* ---------- 배너 (PC): 전체 폭 배경(같은 이미지를 흐리게 확대) + 가운데 최대 1400px 원본 ---------- */
+.hs__bg{ display:none; }
 @media (min-width:769px){
-  .hs{ max-width:1200px; margin:16px auto 0; border-radius:16px; }
-  .hs__slide--img{ height:min(400px, 33.34vw); }
+  .hs__slide--img{ height:min(466px, 33.34vw); overflow:hidden; display:flex; justify-content:center; background:var(--c-navy); }
+  .hs__slide--img .hs__bg{ display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:blur(28px) saturate(1.1); transform:scale(1.2); }
+  .hs__slide--img img:not(.hs__bg){ position:relative; width:auto; max-width:1400px; height:100%; margin:0 auto; object-fit:contain; }
 }
