@@ -471,15 +471,16 @@ body.is-locked{ overflow:hidden; }
 }
 .mvno-btn:hover{ background:#d5d9df; }
 .mvno-more{
-  display:inline-flex; align-items:center; height:36px; padding:0 22px; border-radius:10px; background:#fff; color:var(--c-navy);
-  border:1px solid var(--c-navy); font-size:14px; font-weight:800; transition:background .15s ease, color .15s ease;
+  display:inline-flex; align-items:center; gap:6px; height:40px; padding:0 20px; border-radius:10px; background:var(--c-mint); color:#fff;
+  border:0; font-size:15px; font-weight:800; transition:background .15s ease;
 }
-.mvno-more:hover{ background:var(--c-navy); color:#fff; }
+.mvno-more::after{ content:"→"; font-size:16px; line-height:1; }
+.mvno-more:hover{ background:var(--c-mint-dark); }
 /* 제목 줄 오른쪽 (표 폭에 맞춤) */
 .sec__head--mx{ position:relative; max-width:960px; margin-left:auto; margin-right:auto; }
 .sec__head--mx .mvno-more{ position:absolute; right:0; top:50%; transform:translateY(-50%); }
 @media (max-width:768px){
-  .sec__head--mx .mvno-more{ position:static; transform:none; margin-top:12px; height:34px; padding:0 18px; font-size:13px; }
+  .sec__head--mx .mvno-more{ position:static; transform:none; margin-top:12px; height:38px; padding:0 18px; font-size:14px; }
 }
 .mvno-btn.is-on{ background:var(--c-navy); color:#fff; }
 /* 알뜰사 로고가 없을 때의 글자 배지 */
