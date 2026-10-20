@@ -23,7 +23,8 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
 .track::-webkit-scrollbar{display:none}
 .track{cursor:grab;overscroll-behavior-x:contain;will-change:scroll-position;touch-action:pan-y}
 .track.is-anim{scroll-snap-type:none}
-.track.is-drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.track{user-select:none;-webkit-user-select:none}
+.track.is-drag{cursor:grabbing;scroll-snap-type:none}
 .track img{-webkit-user-drag:none}
 .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);font-size:20px;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(12,31,63,.12)}
 .nav:hover{background:var(--navy);color:#fff}
@@ -130,11 +131,35 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
   function go(i,dur){animateTo(i*track.clientWidth,dur||900)}
   function sync(){var c=cur();for(var i=0;i<dots.children.length;i++)dots.children[i].setAttribute("aria-current",i===c?"true":"false");prev.hidden=c===0;next.hidden=c===slides.length-1}
   /* 마우스 드래그로 넘기기 (터치·트랙패드는 기본 스크롤로 동작) */
-  var down=false,sx=0,sl=0,moved=false,lastX=0,lastT=0,vel=0;
-  track.addEventListener("pointerdown",function(e){if(e.pointerType==="mouse"&&e.button!==0)return;cancelAnimationFrame(raf);track.classList.remove("is-anim");down=true;moved=false;sx=e.clientX;sl=track.scrollLeft;lastX=e.clientX;lastT=performance.now();vel=0});
-  window.addEventListener("pointermove",function(e){if(!down)return;var dx=e.clientX-sx;if(!moved&&Math.abs(dx)>5){moved=true;track.classList.add("is-drag")}if(moved){track.scrollLeft=sl-dx;var n=performance.now();if(n>lastT){vel=(e.clientX-lastX)/(n-lastT)}lastX=e.clientX;lastT=n}});
-  window.addEventListener("pointercancel",function(){if(!down)return;down=false;track.classList.remove("is-drag");go(cur(),500)});
-  window.addEventListener("pointerup",function(e){if(!down)return;down=false;if(!moved)return;var dx=e.clientX-sx,c=Math.round(sl/track.clientWidth);track.classList.remove("is-drag");go(Math.max(0,Math.min(slides.length-1,(Math.abs(dx)>track.clientWidth*0.15||Math.abs(vel)>0.8)?c+((dx<0||vel<-0.8)?1:-1):c)),750)});
+  var down=false,sx=0,sl=0,moved=false,lastX=0,lastT=0,vel=0,pid=null;
+  function finish(x){
+    if(!down)return;down=false;
+    if(pid!==null){try{track.releasePointerCapture(pid)}catch(_){}pid=null}
+    track.classList.remove("is-drag");
+    if(!moved){return}
+    var dx=x-sx,c=Math.round(sl/track.clientWidth),w=track.clientWidth;
+    var flick=Math.abs(vel)>0.8,far=Math.abs(dx)>w*0.15;
+    var dir=(far||flick)?((dx<0||vel<-0.8)?1:-1):0;
+    go(Math.max(0,Math.min(slides.length-1,c+dir)),750);
+  }
+  track.addEventListener("pointerdown",function(e){
+    if(e.pointerType==="mouse"&&e.button!==0)return;
+    cancelAnimationFrame(raf);track.classList.remove("is-anim");
+    down=true;moved=false;sx=lastX=e.clientX;sl=track.scrollLeft;lastT=performance.now();vel=0;pid=e.pointerId;
+    try{track.setPointerCapture(pid)}catch(_){}
+  });
+  track.addEventListener("pointermove",function(e){
+    if(!down)return;
+    var dx=e.clientX-sx;
+    if(!moved&&Math.abs(dx)>5){moved=true;track.classList.add("is-drag")}
+    if(!moved)return;
+    track.scrollLeft=sl-dx;
+    var n=performance.now();if(n>lastT){vel=0.8*vel+0.2*((e.clientX-lastX)/(n-lastT))}lastX=e.clientX;lastT=n;
+  });
+  track.addEventListener("pointerup",function(e){finish(e.clientX)});
+  track.addEventListener("pointercancel",function(e){finish(e.clientX)});
+  track.addEventListener("lostpointercapture",function(e){finish(e.clientX)});
+  track.addEventListener("dragstart",function(e){e.preventDefault()});
   prev.onclick=function(){go(cur()-1)};next.onclick=function(){go(cur()+1)};
   track.addEventListener("scroll",function(){requestAnimationFrame(sync)},{passive:true});
   window.addEventListener("resize",sync);sync();
