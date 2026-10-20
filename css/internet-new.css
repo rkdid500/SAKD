@@ -417,6 +417,7 @@ body.is-locked{ overflow:hidden; }
   .faq__item{ padding:16px 18px; }
   .faq__item summary{ font-size:14.5px; }
   .faq__item p{ font-size:13.5px; }
+  .faq__item .br-m{ display:inline; }
 
   .endcta{ padding:0 16px 44px; }
   .endcta__inner{ padding:30px 20px; border-radius:22px; gap:22px; }
