@@ -146,3 +146,9 @@
 .hs__track{ touch-action:pan-y; user-select:none; -webkit-user-select:none; cursor:grab; will-change:transform; }
 .hs__track:active{ cursor:grabbing; }
 .hs__slide--img img{ -webkit-user-drag:none; user-drag:none; }
+
+/* PC도 슬라이드 점을 배너 아래로 */
+@media (min-width:769px){
+  .hs{ padding-bottom:30px; background:#fff; }
+  .hs__dots{ bottom:9px; padding:0; background:none; backdrop-filter:none; }
+}
