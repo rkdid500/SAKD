@@ -28,7 +28,7 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
 .dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
 .dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:#c9d3df;cursor:pointer;transition:width .2s,background .2s}
 .dots button[aria-current="true"]{width:26px;border-radius:999px;background:var(--mint)}
-.card{flex:0 0 100%;scroll-snap-align:center;min-height:340px;display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:32px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:40px 40px 40px 48px}
+.card{flex:0 0 100%;scroll-snap-align:center;min-height:420px;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:32px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:40px 40px 40px 48px}
 .badge{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;font-size:16px;font-weight:800}
 .b1{background:#d6eeff}.b2{background:#ffdcec}.b3{background:#dcf7e8}
 .worry{margin-top:18px;font-size:24px;font-weight:900;line-height:1.35;letter-spacing:-.03em}
@@ -40,7 +40,7 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
 .prod .price{margin-left:auto;font-size:14px}
 .prod .price b{font-size:22px;font-weight:900;color:var(--navy)}
 .prod .gift{font-weight:800;color:#ff4757}
-.pic{height:260px;border-radius:20px;display:grid;place-items:center;font-size:84px;position:relative;overflow:hidden}
+.pic{height:340px;border-radius:20px;display:grid;place-items:center;font-size:120px;position:relative;overflow:hidden}
 .pic span{position:absolute;right:14px;bottom:12px;font-size:12px;font-weight:700;color:#6a7a90;background:rgba(255,255,255,.75);padding:4px 10px;border-radius:999px}
 .p1{background:linear-gradient(135deg,#d9ecff,#eaf4ff)}.p2{background:linear-gradient(135deg,#ffe0ee,#fff0f6)}.p3{background:linear-gradient(135deg,#dcf7e8,#effcf4)}
 .fine{max-width:880px;margin:18px auto 0;font-size:12px;color:#8a95a5;text-align:center}
@@ -50,7 +50,9 @@ body{font-family:Pretendard,-apple-system,"Malgun Gothic",sans-serif;background:
   .card{grid-template-columns:1fr;gap:18px;padding:22px 20px;border-radius:22px;min-height:0}
   .nav{display:none}
   .track{border-radius:22px}
-  .pic{order:-1;height:130px;font-size:56px}
+  .pic{order:-1;height:250px;font-size:96px;border-radius:18px}
+  .card>div:first-child{text-align:center}
+  .reason{justify-content:center;text-align:left}
   .badge{font-size:14px;padding:7px 13px}
   .worry{font-size:20px;margin-top:14px}
   .reason{font-size:14.5px}
