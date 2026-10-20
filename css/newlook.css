@@ -132,3 +132,9 @@
   .hs__slide--img{ height:33.34vw; min-height:0; }   /* 새 배너(3:1)가 잘리지 않게 */
   .hs__dots{ bottom:10px; }
 }
+
+/* ---------- 배너 크기 제한 (PC): 넓은 화면에서 너무 커 보이지 않게 가운데 1200px ---------- */
+@media (min-width:769px){
+  .hs{ max-width:1200px; margin:16px auto 0; border-radius:16px; }
+  .hs__slide--img{ height:min(400px, 33.34vw); }
+}
