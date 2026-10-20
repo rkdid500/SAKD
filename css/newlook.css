@@ -129,14 +129,14 @@
 .hs__slide--img img{ display:block; width:100%; height:100%; object-fit:cover; }
 .hs__dots{ left:50%; right:auto; transform:translateX(-50%); padding:6px 10px; border-radius:999px; background:rgba(255,255,255,.72); backdrop-filter:blur(4px); }
 @media (max-width:768px){
-  .hs__slide--img{ height:33.34vw; min-height:0; }   /* 새 배너(3:1)가 잘리지 않게 */
+  .hs__slide--img{ height:23.57vw; min-height:0; }   /* 새 배너(3:1)가 잘리지 않게 */
   .hs__dots{ bottom:10px; }
 }
 
 /* ---------- 배너 (PC): 전체 폭 배경(같은 이미지를 흐리게 확대) + 가운데 최대 1400px 원본 ---------- */
 .hs__bg{ display:none; }
 @media (min-width:769px){
-  .hs__slide--img{ height:min(466px, 33.34vw); overflow:hidden; display:flex; justify-content:center; background:var(--c-navy); }
+  .hs__slide--img{ height:min(330px, 23.57vw); overflow:hidden; display:flex; justify-content:center; background:var(--c-navy); }
   .hs__slide--img .hs__bg{ display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:blur(28px) saturate(1.1); transform:scale(1.2); }
   .hs__slide--img img:not(.hs__bg){ position:relative; width:auto; max-width:1400px; height:100%; margin:0 auto; object-fit:contain; }
 }
