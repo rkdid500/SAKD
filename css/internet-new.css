@@ -290,15 +290,6 @@ body{ -webkit-tap-highlight-color:transparent; }
 .modal__title{ margin-top:8px; font-size:24px; font-weight:900; color:var(--c-navy); letter-spacing:-.5px; }
 .modal__sub{ margin:10px 0 26px; font-size:14.5px; line-height:1.6; color:var(--c-text-sub); }
 .modal__done{ text-align:center; padding:16px 0 4px; }
-.picked{ margin-top:18px; padding:14px 16px; border-radius:14px; background:var(--c-bg-soft); border:1px solid var(--c-border); }
-.picked__top{ display:flex; align-items:center; gap:8px; }
-.picked__name{ font-size:14.5px; font-weight:800; color:var(--c-navy); }
-.picked__row{ margin-top:6px; display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--c-text-sub); }
-.picked__row b{ color:var(--c-navy); font-weight:900; }
-.picked__top .cr.has-logo{ flex:0 0 88px; display:flex; justify-content:center; }
-.picked__row{ margin-top:4px; padding-left:96px; flex-wrap:wrap; justify-content:flex-start; gap:4px 12px; }
-.picked__row > span:last-child{ margin-left:auto; }
-.picked__row .picked__gift, .picked__row .picked__gift b{ color:var(--gift); font-weight:900; }
 #applyForm{ margin-top:20px; display:flex; flex-direction:column; gap:14px; }
 .field{ display:flex; flex-direction:column; gap:6px; }
 .field > span{ font-size:13px; font-weight:800; color:var(--c-text-sub); }
@@ -462,12 +453,12 @@ body.is-locked{ overflow:hidden; }
 .cr.has-logo .cr__img{ display:block; width:120px; max-width:100%; height:auto; aspect-ratio:4 / 1; object-fit:contain; }
 .mx__h .cr.has-logo{ padding:0; }
 .mx__h .cr.has-logo .cr__img{ width:152px; }
-.picked__top .cr.has-logo .cr__img,
+.picked .cr.has-logo .cr__img{ width:96px; }
 .rec__bar .cr.has-logo .cr__img{ width:112px; }
 @media (max-width:768px){
   /* 모바일: 로고를 작게 (4:1 박스 72×18) */
   .mx__h .cr.has-logo .cr__img{ width:92px; }
-  .picked__top .cr.has-logo .cr__img,
+  .picked .cr.has-logo .cr__img{ width:64px; }
   .rec__bar .cr.has-logo .cr__img{ width:88px; }
 }
 
@@ -509,4 +500,24 @@ body.is-locked{ overflow:hidden; }
 @keyframes mxCellIn{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
 @media (prefers-reduced-motion:reduce){
   .mx, .mx.is-in, .mx.is-in .cell, .mx.is-in .mx__speed, .mx.is-in .mx__h{ transition:none; animation:none; }
+}
+
+/* ---------- 상담 신청 모달: 선택 상품 요약 (로고 | 이름·속도 | 월 금액·사은품) ---------- */
+.picked{ margin-top:18px; padding:16px 20px; border-radius:18px; background:var(--c-bg-soft); border:1px solid var(--c-border);
+  display:flex; align-items:center; gap:18px; }
+.picked .cr.has-logo{ flex:0 0 96px; display:flex; justify-content:center; }
+.picked__info{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:4px; }
+.picked__name{ font-size:18px; font-weight:900; color:var(--c-navy); letter-spacing:-.03em; }
+.picked__spd{ font-size:14px; color:var(--c-text-sub); }
+.picked__side{ flex:0 0 auto; display:flex; flex-direction:column; align-items:flex-end; gap:4px; text-align:right; }
+.picked__price{ font-size:14px; color:var(--c-text-sub); white-space:nowrap; }
+.picked__price b{ font-size:18px; font-weight:900; color:var(--c-navy); }
+.picked__gift{ font-size:16px; font-weight:900; color:var(--gift); white-space:nowrap; }
+@media (max-width:768px){
+  .picked{ padding:14px 14px; gap:10px; }
+  .picked .cr.has-logo{ flex-basis:64px; }
+  .picked__name{ font-size:15.5px; }
+  .picked__spd{ font-size:12.5px; }
+  .picked__price b{ font-size:16px; }
+  .picked__gift{ font-size:14.5px; }
 }

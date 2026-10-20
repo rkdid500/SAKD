@@ -139,10 +139,11 @@
   let lastFocus = null;
 
   function pickedHtml(p) {
-    return '<div class="picked__top">' + carrierMark(p.carrier) + '' +
-      '<span class="picked__name">' + planTitle(p) + '</span></div>' +
-      '<div class="picked__row"><span>인터넷 ' + SPEED_LABEL[p.speed] + (p.tv ? ' · ' + p.tv.ch + 'CH' : '') + '</span>' +
-      '<span>월 <b>' + won(p.price) + '원</b> · <span class="picked__gift">사은품 <b>' + p.gift + '만원</b></span></span></div>';
+    return carrierMark(p.carrier) +
+      '<div class="picked__info"><span class="picked__name">' + planTitle(p) + '</span>' +
+      '<span class="picked__spd">인터넷 ' + SPEED_LABEL[p.speed] + (p.tv ? ' · ' + p.tv.ch + 'CH' : '') + '</span></div>' +
+      '<div class="picked__side"><span class="picked__price">월 <b>' + won(p.price) + '원</b></span>' +
+      '<span class="picked__gift">사은품 ' + p.gift + '만원</span></div>';
   }
 
   function openApply(planId) {

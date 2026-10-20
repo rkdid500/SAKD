@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>싹딜 - 생활상품 비교의 기준</title>
 <link rel="stylesheet" href="css/style.css?v=20261007h">
-<link rel="stylesheet" href="css/internet-new.css?v=20261021d">
+<link rel="stylesheet" href="css/internet-new.css?v=20261021g">
 <link rel="stylesheet" href="css/newlook.css?v=20261011b">
 <link rel="stylesheet" href="css/mobile-products.css?v=20261012b">
 </head>
@@ -224,7 +224,7 @@
 </div>
 
 <script src="js/main.js?v=20261007h"></script>
-<script src="js/internet-new.js?v=20261021e"></script>
+<script src="js/internet-new.js?v=20261021g"></script>
 <script src="js/hero-new.js?v=20261011b"></script>
 <script src="js/internet-products.js?v=20261012e"></script>
 <script src="js/carousel-nav.js?v=20261011h"></script>
@@ -235,7 +235,7 @@
     if (location.hostname.indexOf("github.io") === -1) return;
     var vers = function (doc) {
       return Array.prototype.map.call(doc.querySelectorAll("link[rel=stylesheet][href],script[src]"), function (n) {
-        var u = n.getAttribute("href") || n.getAttribute("src"); var m = u.match(/?v=(w+)/); return m ? u.split("?")[0] + m[1] : "";
+        var u = n.getAttribute("href") || n.getAttribute("src"); var m = u.match(/[?]v=([0-9a-z]+)/); return m ? u.split("?")[0] + m[1] : "";
       }).join("|");
     };
     var mine = vers(document);
