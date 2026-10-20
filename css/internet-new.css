@@ -362,12 +362,14 @@ body.is-locked{ overflow:hidden; }
   body{ padding-bottom:76px; }
 
 
-  .ts__inner{ grid-template-columns:repeat(2,1fr); padding:18px 16px; row-gap:16px; }
+  .ts__inner{ grid-template-columns:repeat(2,1fr); padding:10px 12px; row-gap:10px; }
   .ts__item:nth-child(2)::after{ display:none; }
   /* 모바일 2열: 윗줄 두 칸 아래에 가로 구분선 */
-  .ts__item:nth-child(-n+2)::before{ content:""; position:absolute; left:8%; right:8%; bottom:-8px; height:1px; background:var(--c-border); }
-  .ts__item b{ font-size:14.5px; }
-  .ts__item span{ font-size:12px; }
+  .ts__item{ padding:0 8px; }
+  .ts__item:not(:last-child)::after{ height:22px; }
+  .ts__item:nth-child(-n+2)::before{ content:""; position:absolute; left:8%; right:8%; bottom:-5px; height:1px; background:var(--c-border); }
+  .ts__item b{ font-size:13px; }
+  .ts__item span{ font-size:11px; margin-top:1px; }
 
   .sec{ padding:52px 0; }
   .sec__inner{ padding:0 16px; }
