@@ -1,0 +1,50 @@
+/* 추천 이유 슬라이더 (인터넷 페이지 · '이유 있는 추천') */
+.why__title em{ display:block; font-style:normal; color:var(--c-mint-dark); }
+.why-slider{ max-width:880px; margin:0 auto; position:relative; }
+.why__track{
+  display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+  border-radius:28px; cursor:grab; overscroll-behavior-x:contain; will-change:scroll-position; touch-action:pan-y;
+  user-select:none; -webkit-user-select:none;
+}
+.why__track::-webkit-scrollbar{ display:none; }
+.why__track.is-anim, .why__track.is-drag{ scroll-snap-type:none; }
+.why__track.is-drag{ cursor:grabbing; }
+.why__nav{
+  position:absolute; top:50%; transform:translateY(-50%); z-index:2; width:44px; height:44px; border-radius:50%;
+  border:1px solid var(--c-border); background:#fff; color:var(--c-navy); font-size:20px; line-height:1; cursor:pointer;
+  box-shadow:0 6px 18px rgba(12,31,63,.12);
+}
+.why__nav:hover{ background:var(--c-navy); color:#fff; }
+.why__nav--prev{ left:-22px; } .why__nav--next{ right:-22px; }
+.why__nav[hidden]{ display:none; }
+.why__dots{ display:flex; justify-content:center; gap:8px; margin-top:20px; }
+.why__dots button{ width:9px; height:9px; border-radius:50%; border:0; padding:0; background:#c9d3df; cursor:pointer; transition:width .2s, background .2s; }
+.why__dots button[aria-current="true"]{ width:26px; border-radius:999px; background:var(--c-mint); }
+
+.why__card{
+  flex:0 0 100%; scroll-snap-align:center; scroll-snap-stop:always; min-height:420px;
+  display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:32px; align-items:center;
+  background:#fff; border:1px solid var(--c-border); border-radius:28px; padding:40px 40px 40px 48px;
+}
+.why__badge{ display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px; font-size:16px; font-weight:800; }
+.why__badge--1{ background:#d6eeff; } .why__badge--2{ background:#ffdcec; } .why__badge--3{ background:#dcf7e8; }
+.why__worry{ margin-top:18px; font-size:24px; font-weight:900; line-height:1.35; letter-spacing:-.03em; }
+.why__reason{ margin-top:12px; display:flex; gap:10px; font-size:16px; line-height:1.65; color:#2d3a50; }
+.why__reason i{ font-style:normal; color:var(--c-mint-dark); font-weight:900; }
+.why__reason b{ display:inline-block; margin-bottom:6px; padding:5px 14px; border-radius:999px; border:1px solid #c3cad4; font-weight:800; color:var(--c-navy); }
+.why__pic{ height:340px; border-radius:20px; display:grid; place-items:center; font-size:120px; position:relative; overflow:hidden; }
+.why__pic--1{ background:linear-gradient(135deg,#d9ecff,#eaf4ff); }
+.why__pic--2{ background:linear-gradient(135deg,#ffe0ee,#fff0f6); }
+.why__pic--3{ background:linear-gradient(135deg,#dcf7e8,#effcf4); }
+
+@media (max-width:768px){
+  .why__card{ grid-template-columns:1fr; gap:18px; padding:22px 20px; border-radius:22px; min-height:0; }
+  .why__nav{ display:none; }
+  .why__track{ border-radius:22px; }
+  .why__pic{ order:-1; height:250px; font-size:96px; border-radius:18px; }
+  .why__card > div:first-child{ text-align:center; }
+  .why__reason{ display:block; text-align:center; font-size:14.5px; }
+  .why__reason i{ display:inline; margin-right:6px; }
+  .why__badge{ font-size:14px; padding:7px 13px; }
+  .why__worry{ font-size:20px; margin-top:14px; }
+}

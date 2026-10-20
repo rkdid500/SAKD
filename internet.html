@@ -6,6 +6,7 @@
 <title>인터넷 가입 비교 - 싹딜</title>
 <link rel="stylesheet" href="css/style.css?v=20261007h">
 <link rel="stylesheet" href="css/internet-new.css?v=20261020k">
+<link rel="stylesheet" href="css/why-recommend.css?v=20261020b">
 <link rel="stylesheet" href="css/newlook.css?v=20261011b">
 </head>
 <body>
@@ -132,18 +133,43 @@
     </div>
   </section>
 
-  <!-- ===================== 5. 가입 전 확인 ===================== -->
+  <!-- ===================== 5. 이유 있는 추천 ===================== -->
   <section class="sec" id="check">
     <div class="sec__inner">
       <div class="sec__head">
-        <h2 class="sec__title">가입 전 확인, 싹딜이 대신해요</h2>
+        <h2 class="sec__title why__title">어떤 요금제를 해야하지?<em>이유 있는 추천</em></h2>
       </div>
-      <ul class="chk" data-stagger>
-        <li class="chk__item"><span class="chk__no">01</span><b>약정 · 위약금 확인</b></li>
-        <li class="chk__item"><span class="chk__no">02</span><b>설치비 안내</b></li>
-        <li class="chk__item"><span class="chk__no">03</span><b>결합 할인 확인</b></li>
-        <li class="chk__item"><span class="chk__no">04</span><b>사은품 지급 조건 안내</b></li>
-      </ul>
+      <div class="why-slider">
+        <button type="button" class="why__nav why__nav--prev" aria-label="이전" hidden>‹</button>
+        <div class="why__track" id="whyTrack">
+          <article class="why__card">
+            <div>
+              <span class="why__badge why__badge--1">🙋 1인 가구 추천</span>
+              <p class="why__worry">“혼자 살아서 많이 안 써요”</p>
+              <p class="why__reason"><i>→</i><span><b>100Mbps면 충분해요.</b><br>웹서핑·영상 시청엔 넉넉하고, 월 요금이 가장 가벼워요.</span></p>
+            </div>
+            <div class="why__pic why__pic--1" aria-hidden="true">🛋️</div>
+          </article>
+          <article class="why__card">
+            <div>
+              <span class="why__badge why__badge--2">👨‍👩‍👧 3~4인 가구 추천</span>
+              <p class="why__worry">“가족이 동시에 영상·게임을 해요”</p>
+              <p class="why__reason"><i>→</i><span><b>500Mbps가 가장 균형 잡혀요.</b><br>여러 기기를 동시에 써도 끊김이 적고, 가격도 부담 없어요.</span></p>
+            </div>
+            <div class="why__pic why__pic--2" aria-hidden="true">🎮</div>
+          </article>
+          <article class="why__card">
+            <div>
+              <span class="why__badge why__badge--3">💻 재택 · 방송 추천</span>
+              <p class="why__worry">“재택근무와 큰 파일 업로드가 잦아요”</p>
+              <p class="why__reason"><i>→</i><span><b>1G를 추천해요.</b><br>화상회의와 대용량 전송에도 속도가 안정적이에요.</span></p>
+            </div>
+            <div class="why__pic why__pic--3" aria-hidden="true">🖥️</div>
+          </article>
+        </div>
+        <button type="button" class="why__nav why__nav--next" aria-label="다음">›</button>
+        <div class="why__dots" id="whyDots"></div>
+      </div>
     </div>
   </section>
 
@@ -280,6 +306,7 @@
 </div>
 
 <script src="js/main.js?v=20261007h"></script>
+<script src="js/why-recommend.js?v=20261020a"></script>
 <script src="js/internet-new.js?v=20261012n"></script>
 <script src="js/hero-new.js?v=20261011b"></script>
 </body>
