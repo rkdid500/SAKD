@@ -464,7 +464,7 @@ body.is-locked{ overflow:hidden; }
 }
 
 /* ---------- 알뜰사 보기 버튼 (표 오른쪽 위) ---------- */
-.mx__mvno{ display:flex; flex-direction:column; align-items:flex-end; gap:8px; max-width:960px; margin:-6px auto 10px; }  /* 표(.mx)와 같은 폭 안에서 오른쪽 끝에 맞춤 */
+.mx__mvno{ display:flex; justify-content:flex-end; max-width:960px; margin:-6px auto 10px; }  /* 표(.mx)와 같은 폭 안에서 오른쪽 끝에 맞춤 */
 .mvno-btn{
   height:36px; padding:0 22px; border-radius:999px; background:#e3e6ea; color:var(--c-navy);
   font-size:14px; font-weight:800; transition:background .15s ease, color .15s ease;
@@ -475,6 +475,12 @@ body.is-locked{ overflow:hidden; }
   border:1px solid var(--c-navy); font-size:14px; font-weight:800; transition:background .15s ease, color .15s ease;
 }
 .mvno-more:hover{ background:var(--c-navy); color:#fff; }
+/* 제목 줄 오른쪽 (표 폭에 맞춤) */
+.sec__head--mx{ position:relative; max-width:960px; margin-left:auto; margin-right:auto; }
+.sec__head--mx .mvno-more{ position:absolute; right:0; top:50%; transform:translateY(-50%); }
+@media (max-width:768px){
+  .sec__head--mx .mvno-more{ position:static; transform:none; margin-top:12px; height:34px; padding:0 18px; font-size:13px; }
+}
 .mvno-btn.is-on{ background:var(--c-navy); color:#fff; }
 /* 알뜰사 로고가 없을 때의 글자 배지 */
 .cr--SL, .cr--HV, .cr--SB{ background:#5c6675; }
