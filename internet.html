@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="css/style.css?v=20261007h">
 <link rel="stylesheet" href="css/internet-new.css?v=20261021s">
 <link rel="stylesheet" href="css/why-recommend.css?v=20261021c">
-<link rel="stylesheet" href="css/newlook.css?v=20261021p">
+<link rel="stylesheet" href="css/newlook.css?v=20261021q">
 </head>
 <body>
 
@@ -315,8 +315,8 @@
   try {
     if (location.hostname.indexOf("github.io") === -1) return;
     var vers = function (doc) {
-      return Array.prototype.map.call(doc.querySelectorAll("link[rel=stylesheet][href],script[src]"), function (n) {
-        var u = n.getAttribute("href") || n.getAttribute("src"); var m = u.match(/[?]v=([0-9a-z]+)/); return m ? u.split("?")[0] + m[1] : "";
+      return Array.prototype.map.call(doc.querySelectorAll("link[rel=stylesheet][href],script[src],img[src],source[srcset]"), function (n) {
+        var u = n.getAttribute("href") || n.getAttribute("src") || n.getAttribute("srcset"); var m = u.match(/[?]v=([0-9a-z]+)/); return m ? u.split("?")[0] + m[1] : "";
       }).join("|");
     };
     var mine = vers(document);
