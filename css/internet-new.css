@@ -484,7 +484,8 @@ body.is-locked{ overflow:hidden; }
   .sec__head--mx{ display:flex; align-items:center; justify-content:space-between; gap:12px; text-align:left; }
   .sec__head--mx .sec__title{ font-size:21px; line-height:1.35; word-break:keep-all; }
   .sec__head--mx .br-m{ display:inline; }
-  .sec__head--mx .mvno-more{ position:static; transform:none; flex-shrink:0; height:38px; padding:0 16px; font-size:14px; }
+  .sec__head--mx .mvno-more{ position:static; transform:none; flex-shrink:0; height:32px; padding:0 12px; gap:4px; font-size:13px; }
+  .sec__head--mx .mvno-more::after{ font-size:14px; }
 }
 .mvno-btn.is-on{ background:var(--c-navy); color:#fff; }
 /* 알뜰사 로고가 없을 때의 글자 배지 */
