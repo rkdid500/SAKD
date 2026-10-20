@@ -3,9 +3,12 @@
   'use strict';
   const track = document.getElementById('whyTrack');
   if (!track) return;
+  const n = track.children.length;
+  const clone = track.children[0].cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true'); track.appendChild(clone);   // 끝에서 다음으로 넘기면 처음으로 이어지게 하는 복제 카드
   const slides = track.children, dots = document.getElementById('whyDots');
   const prev = document.querySelector('.why__nav--prev'), next = document.querySelector('.why__nav--next');
-  for (let i = 0; i < slides.length; i++) {
+  for (let i = 0; i < n; i++) {
     const b = document.createElement('button');
     b.type = 'button'; b.setAttribute('aria-label', (i + 1) + '번째 카드'); b.onclick = () => go(i);
     dots.appendChild(b);
@@ -29,9 +32,9 @@
   }
   const go = (i, dur) => animateTo(i * track.clientWidth, dur || 900);
   function sync() {
-    const c = cur();
+    const c = cur() % n;
     for (let i = 0; i < dots.children.length; i++) dots.children[i].setAttribute('aria-current', i === c ? 'true' : 'false');
-    prev.hidden = c === 0; next.hidden = c === slides.length - 1;
+    prev.hidden = cur() === 0;
   }
 
   let down = false, sx = 0, sl = 0, moved = false, lastX = 0, lastT = 0, vel = 0, pid = null;
@@ -43,10 +46,10 @@
     const dx = x - sx, c = Math.round(sl / track.clientWidth), w = track.clientWidth;
     const flick = Math.abs(vel) > 0.8, far = Math.abs(dx) > w * 0.15;
     const dir = (far || flick) ? ((dx < 0 || vel < -0.8) ? 1 : -1) : 0;
-    go(Math.max(0, Math.min(slides.length - 1, c + dir)), 750);
+    go(Math.max(0, Math.min(n, c + dir)), 750);
   }
   track.addEventListener('pointerdown', (e) => {
-    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;   // 터치는 브라우저 기본 스크롤(스냅)에 맡김
     cancelAnimationFrame(raf); track.classList.remove('is-anim');
     down = true; moved = false; sx = lastX = e.clientX; sl = track.scrollLeft; lastT = performance.now(); vel = 0; pid = e.pointerId;
     try { track.setPointerCapture(pid); } catch (_) {}
@@ -64,7 +67,16 @@
   ['pointerup', 'pointercancel', 'lostpointercapture'].forEach((t) => track.addEventListener(t, (e) => finish(e.clientX)));
   track.addEventListener('dragstart', (e) => e.preventDefault());
   prev.onclick = () => go(cur() - 1); next.onclick = () => go(cur() + 1);
-  track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+  let settle = 0;
+  track.addEventListener('scroll', () => {
+    requestAnimationFrame(sync);
+    clearTimeout(settle);
+    settle = setTimeout(() => {   // 복제 카드에 도착하면 첫 카드로 조용히 되돌림
+      if (down || track.classList.contains('is-anim') || cur() < n) return;
+      track.classList.add('is-drag'); track.scrollLeft = 0;
+      requestAnimationFrame(() => track.classList.remove('is-drag')); sync();
+    }, 90);
+  }, { passive: true });
   window.addEventListener('resize', sync);
   sync();
 })();

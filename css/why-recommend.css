@@ -3,7 +3,7 @@
 .why-slider{ max-width:880px; margin:0 auto; position:relative; }
 .why__track{
   display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch;
-  border-radius:28px; cursor:grab; overscroll-behavior-x:contain; will-change:scroll-position; touch-action:pan-y;
+  border-radius:28px; cursor:grab; overscroll-behavior-x:contain; will-change:scroll-position; touch-action:pan-x pan-y;
   user-select:none; -webkit-user-select:none;
 }
 .why__track::-webkit-scrollbar{ display:none; }
