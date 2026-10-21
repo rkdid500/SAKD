@@ -525,3 +525,10 @@ body.is-locked{ overflow:hidden; }
   .picked__price b{ font-size:14.5px; }
   .picked__gift{ font-size:13.5px; }
 }
+
+/* 비교표 아래 큰 "자세히 보기" 버튼 */
+.mx__more{ display:flex; align-items:center; justify-content:center; gap:8px; max-width:960px; margin:22px auto 0; height:60px; border-radius:16px; background:var(--c-mint); color:#fff; font-size:19px; font-weight:900; transition:background .15s ease, transform .15s ease; }
+.mx__more::after{ content:"→"; font-size:22px; line-height:1; }
+.mx__more:hover{ background:var(--c-mint-dark); transform:translateY(-1px); }
+@media (max-width:768px){ .mx__more{ height:52px; margin-top:16px; font-size:17px; border-radius:14px; } .mx__more::after{ font-size:19px; } }
+@media (max-width:768px){ .sec__head--mx{ justify-content:center; text-align:center; } }
