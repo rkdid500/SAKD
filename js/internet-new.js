@@ -225,7 +225,7 @@
   /* ---------- 통신사 × 속도 비교표 (CARRIERS 목록 길이만큼 열이 늘어남) ---------- */
   const mxGrid = $('#mxGrid');
   mxGrid.style.setProperty('--n', CARRIERS.length);
-  let mxTv = false;
+  let mxTv = true;
   let mxMvno = false;   // true: 알뜰사 3곳 보기
 
   function renderMatrix() {
