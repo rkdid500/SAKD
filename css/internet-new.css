@@ -532,3 +532,31 @@ body.is-locked{ overflow:hidden; }
 .mx__more:hover{ background:var(--c-mint-dark); transform:translateY(-1px); }
 @media (max-width:768px){ .mx__more{ height:52px; margin-top:16px; font-size:17px; border-radius:14px; } .mx__more::after{ font-size:19px; } }
 @media (max-width:768px){ .sec__head--mx{ justify-content:center; text-align:center; } }
+
+/* 상담 모달 선택 상품: 로고별 보이는 크기·위치를 KT 기준으로 맞춤 (왼쪽 여백 5px, 세로 중앙, 로고~텍스트 간격 동일) */
+.picked .cr--KT.has-logo{ flex:0 0 45.9px; width:45.9px; position:relative; height:30.0px; display:block; }
+.picked .cr--KT.has-logo .cr__img{ position:absolute; left:-55.1px; top:50%; transform:translateY(-50%); width:156.1px; max-width:none; }
+.picked .cr--SK.has-logo{ flex:0 0 47.4px; width:47.4px; position:relative; height:30.0px; display:block; }
+.picked .cr--SK.has-logo .cr__img{ position:absolute; left:-40.7px; top:50%; transform:translateY(-50%); width:128.8px; max-width:none; }
+.picked .cr--LG.has-logo{ flex:0 0 90.0px; width:90.0px; position:relative; height:30.0px; display:block; }
+.picked .cr--LG.has-logo .cr__img{ position:absolute; left:-13.8px; top:50%; transform:translateY(-50%); width:117.6px; max-width:none; }
+.picked .cr--SL.has-logo{ flex:0 0 90.0px; width:90.0px; position:relative; height:30.0px; display:block; }
+.picked .cr--SL.has-logo .cr__img{ position:absolute; left:-11.1px; top:50%; transform:translateY(-50%); width:112.3px; max-width:none; }
+.picked .cr--HV.has-logo{ flex:0 0 98.0px; width:98.0px; position:relative; height:30.0px; display:block; }
+.picked .cr--HV.has-logo .cr__img{ position:absolute; left:2.7px; top:50%; transform:translateY(-50%); width:92.6px; max-width:none; }
+.picked .cr--SB.has-logo{ flex:0 0 35.9px; width:35.9px; position:relative; height:30.0px; display:block; }
+.picked .cr--SB.has-logo .cr__img{ position:absolute; left:-60.2px; top:50%; transform:translateY(-50%); width:156.3px; max-width:none; }
+@media (max-width:768px){
+  .picked .cr--KT.has-logo{ flex:0 0 35.3px; width:35.3px; position:relative; height:23.1px; display:block; }
+  .picked .cr--KT.has-logo .cr__img{ position:absolute; left:-42.4px; top:50%; transform:translateY(-50%); width:120.2px; max-width:none; }
+  .picked .cr--SK.has-logo{ flex:0 0 36.5px; width:36.5px; position:relative; height:23.1px; display:block; }
+  .picked .cr--SK.has-logo .cr__img{ position:absolute; left:-31.4px; top:50%; transform:translateY(-50%); width:99.2px; max-width:none; }
+  .picked .cr--LG.has-logo{ flex:0 0 69.3px; width:69.3px; position:relative; height:23.1px; display:block; }
+  .picked .cr--LG.has-logo .cr__img{ position:absolute; left:-10.6px; top:50%; transform:translateY(-50%); width:90.6px; max-width:none; }
+  .picked .cr--SL.has-logo{ flex:0 0 69.3px; width:69.3px; position:relative; height:23.1px; display:block; }
+  .picked .cr--SL.has-logo .cr__img{ position:absolute; left:-8.6px; top:50%; transform:translateY(-50%); width:86.5px; max-width:none; }
+  .picked .cr--HV.has-logo{ flex:0 0 75.5px; width:75.5px; position:relative; height:23.1px; display:block; }
+  .picked .cr--HV.has-logo .cr__img{ position:absolute; left:2.1px; top:50%; transform:translateY(-50%); width:71.3px; max-width:none; }
+  .picked .cr--SB.has-logo{ flex:0 0 27.6px; width:27.6px; position:relative; height:23.1px; display:block; }
+  .picked .cr--SB.has-logo .cr__img{ position:absolute; left:-46.4px; top:50%; transform:translateY(-50%); width:120.3px; max-width:none; }
+  }
