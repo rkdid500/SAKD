@@ -521,12 +521,12 @@ body.is-locked{ overflow:hidden; }
   border-radius:calc(18 * var(--u)); background:var(--c-bg-soft); border:1px solid var(--c-border);
   display:flex; align-items:center; gap:calc(25 * var(--u)); }
 .picked__info{ flex:1 1 auto; min-width:0; display:flex; flex-direction:column; gap:calc(4 * var(--u)); }
-.picked__name{ font-size:max(13px, calc(16 * var(--u))); font-weight:900; color:var(--c-navy); letter-spacing:-.03em; word-break:keep-all; }
-.picked__spd{ font-size:max(11px, calc(13.5 * var(--u))); color:var(--c-text-sub); }
+.picked__name{ font-size:max(10.5px, calc(16 * var(--u))); font-weight:900; color:var(--c-navy); letter-spacing:-.03em; word-break:keep-all; }
+.picked__spd{ font-size:max(9.5px, calc(13.5 * var(--u))); color:var(--c-text-sub); }
 .picked__side{ flex:0 0 auto; display:flex; flex-direction:column; align-items:flex-end; gap:calc(4 * var(--u)); text-align:right; }
-.picked__price{ font-size:max(11px, calc(13.5 * var(--u))); color:var(--c-text-sub); white-space:nowrap; }
-.picked__price b{ font-size:max(13px, calc(16 * var(--u))); font-weight:900; color:var(--c-navy); }
-.picked__gift{ font-size:max(11.5px, calc(14.5 * var(--u))); font-weight:900; color:var(--gift); white-space:nowrap; }
+.picked__price{ font-size:max(9.5px, calc(13.5 * var(--u))); color:var(--c-text-sub); white-space:nowrap; }
+.picked__price b{ font-size:max(10.5px, calc(16 * var(--u))); font-weight:900; color:var(--c-navy); }
+.picked__gift{ font-size:max(10px, calc(14.5 * var(--u))); font-weight:900; color:var(--gift); white-space:nowrap; }
 .picked .cr--KT.has-logo{ flex:0 0 calc(45.9 * var(--u)); width:calc(45.9 * var(--u)); height:calc(34.0 * var(--u)); position:relative; display:block; min-width:0; }
 .picked .cr--KT.has-logo .cr__img{ position:absolute; left:calc(-55.1 * var(--u)); top:50%; transform:translateY(-50%); width:calc(156.1 * var(--u)); max-width:none; }
 .picked .cr--SK.has-logo{ flex:0 0 calc(53.4 * var(--u)); width:calc(53.4 * var(--u)); height:calc(34.0 * var(--u)); position:relative; display:block; min-width:0; }
