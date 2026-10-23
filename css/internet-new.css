@@ -539,3 +539,6 @@ body.is-locked{ overflow:hidden; }
 .picked .cr--HV.has-logo .cr__img{ position:absolute; left:calc(2.7 * var(--u)); top:50%; transform:translateY(-50%); width:calc(92.6 * var(--u)); max-width:none; }
 .picked .cr--SB.has-logo{ flex:0 0 calc(35.9 * var(--u)); width:calc(35.9 * var(--u)); height:calc(34.0 * var(--u)); position:relative; display:block; min-width:0; }
 .picked .cr--SB.has-logo .cr__img{ position:absolute; left:calc(-60.2 * var(--u)); top:50%; transform:translateY(-50%); width:calc(156.3 * var(--u)); max-width:none; }
+
+/* 선택 상품이 없을 때(hidden) 빈 회색 칸이 보이지 않게 */
+.picked[hidden]{ display:none; }
