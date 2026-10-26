@@ -50,6 +50,9 @@
     { id: 'm10', carrier: 'HV', product: '광랜라이트 인터넷',     speed: 100,  tv: { name: '헬로tv플러스', ch: 102 },    gift: 23, price: 25130 },
     { id: 'm11', carrier: 'HV', product: '기가라이트 인터넷',     speed: 500,  tv: { name: '헬로tv플러스', ch: 102 },    gift: 31, price: 32890 },
     { id: 'm12', carrier: 'HV', product: '플래티넘기가 인터넷',     speed: 1000, tv: { name: '헬로tv플러스', ch: 102 },    gift: 34, price: 34100 },
+    { id: 'm16', carrier: 'HV', product: '광랜라이트 인터넷',     speed: 100, tv: { name: 'UHD이코노미', ch: 109 },    gift: 30, price: 30630 },
+    { id: 'm17', carrier: 'HV', product: '기가라이트 인터넷',     speed: 500, tv: { name: 'UHD이코노미', ch: 109 },    gift: 35, price: 38390 },
+    { id: 'm18', carrier: 'HV', product: '플래티넘기가 인터넷',     speed: 1000, tv: { name: 'UHD이코노미', ch: 109 },    gift: 40, price: 39600 },
     { id: 'm13', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 100,  tv: { name: 'Btv pop230', ch: 231 },      gift: 31, price: 31900 },
     { id: 'm14', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 500,  tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 38500 },
     { id: 'm15', carrier: 'SB', product: 'SKB 알뜰 인터넷',     speed: 1000, tv: { name: 'Btv pop230', ch: 231 },      gift: 35, price: 44000 }
@@ -99,11 +102,11 @@
   // 실질 월 요금: 사은품을 36개월에 나눠 뺀 값 (100원 단위 반올림)
   const realPrice = (p) => Math.round((p.price * 36 - p.gift * 10000) / 36 / 100) * 100;
   const planTitle = (p) => p.product + (p.tv ? ' + ' + p.tv.name : '');
-  // 같은 조건(통신사·속도·TV 여부)에서 월 요금이 가장 낮은 상품(같으면 사은품이 큰 상품)
+  // 같은 조건(통신사·속도·TV 여부)에서 사은품이 가장 큰 상품(같으면 월 요금이 낮은 상품)
   function bestPlan(carrier, speed, hasTv) {
     return PLANS
       .filter(p => p.carrier === carrier && p.speed === speed && !!p.tv === hasTv)
-      .sort((a, b) => a.price - b.price || b.gift - a.gift)[0] || null;
+      .sort((a, b) => b.gift - a.gift || a.price - b.price)[0] || null;
   }
 
   /* ---------- 모바일 사이드 메뉴: 배경 동기화, 닫기 버튼/배경 클릭/ESC (토글은 main.js) ---------- */
@@ -235,8 +238,8 @@
       '<div class="mx__h" role="columnheader">' + carrierMark(c) + '</div>').join('');
     SPEEDS.forEach(s => {
       const row = cols.map(c => bestPlan(c, s, mxTv));
-      // 추천: 월 요금이 가장 낮은 상품, 같으면 사은품이 큰 상품
-      const top = row.filter(Boolean).sort((a, b) => a.price - b.price || b.gift - a.gift)[0];
+      // 추천: 사은품이 가장 큰 상품, 같으면 월 요금이 가장 낮은 상품
+      const top = row.filter(Boolean).sort((a, b) => b.gift - a.gift || a.price - b.price)[0];
       html += '<div class="mx__speed" role="rowheader"><b>' + SPEED_LABEL[s] + '</b><span>' + SPEED_NOTE[s] + '</span></div>';
       row.forEach((p, ci) => {
         if (!p) {
