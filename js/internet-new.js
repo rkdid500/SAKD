@@ -246,7 +246,7 @@
         }
         const best = p === top;
         html += '<button type="button" class="cell' + (best ? ' is-best' : '') + '" role="cell" data-open-apply data-plan="' + p.id + '">' +
-          (best ? '<span class="cell__best">최고 혜택</span>' : '') +
+          (best ? '<span class="cell__best">추천</span>' : '') +
           '<span class="cell__real">' + won(realPrice(p)) + '<small>원</small></span>' +
           '<span class="cell__lbl">실질 월</span>' +
           '<span class="cell__name">' + planTitle(p) + '</span>' +
