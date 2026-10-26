@@ -99,11 +99,11 @@
   // 실질 월 요금: 사은품을 36개월에 나눠 뺀 값 (100원 단위 반올림)
   const realPrice = (p) => Math.round((p.price * 36 - p.gift * 10000) / 36 / 100) * 100;
   const planTitle = (p) => p.product + (p.tv ? ' + ' + p.tv.name : '');
-  // 같은 조건(통신사·속도·TV 여부)에서 실질 월 요금이 가장 낮은 상품
+  // 같은 조건(통신사·속도·TV 여부)에서 월 요금이 가장 낮은 상품(같으면 사은품이 큰 상품)
   function bestPlan(carrier, speed, hasTv) {
     return PLANS
       .filter(p => p.carrier === carrier && p.speed === speed && !!p.tv === hasTv)
-      .sort((a, b) => realPrice(a) - realPrice(b) || b.gift - a.gift)[0] || null;
+      .sort((a, b) => a.price - b.price || b.gift - a.gift)[0] || null;
   }
 
   /* ---------- 모바일 사이드 메뉴: 배경 동기화, 닫기 버튼/배경 클릭/ESC (토글은 main.js) ---------- */
@@ -235,8 +235,8 @@
       '<div class="mx__h" role="columnheader">' + carrierMark(c) + '</div>').join('');
     SPEEDS.forEach(s => {
       const row = cols.map(c => bestPlan(c, s, mxTv));
-      // 최고 혜택: 사은품이 가장 큰 상품, 같으면 월 요금이 가장 낮은 상품
-      const top = row.filter(Boolean).sort((a, b) => b.gift - a.gift || a.price - b.price)[0];
+      // 추천: 월 요금이 가장 낮은 상품, 같으면 사은품이 큰 상품
+      const top = row.filter(Boolean).sort((a, b) => a.price - b.price || b.gift - a.gift)[0];
       html += '<div class="mx__speed" role="rowheader"><b>' + SPEED_LABEL[s] + '</b><span>' + SPEED_NOTE[s] + '</span></div>';
       row.forEach((p, ci) => {
         if (!p) {
