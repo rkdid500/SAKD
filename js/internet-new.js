@@ -235,7 +235,8 @@
       '<div class="mx__h" role="columnheader">' + carrierMark(c) + '</div>').join('');
     SPEEDS.forEach(s => {
       const row = cols.map(c => bestPlan(c, s, mxTv));
-      const min = Math.min.apply(null, row.filter(Boolean).map(realPrice));
+      // 최고 혜택: 사은품이 가장 큰 상품, 같으면 월 요금이 가장 낮은 상품
+      const top = row.filter(Boolean).sort((a, b) => b.gift - a.gift || a.price - b.price)[0];
       html += '<div class="mx__speed" role="rowheader"><b>' + SPEED_LABEL[s] + '</b><span>' + SPEED_NOTE[s] + '</span></div>';
       row.forEach((p, ci) => {
         if (!p) {
@@ -243,7 +244,7 @@
           const msg = (cols[ci] === 'SB' && !mxTv) ? 'TV 결합 전용' : '상담 시 안내';
           html += '<div class="cell cell--empty">' + msg + '</div>'; return;
         }
-        const best = realPrice(p) === min;
+        const best = p === top;
         html += '<button type="button" class="cell' + (best ? ' is-best' : '') + '" role="cell" data-open-apply data-plan="' + p.id + '">' +
           (best ? '<span class="cell__best">최고 혜택</span>' : '') +
           '<span class="cell__real">' + won(realPrice(p)) + '<small>원</small></span>' +
