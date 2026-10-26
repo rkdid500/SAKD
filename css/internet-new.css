@@ -86,10 +86,10 @@ body{ -webkit-tap-highlight-color:transparent; }
 
 
 /* ---------- 2. Trust strip ---------- */
-.ts{ background:#fff; border-bottom:1px solid var(--c-border); }
+.ts{ background:linear-gradient(90deg,#effaf5 0%,#f3f8ff 100%); border-bottom:1px solid #dcebe6; }
 .ts__inner{ max-width:var(--container); margin:0 auto; padding:22px 24px; display:grid; grid-template-columns:repeat(4,1fr); }
 .ts__item{ text-align:center; padding:0 12px; position:relative; }
-.ts__item:not(:last-child)::after{ content:""; position:absolute; right:0; top:50%; transform:translateY(-50%); width:1px; height:30px; background:var(--c-border); }
+.ts__item:not(:last-child)::after{ content:""; position:absolute; right:0; top:50%; transform:translateY(-50%); width:1px; height:30px; background:#cfe3dc; }
 .ts__item b{ display:block; font-size:16px; font-weight:900; color:var(--c-navy); }
 .ts__item span{ display:block; margin-top:3px; font-size:13px; color:var(--c-text-mute); }
 
