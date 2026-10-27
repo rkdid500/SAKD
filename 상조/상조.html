@@ -8,13 +8,13 @@
 <meta name="robots" content="noindex,nofollow">
 <title>싹딜 상조 — 미리 준비하는 안심 (디자인 시안)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Serif+KR:wght@600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&display=swap">
 <style>
 /* 레이아웃: 새벽 풍경 히어로 → 걱정/해결 짝 → 3단계 타임라인 → 플랜 → 선 그래프 → 벤토 구성 → 포레스트 신뢰 → 결합 → FAQ → 신청 */
 :root{
   --mint:#08b393;--teal:#007b68;--forest:#0a3d36;--forest-2:#0f5a4e;--navy:#071f4a;--ink:#16282b;--gray:#53635e;--line:#dde9e5;
   --mint-bg:#e5f7f0;--blue:#3e6ee8;--blue-bg:#eef3fd;--cream:#fbf4e6;--sand:#f7f1e4;--amber:#c27a0a;--coral:#e8503d;--coral-bg:#fff0ed;
-  --sans:'Noto Sans KR',system-ui,sans-serif;--serif:'Noto Serif KR','Noto Sans KR',serif;
+  --sans:'Noto Sans KR',system-ui,sans-serif;--serif:var(--sans);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:132px}
@@ -28,7 +28,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:99;background:#fff;padding:10px 14px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 28px}
 h1,h2,h3{color:var(--navy);line-height:1.28;letter-spacing:-1.2px;text-wrap:balance}
-h1,h2{font-family:var(--serif);font-weight:800}
+h1,h2{font-family:var(--serif);font-weight:900}
 h2 em,h1 em{font-style:normal;color:var(--teal)}
 section{padding:104px 0}
 .ic{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
