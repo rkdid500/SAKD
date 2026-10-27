@@ -192,8 +192,7 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
 .hero .sub{animation-delay:.15s}.hero .btn{animation-delay:.3s}.hero .cmp{animation-name:rise-card;animation-delay:.2s}
 @keyframes rise{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
 @keyframes rise-card{from{opacity:0;transform:translateX(70px) rotate(3deg)}to{opacity:1;transform:none}}
-.hero .btn{animation:rise 1s .3s cubic-bezier(.2,.8,.2,1) both,ring 2.4s 1.6s ease-out infinite}
-@keyframes ring{0%{box-shadow:0 10px 24px #007b6830,0 0 0 0 #08b39380}70%,100%{box-shadow:0 10px 24px #007b6830,0 0 0 20px #08b39300}}
+.hero .btn{animation:rise 1s .3s cubic-bezier(.2,.8,.2,1) both}
 .hero:before,.hero:after{content:'';position:absolute;border-radius:50%;pointer-events:none;animation:drift 9s ease-in-out infinite}
 .hero{position:relative}
 .hero:before{width:360px;height:360px;left:-120px;top:-100px;background:#08b39318}
@@ -229,6 +228,8 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
   .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#ffffffF2;backdrop-filter:blur(10px);border-top:1px solid var(--line)}
   .dock .btn{width:100%;min-height:54px}
 }
+@media(max-width:720px){.hero .wrap>*{min-width:0}.cmp-grid{gap:2px}}
+@media(max-width:400px){.cmp-col strong{letter-spacing:-2px}.cmp-col strong span{font-size:16px}.cmp-arrow{padding:0 2px;font-size:24px}.cmp{padding:30px 16px 22px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
