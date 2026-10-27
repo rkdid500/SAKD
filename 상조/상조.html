@@ -127,16 +127,12 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 
 /* ---------- 6 included ---------- */
 .incl{background:linear-gradient(180deg,#fff,#f6fbf9)}
-.incl-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:20px;align-items:stretch}
-.box{background:#fff;border:1px solid var(--line);border-radius:28px;padding:34px 30px}
-.box h3{font-size:22px;margin-bottom:22px}
-.people{display:grid;gap:14px}
-.people li{display:flex;align-items:center;gap:14px;font-size:18px;font-weight:700;color:var(--navy)}
+.incl .sec-head h2 em{font-style:normal;color:var(--teal)}
 .chip-ic{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;background:var(--mint-bg);color:var(--teal);flex:none}
-.items{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.items li{display:flex;flex-direction:column;align-items:center;gap:10px;padding:18px 6px 16px;border-radius:20px;background:#f6fbf9;text-align:center;font-size:15.5px;font-weight:700;color:var(--navy);line-height:1.35}
-.items li .chip-ic{background:#fff;box-shadow:0 6px 16px #0b4a3c14}
-.box .ph{margin-top:22px;aspect-ratio:16/7}
+.kit{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.kit li{display:flex;flex-direction:column;align-items:center;gap:8px;padding:22px 6px 18px;border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 26px #0b4a3c0d;text-align:center;font-size:16px;font-weight:700;color:var(--navy);line-height:1.35}
+.art{display:block;width:88px;height:88px;transition:transform .35s cubic-bezier(.3,1.5,.5,1)}
+.kit li:hover .art{transform:translateY(-6px) scale(1.08)}
 
 /* ---------- 7 trust ---------- */
 .trust{background:var(--navy);color:#fff}
@@ -224,8 +220,8 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  .hero .wrap,.apply .wrap,.incl-grid{grid-template-columns:1fr;gap:44px}
-  .incl-grid{gap:20px}
+  .hero .wrap,.apply .wrap{grid-template-columns:1fr;gap:44px}
+  .kit{grid-template-columns:repeat(4,1fr)}
   .cards3,.steps,.plans,.big3{grid-template-columns:1fr}
   .care{grid-template-columns:repeat(2,1fr)}
   .hero{padding:52px 0 72px}
@@ -245,8 +241,9 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
   .seg{width:100%}.seg button{flex:1;padding:0 8px;font-size:15.5px}
   .rise-box{padding:36px 18px 26px}
   .chart{gap:12px;height:310px}
-  .box{padding:28px 20px}
-  .items{grid-template-columns:repeat(2,1fr)}
+  .kit{grid-template-columns:repeat(3,1fr);gap:10px}
+  .kit li{font-size:14.5px;padding:16px 4px 14px}
+  .art{width:66px;height:66px}
   form{padding:28px 20px}
   body{padding-bottom:88px}
   .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#ffffffF2;backdrop-filter:blur(10px);border-top:1px solid var(--line)}
@@ -278,6 +275,141 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
   <symbol id="i-frame" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><circle cx="12" cy="10" r="2.6"/><path d="M7.5 17c1-3.2 8-3.2 9 0"/></symbol>
   <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0119 0M5.5 12.5a9.5 9.5 0 0113 0M8.5 16a5 5 0 017 0"/><circle cx="12" cy="19" r="1"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+
+  <!-- 3D 느낌 일러스트(자체 제작 시안) : 실제 이미지가 준비되면 같은 자리에 <img>로 교체 -->
+  <defs>
+    <linearGradient id="gSuit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b445a"/><stop offset="1" stop-color="#1e2432"/></linearGradient>
+    <linearGradient id="gSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8d9bc"/><stop offset="1" stop-color="#e6b48b"/></linearGradient>
+    <linearGradient id="gBeige" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4d4b4"/><stop offset="1" stop-color="#bda784"/></linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b0cdf2"/><stop offset="1" stop-color="#7aa2da"/></linearGradient>
+    <linearGradient id="gWood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b57444"/><stop offset="1" stop-color="#6c3f21"/></linearGradient>
+    <linearGradient id="gWoodSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d4b27"/><stop offset="1" stop-color="#4c2d18"/></linearGradient>
+    <linearGradient id="gCream" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fcf7ec"/><stop offset=".6" stop-color="#eadfc8"/><stop offset="1" stop-color="#cfc2a6"/></linearGradient>
+    <linearGradient id="gHemp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eadcbb"/><stop offset="1" stop-color="#c7b289"/></linearGradient>
+    <linearGradient id="gBlack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#454b5a"/><stop offset="1" stop-color="#191c25"/></linearGradient>
+    <linearGradient id="gWhite" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e2e9e6"/></linearGradient>
+    <linearGradient id="gCar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#454b5a"/><stop offset="1" stop-color="#12141b"/></linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6e9f8"/><stop offset="1" stop-color="#8aaecb"/></linearGradient>
+    <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6da92"/><stop offset="1" stop-color="#c89a3a"/></linearGradient>
+    <radialGradient id="gPetal" cx=".5" cy=".7" r=".8"><stop offset="0" stop-color="#e3e9e5"/><stop offset="1" stop-color="#ffffff"/></radialGradient>
+  </defs>
+
+  <symbol id="a-guide" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="87" rx="24" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M26 86L29 52Q31 40 48 40Q65 40 67 52L70 86Z" fill="url(#gSuit)"/>
+    <path d="M41 40L48 58L55 40Z" fill="#fff"/>
+    <path d="M47 47h2l2 14-3 3-3-3z" fill="#1c2a4a"/>
+    <rect x="43" y="32" width="10" height="9" rx="3" fill="url(#gSkin)"/>
+    <circle cx="48" cy="25" r="12" fill="url(#gSkin)"/>
+    <path d="M36 25Q35 11 48 11Q61 11 60 25Q56 17 48 17Q40 17 36 25Z" fill="#2f241e"/>
+    <circle cx="43.5" cy="27" r="1.3" fill="#3a2b25"/><circle cx="52.5" cy="27" r="1.3" fill="#3a2b25"/>
+    <path d="M44.5 32Q48 34.5 51.5 32" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="a-assist" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="87" rx="24" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M26 86L29 52Q31 40 48 40Q65 40 67 52L70 86Z" fill="url(#gBeige)"/>
+    <path d="M40 40L48 54L56 40Z" fill="#fff"/>
+    <rect x="43" y="32" width="10" height="9" rx="3" fill="url(#gSkin)"/>
+    <circle cx="48" cy="25" r="12" fill="url(#gSkin)"/>
+    <path d="M35 24Q36 10 48 10Q60 10 61 24L56 20Q48 15 40 20Z" fill="#fff"/>
+    <path d="M36 21Q48 12 60 21" stroke="#d8dfdb" stroke-width="1.5" fill="none"/>
+    <circle cx="43.5" cy="27" r="1.3" fill="#3a2b25"/><circle cx="52.5" cy="27" r="1.3" fill="#3a2b25"/>
+    <path d="M44.5 32Q48 34.5 51.5 32" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <rect x="33" y="62" width="30" height="9" rx="4" fill="url(#gWhite)" stroke="#d3dbd7"/>
+    <circle cx="35" cy="68" r="4" fill="#fff"/><circle cx="61" cy="68" r="4" fill="#fff"/>
+  </symbol>
+  <symbol id="a-helper" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="87" rx="24" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M34 28Q32 8 48 8Q64 8 62 28L64 44Q58 38 58 28Q54 18 48 18Q42 18 38 28Q38 38 32 44Z" fill="#4a3226"/>
+    <path d="M26 86L29 52Q31 40 48 40Q65 40 67 52L70 86Z" fill="url(#gBlue)"/>
+    <path d="M40 40L48 52L56 40Z" fill="#fff"/>
+    <rect x="43" y="32" width="10" height="9" rx="3" fill="url(#gSkin)"/>
+    <circle cx="48" cy="26" r="11.5" fill="url(#gSkin)"/>
+    <path d="M36.5 25Q38 14 48 14Q58 14 59.5 25Q54 19 48 19Q42 19 36.5 25Z" fill="#4a3226"/>
+    <circle cx="43.5" cy="28" r="1.3" fill="#3a2b25"/><circle cx="52.5" cy="28" r="1.3" fill="#3a2b25"/>
+    <path d="M44.5 33Q48 35.5 51.5 33" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M36 66h24l3 10H33z" fill="url(#gWhite)" stroke="#d3dbd7"/>
+  </symbol>
+  <symbol id="a-coffin" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="80" rx="38" ry="5" fill="#0b2a20" opacity=".13"/>
+    <path d="M8 48L22 62H74L88 48V57L74 71H22L8 57Z" fill="url(#gWoodSide)"/>
+    <path d="M8 48L22 34H74L88 48L74 62H22Z" fill="url(#gWood)"/>
+    <path d="M18 48L26 40H70L78 48L70 56H26Z" fill="none" stroke="#d29a68" stroke-width="2" opacity=".75"/>
+    <path d="M30 43H56" stroke="#e3b389" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    <rect x="34" y="64" width="9" height="3" rx="1.5" fill="url(#gGold)"/><rect x="53" y="64" width="9" height="3" rx="1.5" fill="url(#gGold)"/>
+  </symbol>
+  <symbol id="a-urn" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="22" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M34 40Q26 58 34 77Q48 85 62 77Q70 58 62 40Z" fill="url(#gCream)"/>
+    <path d="M38 46Q32 60 38 73" stroke="#fff" stroke-width="3" opacity=".65" fill="none" stroke-linecap="round"/>
+    <path d="M33 57Q48 64 63 57" stroke="#c9a85c" stroke-width="2" fill="none"/>
+    <ellipse cx="48" cy="40" rx="14" ry="4.5" fill="#d3c7ad"/>
+    <path d="M36 40Q36 26 48 24Q60 26 60 40Z" fill="url(#gCream)"/>
+    <circle cx="48" cy="21" r="4.2" fill="url(#gGold)"/>
+  </symbol>
+  <symbol id="a-shroud" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="28" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M16 38L36 20L48 32L60 20L80 38L73 52L67 48V80Q48 86 29 80V48L23 52Z" fill="url(#gHemp)"/>
+    <path d="M36 20L48 54L60 20L54 18L48 28L42 18Z" fill="#f6efdc"/>
+    <path d="M29 64H67V71H29Z" fill="#b7a077"/>
+    <path d="M48 54V80" stroke="#b39d72" stroke-width="1.5"/>
+    <path d="M22 44L29 50M74 44L67 50" stroke="#b9a37a" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="a-mourn" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="28" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M16 38L36 20L48 32L60 20L80 38L73 52L67 48V80Q48 86 29 80V48L23 52Z" fill="url(#gBlack)"/>
+    <path d="M36 20L48 54L60 20L54 18L48 28L42 18Z" fill="#f3f6f5"/>
+    <path d="M48 54V80" stroke="#0e1016" stroke-width="1.5"/>
+    <path d="M56 50h6l1 12-4-3-4 3z" fill="#fff"/>
+  </symbol>
+  <symbol id="a-portrait" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="22" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M38 76L48 84L58 76Z" fill="url(#gWoodSide)"/>
+    <rect x="22" y="12" width="52" height="66" rx="5" fill="url(#gWoodSide)"/>
+    <rect x="28" y="18" width="40" height="54" rx="2.5" fill="#f0f3f1"/>
+    <circle cx="48" cy="40" r="9.5" fill="#b8c3bf"/>
+    <path d="M30 72Q31 54 48 54Q65 54 66 72Z" fill="#b8c3bf"/>
+    <path d="M22 12H46L22 36Z" fill="#101319"/><path d="M74 12H50L74 36Z" fill="#101319"/>
+  </symbol>
+  <symbol id="a-linen" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="84" rx="32" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <rect x="18" y="60" width="60" height="16" rx="6" fill="url(#gWhite)" stroke="#d3dbd7"/>
+    <rect x="22" y="44" width="52" height="16" rx="6" fill="#fff" stroke="#d3dbd7"/>
+    <rect x="27" y="28" width="42" height="16" rx="6" fill="url(#gWhite)" stroke="#d3dbd7"/>
+    <path d="M26 68H70M30 52H66M34 36H62" stroke="#e1e8e4" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="43" y="24" width="10" height="56" rx="3" fill="#c9a46a" opacity=".92"/>
+    <circle cx="48" cy="24" r="5" fill="url(#gGold)"/>
+  </symbol>
+  <symbol id="a-flower" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="16" ry="3.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M48 46Q45 66 50 84" stroke="#4d9961" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+    <path d="M49 68Q61 59 68 63Q61 72 49 72Z" fill="#62b077"/>
+    <g transform="translate(48 34)">
+      <g id="petals"><ellipse cy="-11" rx="5.5" ry="11.5" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(45)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(90)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(135)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(180)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(225)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(270)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(315)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/></g>
+      <g transform="rotate(22.5)"><ellipse cy="-8" rx="4.2" ry="8.5" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(60)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(120)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(180)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(240)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(300)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/></g>
+      <circle r="5" fill="#f2e3a0"/>
+    </g>
+  </symbol>
+  <symbol id="a-van" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="80" rx="38" ry="4.5" fill="#0b2a20" opacity=".15"/>
+    <path d="M7 68V50Q7 46 11 45L25 42L33 30Q35 28 38 28H62Q66 28 68 31L76 43Q86 45 89 52V68Z" fill="url(#gCar)"/>
+    <path d="M29 42L36 32H46V42Z M50 32H62L69 42H50Z" fill="url(#gGlass)"/>
+    <path d="M7 60H89" stroke="#0a0c11" stroke-width="3" opacity=".35"/>
+    <path d="M12 50Q30 47 50 49" stroke="#fff" stroke-width="1.5" opacity=".18" fill="none"/>
+    <rect x="83" y="52" width="6" height="4" rx="1.5" fill="#ffe9a8"/>
+    <circle cx="25" cy="69" r="9" fill="#15171d"/><circle cx="25" cy="69" r="4.2" fill="#b4bcc6"/>
+    <circle cx="71" cy="69" r="9" fill="#15171d"/><circle cx="71" cy="69" r="4.2" fill="#b4bcc6"/>
+  </symbol>
+  <symbol id="a-limo" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="80" rx="40" ry="4.5" fill="#0b2a20" opacity=".15"/>
+    <path d="M3 69V57Q3 53 8 52L30 49L38 38H64L73 48L86 50Q93 52 93 58V69Z" fill="url(#gCar)"/>
+    <path d="M40 40H51V48H34Z M55 40H63L70 48H55Z" fill="url(#gGlass)"/>
+    <path d="M5 58H91" stroke="url(#gGold)" stroke-width="2" opacity=".9"/>
+    <path d="M10 53Q40 49 70 52" stroke="#fff" stroke-width="1.5" opacity=".2" fill="none"/>
+    <rect x="86" y="54" width="6" height="4" rx="1.5" fill="#ffe9a8"/>
+    <circle cx="23" cy="70" r="9" fill="#15171d"/><circle cx="23" cy="70" r="4.2" fill="#b4bcc6"/>
+    <circle cx="73" cy="70" r="9" fill="#15171d"/><circle cx="73" cy="70" r="4.2" fill="#b4bcc6"/>
+  </symbol>
 </svg>
 
 <div class="progress" id="progress" aria-hidden="true"></div>
@@ -432,32 +564,22 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
 <!-- 6. 포함 구성 -->
 <section class="incl" id="incl">
   <div class="wrap">
-    <div class="sec-head"><h2>장례에 필요한 구성,<br>빠짐없이 준비됩니다.</h2></div>
-    <div class="incl-grid">
-      <div class="box">
-        <h3>함께하는 사람</h3>
-        <ul class="people">
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-user"/></svg></span>장례지도사</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-users"/></svg></span>입관 보조</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-heart"/></svg></span>장례 도우미</li>
-        </ul>
-        <div class="ph"><span>이미지 영역</span><small>장례지도사 · 16:7</small></div>
-      </div>
-      <div class="box">
-        <h3>준비되는 용품</h3>
-        <ul class="items">
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-box"/></svg></span>관</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-shirt"/></svg></span>수의</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-shirt"/></svg></span>상복</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-urn"/></svg></span>유골함</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-frame"/></svg></span>영정·의전용품</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-flower"/></svg></span>헌화</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-car"/></svg></span>운구·이송 차량</li>
-          <li><span class="chip-ic"><svg class="ic"><use href="#i-gift"/></svg></span>입관용품</li>
-        </ul>
-      </div>
-    </div>
-    <p class="foot-note">플랜별 구성이 달라질 수 있습니다.</p>
+    <div class="sec-head"><h2>장례에 필요한 구성,<br><em>빠짐없이 준비됩니다.</em></h2></div>
+    <ul class="kit">
+      <li><svg class="art" role="img" aria-label="영정·의전용품"><use href="#a-portrait"/></svg><span>영정·의전용품</span></li>
+      <li><svg class="art" role="img" aria-label="헌화"><use href="#a-flower"/></svg><span>헌화</span></li>
+      <li><svg class="art" role="img" aria-label="관"><use href="#a-coffin"/></svg><span>관</span></li>
+      <li><svg class="art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg><span>장례지도사</span></li>
+      <li><svg class="art" role="img" aria-label="수의"><use href="#a-shroud"/></svg><span>수의</span></li>
+      <li><svg class="art" role="img" aria-label="이송 차량"><use href="#a-van"/></svg><span>이송 차량</span></li>
+      <li><svg class="art" role="img" aria-label="유골함"><use href="#a-urn"/></svg><span>유골함</span></li>
+      <li><svg class="art" role="img" aria-label="장례 도우미"><use href="#a-helper"/></svg><span>장례 도우미</span></li>
+      <li><svg class="art" role="img" aria-label="상복"><use href="#a-mourn"/></svg><span>상복</span></li>
+      <li><svg class="art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg><span>의전 차량</span></li>
+      <li><svg class="art" role="img" aria-label="입관 보조"><use href="#a-assist"/></svg><span>입관 보조</span></li>
+      <li><svg class="art" role="img" aria-label="입관용품"><use href="#a-linen"/></svg><span>입관용품</span></li>
+    </ul>
+    <p class="foot-note">플랜별 구성이 달라질 수 있습니다. <span class="ex-chip">이미지 시안</span></p>
   </div>
 </section>
 
@@ -563,7 +685,7 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
   // scroll reveal + count-up (skipped for reduced motion / no IntersectionObserver)
   if (!reduce && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js');
-    var groups = ['.worry .sec-head','.wcard','.how .sec-head','.step','.plans-sec .sec-head','.seg','#panel-a .plan','.plans-sec .foot-note','.rise .sec-head','.rise-box','.col','.rise .foot-note','.incl .sec-head','.box','.incl .foot-note','.trust .sec-head','.big','.care li','.region','.trust .foot-note','.bundle .sec-head','.bcard','.bundle .foot-note','.easy .sec-head','.faq','.apply .wrap > *'];
+    var groups = ['.worry .sec-head','.wcard','.how .sec-head','.step','.plans-sec .sec-head','.seg','#panel-a .plan','.plans-sec .foot-note','.rise .sec-head','.rise-box','.col','.rise .foot-note','.incl .sec-head','.kit li','.incl .foot-note','.trust .sec-head','.big','.care li','.region','.trust .foot-note','.bundle .sec-head','.bcard','.bundle .foot-note','.easy .sec-head','.faq','.apply .wrap > *'];
     groups.forEach(function(sel){
       document.querySelectorAll(sel).forEach(function(el, i){
         el.classList.add('reveal');
