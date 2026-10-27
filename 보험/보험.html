@@ -94,7 +94,7 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 /* ---------- 3 approach ---------- */
 .how{background:#fff}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-.step{border-radius:30px;padding:40px 26px 36px;text-align:center}
+.step{display:flex;flex-direction:column;align-items:center;border-radius:30px;padding:40px 26px 28px;text-align:center}
 .step:nth-child(1){background:var(--mint-bg)}
 .step:nth-child(2){background:var(--blue-bg)}
 .step:nth-child(3){background:var(--cream)}
@@ -102,9 +102,9 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .step:nth-child(2) .no{color:var(--blue)}.step:nth-child(3) .no{color:var(--amber)}
 .step .no:after{content:'';display:block;width:44px;height:3px;border-radius:2px;background:currentColor;opacity:.35;margin:16px auto 20px}
 .step h3{font-size:clamp(22.5px,2.2vw,26px);letter-spacing:-1px}
-.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:24px}
-.chips li{background:#fff;border-radius:999px;padding:8px 16px;font-size:16.5px;font-weight:800;color:var(--navy);box-shadow:0 6px 16px #0b4a3c14}
-.mini{margin:24px auto 0;max-width:300px;background:#fff;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:6px 8px;font-size:14.5px;align-items:center;text-align:center;box-shadow:0 8px 20px #3e6ee81a}
+.step-img{display:block;width:100%;height:230px;object-fit:contain;margin-top:auto;padding-top:24px}
+.mini-wrap{display:flex;align-items:center;width:100%;height:230px;padding-top:24px;margin-top:auto}
+.mini{margin:0 auto;width:100%;max-width:300px;background:#fff;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:6px 8px;font-size:14.5px;align-items:center;text-align:center;box-shadow:0 8px 20px #3e6ee81a}
 .mini i{font-style:normal;text-align:left;color:var(--gray);font-weight:700}
 .mini b{color:var(--blue)}.mini u{text-decoration:none;color:var(--mint);font-weight:900}
 
@@ -179,8 +179,6 @@ footer p+p{margin-top:8px}
 .js .promise li.in .num,.js .step.in .no{transform:none;opacity:1}
 .js .mini u{display:inline-block;transform:scale(0) rotate(-90deg);transition:transform .55s cubic-bezier(.3,1.8,.5,1);transition-delay:calc(var(--k,0)*.11s + .6s)}
 .js .step.in .mini u{transform:none}
-.js .chips li{transform:translateY(16px) scale(.8);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .4s;transition-delay:calc(var(--c,0)*.12s + .6s)}
-.js .step.in .chips li{transform:none;opacity:1}
 .rendered-icon{animation:bob 4.2s ease-in-out infinite}
 .glow{animation:pulse 3.6s ease-in-out infinite}
 @keyframes bob{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -18px;rotate:3deg}}
@@ -326,22 +324,22 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
       <article class="step">
         <span class="no">01</span>
         <h3>가입한 보험<br>먼저 점검</h3>
-        <ul class="chips"><li>보장 금액</li><li>갱신</li><li>납입 조건</li></ul>
+        <img class="step-img" src="images/step-01.webp" alt="체크리스트로 보험을 점검하는 상담사" width="1254" height="1254" loading="lazy">
       </article>
       <article class="step">
         <span class="no">02</span>
         <h3>여러 상품<br>같은 기준 비교</h3>
-        <div class="mini" aria-label="비교 기준 예시">
+        <div class="mini-wrap"><div class="mini" aria-label="비교 기준 예시">
           <i></i><b>상품 A</b><b>상품 B</b><b>상품 C</b>
           <i>보장 범위</i><u>✓</u><u>✓</u><u>✓</u>
           <i>갱신 여부</i><u>✓</u><u>✓</u><u>✓</u>
           <i>보험료</i><u>✓</u><u>✓</u><u>✓</u>
-        </div>
+        </div></div>
       </article>
       <article class="step">
         <span class="no">03</span>
         <h3>충분히 듣고<br>내가 결정</h3>
-        <ul class="chips"><li>유지</li><li>변경</li><li>보류</li></ul>
+        <img class="step-img" src="images/step-03.webp" alt="고객에게 차분히 설명하는 상담사" width="1536" height="1024" loading="lazy">
       </article>
     </div>
   </div>
@@ -433,7 +431,6 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
   if (!reduce && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js');
     document.querySelectorAll('.mini u').forEach(function(u, i){ u.style.setProperty('--k', i); });
-    document.querySelectorAll('.chips li').forEach(function(c, i){ c.style.setProperty('--c', i % 3); });
     var groups = ['.case .sec-head','.case .diff-top','.case .row','.case .sum','.case-note','.how .sec-head','.step','.aftercare h2','.glow','.promise li','.after-note','.easy .sec-head','.big','.faq','.apply .wrap > *'];
     groups.forEach(function(sel){
       document.querySelectorAll(sel).forEach(function(el, i){
