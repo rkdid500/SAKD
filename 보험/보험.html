@@ -93,35 +93,32 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 
 /* ---------- 3 approach ---------- */
 .how{background:#fff}
-.steps{display:grid;grid-template-columns:1.1fr 1.1fr 1.1fr;gap:20px;align-items:stretch}
-.step{position:relative;border-radius:30px;padding:36px 30px 32px;overflow:hidden}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.step{border-radius:30px;padding:40px 26px 36px;text-align:center}
 .step:nth-child(1){background:var(--mint-bg)}
 .step:nth-child(2){background:var(--blue-bg)}
 .step:nth-child(3){background:var(--cream)}
-.step .no{font-size:15px;font-weight:900;letter-spacing:1px;color:var(--teal)}
+.step .no{display:block;font-size:clamp(48px,5.4vw,64px);font-weight:900;line-height:1;letter-spacing:-2px;color:var(--teal)}
 .step:nth-child(2) .no{color:var(--blue)}.step:nth-child(3) .no{color:var(--amber)}
-.step h3{font-size:27px;margin:8px 0 12px;letter-spacing:-1.2px}
-.step p{font-size:18px;color:#34453f;max-width:300px}
-.step .rendered-icon{margin:22px 0 0 auto;width:150px;height:150px}
-.mini{margin-top:20px;background:#fff;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:6px 8px;font-size:14.5px;align-items:center;text-align:center;box-shadow:0 8px 20px #3e6ee81a}
+.step .no:after{content:'';display:block;width:44px;height:3px;border-radius:2px;background:currentColor;opacity:.35;margin:16px auto 20px}
+.step h3{font-size:clamp(24px,2.5vw,28px);letter-spacing:-1px}
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:24px}
+.chips li{background:#fff;border-radius:999px;padding:8px 16px;font-size:16.5px;font-weight:800;color:var(--navy);box-shadow:0 6px 16px #0b4a3c14}
+.mini{margin:24px auto 0;max-width:300px;background:#fff;border-radius:16px;padding:12px 14px;display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:6px 8px;font-size:14.5px;align-items:center;text-align:center;box-shadow:0 8px 20px #3e6ee81a}
 .mini i{font-style:normal;text-align:left;color:var(--gray);font-weight:700}
 .mini b{color:var(--blue)}.mini u{text-decoration:none;color:var(--mint);font-weight:900}
-.flow-arrow{display:none}
 
 /* ---------- 4 after care ---------- */
-.aftercare{background:linear-gradient(150deg,#06695a 0%,#0a9a82 60%,#14b99b 100%);color:#fff;position:relative;overflow:hidden}
-.aftercare:before{content:'';position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:#ffffff14}
-.aftercare:after{content:'';position:absolute;left:-90px;bottom:-140px;width:340px;height:340px;border-radius:50%;background:#ffffff0f}
-.aftercare .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
-.aftercare h2{color:#fff;font-size:clamp(27px,3.9vw,44px)}
-.aftercare .lead{margin-top:18px;font-size:20px;color:#e3fbf5;font-weight:500}
-.aftercare .rendered-icon{margin-top:26px;width:170px;height:170px}
-.care{display:grid;gap:14px}
-.care li{display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:center;background:#ffffff1f;border:1px solid #ffffff40;border-radius:22px;padding:24px 26px;backdrop-filter:blur(4px)}
-.care svg{width:64px;height:64px;padding:14px;border-radius:18px;background:#fff;stroke:var(--teal)}
-.care h3{color:#fff;font-size:23px;letter-spacing:-.8px}
-.care p{margin-top:4px;font-size:17.5px;color:#e6fbf6}
-.after-note{margin-top:22px;font-size:15.5px;color:#d4f5ed}
+.aftercare{background:#f4fbf8;text-align:center}
+.aftercare h2{font-size:clamp(27px,4vw,44px)}
+.glow{width:280px;height:280px;margin:14px auto 0;display:grid;place-items:center;background:radial-gradient(circle,#d6f4ec 0%,#e8f8f3 42%,#f4fbf8 70%)}
+.glow .rendered-icon{width:170px;height:170px}
+.promise{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.promise li{padding:8px 12px}
+.promise .num{display:block;font-size:clamp(56px,7vw,80px);font-weight:900;line-height:1;letter-spacing:-2px;color:var(--teal)}
+.promise .num:after{content:'';display:block;width:44px;height:3px;border-radius:2px;background:#9fd7c9;margin:18px auto 22px}
+.promise h3{font-size:clamp(24px,2.6vw,30px);letter-spacing:-1px}
+.after-note{margin-top:44px;font-size:15.5px;color:var(--gray)}
 
 /* ---------- 5 reasons + faq ---------- */
 .easy{background:#fff}
@@ -170,10 +167,47 @@ footer p+p{margin-top:8px}
 /* mobile bottom bar (hidden while hero / form is on screen) */
 .dock{display:none}
 
+/* ---------- motion ---------- */
+.cnt{font-style:normal}
+.progress{position:fixed;left:0;top:0;height:4px;width:100%;z-index:60;background:linear-gradient(90deg,var(--mint),var(--blue));transform-origin:0 50%;transform:scaleX(0)}
+.js .reveal{opacity:0;transform:translateY(72px) scale(.94);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .row.reveal{transform:translateX(-90px)}
+.js .row.reveal:nth-of-type(even){transform:translateX(90px)}
+.js .reveal.in{opacity:1;transform:none}
+.js .row.reveal.in:nth-of-type(even){transform:none}
+.js .promise .num,.js .step .no{display:block;transform:scale(.3);opacity:0;transition:transform .8s cubic-bezier(.3,1.7,.5,1),opacity .4s;transition-delay:calc(var(--d,0s) + .25s)}
+.js .promise li.in .num,.js .step.in .no{transform:none;opacity:1}
+.js .mini u{display:inline-block;transform:scale(0) rotate(-90deg);transition:transform .55s cubic-bezier(.3,1.8,.5,1);transition-delay:calc(var(--k,0)*.11s + .6s)}
+.js .step.in .mini u{transform:none}
+.js .chips li{transform:translateY(16px) scale(.8);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .4s;transition-delay:calc(var(--c,0)*.12s + .6s)}
+.js .step.in .chips li{transform:none;opacity:1}
+.rendered-icon{animation:bob 4.2s ease-in-out infinite}
+.glow{animation:pulse 3.6s ease-in-out infinite}
+@keyframes bob{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -18px;rotate:3deg}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+.step,.big,.row{transition:transform .3s,box-shadow .3s,background .3s}
+.step:hover,.big:hover,.js .step.in:hover,.js .big.in:hover{transform:translateY(-12px) scale(1.03);box-shadow:0 26px 54px #0b4a3c26;transition-delay:0s}
+.row:hover,.js .row.in:hover{background:#f1fbf8;transform:translateX(6px);transition-delay:0s}
+header{transition:box-shadow .3s}
+header.scrolled{box-shadow:0 6px 24px #0b4a3c1f}
+.hero h1,.hero .sub,.hero .btn,.hero .cmp{animation:rise 1s cubic-bezier(.2,.8,.2,1) both}
+.hero .sub{animation-delay:.15s}.hero .btn{animation-delay:.3s}.hero .cmp{animation-name:rise-card;animation-delay:.2s}
+@keyframes rise{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes rise-card{from{opacity:0;transform:translateX(70px) rotate(3deg)}to{opacity:1;transform:none}}
+.hero .btn{animation:rise 1s .3s cubic-bezier(.2,.8,.2,1) both,ring 2.4s 1.6s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 10px 24px #007b6830,0 0 0 0 #08b39380}70%,100%{box-shadow:0 10px 24px #007b6830,0 0 0 20px #08b39300}}
+.hero:before,.hero:after{content:'';position:absolute;border-radius:50%;pointer-events:none;animation:drift 9s ease-in-out infinite}
+.hero{position:relative}
+.hero:before{width:360px;height:360px;left:-120px;top:-100px;background:#08b39318}
+.hero:after{width:300px;height:300px;right:-80px;bottom:-90px;background:#3e6ee818;animation-delay:-4s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(40px,30px)}}
+.hero .wrap{position:relative}
+
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  .hero .wrap,.aftercare .wrap,.apply .wrap{grid-template-columns:1fr;gap:44px}
+  .hero .wrap,.apply .wrap{grid-template-columns:1fr;gap:44px}
   .steps,.big3{grid-template-columns:1fr}
+  .promise{grid-template-columns:1fr;gap:36px}
   .hero{padding:52px 0 72px}
   .cmp .rendered-icon{right:-4px}
 }
@@ -191,18 +225,17 @@ footer p+p{margin-top:8px}
   .sum{grid-template-columns:1fr;gap:6px;padding:26px 20px;text-align:left}
   .sum .mid{display:none}.sum .gap{justify-self:start;text-align:left;margin-top:8px}
   .step{padding:30px 22px 26px}
-  .care li{grid-template-columns:52px 1fr;gap:14px;padding:20px 18px}
-  .care svg{width:52px;height:52px;padding:11px}
   form{padding:28px 20px}
   .logo{width:108px;height:54px}
   body{padding-bottom:88px}
   .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#ffffffF2;backdrop-filter:blur(10px);border-top:1px solid var(--line)}
   .dock .btn{width:100%;min-height:54px}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
+<div class="progress" id="progress" aria-hidden="true"></div>
 <a class="skip" href="#main">본문 바로가기</a>
 <div class="notice">디자인 시안 · 서비스 정책과 비교 사례는 검토용 가정이며 실제 상담은 접수되지 않습니다.</div>
 
@@ -227,9 +260,9 @@ footer p+p{margin-top:8px}
       <span class="ex-chip">가상 비교 예시</span>
       <div class="rendered-icon i-medical" role="img" aria-label="입체 의료가방"></div>
       <div class="cmp-grid">
-        <div class="cmp-col c-before"><small>점검 전</small><strong>12.0<span>만원</span></strong><em>월 보험료</em></div>
+        <div class="cmp-col c-before"><small>점검 전</small><strong><i class="cnt" data-to="12.0">12.0</i><span>만원</span></strong><em>월 보험료</em></div>
         <div class="cmp-arrow" aria-hidden="true">→</div>
-        <div class="cmp-col c-after"><small>점검 후</small><strong>10.1<span>만원</span></strong><em>월 보험료</em></div>
+        <div class="cmp-col c-after"><small>점검 후</small><strong><i class="cnt" data-to="10.1">10.1</i><span>만원</span></strong><em>월 보험료</em></div>
       </div>
       <ul class="cmp-list">
         <li><span class="tag keep">유지</span>암 진단비 2,000만원</li>
@@ -245,36 +278,35 @@ footer p+p{margin-top:8px}
 <section class="case" id="case">
   <div class="wrap">
     <div class="sec-head">
-      <h2>무엇을 줄이고,<br>무엇을 지킬지 먼저 살펴봅니다.</h2>
-      <p>항목마다 바꾸는 이유를 함께 확인하세요.</p>
+      <h2>무엇을 줄이고,<br>무엇을 지킬지 먼저 살펴봅니다.</h2>
     </div>
     <div class="diff">
       <div class="diff-top"><b>월 보험료 변화 사례</b><span class="ex-chip">가상 비교 예시</span></div>
       <article class="row">
         <h3>암 진단비 2,000만원 <span class="tag keep">유지</span></h3>
         <p class="nums"><s>3.6</s> → <b>3.6<small>만원</small></b></p>
-        <p class="why">치료비 부담이 큰 보장이라 그대로 지킵니다.</p>
+        <p class="why">치료비 부담이 커서 그대로 둡니다.</p>
       </article>
       <article class="row">
         <h3>입원일당 특약 2건 <span class="tag chk">확인</span></h3>
         <p class="nums"><s>2.4</s> → <b>1.2<small>만원</small></b></p>
-        <p class="why">지급 조건이 같을 때만 한 건을 정리합니다. 다르면 둘 다 유지합니다.</p>
+        <p class="why">지급 조건이 같을 때만 한 건 정리</p>
       </article>
       <article class="row">
         <h3>소액 특약 여러 개 <span class="tag chk">확인</span></h3>
         <p class="nums"><s>4.1</s> → <b>2.0<small>만원</small></b></p>
-        <p class="why">겹치거나 쓰임이 적은 특약부터 살펴봅니다.</p>
+        <p class="why">겹치거나 안 쓰는 특약부터 확인</p>
       </article>
       <article class="row">
         <h3>뇌혈관·심장 진단비 <span class="tag rev">검토</span></h3>
         <p class="nums"><s>1.9</s> → <b>3.3<small>만원</small></b></p>
-        <p class="why">1,000만원은 부족할 수 있어 2,000만원으로 늘려 검토합니다. 이 항목은 보험료가 올라갑니다.</p>
+        <p class="why">1,000만원은 부족할 수 있어 증액 · 보험료 상승</p>
       </article>
       <div class="sum">
-        <div><small>점검 전 월 보험료</small><strong>12.0<span>만원</span></strong></div>
+        <div><small>점검 전 월 보험료</small><strong><i class="cnt" data-to="12.0">12.0</i><span>만원</span></strong></div>
         <div class="mid" aria-hidden="true">→</div>
-        <div><small>점검 후 월 보험료</small><strong>10.1<span>만원</span></strong></div>
-        <div class="gap"><small>월 차이</small><strong>−1.9<span>만원</span></strong></div>
+        <div><small>점검 후 월 보험료</small><strong><i class="cnt" data-to="10.1">10.1</i><span>만원</span></strong></div>
+        <div class="gap"><small>월 차이</small><strong>−<i class="cnt" data-to="1.9">1.9</i><span>만원</span></strong></div>
       </div>
     </div>
     <div class="case-note">
@@ -292,15 +324,13 @@ footer p+p{margin-top:8px}
     </div>
     <div class="steps">
       <article class="step">
-        <span class="no">STEP 1</span>
-        <h3>기존 보험부터 점검</h3>
-        <p>가입한 증권을 펼쳐 보장 금액, 갱신, 납입 조건을 하나씩 확인합니다.</p>
-        <div class="rendered-icon i-medical" role="img" aria-label="입체 의료가방"></div>
+        <span class="no">01</span>
+        <h3>가입한 보험<br>먼저 점검</h3>
+        <ul class="chips"><li>보장 금액</li><li>갱신</li><li>납입 조건</li></ul>
       </article>
       <article class="step">
-        <span class="no">STEP 2</span>
-        <h3>여러 상품의 조건 비교</h3>
-        <p>같은 기준으로 나란히 놓고 보장 범위와 보험료를 견줍니다.</p>
+        <span class="no">02</span>
+        <h3>여러 상품<br>같은 기준 비교</h3>
         <div class="mini" aria-label="비교 기준 예시">
           <i></i><b>상품 A</b><b>상품 B</b><b>상품 C</b>
           <i>보장 범위</i><u>✓</u><u>✓</u><u>✓</u>
@@ -309,10 +339,9 @@ footer p+p{margin-top:8px}
         </div>
       </article>
       <article class="step">
-        <span class="no">STEP 3</span>
-        <h3>이해한 뒤 내가 결정</h3>
-        <p>충분히 설명을 듣고, 유지·변경·보류를 직접 고릅니다.</p>
-        <div class="rendered-icon i-heart" role="img" aria-label="입체 하트와 손"></div>
+        <span class="no">03</span>
+        <h3>충분히 듣고<br>내가 결정</h3>
+        <ul class="chips"><li>유지</li><li>변경</li><li>보류</li></ul>
       </article>
     </div>
   </div>
@@ -321,28 +350,14 @@ footer p+p{margin-top:8px}
 <!-- 4. 가입 이후 지원 -->
 <section class="aftercare" id="after">
   <div class="wrap">
-    <div>
-      <h2>가입 이후 궁금한 점도,<br>문의할 곳이 있어야 하니까.</h2>
-      <p class="lead">가입으로 끝나지 않도록, 필요한 순간에 물어볼 수 있어요.</p>
-      <div class="rendered-icon i-home" role="img" aria-label="입체 주택"></div>
-    </div>
-    <div>
-      <ul class="care">
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>
-          <div><h3>보험금 청구 안내</h3><p>청구 방법과 필요한 서류를 알려드려요.</p></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></svg>
-          <div><h3>가입한 보장 문의</h3><p>내 보장 내용이 궁금할 때 물어보세요.</p></div>
-        </li>
-        <li>
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4M16 3v4M4 10h16M9 15l2 2 4-4"/></svg>
-          <div><h3>갱신·변경 확인</h3><p>바꾸기 전에 확인할 항목을 안내해요.</p></div>
-        </li>
-      </ul>
-      <p class="after-note">보험금 지급 여부와 금액은 보험사의 심사와 약관에 따릅니다.</p>
-    </div>
+    <h2>가입 이후에도<br>문의할 곳이 있습니다</h2>
+    <div class="glow"><div class="rendered-icon i-heart" role="img" aria-label="입체 하트와 손"></div></div>
+    <ol class="promise">
+      <li><span class="num">01</span><h3>보험금 청구,<br>방법과 서류 안내</h3></li>
+      <li><span class="num">02</span><h3>가입한 보장,<br>궁금하면 문의</h3></li>
+      <li><span class="num">03</span><h3>갱신·변경 전,<br>확인할 항목 안내</h3></li>
+    </ol>
+    <p class="after-note">보험금 지급 여부와 금액은 보험사의 심사와 약관에 따릅니다.</p>
   </div>
 </section>
 
@@ -404,6 +419,48 @@ footer p+p{margin-top:8px}
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // header shadow
+  var hd = document.querySelector('header');
+  var bar = document.getElementById('progress');
+  addEventListener('scroll', function(){
+    hd.classList.toggle('scrolled', scrollY > 8);
+    var h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(scrollY / h, 1) : 0) + ')';
+  }, {passive: true});
+
+  // scroll reveal + count-up (skipped for reduced motion / no IntersectionObserver)
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js');
+    document.querySelectorAll('.mini u').forEach(function(u, i){ u.style.setProperty('--k', i); });
+    document.querySelectorAll('.chips li').forEach(function(c, i){ c.style.setProperty('--c', i % 3); });
+    var groups = ['.case .sec-head','.case .diff-top','.case .row','.case .sum','.case-note','.how .sec-head','.step','.aftercare h2','.glow','.promise li','.after-note','.easy .sec-head','.big','.faq','.apply .wrap > *'];
+    groups.forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el, i){
+        el.classList.add('reveal');
+        el.style.setProperty('--d', Math.min(i % 4, 3) * 0.14 + 's');
+      });
+    });
+    var rio = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); } });
+    }, {threshold: 0.15, rootMargin: '0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ rio.observe(el); });
+
+    var cio = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        var el = en.target, to = parseFloat(el.dataset.to), t0 = performance.now();
+        (function tick(now){
+          var p = Math.min((now - t0) / 1700, 1), e = 1 - Math.pow(1 - p, 3);
+          el.textContent = (to * e).toFixed(1);
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, {threshold: 0.6});
+    document.querySelectorAll('.cnt').forEach(function(el){ el.textContent = '0.0'; cio.observe(el); });
+  }
+
   var nameEl = document.getElementById('name'), phone = document.getElementById('phone'),
       consent = document.getElementById('consent'), result = document.getElementById('result'),
       form = document.getElementById('form');
