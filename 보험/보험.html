@@ -290,8 +290,8 @@ footer p+p{margin-top:6px}
   .flow li:not(:last-child):after{display:none}
   .promise{grid-template-columns:1fr}
   .promise li+li{border-left:0;border-top:1px solid var(--line)}
-  .sum{grid-template-columns:1fr 1fr;padding:24px}
-  .sum .mid{display:none}
+  .sum{grid-template-columns:1fr auto 1fr;padding:24px;gap:12px}
+  .sum .mid{font-size:0;line-height:0;align-self:center}.sum .mid:before{content:"";display:block;width:30px;height:26px;background:#4f9fd0;clip-path:polygon(0 33%,55% 33%,55% 0,100% 50%,55% 100%,55% 67%,0 67%)}
   .sum .gap{grid-column:1/-1;justify-self:start;text-align:center;padding-top:16px;border-top:1px solid #d0e5f4;width:100%}
   .worries{gap:28px}
   .wcard:nth-child(2){margin-top:0;margin-left:28px;border-radius:28px 28px 6px 28px}
