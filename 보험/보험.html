@@ -130,10 +130,10 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 .sum strong{display:block;font-size:clamp(30px,4vw,44px);line-height:1.1;letter-spacing:-.05em;font-weight:800}
 .sum strong span{font-size:17px;font-weight:600;margin-left:3px}
 .sum .mid{font-size:24px;color:#6fa3c7}
-.sum .gap{justify-self:end;text-align:right}
+.sum .gap{justify-self:end;text-align:center}
 .sum>div:nth-child(1) strong span,.pane.before strong span{display:inline-block}
 .sum>div:nth-child(1) strong{color:#a9b6bf;text-decoration:line-through;text-decoration-thickness:.07em;text-decoration-color:#bfcad2}.sum>div:nth-child(3) strong{color:#0a8a6c}
-.sum .gap strong{color:#0a8a6c}
+.sum .gap strong{color:#0a8a6c;font-size:clamp(38px,5.2vw,58px)}.sum .gap strong span{font-size:20px}
 .sum .calc{margin-top:6px;font-size:14px;color:#4a6a82}
 .caution{display:flex;gap:14px;margin-top:20px;padding:20px 24px;border-radius:var(--r-md);background:var(--coral-soft);color:#6f2418;font-size:15.5px}
 .flow p,.qa-card p,.caution div{text-wrap:balance}
@@ -290,7 +290,7 @@ footer p+p{margin-top:6px}
   .promise li+li{border-left:0;border-top:1px solid var(--line)}
   .sum{grid-template-columns:1fr 1fr;padding:24px}
   .sum .mid{display:none}
-  .sum .gap{grid-column:1/-1;justify-self:start;text-align:left;padding-top:16px;border-top:1px solid #d0e5f4;width:100%}
+  .sum .gap{grid-column:1/-1;justify-self:start;text-align:center;padding-top:16px;border-top:1px solid #d0e5f4;width:100%}
   .worries{gap:28px}
   .wcard:nth-child(2){margin-top:0;margin-left:28px;border-radius:28px 28px 6px 28px}
   .wcard:nth-child(2):after{left:auto;right:-1px;border-left:0;border-right:1px solid var(--line);clip-path:polygon(0 0,100% 0,100% 100%)}
