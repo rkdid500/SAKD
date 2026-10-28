@@ -171,19 +171,19 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;heigh
 
 /* ---------- 6 process ---------- */
 .process{background:var(--brand-tint)}
-.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:28px}
+.flow{--fg:clamp(32px,3.8vw,52px);display:grid;grid-template-columns:repeat(5,1fr);gap:var(--fg)}
 .flow li{position:relative;display:flex;flex-direction:column;padding:26px 20px 24px;border-radius:var(--r-md);background:#fff;border:1px solid var(--line)}
 .flow .fi{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;background:var(--brand-soft);margin-bottom:18px}
 .flow .fi img{width:54px;height:54px}
 .fno{font-size:13.5px;font-weight:800;color:var(--brand);letter-spacing:.04em}
 .flow h3{font-size:18.5px;font-weight:800;margin-top:2px}
 .flow p{margin-top:8px;font-size:14.5px;color:var(--ink-2)}
-@media(min-width:721px){.flow li{align-items:center;text-align:center}}
+@media(min-width:901px){.flow li{align-items:center;text-align:center}}
 .flow li:last-child{background:var(--brand);border-color:var(--brand);color:#fff}
 .flow li:last-child .fi{background:#fff}
 .flow li:last-child .fno{color:#c6f0e4}
 .flow li:last-child p{color:#e1f6f0}
-.flow li:not(:last-child):after{content:'';position:absolute;right:-20px;top:53px;width:10px;height:10px;border-top:2.5px solid var(--brand);border-right:2.5px solid var(--brand);transform:rotate(45deg);z-index:1;background:transparent}
+.flow li:not(:last-child):after{content:'';position:absolute;right:calc(var(--fg)/-2 - 7px);top:50%;margin-top:-5px;width:10px;height:10px;border-top:2.5px solid var(--brand);border-right:2.5px solid var(--brand);transform:rotate(45deg);z-index:1;background:transparent}
 
 /* ---------- 7 after care ---------- */
 .aftercare{text-align:center;background:#fff}
