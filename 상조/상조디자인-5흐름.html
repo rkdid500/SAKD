@@ -418,7 +418,6 @@ footer p+p{margin-top:6px}
               <li><svg class="art" role="img" aria-label="입관용품"><use href="#a-linen"/></svg><span>입관용품</span></li>
             </ul>
             <p class="kit-cap"><span class="ex-chip">그림은 임시 시안</span> 상품별로 다릅니다.</p>
-            <div class="ref" id="ref-mubinso"></div>
           </div>
         </details>
       </article>
@@ -445,7 +444,6 @@ footer p+p{margin-top:6px}
               <li class="plus"><svg class="art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg><span>의전 차량</span></li>
             </ul>
             <p class="kit-cap"><span class="ex-chip">그림은 임시 시안</span> + 표시는 무빈소 장례에 더해지는 구성입니다.</p>
-            <div class="ref" id="ref-general"></div>
           </div>
         </details>
       </article>
@@ -536,18 +534,6 @@ footer p+p{margin-top:6px}
   function man(v){ return v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만 원' : krw(v); }
   function mainOf(t){ return t.own ? { label: '싹딜 판매가격', amount: t.own.amount, source: '' } : t.ref; }
 
-  PRICING.types.forEach(function(t){
-    var m = mainOf(t), h = '<b>' + m.label + ' ' + man(m.amount) + '</b>';
-    if (t.own) {
-      h += '<small>' + t.ref.label + ' ' + man(t.ref.amount) + ' · ' + t.ref.source + '</small>';
-      if (t.comparable && t.ref.amount > t.own.amount) h += '<small>타사 참고가격보다 ' + man(t.ref.amount - t.own.amount) + ' 낮습니다</small>';
-    } else {
-      h += '<small>' + m.source + '</small>';
-      if (t.schedule) h += '<small>' + t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + ' = 총 납입금 ' + man(m.amount) + '</small>';
-      if (t.ref.note) h += '<small>' + t.ref.note + '</small>';
-    }
-    $('ref-' + t.id).innerHTML = h;
-  });
   $('types-note').textContent = PRICING.surveyDate + ' 공개가격 조사 기준 참고용입니다. 두 형태는 제공 범위가 다릅니다.';
 
   var hd = document.querySelector('header');
