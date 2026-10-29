@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="싹딜 상조 리디자인 시안. 서비스 차이부터 우리 가족에게 맞는 장례 준비까지 한눈에 알아보세요.">
-<meta name="theme-color" content="#0a4f49">
+<meta name="theme-color" content="#0a9e82">
 <meta name="robots" content="noindex,nofollow">
 <title>싹딜 상조 — 장례 준비 안내 (리디자인 시안)</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-/* 레이아웃: 아이보리 첫 화면 → 짙은 청록 서비스 → 좌우 대비 장례 형태 → 흰 바탕 확인 정보 → 짙은 청록 상담 신청 */
+/* 레이아웃: 첫 화면(제목+상담사) → 서비스 4가지 + 이용 도식 → 장례 형태 2패널 + 계약 전 확인 띠 → 확인 정보 + 접이식 FAQ → 상담 신청 */
 :root{
-  --deep:#0a4f49;--deep-2:#073c38;--teal:#0b7a68;--mint:#3ed3b5;--mint-soft:#d9f5ee;--mint-pale:#eef9f5;
-  --ivory:#fbf8f1;--ivory-2:#f3eee1;--ink:#12211f;--ink-2:#34423f;--mute:#5d6b67;--line:#e4e0d3;
-  --amber-soft:#fbf2df;--coral:#d8452f;--coral-soft:#fdeeea;
-  --shadow:0 28px 60px -28px #073c3866;
+  --brand:#0a9e82;--brand-deep:#007361;--brand-dark:#00594b;--brand-soft:#e6f6f1;--brand-tint:#f3faf7;
+  --ink:#0f1b1a;--ink-2:#2f3e3b;--mute:#5b6b67;--line:#e3ebe8;--panel:#f5f7f6;
+  --amber:#a86a08;--amber-soft:#fbf2df;--coral:#d8452f;--coral-soft:#fdeeea;
+  --r-lg:28px;--r-md:18px;--shadow:0 24px 60px -24px #0a4a3e40;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:88px}
@@ -27,76 +27,66 @@ button,input,select,textarea{font:inherit;color:inherit}
 [hidden]{display:none!important}
 .skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:90;background:#fff;padding:10px 14px}
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-h1,h2,h3{line-height:1.25;letter-spacing:-.045em;text-wrap:balance;font-weight:800;color:var(--deep)}
-section{padding:104px 0}
-.dark{background:linear-gradient(160deg,var(--deep),var(--deep-2));color:#fff}
-.dark h2,.dark h3{color:#fff}
-.art{display:block;width:84px;height:84px}
+h1,h2,h3{line-height:1.25;letter-spacing:-.045em;text-wrap:balance;font-weight:800}
+section{padding:96px 0}
 
 /* ---------- parts ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 42px;border:0;border-radius:999px;background:var(--deep);color:#fff;font-size:18px;font-weight:700;text-align:center;cursor:pointer;transition:background .2s,transform .2s}
-.btn:hover{background:var(--deep-2)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 40px;border:0;border-radius:999px;background:var(--brand-deep);color:#fff;font-size:18px;font-weight:700;text-align:center;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--brand-dark)}
 .btn:active{transform:scale(.98)}
 .btn-sm{min-height:44px;padding:0 20px;font-size:15.5px}
-.btn-mint{background:var(--mint);color:var(--deep-2)}
-.btn-mint:hover{background:#6fe3cb}
-.sec-head{margin:0 0 48px}
-.sec-head h2{font-size:clamp(30px,4.4vw,48px)}
+.btn-line{background:#fff;color:var(--brand-deep);border:1.5px solid var(--brand)}
+.btn-line:hover{background:var(--brand-soft)}
+.sec-head{margin:0 0 44px}
+.sec-head h2{font-size:clamp(28px,4vw,42px)}
 .sec-head.center{text-align:center}
 .sub{margin-top:12px;font-size:18px;color:var(--ink-2)}
-.dark .sub{color:#bfe9de}
 .ex-chip{display:inline-block;font-size:13.5px;font-weight:700;color:#6b4a00;background:#fff1d3;border-radius:6px;padding:2px 9px;letter-spacing:0;white-space:nowrap;line-height:1.6}
 .tbd{background:linear-gradient(transparent 62%,#ffe3a3 62%);border-bottom:1.5px dashed #d9a23a;padding:0 1px}
-.dark .tbd,.notice .tbd,.type-b .tbd{background:linear-gradient(transparent 62%,#8a6a2099 62%)}
 .tbd-flag{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;color:#8a5a00;border:1px dashed #d9a23a;border-radius:5px;padding:0 6px;vertical-align:2px;letter-spacing:0;white-space:nowrap}
+.art{display:block;width:84px;height:84px}
 
 /* ---------- header ---------- */
 .notice{background:var(--ink);color:#dfe9e6;text-align:center;font-size:13.5px;padding:8px 16px;line-height:1.5}
-.notice .tbd{color:#fff}
+.notice .tbd{color:#fff;background:linear-gradient(transparent 62%,#8a6a20 62%)}
 header{position:sticky;top:0;z-index:30;background:#ffffffe6;backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
 header.scrolled{border-color:var(--line)}
 header .top{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:block;width:112px;height:56px;margin-left:-8px;background:url("images/logo.png") center/contain no-repeat}
 
-/* ---------- 1 hero (ivory) ---------- */
-.hero{padding:72px 0 96px;background:var(--ivory)}
-.hero .wrap{display:grid;grid-template-columns:1.08fr .92fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(38px,4.7vw,60px);line-height:1.18;letter-spacing:-.055em}
-.hero h1 em{font-style:normal;color:var(--teal)}
-.hero .lead{margin:24px 0 36px;font-size:clamp(18px,1.9vw,21px);color:var(--ink-2)}
-.hero-art{position:relative;width:min(100%,440px);margin:0 auto;aspect-ratio:1}
-.hero-art svg,.hero-art img{position:absolute;inset:0;width:100%;height:100%}
-.hero-art img{inset:8% 12% 4%;width:76%;height:88%;object-fit:contain;filter:drop-shadow(0 22px 24px #073c3838)}
+/* ---------- 1 hero ---------- */
+.hero{padding:64px 0 88px;background:linear-gradient(180deg,var(--brand-tint),#fff 85%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(36px,5.2vw,62px);line-height:1.2;letter-spacing:-.05em}
+.hero h1 em{font-style:normal;color:var(--brand-deep)}
+.hero .lead{margin:22px 0 34px;font-size:clamp(18px,1.9vw,21px);color:var(--ink-2)}
+.hero-art{display:flex;justify-content:center}
+.hero-art img{width:min(100%,400px);height:auto;filter:drop-shadow(0 24px 30px #0b4a3c2e)}
 
-/* ---------- 2 services (deep teal) ---------- */
-.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 16px;text-align:center}
-.svc li{display:flex;flex-direction:column;align-items:center;gap:14px}
-.svc .art{width:112px;height:117px}
-.svc b{font-size:21px;letter-spacing:-.04em;color:#fff}
-.svc-note{margin-top:28px;text-align:center;font-size:16px;color:#bfe9de}
-.svc-note b{color:#fff}
-.flow{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px;margin:48px auto 0;padding:20px 28px;max-width:840px;border:1px solid #ffffff2e;border-radius:999px}
+/* ---------- 2 services ---------- */
+.svc{display:grid;grid-template-columns:repeat(4,1fr);gap:20px 12px;text-align:center}
+.svc li{display:flex;flex-direction:column;align-items:center;gap:8px}
+.svc .art{width:104px;height:104px}
+.svc b{font-size:20px;letter-spacing:-.04em}
+.svc small{display:block;font-size:15px;color:var(--mute);line-height:1.5}
+.svc-note{margin-top:26px;text-align:center;font-size:15.5px;color:var(--ink-2)}
+.flow{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;margin-top:56px;padding:22px 24px;background:var(--brand-tint);border-radius:999px;max-width:820px;margin-left:auto;margin-right:auto}
 .flow li{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700}
-.flow li i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--mint);color:var(--deep-2);font-style:normal;font-size:14px}
-.flow li+li:before{content:'';width:26px;height:2px;background:#ffffff59;margin-right:2px}
+.flow li i{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--brand-deep);color:#fff;font-style:normal;font-size:14px}
+.flow li+li:before{content:'';width:26px;height:2px;background:#9fd7c9;margin-right:2px}
 
-/* ---------- 3 funeral types (light | dark split) ---------- */
-.types-sec{background:var(--ivory)}
-.types{display:grid;grid-template-columns:1fr 1fr;border-radius:32px;overflow:hidden;box-shadow:var(--shadow)}
-.type{padding:34px 32px 22px}
-.type-a{background:#fff}
-.type-b{background:var(--deep);color:#fff}
-.type-b h3{color:#fff}
-.plan{display:block;width:100%;height:auto;margin-bottom:22px;border-radius:20px}
-.type .chip{display:inline-block;font-size:14px;font-weight:700;border-radius:999px;padding:2px 12px;background:var(--mint-soft);color:var(--deep)}
-.type-b .chip{background:#ffffff22;color:var(--mint-soft)}
-.type h3{margin-top:12px;font-size:clamp(28px,3.2vw,36px)}
-.type .one{margin-top:4px;font-size:18px;color:var(--ink-2)}
-.type-b .one{color:#bfe9de}
-.more{margin-top:20px;border-top:1px solid var(--line)}
-.type-b .more{border-color:#ffffff2e}
-.more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;font-size:17px;font-weight:700;color:var(--teal)}
-.type-b .more summary{color:var(--mint)}
+/* ---------- 3 funeral types ---------- */
+.types-sec{background:linear-gradient(180deg,var(--brand-tint),#fff)}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.type{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:32px 30px 24px;box-shadow:var(--shadow)}
+.type.alt{background:linear-gradient(170deg,#fff,#f3faf7)}
+.type .chip{display:inline-block;font-size:14px;font-weight:700;color:var(--brand-deep);background:var(--brand-soft);border-radius:999px;padding:2px 12px}
+.type h3{margin-top:12px;font-size:clamp(26px,3vw,32px)}
+.type .one{margin-top:6px;font-size:18px;color:var(--ink-2)}
+.type .pics{display:flex;gap:4px;margin:22px 0 14px}
+.type .pics .art{width:96px;height:96px}
+.more{border-top:1px solid var(--line)}
+.more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;font-size:17px;font-weight:700;color:var(--brand-deep)}
 .more summary::-webkit-details-marker{display:none}
 .more summary::after{content:'+';font-size:26px;line-height:1}
 .more[open] summary::after{content:'−'}
@@ -104,62 +94,58 @@ header .top{display:flex;align-items:center;justify-content:space-between;height
 .mini-kit{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 6px}
 .mini-kit li{display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;font-size:14.5px;font-weight:600;line-height:1.35}
 .mini-kit .art{width:60px;height:60px}
-.mini-kit li.plus span{color:#ffd48a}
+.mini-kit li.plus span{color:var(--amber)}
 .mini-kit li.plus span:before{content:'+';margin-right:2px;font-weight:800}
-.type-a .mini-kit li.plus span{color:#a86a08}
 .kit-cap{margin-top:12px;font-size:14.5px;color:var(--mute)}
-.type-b .kit-cap{color:#bfe9de}
-.ref{margin-top:14px;padding-top:12px;border-top:1px dashed #cfcab9;font-size:15px}
-.type-b .ref{border-color:#ffffff3a}
+.ref{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line);font-size:15px;color:var(--ink-2)}
 .ref b{display:block;font-size:16px}
 .ref small{display:block;color:var(--mute);font-size:14px}
-.type-b .ref small{color:#bfe9de}
-.band{display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;margin-top:48px}
-.band li{padding-top:18px;border-top:3px solid var(--deep)}
-.band b{display:block;font-size:20px;color:var(--deep);margin-bottom:4px}
-.band p{font-size:16.5px;color:var(--ink-2)}
-.types-note{margin-top:22px;font-size:14.5px;color:var(--mute)}
-.mid-cta{margin-top:40px;text-align:center}
+.band{display:grid;grid-template-columns:repeat(3,1fr);margin-top:28px;background:var(--amber-soft);border-radius:var(--r-lg);padding:26px 8px}
+.band li{padding:0 26px}
+.band li+li{border-left:1px solid #ecd9ad}
+.band b{display:block;font-size:18px;margin-bottom:4px}
+.band p{font-size:16px;color:var(--ink-2)}
+.mid-cta{margin-top:36px;text-align:center}
 
 /* ---------- 4 trust + faq ---------- */
-.trust-sec{background:#fff}
-.facts3{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:56px}
-.facts3 li{padding:6px 28px}
-.facts3 li:first-child{padding-left:0}
-.facts3 li+li{border-left:2px solid var(--mint)}
+.trust-sec{background:#fff;padding-top:72px}
+.facts3{display:grid;grid-template-columns:repeat(2,1fr);margin-bottom:52px;border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.facts3 li{padding:26px 24px}
+.facts3 li+li{border-left:1px solid var(--line)}
 .facts3 small{display:block;font-size:15px;font-weight:600;color:var(--mute)}
-.facts3 b{display:block;margin-top:2px;font-size:clamp(28px,3.6vw,44px);font-weight:800;letter-spacing:-.05em;color:var(--deep);line-height:1.2}
-.faq{max-width:820px;margin:0 auto}
-.faq h3{margin-bottom:12px;font-size:26px}
-.faq details{border-bottom:1px solid var(--line)}
-.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:20px 4px;min-height:64px;font-size:19px;font-weight:700;color:var(--ink)}
+.facts3 b{display:block;margin-top:2px;font-size:clamp(24px,2.8vw,32px);font-weight:800;letter-spacing:-.04em}
+.faq{max-width:800px;margin:0 auto}
+.faq h3{margin-bottom:18px;font-size:24px;text-align:center}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:10px}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:20px 22px;min-height:60px;font-size:18px;font-weight:700}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:'+';color:var(--teal);font-size:28px;line-height:1}
+.faq summary::after{content:'+';color:var(--brand-deep);font-size:26px;line-height:1}
+.faq details[open]{border-color:#9fd7c9;background:#f6fcfa}
 .faq details[open] summary::after{content:'−'}
-.faq details p{padding:0 4px 22px;font-size:16.5px;color:var(--ink-2)}
+.faq details p{padding:0 22px 20px;font-size:16.5px;color:var(--ink-2)}
 
-/* ---------- 5 apply (deep teal) ---------- */
-.apply{padding-bottom:96px}
-.apply-card{max-width:620px;margin:0 auto;background:#fff;color:var(--ink);border-radius:28px;padding:38px 36px 34px;box-shadow:0 30px 70px -20px #00000066}
+/* ---------- 5 apply ---------- */
+.apply{background:var(--brand-tint);padding-bottom:88px}
+.apply-card{max-width:620px;margin:0 auto;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:38px 36px 34px;box-shadow:var(--shadow)}
 label.f{display:block;font-weight:700;font-size:17px;margin-bottom:18px}
 label.f i{color:var(--coral);font-style:normal}
 label.f .opt-txt{font-weight:500;font-size:15px;color:var(--mute)}
-input[type=text],input[type=tel],textarea{display:block;width:100%;margin-top:9px;padding:12px 16px;border:1.6px solid #b9c8c3;border-radius:14px;font-size:17px;background:#fff}
+input[type=text],input[type=tel],textarea{display:block;width:100%;margin-top:9px;padding:12px 16px;border:1.6px solid #b6cac3;border-radius:14px;font-size:17px;background:#fff}
 input[type=text],input[type=tel]{min-height:58px}
 textarea{min-height:104px;resize:vertical;line-height:1.6}
-input[type=text]:focus,input[type=tel]:focus,textarea:focus{border-color:var(--deep)}
+input[type=text]:focus,input[type=tel]:focus,textarea:focus{border-color:var(--brand-deep)}
 .consent{display:flex;gap:12px;align-items:center;min-height:44px;font-size:16px;font-weight:500;margin:4px 0 0}
-.consent input{width:24px;height:24px;margin:0;flex:none;accent-color:var(--deep)}
+.consent input{width:24px;height:24px;margin:0;flex:none;accent-color:var(--brand-deep)}
 .who{margin:2px 0 0 36px;font-size:14.5px;color:var(--mute)}
-.link{border:0;background:none;color:var(--teal);font-weight:700;font-size:16px;text-decoration:underline;padding:10px 0;min-height:44px;cursor:pointer}
-.privacy{background:var(--mint-pale);border-radius:12px;padding:14px 16px;font-size:15.5px;color:var(--ink-2);margin-bottom:12px}
+.link{border:0;background:none;color:var(--brand-deep);font-weight:700;font-size:16px;text-decoration:underline;padding:10px 0;min-height:44px;cursor:pointer}
+.privacy{background:var(--brand-tint);border-radius:12px;padding:14px 16px;font-size:15.5px;color:var(--ink-2);margin-bottom:12px}
 .submit-row{display:flex;justify-content:center;margin-top:12px}
 .submit-row .btn{width:100%;max-width:360px}
 .demo-flag{margin-top:16px;text-align:center;font-size:14.5px;color:#6b4a00}
-.result{margin-top:16px;padding:16px 18px;border-radius:12px;background:var(--mint-soft);color:#064c40;font-size:16px;font-weight:600}
+.result{margin-top:16px;padding:16px 18px;border-radius:12px;background:var(--brand-soft);color:#064c40;font-size:16px;font-weight:600}
 .result.err{background:var(--coral-soft);color:#8c2a1d}
 
-footer{background:var(--ivory-2);padding:40px 0 52px;font-size:15px;color:#4a5a54}
+footer{background:#f2f6f5;padding:40px 0 52px;font-size:15px;color:#4a5a54}
 footer .logo{margin-bottom:8px}
 footer p+p{margin-top:6px}
 .dock{display:none}
@@ -170,34 +156,35 @@ footer p+p{margin-top:6px}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
-  section{padding:80px 0}
-  .hero .wrap{grid-template-columns:1fr;gap:20px}
-  .hero-art{order:2;width:min(86%,380px)}
-  .svc{grid-template-columns:repeat(2,1fr);gap:36px 12px}
+  section{padding:76px 0}
+  .hero .wrap{grid-template-columns:1fr;gap:28px}
+  .hero-art{order:2}
+  .hero-art img{width:min(70%,300px)}
+  .svc{grid-template-columns:repeat(2,1fr);gap:32px 12px}
   .types{grid-template-columns:1fr}
-  .band{grid-template-columns:1fr;gap:26px}
-  .facts3{grid-template-columns:1fr;gap:18px}
-  .facts3 li,.facts3 li:first-child{padding:0 0 0 18px;border-left:3px solid var(--mint)}
-  .facts3 li+li{border-left:3px solid var(--mint)}
+  .band{grid-template-columns:1fr;padding:8px 22px}
+  .band li{padding:18px 0}
+  .band li+li{border-left:0;border-top:1px solid #ecd9ad}
+  .facts3{grid-template-columns:1fr}
+  .facts3 li+li{border-left:0;border-top:1px solid var(--line)}
 }
 @media(max-width:720px){
-  section{padding:64px 0}
+  section{padding:60px 0}
   html{scroll-padding-top:80px}
   body{padding-bottom:84px}
   .wrap{padding:0 20px}
-  .sec-head{margin-bottom:34px}
+  .sec-head{margin-bottom:32px}
   .sub{font-size:17px}
   .logo{width:104px;height:52px}
-  .hero{padding:40px 0 52px}
+  .hero{padding:40px 0 56px}
   .hero .btn{width:100%}
-  .svc .art{width:100px;height:105px}
-  .flow{display:grid;grid-template-columns:1fr 1fr;border-radius:20px;gap:14px 8px;padding:20px 18px}
+  .svc .art{width:92px;height:92px}
+  .flow{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--r-md);gap:14px 8px;padding:20px 18px}
   .flow li{font-size:16px}
   .flow li+li:before{display:none}
-  .types{border-radius:26px}
-  .type{padding:26px 22px 16px}
+  .type{padding:26px 22px 18px}
   .mini-kit{grid-template-columns:repeat(3,1fr)}
-  .apply-card{padding:30px 20px 26px;border-radius:24px}
+  .apply-card{padding:30px 20px 26px}
   .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#fffffff2;backdrop-filter:blur(10px);border-top:1px solid var(--line)}
   .dock .btn{width:100%;min-height:56px}
   .dock.off{display:none}
@@ -357,44 +344,9 @@ footer p+p{margin-top:6px}
     <circle cx="73" cy="70" r="9" fill="#15171d"/><circle cx="73" cy="70" r="4.2" fill="#b4bcc6"/>
   </symbol>
 </svg>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <linearGradient id="sMint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7ae9d0"/><stop offset="1" stop-color="#14a88b"/></linearGradient>
-    <linearGradient id="rib" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8af0d9"/><stop offset=".55" stop-color="#3ed3b5"/><stop offset="1" stop-color="#0f9e86"/></linearGradient>
-  </defs>
-  <!-- 서비스 아이콘 4종: 같은 색·재질·시점·조명 -->
-  <symbol id="s-guide" viewBox="0 0 96 100">
-    <ellipse cx="48" cy="93" rx="28" ry="4" fill="#021f1c" opacity=".35"/>
-    <circle cx="48" cy="46" r="44" fill="url(#sMint)"/><ellipse cx="36" cy="24" rx="24" ry="12" fill="#fff" opacity=".24"/>
-    <rect x="29" y="25" width="38" height="49" rx="7" fill="none" stroke="#fff" stroke-width="5"/>
-    <rect x="40" y="19" width="16" height="12" rx="4" fill="#fff"/>
-    <path d="M38 52L45 59L59 43" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-  <symbol id="s-support" viewBox="0 0 96 100">
-    <ellipse cx="48" cy="93" rx="28" ry="4" fill="#021f1c" opacity=".35"/>
-    <circle cx="48" cy="46" r="44" fill="url(#sMint)"/><ellipse cx="36" cy="24" rx="24" ry="12" fill="#fff" opacity=".24"/>
-    <path d="M48 52C48 52 33 44 33 35C33 29 41 27 48 34C55 27 63 29 63 35C63 44 48 52 48 52Z" fill="#fff"/>
-    <path d="M24 58C32 72 42 76 48 76C54 76 64 72 72 58" fill="none" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/>
-  </symbol>
-  <symbol id="s-goods" viewBox="0 0 96 100">
-    <ellipse cx="48" cy="93" rx="28" ry="4" fill="#021f1c" opacity=".35"/>
-    <circle cx="48" cy="46" r="44" fill="url(#sMint)"/><ellipse cx="36" cy="24" rx="24" ry="12" fill="#fff" opacity=".24"/>
-    <path d="M48 52V76" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
-    <path d="M48 66C58 62 64 64 66 68C60 72 52 72 48 66Z" fill="#fff"/>
-    <g fill="#fff"><circle cx="48" cy="26" r="8"/><circle cx="60" cy="35" r="8"/><circle cx="55" cy="48" r="8"/><circle cx="41" cy="48" r="8"/><circle cx="36" cy="35" r="8"/></g>
-    <circle cx="48" cy="38" r="6" fill="#17a98c"/>
-  </symbol>
-  <symbol id="s-car" viewBox="0 0 96 100">
-    <ellipse cx="48" cy="93" rx="28" ry="4" fill="#021f1c" opacity=".35"/>
-    <circle cx="48" cy="46" r="44" fill="url(#sMint)"/><ellipse cx="36" cy="24" rx="24" ry="12" fill="#fff" opacity=".24"/>
-    <path d="M24 58V50L31 38H65L72 50V58Z" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/>
-    <path d="M24 50H72" stroke="#fff" stroke-width="5"/>
-    <circle cx="36" cy="60" r="7" fill="#fff"/><circle cx="60" cy="60" r="7" fill="#fff"/>
-  </symbol>
-</svg>
 
 <a class="skip" href="#main">본문 바로가기</a>
-<div class="notice">디자인 시안 · 금액과 구성은 참고용이며 실제 상담은 접수되지 않습니다 · <span class="tbd">밑줄 친 문구</span>는 운영 정책 확정 후 수정</div>
+<div class="notice">디자인 시안 · 구성은 가상 예시이며 실제 상담은 접수되지 않습니다 · <span class="tbd">밑줄 친 문구</span>는 운영 정책 확정 후 수정</div>
 
 <header>
   <div class="wrap top">
@@ -413,29 +365,19 @@ footer p+p{margin-top:6px}
       <p class="lead">서비스 차이부터 우리 가족에게 맞는 준비까지.</p>
       <a class="btn" href="#apply" data-cta>상조 상담하기</a>
     </div>
-    <div class="hero-art" role="img" aria-label="리본이 상담사를 감싸고 있는 그래픽">
-      <svg viewBox="0 0 440 440" aria-hidden="true">
-        <path d="M60 300C20 190 110 60 230 56C340 52 410 140 392 232" fill="none" stroke="url(#rib)" stroke-width="30" stroke-linecap="round" opacity=".95"/>
-        <path d="M392 232C380 316 300 392 210 388" fill="none" stroke="#bfeee1" stroke-width="22" stroke-linecap="round"/>
-        <circle cx="62" cy="96" r="9" fill="#3ed3b5"/><circle cx="392" cy="84" r="6" fill="#0b7a68"/><circle cx="34" cy="240" r="5" fill="#0b7a68" opacity=".5"/><circle cx="410" cy="330" r="8" fill="#3ed3b5" opacity=".7"/>
-      </svg>
-      <img src="images/consultant-hero.webp" alt="" width="720" height="720" fetchpriority="high" decoding="async">
-      <svg viewBox="0 0 440 440" aria-hidden="true" style="pointer-events:none">
-        <path d="M60 300C80 360 150 400 210 388" fill="none" stroke="url(#rib)" stroke-width="30" stroke-linecap="round"/>
-      </svg>
-    </div>
+    <div class="hero-art"><img src="images/consultant-hero.webp" alt="헤드셋을 쓰고 상담해 주는 상담사" width="512" height="512"></div>
   </div>
 </section>
 
 <!-- ② 상조 서비스 소개 -->
-<section class="dark" id="service">
+<section id="service">
   <div class="wrap">
     <div class="sec-head center"><h2>상조, 이런 일을 도와드려요</h2></div>
     <ul class="svc">
-      <li><svg class="art" role="img" aria-label="장례 절차 안내"><use href="#s-guide"/></svg><b><span class="tbd">장례 절차 안내</span></b></li>
-      <li><svg class="art" role="img" aria-label="입관 지원"><use href="#s-support"/></svg><b><span class="tbd">입관 지원</span></b></li>
-      <li><svg class="art" role="img" aria-label="장례용품"><use href="#s-goods"/></svg><b><span class="tbd">장례용품</span></b></li>
-      <li><svg class="art" role="img" aria-label="장의차량"><use href="#s-car"/></svg><b><span class="tbd">장의차량</span></b></li>
+      <li><svg class="art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg><b><span class="tbd">장례 절차 안내</span></b></li>
+      <li><svg class="art" role="img" aria-label="입관 보조"><use href="#a-assist"/></svg><b><span class="tbd">입관 지원</span></b></li>
+      <li><svg class="art" role="img" aria-label="유골함"><use href="#a-urn"/></svg><b><span class="tbd">장례용품</span></b></li>
+      <li><svg class="art" role="img" aria-label="장의차량"><use href="#a-limo"/></svg><b><span class="tbd">장의차량</span></b></li>
     </ul>
     <p class="svc-note"><b>상품별 제공 항목 상이</b></p>
     <ol class="flow" aria-label="이용 과정">
@@ -449,20 +391,13 @@ footer p+p{margin-top:6px}
   <div class="wrap">
     <div class="sec-head center"><h2>우리 가족에게 맞는 방식으로</h2></div>
     <div class="types">
-      <article class="type type-a">
-        <svg class="plan" viewBox="0 0 320 220" role="img" aria-label="작은 공간에 가족만 모이는 무빈소 장례 배치도">
-          <rect width="320" height="220" fill="#e9f6f1"/>
-          <rect x="74" y="36" width="172" height="148" rx="14" fill="#fff" stroke="#3ed3b5" stroke-width="3"/>
-          <rect x="124" y="64" width="72" height="34" rx="11" fill="#0a4f49"/>
-          <circle cx="108" cy="81" r="9" fill="#3ed3b5"/><circle cx="212" cy="81" r="9" fill="#3ed3b5"/>
-          <g fill="#0b7a68"><circle cx="122" cy="132" r="8"/><path d="M110 156a12 12 0 0124 0z"/><circle cx="160" cy="132" r="8"/><path d="M148 156a12 12 0 0124 0z"/><circle cx="198" cy="136" r="6"/><path d="M189 156a9 9 0 0118 0z"/></g>
-          <rect x="262" y="104" width="34" height="62" rx="10" fill="#9fcfc4"/><rect x="268" y="114" width="22" height="14" rx="4" fill="#fff"/>
-        </svg>
+      <article class="type">
         <span class="chip">안내용 분류</span>
         <h3>무빈소 장례</h3>
         <p class="one">빈소 없이, 필수 절차 중심으로</p>
+        <div class="pics"><svg class="art" role="img" aria-label="관"><use href="#a-coffin"/></svg><svg class="art" role="img" aria-label="헌화"><use href="#a-flower"/></svg><svg class="art" role="img" aria-label="이송 차량"><use href="#a-van"/></svg></div>
         <details class="more">
-          <summary>구성과 참고가격 보기</summary>
+          <summary>구성 보기</summary>
           <div class="in">
             <ul class="mini-kit">
               <li><svg class="art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg><span>장례지도사</span></li>
@@ -475,27 +410,16 @@ footer p+p{margin-top:6px}
               <li><svg class="art" role="img" aria-label="입관용품"><use href="#a-linen"/></svg><span>입관용품</span></li>
             </ul>
             <p class="kit-cap"><span class="ex-chip">그림은 임시 시안</span> 상품별로 다릅니다.</p>
-            <div class="ref" id="ref-mubinso"></div>
           </div>
         </details>
       </article>
-      <article class="type type-b">
-        <svg class="plan" viewBox="0 0 320 220" role="img" aria-label="조문객 좌석과 접객 공간이 있는 일반 장례 배치도">
-          <rect width="320" height="220" fill="#0d625b"/>
-          <rect x="18" y="20" width="284" height="180" rx="14" fill="#0a4f49" stroke="#3ed3b5" stroke-width="3"/>
-          <rect x="145" y="32" width="30" height="36" rx="4" fill="#fbf8f1"/><circle cx="160" cy="46" r="6" fill="#9fcfc4"/><path d="M149 62a11 9 0 0122 0z" fill="#9fcfc4"/>
-          <circle cx="116" cy="50" r="10" fill="#3ed3b5"/><circle cx="204" cy="50" r="10" fill="#3ed3b5"/><circle cx="96" cy="58" r="7" fill="#3ed3b5" opacity=".7"/><circle cx="224" cy="58" r="7" fill="#3ed3b5" opacity=".7"/>
-          <rect x="128" y="80" width="64" height="26" rx="9" fill="#fbf8f1"/>
-          <g fill="#7be3cd"><circle cx="70" cy="132" r="6"/><circle cx="110" cy="132" r="6"/><circle cx="150" cy="132" r="6"/><circle cx="190" cy="132" r="6"/><circle cx="230" cy="132" r="6"/></g>
-          <g fill="#3a8f84"><circle cx="70" cy="158" r="6"/><circle cx="110" cy="158" r="6"/><circle cx="150" cy="158" r="6"/><circle cx="190" cy="158" r="6"/><circle cx="230" cy="158" r="6"/></g>
-          <g fill="#2d7a71"><circle cx="70" cy="184" r="6"/><circle cx="110" cy="184" r="6"/><circle cx="150" cy="184" r="6"/><circle cx="190" cy="184" r="6"/><circle cx="230" cy="184" r="6"/></g>
-          <rect x="256" y="120" width="34" height="62" rx="8" fill="#ffd48a"/><circle cx="273" cy="140" r="5" fill="#0a4f49"/>
-        </svg>
+      <article class="type alt">
         <span class="chip">안내용 분류</span>
         <h3>일반 장례</h3>
         <p class="one">조문객을 맞이하는 장례로</p>
+        <div class="pics"><svg class="art" role="img" aria-label="영정"><use href="#a-portrait"/></svg><svg class="art" role="img" aria-label="상복"><use href="#a-mourn"/></svg><svg class="art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg></div>
         <details class="more">
-          <summary>구성과 참고가격 보기</summary>
+          <summary>구성 보기</summary>
           <div class="in">
             <ul class="mini-kit">
               <li><svg class="art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg><span>장례지도사</span></li>
@@ -512,7 +436,6 @@ footer p+p{margin-top:6px}
               <li class="plus"><svg class="art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg><span>의전 차량</span></li>
             </ul>
             <p class="kit-cap"><span class="ex-chip">그림은 임시 시안</span> + 표시는 무빈소 장례에 더해지는 구성입니다.</p>
-            <div class="ref" id="ref-general"></div>
           </div>
         </details>
       </article>
@@ -523,7 +446,6 @@ footer p+p{margin-top:6px}
       <li><b>잔금</b><p><span class="tbd">납입 도중 이용하면 남은 금액은 행사 때 정산합니다.</span></p></li>
       <li><b>해지·환급</b><p><span class="tbd">해지 시점에 따라 기준이 다르며, 가입 전에 설명합니다.</span></p></li>
     </ul>
-    <p class="types-note" id="types-note"></p>
     <div class="mid-cta"><a class="btn" href="#apply" data-cta>상조 상담하기</a></div>
   </div>
 </section>
@@ -535,7 +457,6 @@ footer p+p{margin-top:6px}
     <ul class="facts3">
       <li><small>상담 안내</small><b>싹딜</b></li>
       <li><small>장례 서비스 제공</small><b><span class="tbd">제휴 상조사</span></b><span class="tbd-flag">확정 필요</span></li>
-      <li><small>공개가격 조사 기준일</small><b>2026.10.29</b></li>
     </ul>
     <div class="faq">
       <h3>자주 묻는 질문</h3>
@@ -548,7 +469,7 @@ footer p+p{margin-top:6px}
 </section>
 
 <!-- ⑤ 상담 신청 -->
-<section class="apply dark" id="apply">
+<section class="apply" id="apply">
   <div class="wrap">
     <div class="sec-head center"><h2>궁금한 점부터 물어보세요</h2><p class="sub">연락받을 정보를 남겨주세요.</p></div>
     <form class="apply-card" id="form" novalidate aria-label="상조 상담 신청">
@@ -571,7 +492,7 @@ footer p+p{margin-top:6px}
 <footer>
   <div class="wrap">
     <a class="logo" href="#top" aria-label="싹딜 상조 처음으로"></a>
-    <p>본 페이지는 참고용 가격과 가상 구성을 사용한 디자인 시안이며 실제 상조 상품의 판매·상담·계약을 제공하지 않습니다.</p>
+    <p>본 페이지는 가상 구성을 사용한 디자인 시안이며 실제 상조 상품의 판매·상담·계약을 제공하지 않습니다.</p>
     <p>가입 전 상품설명서와 약관, 납입금 보호 내용을 반드시 확인하세요.</p>
     <p>© SSAKDEAL. All rights reserved.</p>
   </div>
@@ -602,20 +523,6 @@ footer p+p{margin-top:6px}
   function krw(v){ return Math.round(v).toLocaleString('ko-KR') + '원'; }
   function man(v){ return v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만 원' : krw(v); }
   function mainOf(t){ return t.own ? { label: '싹딜 판매가격', amount: t.own.amount, source: '' } : t.ref; }
-
-  PRICING.types.forEach(function(t){
-    var m = mainOf(t), h = '<b>' + m.label + ' ' + man(m.amount) + '</b>';
-    if (t.own) {
-      h += '<small>' + t.ref.label + ' ' + man(t.ref.amount) + ' · ' + t.ref.source + '</small>';
-      if (t.comparable && t.ref.amount > t.own.amount) h += '<small>타사 참고가격보다 ' + man(t.ref.amount - t.own.amount) + ' 낮습니다</small>';
-    } else {
-      h += '<small>' + m.source + '</small>';
-      if (t.schedule) h += '<small>' + t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + ' = 총 납입금 ' + man(m.amount) + '</small>';
-      if (t.ref.note) h += '<small>' + t.ref.note + '</small>';
-    }
-    $('ref-' + t.id).innerHTML = h;
-  });
-  $('types-note').textContent = PRICING.surveyDate + ' 공개가격 조사 기준 참고용입니다. 두 형태는 제공 범위가 다릅니다.';
 
   var hd = document.querySelector('header');
   addEventListener('scroll', function(){ hd.classList.toggle('scrolled', scrollY > 8); }, {passive: true});
