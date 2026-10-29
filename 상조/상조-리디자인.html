@@ -301,6 +301,39 @@ footer p+p{margin-top:8px}
   .dock.off{display:none}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* ---------- 모바일: 신청서(form)를 제외한 전체 중앙 정렬 ---------- */
+@media(max-width:720px){
+  .sec-head{text-align:center;margin-left:auto;margin-right:auto}
+  .note,.foot-note,.kit-legend{text-align:center}
+  .hero .wrap > div:first-child{text-align:center}
+  .hero .sub{margin-left:auto;margin-right:auto}
+  .hero .cta{justify-content:center}
+  .ledger-head{text-align:center;padding-right:0}
+  .led-cell{text-align:center}
+  .led-last{flex-direction:column;text-align:center;gap:2px}
+  .rail:before{display:none}
+  .ph{text-align:center;padding:42px 0 34px}
+  .ph:before{left:50%;margin-left:-11px;top:6px}
+  .ph li{padding-left:0}
+  .ph li:before{display:none}
+  .tcard{text-align:center}
+  .q,.calc-title{justify-content:center;text-align:center}
+  .tile{text-align:center}
+  .calc-out{text-align:center}
+  .out-row{flex-direction:column;align-items:center;gap:2px}
+  .split .legend span,.split .legend span:last-child{flex:1;text-align:center}
+  .rise-copy{text-align:center}
+  .gap{margin-left:auto;margin-right:auto;text-align:center}
+  .srow{text-align:center}
+  .plain{width:fit-content;max-width:100%;margin-left:auto;margin-right:auto;text-align:left}
+  .plain+p{text-align:center}
+  summary{justify-content:center;position:relative;padding:20px 48px;text-align:center}
+  summary::after{position:absolute;right:18px;top:50%;transform:translateY(-50%)}
+  details p{text-align:center}
+  footer{text-align:center}
+  footer .logo{margin-left:auto;margin-right:auto}
+}
 </style>
 </head>
 <body>
