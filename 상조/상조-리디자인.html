@@ -17,7 +17,7 @@
   --r-lg:28px;--r-md:18px;--shadow:0 24px 60px -24px #0a4a3e40;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:136px}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{margin:0;font-family:'Pretendard Variable',Pretendard,system-ui,'Noto Sans KR',sans-serif;font-size:17px;line-height:1.7;color:var(--ink);background:#fff;letter-spacing:-.02em;word-break:keep-all;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 p,h1,h2,h3,h4,ul,ol,figure,dl,dd{margin:0}
@@ -47,15 +47,10 @@ section{padding:104px 0}
 
 /* ---------- header ---------- */
 .notice{background:var(--ink);color:#dfe9e6;text-align:center;font-size:13.5px;padding:8px 16px;line-height:1.5}
-header{position:sticky;top:0;z-index:30;background:#ffffffee;backdrop-filter:blur(14px)}
+header{position:sticky;top:0;z-index:30;background:#ffffffe6;backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled{border-color:var(--line)}
 header .top{display:flex;align-items:center;justify-content:space-between;height:64px}
 .logo{display:block;width:112px;height:56px;margin-left:-8px;background:url("images/logo.png") center/contain no-repeat}
-.cat-tabs{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
-.cat-tabs .wrap{display:flex;gap:6px;height:58px;align-items:center;overflow-x:auto;scrollbar-width:none}
-.cat-tabs .wrap::-webkit-scrollbar{display:none}
-.cat-tabs a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 22px;border-radius:999px;font-size:17px;font-weight:800;color:#4c5d58}
-.cat-tabs a:hover{background:var(--panel)}
-.cat-tabs a.is-active{background:var(--ink);color:#fff}
 
 /* ---------- 1 hero ---------- */
 .hero{padding:72px 0 104px;background:linear-gradient(180deg,var(--brand-tint) 0%,#fff 78%)}
@@ -232,8 +227,6 @@ footer p+p{margin-top:8px}
 .js .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.4,.1,.2,1) .3s}
 .js .chart-card.in .draw{stroke-dashoffset:0}
 .js .gapfill{opacity:0;transition:opacity 1s 1.4s}.js .chart-card.in .gapfill{opacity:1}
-header{transition:box-shadow .3s}
-header.scrolled{box-shadow:0 6px 24px #0b4a3c1a}
 
 /* ---------- responsive ---------- */
 @media(max-width:960px){
@@ -248,14 +241,12 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1a}
 }
 @media(max-width:720px){
   section{padding:64px 0}
-  html{scroll-padding-top:124px}
+  html{scroll-padding-top:80px}
   body{font-size:17px;padding-bottom:84px}
   .wrap{padding:0 20px}
   .sec-head{margin-bottom:34px}
   .logo{width:104px;height:52px}
-  .cat-tabs .wrap{height:54px;gap:4px;padding:0 12px}
-  .cat-tabs a{padding:0 18px;font-size:16px}
-  .hero .cta .btn{width:100%}
+      .hero .cta .btn{width:100%}
   .ledger{padding:26px 20px 22px}
   .consultant{width:104px;height:104px;right:4px;top:-62px}
   .ledger-head{padding-right:96px}
@@ -447,14 +438,6 @@ header.scrolled{box-shadow:0 6px 24px #0b4a3c1a}
     <a class="logo" href="#top" aria-label="싹딜 상조 처음으로"></a>
     <a class="btn btn-sm" href="#apply" data-cta>상담신청하기</a>
   </div>
-  <nav class="cat-tabs" aria-label="카테고리">
-    <div class="wrap">
-      <a href="../internet.html">인터넷</a>
-      <a href="../phone.html">스마트폰</a>
-      <a href="../보험/보험.html">보험</a>
-      <a href="상조-리디자인.html" class="is-active" aria-current="page">상조</a>
-    </div>
-  </nav>
 </header>
 
 <main id="main">
