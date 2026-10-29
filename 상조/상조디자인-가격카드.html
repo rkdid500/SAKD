@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="싹딜 상조 리디자인 시안. 월 납입액, 총 납입액, 행사 시 잔금, 해지 조건을 가입 전에 숫자로 확인합니다.">
+<meta name="theme-color" content="#0a9e82">
+<meta name="robots" content="noindex,nofollow">
+<title>싹딜 상조 — 가입 전에 숫자로 확인 (리디자인 시안)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 레이아웃: 왼쪽 정렬 제목 + 장부판 히어로 → 시간축 레일 → 상품·납입 계산 패널 → 선 그래프 → 계약 전 확인표 → 상담·FAQ */
+:root{
+  --brand:#0a9e82;--brand-deep:#007361;--brand-dark:#00594b;--brand-soft:#e6f6f1;--brand-tint:#f3faf7;
+  --ink:#0f1b1a;--ink-2:#2f3e3b;--mute:#5b6b67;--line:#e3ebe8;--panel:#f5f7f6;
+  --amber:#a86a08;--amber-soft:#fbf2df;--coral:#d8452f;--coral-soft:#fdeeea;--blue:#3b63d6;--blue-soft:#edf2fd;
+  --r-lg:28px;--r-md:18px;--shadow:0 24px 60px -24px #0a4a3e40;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;font-family:'Pretendard Variable',Pretendard,system-ui,'Noto Sans KR',sans-serif;font-size:17px;line-height:1.7;color:var(--ink);background:#fff;letter-spacing:-.02em;word-break:keep-all;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+p,h1,h2,h3,h4,ul,ol,figure,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid #ffb84d;outline-offset:3px}
+[hidden]{display:none!important}
+.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;z-index:90;background:#fff;padding:10px 14px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{line-height:1.25;letter-spacing:-.045em;text-wrap:balance;font-weight:800}
+section{padding:104px 0}
+.num{font-variant-numeric:tabular-nums}
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ---------- parts ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:60px;padding:0 36px;border:0;border-radius:999px;background:var(--brand-deep);color:#fff;font-size:18px;font-weight:700;text-align:center;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--brand-dark)}
+.btn:active{transform:scale(.98)}
+.btn-sm{min-height:44px;padding:0 20px;font-size:15.5px}
+.btn-line{background:#fff;color:var(--brand-deep);border:1.5px solid var(--brand)}
+.btn-line:hover{background:var(--brand-soft)}
+.sec-head{max-width:760px;margin:0 0 48px}
+.sec-head h2{font-size:clamp(28px,4vw,44px)}
+.sec-head p{margin-top:14px;color:var(--ink-2);font-size:18px}
+.ex-chip{display:inline-block;font-size:13.5px;font-weight:700;color:#6b4a00;background:#fff1d3;border-radius:6px;padding:2px 9px;letter-spacing:0;white-space:nowrap;line-height:1.6}
+.tbd{background:linear-gradient(transparent 62%,#ffe3a3 62%);border-bottom:1.5px dashed #d9a23a;padding:0 1px}
+.tbd-flag{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;color:#8a5a00;border:1px dashed #d9a23a;border-radius:5px;padding:0 6px;vertical-align:2px;letter-spacing:0;white-space:nowrap}
+.notice .tbd{color:#fff;background:linear-gradient(transparent 62%,#8a6a20 62%)}
+.calc-out .tbd{color:#fff;background:linear-gradient(transparent 62%,#8a6a2066 62%)}
+.note{margin-top:20px;font-size:14.5px;color:var(--mute)}
+
+/* ---------- header ---------- */
+.notice{background:var(--ink);color:#dfe9e6;text-align:center;font-size:13.5px;padding:8px 16px;line-height:1.5}
+header{position:sticky;top:0;z-index:30;background:#ffffffe6;backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s}
+header.scrolled{border-color:var(--line)}
+header .top{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:block;width:112px;height:56px;margin-left:-8px;background:url("images/logo.png") center/contain no-repeat}
+
+/* ---------- 1 hero ---------- */
+.hero{padding:72px 0 104px;background:linear-gradient(180deg,var(--brand-tint) 0%,#fff 78%)}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:64px;align-items:center}
+.hero h1{font-size:clamp(36px,5.2vw,62px);line-height:1.18;letter-spacing:-.05em}
+.hero h1 em{font-style:normal;color:var(--brand-deep)}
+.hero .sub{margin:24px 0 36px;font-size:clamp(17px,1.8vw,20px);color:var(--ink-2);max-width:30em}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.assure{margin-top:18px;font-size:15.5px;font-weight:600;color:var(--mute)}
+.assure b{color:var(--brand-deep)}
+.ledger{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);padding:30px 30px 26px}
+.ledger .ex-chip{position:absolute;top:-13px;left:26px}
+.ledger-head{margin-bottom:14px;padding-right:110px}
+.ledger-head b{display:block;font-size:20px;letter-spacing:-.03em}
+.ledger-head small{display:block;font-size:15px;color:var(--mute)}
+.consultant{position:absolute;right:-14px;top:-70px;width:128px;height:128px;filter:drop-shadow(0 12px 14px #0b4a3c26)}
+.led-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.led-cell{padding:16px 0 14px;border-bottom:1px solid var(--line)}
+.led-cell:nth-child(odd){padding-right:16px;border-right:1px solid var(--line)}
+.led-cell:nth-child(even){padding-left:22px}
+.led-cell small{display:block;font-size:15px;font-weight:600;color:var(--mute)}
+.led-cell strong{display:block;font-size:clamp(26px,3vw,36px);font-weight:800;letter-spacing:-.04em;line-height:1.2}
+.led-cell strong span{font-size:.58em;font-weight:700;margin-left:2px;letter-spacing:-.02em}
+.led-last{margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--brand-deep);color:#fff;border-radius:16px;padding:16px 20px}
+.led-last small{font-size:15px;font-weight:600;color:#d3efe6}
+.led-last strong{font-size:clamp(26px,3vw,34px);font-weight:800;letter-spacing:-.04em;white-space:nowrap}
+.ledger .note{margin-top:14px}
+
+/* ---------- 2 timeline ---------- */
+.when{background:#fff}
+.rail{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px}
+.rail:before{content:'';position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:linear-gradient(90deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
+.ph{position:relative;padding-top:48px}
+.ph:before{content:'';position:absolute;left:0;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--brand-deep)}
+.ph .tag{display:inline-block;font-size:14px;font-weight:700;color:var(--brand-deep);background:var(--brand-soft);border-radius:999px;padding:2px 12px}
+.ph h3{margin-top:12px;font-size:clamp(24px,2.5vw,30px)}
+.ph ul{margin-top:16px;display:grid;gap:10px}
+.ph li{position:relative;padding-left:18px;font-size:17px;color:var(--ink-2)}
+.ph li:before{content:'';position:absolute;left:0;top:.8em;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.when .note{margin-top:36px}
+
+/* ---------- 3 calculator ---------- */
+.plan{background:var(--brand-tint)}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tcard{display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:34px 32px 30px;box-shadow:var(--shadow)}
+.tcard h3{font-size:clamp(26px,3vw,32px)}
+.tcard .tdesc{margin-top:8px;color:var(--ink-2);font-size:17.5px}
+.tprice{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);flex:1}
+.tprice small{display:block;font-size:15px;font-weight:700;color:var(--mute)}
+.tprice strong{display:block;margin-top:2px;font-size:clamp(44px,5.4vw,62px);font-weight:800;letter-spacing:-.05em;line-height:1.1;color:var(--brand-deep)}
+.tprice .tsrc{margin-top:4px;font-size:16px;font-weight:600;color:var(--ink-2)}
+.tprice .tsub{margin-top:8px;font-size:14.5px;color:var(--mute)}
+.tprice .tsave{margin-top:8px;font-size:15.5px;font-weight:700;color:var(--brand-deep)}
+.tcard .btn{margin-top:26px;width:100%}
+.types-note{max-width:900px;margin:22px auto 0;text-align:center;font-size:13.5px;line-height:1.6}
+.calc-wrap{margin-top:72px}
+.calc-title{margin-bottom:20px;font-size:clamp(22px,2.6vw,26px)}
+.opts.one{grid-template-columns:1fr}
+.o-sub{margin-top:2px;min-height:1.6em}
+.calc{display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);background:#fff}
+.calc-in{padding:36px 34px 32px}
+.q{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:17px;font-weight:800}
+.q .n{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:14px;font-weight:700}
+.q+.opts{margin-bottom:28px}
+.opts{display:grid;gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opts.three{grid-template-columns:repeat(3,1fr)}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.tile{display:block;height:100%;border:1.5px solid var(--line);border-radius:var(--r-md);padding:16px 18px;background:#fff;transition:border-color .2s,background .2s,box-shadow .2s}
+.tile b{display:block;font-size:17px}
+.tile em{display:block;font-style:normal;margin-top:2px;font-size:22px;font-weight:800;letter-spacing:-.03em;color:var(--brand-deep)}
+.tile small{display:block;margin-top:2px;font-size:14px;color:var(--mute);line-height:1.5}
+.tile.pill{text-align:center;padding:14px 8px;font-size:17px;font-weight:700}
+.tile.pill small{font-weight:500}
+.opt input:checked+.tile{border-color:var(--brand-deep);background:var(--brand-soft);box-shadow:0 0 0 1px var(--brand-deep)}
+.opt input:focus-visible+.tile{outline:3px solid #ffb84d;outline-offset:2px}
+.slider{display:block;width:100%;height:44px;margin:0;background:transparent;-webkit-appearance:none;appearance:none;cursor:pointer}
+.slider::-webkit-slider-runnable-track{height:8px;border-radius:4px;background:linear-gradient(90deg,var(--brand-deep) var(--p,100%),#dbe5e2 var(--p,100%))}
+.slider::-moz-range-track{height:8px;border-radius:4px;background:#dbe5e2}
+.slider::-moz-range-progress{height:8px;border-radius:4px;background:var(--brand-deep)}
+.slider::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-11px;border-radius:50%;background:#fff;border:5px solid var(--brand-deep);box-shadow:0 4px 10px #0a4a3e40}
+.slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:#fff;border:5px solid var(--brand-deep)}
+.slider:focus-visible{outline:3px solid #ffb84d;outline-offset:2px;border-radius:8px}
+.slide-label{display:flex;justify-content:space-between;font-size:15px;color:var(--mute)}
+.slide-label b{color:var(--ink);font-size:17px}
+.calc-out{padding:36px 34px 32px;background:linear-gradient(170deg,#008068,var(--brand-dark));color:#fff;display:flex;flex-direction:column}
+.calc-out small{display:block;font-size:16px;font-weight:600;color:#cdeee4}
+.big{font-size:clamp(46px,6vw,68px);font-weight:800;letter-spacing:-.05em;line-height:1.1}
+.big span{font-size:.4em;font-weight:700;margin-left:4px;letter-spacing:-.02em}
+.out-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0;border-top:1px solid #ffffff3a;margin-top:18px}
+.out-row strong{font-size:22px;font-weight:800;letter-spacing:-.03em}
+.split{margin-top:6px}
+.split .bar{display:flex;height:22px;border-radius:11px;overflow:hidden;background:#ffffff2e}
+.split .paid{background:#fff;transition:width .35s}
+.split .left{flex:1;background:repeating-linear-gradient(135deg,#ffd36b 0 8px,#f2bf48 8px 16px)}
+.split .legend{display:flex;justify-content:space-between;gap:10px;margin-top:10px;font-size:15px;color:#e6f6f1}
+.split .legend b{display:block;font-size:20px;color:#fff;letter-spacing:-.03em}
+.split .legend span:last-child{text-align:right}
+.split .legend span:last-child b{color:#ffe08a}
+.calc-out .note{margin-top:auto;padding-top:22px;color:#cdeee4}
+
+/* ---------- 4 chart ---------- */
+.rise{background:#fff}
+.rise-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.rise-copy h2{font-size:clamp(30px,4.2vw,46px)}
+.rise-copy h2 em{font-style:normal;color:var(--brand-deep)}
+.gap{margin-top:30px;display:inline-block;padding:20px 26px 18px;border-radius:var(--r-lg);background:var(--panel)}
+.gap small{display:block;font-size:16px;font-weight:700;color:var(--ink-2)}
+.gap strong{display:block;font-size:clamp(46px,6vw,68px);line-height:1.05;letter-spacing:-.05em;font-weight:800;color:var(--ink)}
+.gap strong span{font-size:20px;letter-spacing:-.02em;margin-left:4px;color:var(--brand-deep)}
+.gap .ex-chip{margin-top:8px}
+.cnt{font-style:normal}
+.chart-card{background:linear-gradient(180deg,#fff,#f6fbf9);border:1px solid var(--line);border-radius:32px;padding:24px 20px 18px;box-shadow:var(--shadow)}
+.lc{display:block;width:100%;height:auto;overflow:visible}
+.lc text{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif}
+.legend2{display:flex;flex-wrap:wrap;gap:6px 22px;justify-content:center;margin-top:10px;font-size:15.5px;font-weight:700;color:var(--mute)}
+.legend2 span{display:inline-flex;align-items:center;gap:8px}
+.legend2 i{display:block;width:26px;height:4px;border-radius:2px;background:var(--brand-deep)}
+.legend2 .up i{background:var(--coral)}
+.rise .note{text-align:center;font-size:13px;color:#7b8a85}
+
+/* ---------- 5 sheet ---------- */
+.sheet-sec{background:linear-gradient(180deg,#fff,var(--brand-tint))}
+.sheet{border-top:2px solid var(--ink)}
+.srow{display:grid;grid-template-columns:200px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--line)}
+.srow h3{font-size:22px;color:var(--brand-deep)}
+.srow h3 small{display:block;margin-top:4px;font-size:15px;font-weight:500;color:var(--mute);letter-spacing:-.02em}
+.kit{display:grid;grid-template-columns:repeat(6,1fr);gap:14px 10px}
+.kit li{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:15.5px;font-weight:700;line-height:1.35}
+.kit .art{display:block;width:76px;height:76px}
+.kit li.plus .art{opacity:.95}
+.kit li.plus span:after{content:'일반 상조형';display:block;margin:2px auto 0;width:max-content;font-size:12px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:5px;padding:0 6px}
+.kit-legend{margin-top:16px;font-size:14.5px;color:var(--mute)}
+.plain{display:grid;gap:8px}
+.plain li{position:relative;padding-left:18px;font-size:17.5px}
+.plain li:before{content:'';position:absolute;left:0;top:.78em;width:7px;height:7px;border-radius:2px;background:var(--brand)}
+.plain+p{margin-top:12px;font-size:15.5px;color:var(--mute)}
+.check{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;margin-top:36px;background:var(--amber-soft);border-radius:var(--r-lg);padding:28px 34px}
+.check img{width:104px;height:104px}
+.check h3{font-size:22px;margin-bottom:12px}
+.check ul{display:grid;grid-template-columns:1fr 1fr;gap:8px 28px}
+.check li{display:flex;gap:10px;align-items:flex-start;font-size:16.5px;font-weight:600}
+.check li .ic{width:22px;height:22px;margin-top:3px;color:var(--brand-deep);stroke-width:3}
+
+/* ---------- 6 apply ---------- */
+.apply{background:var(--brand-tint);padding-bottom:88px}
+.apply-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.apply h2{font-size:clamp(30px,4vw,44px)}
+.apply .lead{margin-top:14px;font-size:18px;color:var(--ink-2)}
+.mini{margin-top:32px;display:grid;gap:14px}
+.mini li{display:flex;align-items:center;gap:16px}
+.mini img{width:68px;height:68px;flex:none}
+.mini b{display:block;font-size:18px;letter-spacing:-.03em}
+.mini span{font-size:15.5px;color:var(--mute)}
+.mini.assure-list{margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+form{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:36px 34px;box-shadow:var(--shadow)}
+.demo-flag{background:#fff1d3;color:#6b4a00;border-radius:12px;padding:12px 16px;font-size:15.5px;font-weight:700;margin-bottom:22px}
+label.f{display:block;font-weight:700;font-size:17px;margin-bottom:18px}
+label.f i{color:var(--coral);font-style:normal}
+label.f .opt-txt{font-weight:500;font-size:15px;color:var(--mute)}
+input[type=text],input[type=tel],select{display:block;width:100%;margin-top:9px;min-height:58px;padding:12px 16px;border:1.6px solid #b6cac3;border-radius:14px;font-size:17px;background:#fff}
+input[type=text]:focus,input[type=tel]:focus,select:focus{border-color:var(--brand-deep)}
+.consent{display:flex;gap:12px;align-items:center;min-height:44px;font-size:16px;font-weight:500;margin:6px 0 2px}
+.consent input{width:24px;height:24px;margin:0;flex:none;accent-color:var(--brand-deep)}
+.link{border:0;background:none;color:var(--brand-deep);font-weight:700;font-size:16px;text-decoration:underline;padding:10px 0;min-height:44px;cursor:pointer}
+.privacy{background:var(--brand-tint);border-radius:12px;padding:14px 16px;font-size:15.5px;color:var(--ink-2);margin-bottom:12px}
+form .submit{display:flex;width:100%;margin-top:10px}
+.result{margin-top:16px;padding:16px 18px;border-radius:12px;background:var(--brand-soft);color:#064c40;font-size:16px;font-weight:600}
+.result.err{background:var(--coral-soft);color:#8c2a1d}
+.faq{margin:80px auto 0;max-width:800px}
+.faq-head{text-align:center;margin-bottom:32px}
+.faq h3{font-size:28px}
+.faq h3+p{margin-top:8px;color:var(--mute);font-size:16px}
+details{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:10px}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;padding:20px 22px;min-height:60px;font-size:18px;font-weight:700}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'+';color:var(--brand-deep);font-size:26px;line-height:1}
+details[open]{border-color:#9fd7c9;background:#f6fcfa}
+details[open] summary::after{content:'−'}
+details p{padding:0 22px 20px;font-size:16.5px;color:var(--ink-2)}
+
+footer{background:#f2f6f5;padding:44px 0 56px;font-size:15px;color:#4a5a54}
+footer .logo{margin-bottom:10px}
+footer p+p{margin-top:8px}
+.dock{display:none}
+
+/* ---------- motion ---------- */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.js .reveal.in{opacity:1;transform:none}
+.js .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.4,.1,.2,1) .3s}
+.js .chart-card.in .draw{stroke-dashoffset:0}
+.js .gapfill{opacity:0;transition:opacity 1s 1.4s}.js .chart-card.in .gapfill{opacity:1}
+
+/* ---------- responsive ---------- */
+@media(max-width:960px){
+  section{padding:80px 0}
+  .hero .wrap,.rise-grid,.apply-grid{grid-template-columns:1fr;gap:44px}
+  .hero{padding:52px 0 80px}
+  .ledger{margin-top:36px}
+  .calc{grid-template-columns:1fr}
+  .types{grid-template-columns:1fr}
+  .kit{grid-template-columns:repeat(4,1fr)}
+  .srow{grid-template-columns:1fr;gap:16px}
+  .check ul{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  section{padding:64px 0}
+  html{scroll-padding-top:80px}
+  body{font-size:17px;padding-bottom:84px}
+  .wrap{padding:0 20px}
+  .sec-head{margin-bottom:34px}
+  .logo{width:104px;height:52px}
+      .hero .cta .btn{width:100%}
+  .ledger{padding:26px 20px 22px}
+  .consultant{width:104px;height:104px;right:4px;top:-62px}
+  .ledger-head{padding-right:96px}
+  .led-cell:nth-child(odd){padding-right:10px}.led-cell:nth-child(even){padding-left:14px}
+  .rail{grid-template-columns:1fr;gap:0}
+  .rail:before{left:10px;right:auto;top:8px;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
+  .ph{padding:0 0 34px 46px}
+  .ph:before{left:0;top:2px}
+  .ph:last-child{padding-bottom:0}
+  .calc-in,.calc-out{padding:28px 20px 26px}
+  .opts.two{grid-template-columns:1fr}
+  .opts.three{gap:8px}
+  .tile.pill{padding:12px 4px;font-size:16px}
+  .out-row strong{font-size:20px}
+  .chart-card{padding:18px 10px 14px;border-radius:26px}
+  .gap{display:block}
+  .kit{grid-template-columns:repeat(3,1fr)}
+  .kit .art{width:64px;height:64px}
+  .kit li{font-size:14.5px}
+  .check{grid-template-columns:1fr;gap:12px;padding:26px 22px;justify-items:start}
+  .check img{width:80px;height:80px}
+  form{padding:28px 20px}
+  .faq{margin-top:64px}
+  .dock{display:block;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:#fffffff2;backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .dock .btn{width:100%;min-height:56px}
+  .dock.off{display:none}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 8.5l2 7 2.5-6 2.5 6 2-7M6.5 11.5h11"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-sign" viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M5 16l1-4L16 3l3 3L9 15z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="1"/><rect x="3" y="7" width="18" height="3" rx="1"/><path d="M12 7v13M12 7c-1.6-3.6-5-3-4.5-1S12 7 12 7zM12 7c1.6-3.6 5-3 4.5-1S12 7 12 7z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0119 0M5.5 12.5a9.5 9.5 0 0113 0M8.5 16a5 5 0 017 0"/><circle cx="12" cy="19" r="1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-file2" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/></symbol>
+
+  <!-- 3D 느낌 일러스트(자체 제작 시안) : 실제 이미지가 준비되면 같은 자리에 <img>로 교체 -->
+  <defs>
+    <linearGradient id="gSuit" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b445a"/><stop offset="1" stop-color="#1e2432"/></linearGradient>
+    <linearGradient id="gSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8d9bc"/><stop offset="1" stop-color="#e6b48b"/></linearGradient>
+    <linearGradient id="gBeige" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e4d4b4"/><stop offset="1" stop-color="#bda784"/></linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b0cdf2"/><stop offset="1" stop-color="#7aa2da"/></linearGradient>
+    <linearGradient id="gWood" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b57444"/><stop offset="1" stop-color="#6c3f21"/></linearGradient>
+    <linearGradient id="gWoodSide" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7d4b27"/><stop offset="1" stop-color="#4c2d18"/></linearGradient>
+    <linearGradient id="gCream" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fcf7ec"/><stop offset=".6" stop-color="#eadfc8"/><stop offset="1" stop-color="#cfc2a6"/></linearGradient>
+    <linearGradient id="gHemp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eadcbb"/><stop offset="1" stop-color="#c7b289"/></linearGradient>
+    <linearGradient id="gBlack" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#454b5a"/><stop offset="1" stop-color="#191c25"/></linearGradient>
+    <linearGradient id="gWhite" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e2e9e6"/></linearGradient>
+    <linearGradient id="gCar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#454b5a"/><stop offset="1" stop-color="#12141b"/></linearGradient>
+    <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6e9f8"/><stop offset="1" stop-color="#8aaecb"/></linearGradient>
+    <linearGradient id="gGold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6da92"/><stop offset="1" stop-color="#c89a3a"/></linearGradient>
+    <radialGradient id="gPetal" cx=".5" cy=".7" r=".8"><stop offset="0" stop-color="#e3e9e5"/><stop offset="1" stop-color="#ffffff"/></radialGradient>
+  </defs>
+
+  <symbol id="a-guide" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="87" rx="24" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M26 86L29 52Q31 40 48 40Q65 40 67 52L70 86Z" fill="url(#gSuit)"/>
+    <path d="M41 40L48 58L55 40Z" fill="#fff"/>
+    <path d="M47 47h2l2 14-3 3-3-3z" fill="#1c2a4a"/>
+    <rect x="43" y="32" width="10" height="9" rx="3" fill="url(#gSkin)"/>
+    <circle cx="48" cy="25" r="12" fill="url(#gSkin)"/>
+    <path d="M36 25Q35 11 48 11Q61 11 60 25Q56 17 48 17Q40 17 36 25Z" fill="#2f241e"/>
+    <circle cx="43.5" cy="27" r="1.3" fill="#3a2b25"/><circle cx="52.5" cy="27" r="1.3" fill="#3a2b25"/>
+    <path d="M44.5 32Q48 34.5 51.5 32" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="a-assist" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="87" rx="24" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M26 86L29 52Q31 40 48 40Q65 40 67 52L70 86Z" fill="url(#gBeige)"/>
+    <path d="M40 40L48 54L56 40Z" fill="#fff"/>
+    <rect x="43" y="32" width="10" height="9" rx="3" fill="url(#gSkin)"/>
+    <circle cx="48" cy="25" r="12" fill="url(#gSkin)"/>
+    <path d="M35 24Q36 10 48 10Q60 10 61 24L56 20Q48 15 40 20Z" fill="#fff"/>
+    <path d="M36 21Q48 12 60 21" stroke="#d8dfdb" stroke-width="1.5" fill="none"/>
+    <circle cx="43.5" cy="27" r="1.3" fill="#3a2b25"/><circle cx="52.5" cy="27" r="1.3" fill="#3a2b25"/>
+    <path d="M44.5 32Q48 34.5 51.5 32" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <rect x="33" y="62" width="30" height="9" rx="4" fill="url(#gWhite)" stroke="#d3dbd7"/>
+    <circle cx="35" cy="68" r="4" fill="#fff"/><circle cx="61" cy="68" r="4" fill="#fff"/>
+  </symbol>
+  <symbol id="a-helper" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="87" rx="24" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M34 28Q32 8 48 8Q64 8 62 28L64 44Q58 38 58 28Q54 18 48 18Q42 18 38 28Q38 38 32 44Z" fill="#4a3226"/>
+    <path d="M26 86L29 52Q31 40 48 40Q65 40 67 52L70 86Z" fill="url(#gBlue)"/>
+    <path d="M40 40L48 52L56 40Z" fill="#fff"/>
+    <rect x="43" y="32" width="10" height="9" rx="3" fill="url(#gSkin)"/>
+    <circle cx="48" cy="26" r="11.5" fill="url(#gSkin)"/>
+    <path d="M36.5 25Q38 14 48 14Q58 14 59.5 25Q54 19 48 19Q42 19 36.5 25Z" fill="#4a3226"/>
+    <circle cx="43.5" cy="28" r="1.3" fill="#3a2b25"/><circle cx="52.5" cy="28" r="1.3" fill="#3a2b25"/>
+    <path d="M44.5 33Q48 35.5 51.5 33" stroke="#b5714f" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+    <path d="M36 66h24l3 10H33z" fill="url(#gWhite)" stroke="#d3dbd7"/>
+  </symbol>
+  <symbol id="a-coffin" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="80" rx="38" ry="5" fill="#0b2a20" opacity=".13"/>
+    <path d="M8 48L22 62H74L88 48V57L74 71H22L8 57Z" fill="url(#gWoodSide)"/>
+    <path d="M8 48L22 34H74L88 48L74 62H22Z" fill="url(#gWood)"/>
+    <path d="M18 48L26 40H70L78 48L70 56H26Z" fill="none" stroke="#d29a68" stroke-width="2" opacity=".75"/>
+    <path d="M30 43H56" stroke="#e3b389" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+    <rect x="34" y="64" width="9" height="3" rx="1.5" fill="url(#gGold)"/><rect x="53" y="64" width="9" height="3" rx="1.5" fill="url(#gGold)"/>
+  </symbol>
+  <symbol id="a-urn" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="22" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M34 40Q26 58 34 77Q48 85 62 77Q70 58 62 40Z" fill="url(#gCream)"/>
+    <path d="M38 46Q32 60 38 73" stroke="#fff" stroke-width="3" opacity=".65" fill="none" stroke-linecap="round"/>
+    <path d="M33 57Q48 64 63 57" stroke="#c9a85c" stroke-width="2" fill="none"/>
+    <ellipse cx="48" cy="40" rx="14" ry="4.5" fill="#d3c7ad"/>
+    <path d="M36 40Q36 26 48 24Q60 26 60 40Z" fill="url(#gCream)"/>
+    <circle cx="48" cy="21" r="4.2" fill="url(#gGold)"/>
+  </symbol>
+  <symbol id="a-shroud" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="28" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M16 38L36 20L48 32L60 20L80 38L73 52L67 48V80Q48 86 29 80V48L23 52Z" fill="url(#gHemp)"/>
+    <path d="M36 20L48 54L60 20L54 18L48 28L42 18Z" fill="#f6efdc"/>
+    <path d="M29 64H67V71H29Z" fill="#b7a077"/>
+    <path d="M48 54V80" stroke="#b39d72" stroke-width="1.5"/>
+    <path d="M22 44L29 50M74 44L67 50" stroke="#b9a37a" stroke-width="1.5" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="a-mourn" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="28" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M16 38L36 20L48 32L60 20L80 38L73 52L67 48V80Q48 86 29 80V48L23 52Z" fill="url(#gBlack)"/>
+    <path d="M36 20L48 54L60 20L54 18L48 28L42 18Z" fill="#f3f6f5"/>
+    <path d="M48 54V80" stroke="#0e1016" stroke-width="1.5"/>
+    <path d="M56 50h6l1 12-4-3-4 3z" fill="#fff"/>
+  </symbol>
+  <symbol id="a-portrait" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="22" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M38 76L48 84L58 76Z" fill="url(#gWoodSide)"/>
+    <rect x="22" y="12" width="52" height="66" rx="5" fill="url(#gWoodSide)"/>
+    <rect x="28" y="18" width="40" height="54" rx="2.5" fill="#f0f3f1"/>
+    <circle cx="48" cy="40" r="9.5" fill="#b8c3bf"/>
+    <path d="M30 72Q31 54 48 54Q65 54 66 72Z" fill="#b8c3bf"/>
+    <path d="M22 12H46L22 36Z" fill="#101319"/><path d="M74 12H50L74 36Z" fill="#101319"/>
+  </symbol>
+  <symbol id="a-linen" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="84" rx="32" ry="4.5" fill="#0b2a20" opacity=".13"/>
+    <rect x="18" y="60" width="60" height="16" rx="6" fill="url(#gWhite)" stroke="#d3dbd7"/>
+    <rect x="22" y="44" width="52" height="16" rx="6" fill="#fff" stroke="#d3dbd7"/>
+    <rect x="27" y="28" width="42" height="16" rx="6" fill="url(#gWhite)" stroke="#d3dbd7"/>
+    <path d="M26 68H70M30 52H66M34 36H62" stroke="#e1e8e4" stroke-width="1.5" stroke-linecap="round"/>
+    <rect x="43" y="24" width="10" height="56" rx="3" fill="#c9a46a" opacity=".92"/>
+    <circle cx="48" cy="24" r="5" fill="url(#gGold)"/>
+  </symbol>
+  <symbol id="a-flower" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="86" rx="16" ry="3.5" fill="#0b2a20" opacity=".13"/>
+    <path d="M48 46Q45 66 50 84" stroke="#4d9961" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+    <path d="M49 68Q61 59 68 63Q61 72 49 72Z" fill="#62b077"/>
+    <g transform="translate(48 34)">
+      <ellipse cy="-11" rx="5.5" ry="11.5" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(45)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(90)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(135)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(180)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(225)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(270)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/><ellipse cy="-11" rx="5.5" ry="11.5" transform="rotate(315)" fill="url(#gPetal)" stroke="#d9e1dd" stroke-width=".8"/>
+      <g transform="rotate(22.5)"><ellipse cy="-8" rx="4.2" ry="8.5" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(60)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(120)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(180)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(240)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/><ellipse cy="-8" rx="4.2" ry="8.5" transform="rotate(300)" fill="#fff" stroke="#e2e8e4" stroke-width=".7"/></g>
+      <circle r="5" fill="#f2e3a0"/>
+    </g>
+  </symbol>
+  <symbol id="a-van" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="80" rx="38" ry="4.5" fill="#0b2a20" opacity=".15"/>
+    <path d="M7 68V50Q7 46 11 45L25 42L33 30Q35 28 38 28H62Q66 28 68 31L76 43Q86 45 89 52V68Z" fill="url(#gCar)"/>
+    <path d="M29 42L36 32H46V42Z M50 32H62L69 42H50Z" fill="url(#gGlass)"/>
+    <path d="M7 60H89" stroke="#0a0c11" stroke-width="3" opacity=".35"/>
+    <path d="M12 50Q30 47 50 49" stroke="#fff" stroke-width="1.5" opacity=".18" fill="none"/>
+    <rect x="83" y="52" width="6" height="4" rx="1.5" fill="#ffe9a8"/>
+    <circle cx="25" cy="69" r="9" fill="#15171d"/><circle cx="25" cy="69" r="4.2" fill="#b4bcc6"/>
+    <circle cx="71" cy="69" r="9" fill="#15171d"/><circle cx="71" cy="69" r="4.2" fill="#b4bcc6"/>
+  </symbol>
+  <symbol id="a-limo" viewBox="0 0 96 96">
+    <ellipse cx="48" cy="80" rx="40" ry="4.5" fill="#0b2a20" opacity=".15"/>
+    <path d="M3 69V57Q3 53 8 52L30 49L38 38H64L73 48L86 50Q93 52 93 58V69Z" fill="url(#gCar)"/>
+    <path d="M40 40H51V48H34Z M55 40H63L70 48H55Z" fill="url(#gGlass)"/>
+    <path d="M5 58H91" stroke="url(#gGold)" stroke-width="2" opacity=".9"/>
+    <path d="M10 53Q40 49 70 52" stroke="#fff" stroke-width="1.5" opacity=".2" fill="none"/>
+    <rect x="86" y="54" width="6" height="4" rx="1.5" fill="#ffe9a8"/>
+    <circle cx="23" cy="70" r="9" fill="#15171d"/><circle cx="23" cy="70" r="4.2" fill="#b4bcc6"/>
+    <circle cx="73" cy="70" r="9" fill="#15171d"/><circle cx="73" cy="70" r="4.2" fill="#b4bcc6"/>
+  </symbol>
+</svg>
+
+<a class="skip" href="#main">본문 바로가기</a>
+<div class="notice">디자인 시안 · 금액과 구성은 가상 예시이며 실제 상담은 접수되지 않습니다 · <span class="tbd">밑줄 친 문구</span>는 운영 정책 확정 후 수정</div>
+
+<header>
+  <div class="wrap top">
+    <a class="logo" href="#top" aria-label="싹딜 상조 처음으로"></a>
+    <a class="btn btn-sm" href="#apply" data-cta>상담신청하기</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1. 첫 화면 : 정체성 + 핵심 가치 + 한눈에 보기 -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>장례 비용과 조건,<br><em>가입 전에 숫자로 확인하세요.</em></h1>
+      <p class="sub">싹딜 상조는 월 납입액, 총 납입액, 행사 때 내는 잔금, 해지 조건까지 먼저 보여드립니다.</p>
+      <div class="cta">
+        <a class="btn" href="#apply" data-cta>상담신청하기</a>
+        <a class="btn btn-line" href="#plan">내 비용 계산해 보기</a>
+      </div>
+      <p class="assure"><span class="tbd"><b>상담 비용 0원</b> · 상담 후 가입하지 않아도 됩니다</span></p>
+    </div>
+
+    <div class="ledger" aria-label="상조 한눈에 보기 예시">
+      <span class="ex-chip">가상 예시</span>
+      <img class="consultant" src="images/consultant-3d-transparent.webp" alt="" width="256" height="256">
+      <div class="ledger-head"><b>내 상조 한눈에</b><small id="l-sub"></small></div>
+      <div class="led-grid">
+        <div class="led-cell"><small>월 납입액</small><strong class="num" id="l-month"></strong></div>
+        <div class="led-cell"><small>납입 기간</small><strong class="num" id="l-term"></strong></div>
+        <div class="led-cell"><small>총 납입액</small><strong class="num" id="l-total"></strong></div>
+        <div class="led-cell"><small>중간에 해지하면</small><strong><span class="tbd">약관 기준</span></strong></div>
+      </div>
+      <div class="led-last"><small>완납 후 이용하면<br>행사 시 잔금</small><strong class="num">0원</strong></div>
+      <p class="note">납입 도중 이용하면 남은 금액을 행사 때 냅니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 시간축 : 지금 이용하는 것 / 장례 때 받는 것 -->
+<section class="when" id="when">
+  <div class="wrap">
+    <div class="sec-head"><h2>가입한 뒤 받는 것,<br>장례 때 받는 것</h2></div>
+    <div class="rail">
+      <article class="ph">
+        <span class="tag">매달</span>
+        <h3>가입한 뒤</h3>
+        <ul><li>정해진 월 납입액을 냅니다</li><li><span class="tbd">납입 현황과 상품 내용을 문의할 수 있습니다</span></li><li><span class="tbd">제휴 생활 혜택은 상품별로 다릅니다</span></li></ul>
+      </article>
+      <article class="ph">
+        <span class="tag">그날</span>
+        <h3>장례가 생겼을 때</h3>
+        <ul><li><span class="tbd">전화 한 통으로 상담이 시작됩니다</span></li><li><span class="tbd">전담 장례지도사가 진행을 맡습니다</span></li><li><span class="tbd">용품·차량·인력이 정해진 구성대로 준비됩니다</span></li></ul>
+      </article>
+      <article class="ph">
+        <span class="tag">이후</span>
+        <h3>장례를 마친 뒤</h3>
+        <ul><li><span class="tbd">조문 답례와 부고 알림을 도와드립니다</span></li><li><span class="tbd">사후 행정 절차를 안내합니다</span></li><li><span class="tbd">기일을 미리 알려드립니다</span></li></ul>
+      </article>
+    </div>
+    <p class="note"><span class="ex-chip">서비스 구성 예시</span> 실제 제공 범위는 상품 약관에 따릅니다.</p>
+  </div>
+</section>
+
+<!-- 3. 장례 형태 선택 + 가격 비교 -->
+<section class="plan" id="plan">
+  <div class="wrap">
+    <div class="sec-head"><h2>원하는 장례 형태에 맞춰 준비하세요</h2></div>
+    <div class="types" id="types"></div>
+    <p class="note types-note" id="types-note"></p>
+
+    <div class="calc-wrap">
+      <h3 class="calc-title">납입 방식 미리 계산해 보기</h3>
+      <div class="calc">
+        <div class="calc-in">
+          <p class="q"><span class="n">1</span>장례 형태</p>
+          <div class="opts two" id="prod-opts" role="radiogroup" aria-label="장례 형태"></div>
+          <p class="q"><span class="n">2</span>납입 기간</p>
+          <div class="opts three" id="term-opts" role="radiogroup" aria-label="납입 기간"></div>
+          <p class="q"><span class="n">3</span>장례가 생기는 시점</p>
+          <div class="slide-label"><span>가입 직후</span><b id="k-label">완납 후</b><span>완납</span></div>
+          <input class="slider" id="k" type="range" min="0" max="100" step="1" value="100" aria-label="장례가 생기는 시점(납입 개월 수)">
+        </div>
+        <div class="calc-out" aria-live="polite">
+          <small>월 납입액</small>
+          <div class="big num" id="o-month"></div>
+          <small id="o-sub" class="o-sub"></small>
+          <div class="out-row"><small>총 납입액</small><strong class="num" id="o-total"></strong></div>
+          <div class="split">
+            <div class="bar" aria-hidden="true"><div class="paid" id="o-bar" style="width:100%"></div><div class="left"></div></div>
+            <div class="legend"><span>그동안 낸 금액<b class="num" id="o-paid"></b></span><span>행사 시 잔금<b class="num" id="o-bal"></b></span></div>
+          </div>
+          <p class="note"><span class="ex-chip">예시</span> <span id="calc-note"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 가격 변화 -->
+<section class="rise" id="rise">
+  <div class="wrap rise-grid">
+    <div class="rise-copy">
+      <h2>지금 정하면,<br>가격도 <em>지금 그대로.</em></h2>
+      <div class="gap"><small>10년 뒤 차이</small><strong>+<i class="cnt" id="gap-num" data-to="0">0</i><span>만원</span></strong><span class="ex-chip">가상 예시</span></div>
+    </div>
+    <figure class="chart-card">
+      <svg class="lc" id="lc" viewBox="0 0 620 340" role="img" aria-label="장례비 변화 예시 선 그래프"></svg>
+      <figcaption class="legend2"><span><i></i>가입 시점 가격 고정</span><span class="up"><i></i><span class="tbd">평균 상승 가격</span></span></figcaption>
+    </figure>
+  </div>
+  <p class="note" id="chart-note"></p>
+</section>
+
+<!-- 5. 계약 전 확인표 -->
+<section class="sheet-sec" id="sheet">
+  <div class="wrap">
+    <div class="sec-head"><h2>가입 전에 보셔야 할 것,<br>한 표로 정리했습니다.</h2></div>
+    <div class="sheet">
+      <div class="srow">
+        <h3>포함 구성<small>무빈소 기본형 기준</small></h3>
+        <div>
+          <ul class="kit">
+            <li><svg class="art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg><span>장례지도사</span></li>
+            <li><svg class="art" role="img" aria-label="관"><use href="#a-coffin"/></svg><span>관</span></li>
+            <li><svg class="art" role="img" aria-label="수의"><use href="#a-shroud"/></svg><span>수의</span></li>
+            <li><svg class="art" role="img" aria-label="유골함"><use href="#a-urn"/></svg><span>유골함</span></li>
+            <li><svg class="art" role="img" aria-label="영정·의전용품"><use href="#a-portrait"/></svg><span>영정·의전용품</span></li>
+            <li><svg class="art" role="img" aria-label="헌화"><use href="#a-flower"/></svg><span>헌화</span></li>
+            <li><svg class="art" role="img" aria-label="이송 차량"><use href="#a-van"/></svg><span>이송 차량</span></li>
+            <li><svg class="art" role="img" aria-label="입관용품"><use href="#a-linen"/></svg><span>입관용품</span></li>
+            <li class="plus"><svg class="art" role="img" aria-label="상복"><use href="#a-mourn"/></svg><span>상복</span></li>
+            <li class="plus"><svg class="art" role="img" aria-label="입관 보조"><use href="#a-assist"/></svg><span>입관 보조</span></li>
+            <li class="plus"><svg class="art" role="img" aria-label="장례 도우미"><use href="#a-helper"/></svg><span>장례 도우미</span></li>
+            <li class="plus"><svg class="art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg><span>의전 차량</span></li>
+          </ul>
+          <p class="kit-legend"><span class="ex-chip">그림은 임시 시안</span> '일반 상조형' 표시는 일반 상조형에만 더해지는 구성입니다.</p>
+        </div>
+      </div>
+      <div class="srow">
+        <h3>별도 비용<small>상품마다 다릅니다</small></h3>
+        <div>
+          <ul class="plain"><li><span class="tbd">화장·장지 이용료</span></li><li><span class="tbd">종교 의식에 드는 비용</span></li><li><span class="tbd">추가로 고르는 용품·음식</span></li></ul>
+          <p><span class="tbd">포함 항목과 별도 항목은 가입 전에 표로 먼저 안내합니다.</span></p>
+        </div>
+      </div>
+      <div class="srow">
+        <h3>해지·환급<small>시점에 따라 달라집니다</small></h3>
+        <div>
+          <ul class="plain"><li><span class="tbd">환급 비율</span></li><li><span class="tbd">공제되는 항목</span></li><li><span class="tbd">환급금 지급 시기</span></li></ul>
+          <p><span class="tbd">세 가지를 가입 전에 계산해서 설명합니다. 기준은 상품 약관을 따릅니다.</span></p>
+        </div>
+      </div>
+    </div>
+    <aside class="check">
+      <img src="images/ease-shield.webp" alt="" width="208" height="208" loading="lazy">
+      <div>
+        <h3>계약 전에 꼭 확인하세요</h3>
+        <ul>
+          <li><svg class="ic"><use href="#i-check"/></svg>납입금이 어떻게 보호되는지</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>해지·환급 기준</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>포함·별도 항목</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>장례를 이용할 수 있는 시점</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 6. 상담 + FAQ -->
+<section class="apply" id="apply">
+  <div class="wrap">
+    <div class="apply-grid">
+      <div>
+        <h2>궁금한 건,<br>상담으로 확인하세요.</h2>
+        <p class="lead">이름과 연락처만 남기면 됩니다.</p>
+        <ul class="mini">
+          <li><img src="images/step-form.webp" alt="" width="136" height="136" loading="lazy"><div><b>신청</b><span>이름과 연락처만 남깁니다</span></div></li>
+          <li><img src="images/step-call.webp" alt="" width="136" height="136" loading="lazy"><div><b>연락</b><span>편한 시간에 전화로 안내합니다</span></div></li>
+          <li><img src="images/step-decide.webp" alt="" width="136" height="136" loading="lazy"><div><b>결정</b><span>충분히 듣고 직접 정합니다</span></div></li>
+        </ul>
+        <ul class="mini assure-list">
+          <li><img src="images/ease-free.webp" alt="" width="136" height="136" loading="lazy"><div><b><span class="tbd">상담 비용 0원</span></b><span><span class="tbd">상담 후 가입하지 않아도 됩니다</span></span></div></li>
+          <li><img src="images/ease-lock.webp" alt="" width="136" height="136" loading="lazy"><div><b><span class="tbd">상담 연락에만 사용</span></b><span><span class="tbd">이름과 연락처는 상담 안내에만 씁니다</span></span></div></li>
+        </ul>
+      </div>
+      <form id="form" novalidate aria-label="상조 상담 신청">
+        <p class="demo-flag">시안이라 신청이 접수되지 않습니다. 입력한 내용은 전송·저장되지 않아요.</p>
+        <label class="f">이름 <i>*</i><input id="name" name="name" type="text" autocomplete="off" maxlength="30" placeholder="이름을 입력해주세요"></label>
+        <label class="f">연락처 <i>*</i><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="off" maxlength="13" placeholder="010-0000-0000"></label>
+        <label class="f">장례 유형 <span class="opt-txt">선택</span>
+          <select id="prodsel" name="product"><option value="">선택 안 함</option><option>아직 잘 모르겠어요</option></select></label>
+        <label class="consent"><input type="checkbox" id="consent"><span>[필수] 개인정보 수집·이용에 동의합니다.</span></label>
+        <button type="button" class="link" id="privacy-btn" aria-expanded="false" aria-controls="privacy">동의 내용 보기</button>
+        <div class="privacy" id="privacy" hidden>수집 항목은 이름, 연락처(선택 시 장례 유형)이며 상담 연락에만 사용합니다.</div>
+        <button class="btn submit" type="submit">상담신청하기</button>
+        <p class="result" id="result" role="status" tabindex="-1" hidden></p>
+      </form>
+    </div>
+
+    <div class="faq">
+      <div class="faq-head"><h3>자주 묻는 질문</h3><p>신청 전에 많이 물어보시는 것만 모았어요.</p></div>
+      <div>
+        <details><summary>상담만 받아도 되나요?</summary><p><span class="tbd">그럼요. 상담 후 가입하지 않아도 됩니다.</span></p></details>
+        <details><summary>가입하면 바로 이용할 수 있나요?</summary><p><span class="tbd">이용 가능 시점은 상품 약관에 따라 다릅니다. 상담 때 정확히 안내합니다.</span><span class="tbd-flag">확정 필요</span></p></details>
+        <details><summary>낸 돈은 안전하게 보호되나요?</summary><p><span class="tbd">납입금이 어느 기관에서 어떤 방식으로 보호되는지 가입 전에 먼저 설명합니다.</span><span class="tbd-flag">확정 필요</span></p></details>
+        <details><summary>월 납입액이 나중에 오르지는 않나요?</summary><p><span class="tbd">가입할 때 정한 월 납입액이 계약 기간 동안 유지되는지, 바뀌는 조건이 있는지 가입 전에 확인해 드립니다.</span><span class="tbd-flag">확정 필요</span></p></details>
+        <details><summary>중간에 해지하면 돌려받나요?</summary><p><span class="tbd">해지 시점에 따라 환급 기준이 다릅니다. 환급 비율과 공제 항목을 가입 전에 설명합니다.</span><span class="tbd-flag">확정 필요</span></p></details>
+        <details><summary>다 납입하고 나면 돌려받는 돈이 있나요?</summary><p><span class="tbd">환급 여부와 금액은 상품마다 다릅니다. 대상과 계산 방식을 가입 전에 표로 안내합니다.</span><span class="tbd-flag">확정 필요</span></p></details>
+        <details><summary>납입 도중에 장례가 생기면요?</summary><p><span class="tbd">그동안 낸 금액을 뺀 남은 금액을 행사 때 정산하는 방식으로 안내합니다. 위 계산기가 그 예시입니다.</span></p></details>
+        <details><summary>장례 때 추가 비용이 드나요?</summary><p><span class="tbd">화장·장지 이용료, 종교 의식비 등은 별도일 수 있습니다. 포함·별도 항목을 표로 안내합니다.</span></p></details>
+        </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="싹딜 상조 처음으로"></a>
+    <p>본 페이지는 가상 예시를 사용한 리디자인 시안이며 실제 상조 상품의 판매·상담·계약을 제공하지 않습니다.</p>
+    <p>금액·납입 방식·환급·혜택은 이해를 돕기 위한 예시입니다. 가입 전 상품설명서와 약관, 납입금 보호 내용을 반드시 확인하세요.</p>
+    <p>© SSAKDEAL. All rights reserved.</p>
+  </div>
+</footer>
+
+<div class="dock off" id="dock"><a class="btn" href="#apply" data-cta>상담신청하기</a></div>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hd = document.querySelector('header');
+  addEventListener('scroll', function(){ hd.classList.toggle('scrolled', scrollY > 8); }, {passive: true});
+
+  // ---------- 가격 데이터: 화면의 모든 금액은 이 한 곳에서만 가져옵니다 ----------
+  // own   : 싹딜 판매가격이 확정되면 { amount: 숫자(원) }로 입력합니다.
+  //         입력하면 카드의 메인 가격이 싹딜 판매가격으로 바뀌고, 타사 참고가격은 별도 라벨로 남습니다.
+  // comparable : 타사와 동등한 제공 조건이 확인된 경우에만 true. 그때만 절약액을 계산합니다.
+  var PRICING = {
+    surveyDate: '2026.10.29',
+    types: [
+      {
+        id: 'mubinso', name: '무빈소 기본형', desc: '빈소 없이, 필수 장례 절차 중심으로', button: '무빈소 상담하기',
+        ref: { label: '타사 비교 참고가격', amount: 1190000, source: '아정당 무빈소 기본상품 기준', note: '공식 변경 공지: 2026.8.14부터 99만 원 → 119만 원' },
+        own: null, comparable: false, terms: [70, 100, 140]
+      },
+      {
+        id: 'general', name: '일반 상조형', desc: '조문을 받는 장례에 필요한 인력·차량·용품을 함께 비교', button: '일반 상조 상담하기',
+        ref: { label: '조사 상품 중 최저가', amount: 3490000, source: '교원라이프 다이렉트 349 기준', note: '' },
+        schedule: [{ amount: 15000, count: 232 }, { amount: 10000, count: 1 }],
+        own: null, comparable: false, terms: [100, 150, 200]
+      }
+    ]
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  function krw(v){ return Math.round(v).toLocaleString('ko-KR') + '원'; }
+  function won(v){ return v === 0 ? '0원' : (v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만원' : krw(v)); }
+  function man(v){ return v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만 원' : krw(v); }
+  function typeById(id){ return PRICING.types.filter(function(t){ return t.id === id; })[0]; }
+  function mainOf(t){ return t.own ? { label: '싹딜 판매가격', amount: t.own.amount } : t.ref; }
+  function usesSchedule(t){ return !!t.schedule && !t.own; }
+  function planOf(t, term){
+    var total = mainOf(t).amount;
+    return usesSchedule(t) ? { total: total, ins: t.schedule } : { total: total, ins: [{ amount: total / term, count: term }] };
+  }
+  function countOf(p){ return p.ins.reduce(function(a, x){ return a + x.count; }, 0); }
+  function paidAfter(p, k){
+    var s = 0, left = k;
+    p.ins.forEach(function(x){ var c = Math.min(left, x.count); s += c * x.amount; left -= c; });
+    return s;
+  }
+  function schedText(t){
+    return t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + ' = 총 납입금 ' + man(mainOf(t).amount);
+  }
+
+  // 가격 카드
+  $('types').innerHTML = PRICING.types.map(function(t){
+    var m = mainOf(t), extra = '';
+    if (t.own) {
+      extra += '<p class="tsub">' + t.ref.label + ' ' + man(t.ref.amount) + ' · ' + t.ref.source + '</p>';
+      if (t.comparable && t.ref.amount > t.own.amount) extra += '<p class="tsave">타사 참고가격보다 ' + man(t.ref.amount - t.own.amount) + ' 낮습니다</p>';
+    } else {
+      if (t.schedule) extra += '<p class="tsub">' + schedText(t) + '</p>';
+      if (t.ref.note) extra += '<p class="tsub">' + t.ref.note + '</p>';
+    }
+    return '<article class="tcard"><h3>' + t.name + '</h3><p class="tdesc">' + t.desc + '</p>' +
+      '<div class="tprice"><small>' + m.label + '</small><strong class="num">' + man(m.amount) + '</strong>' +
+      (t.own ? '' : '<p class="tsrc">' + m.source + '</p>') + extra + '</div>' +
+      '<a class="btn" href="#apply" data-cta data-type="' + t.id + '">' + t.button + '</a></article>';
+  }).join('');
+  var mu = PRICING.types[0], ge = typeById('general');
+  $('types-note').textContent = PRICING.surveyDate + ' 공개가격 조사 기준. ' + man(mu.ref.amount) + '은 아정당 무빈소 기본상품, ' + man(ge.ref.amount) +
+    '은 조사한 4개 브랜드·13개 상품 중 최저가입니다. 두 상품은 제공 범위가 다르며, 장례식장 시설비·음식비·화장료·장지 비용 및 추가 선택사항 등은 계약에 따라 별도 발생할 수 있습니다.';
+
+  // 첫 화면 한눈에 보기 (무빈소 기본형, 중간 납입 기간 기준 예시)
+  (function(){
+    var p = planOf(mu, mu.terms[1]);
+    $('l-sub').textContent = mu.name + ' · ' + (mu.own ? '판매가격' : '참고가격') + ' 기준 납입 예시';
+    $('l-month').innerHTML = Math.round(p.ins[0].amount).toLocaleString('ko-KR') + '<span>원</span>';
+    $('l-term').innerHTML = countOf(p) + '<span>개월</span>';
+    $('l-total').innerHTML = (p.total % 10000 === 0 ? (p.total / 10000).toLocaleString('ko-KR') + '<span>만원</span>' : krw(p.total));
+  })();
+
+  // 가격 상승 그래프 (일반 상조형 가격을 기준으로, 평균 연 4.5% 상승 가정)
+  (function(){
+    var base = Math.round(mainOf(ge).amount / 10000);
+    var v5 = Math.round(base * Math.pow(1.045, 5)), v10 = Math.round(base * Math.pow(1.045, 10));
+    var lo = Math.floor((base - 1) / 100) * 100, hi = Math.ceil((v10 + 10) / 100) * 100;
+    var y = function(v){ return +(290 - (v - lo) / (hi - lo) * 240).toFixed(1); };
+    var y0 = y(base), y1 = y(v5), y2 = y(v10), lines = '', labels = '';
+    for (var v = lo; v <= hi; v += 100) {
+      lines += '<line x1="64" x2="540" y1="' + y(v) + '" y2="' + y(v) + '"/>';
+      labels += '<text x="54" y="' + (y(v) + 5) + '">' + v + '</text>';
+    }
+    $('lc').setAttribute('aria-label', '장례비 변화 예시 선 그래프. 가입 시점 가격 고정은 ' + base + '만원, 평균 상승 가격 기준 5년 뒤 ' + v5 + '만원, 10년 뒤 ' + v10 + '만원');
+    $('lc').innerHTML =
+      '<g stroke="#dbe7e3" stroke-width="1">' + lines + '</g>' +
+      '<g font-size="13" fill="#53635e" text-anchor="end">' + labels + '</g>' +
+      '<text x="64" y="34" font-size="13" fill="#53635e">만원</text>' +
+      '<path class="gapfill" d="M90 ' + y0 + 'L290 ' + y1 + 'L490 ' + y2 + 'V' + y0 + 'Z" fill="#e8503d" fill-opacity=".13"/>' +
+      '<path class="draw" pathLength="1" d="M90 ' + y0 + 'L290 ' + y1 + 'L490 ' + y2 + '" fill="none" stroke="#e8503d" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path class="draw" pathLength="1" d="M90 ' + y0 + 'H490" fill="none" stroke="#007b68" stroke-width="4.5" stroke-linecap="round"/>' +
+      '<circle cx="90" cy="' + y0 + '" r="8" fill="#fff" stroke="#007b68" stroke-width="4"/>' +
+      '<circle cx="290" cy="' + y1 + '" r="8" fill="#fff" stroke="#e8503d" stroke-width="4"/>' +
+      '<circle cx="490" cy="' + y0 + '" r="8" fill="#fff" stroke="#007b68" stroke-width="4"/>' +
+      '<circle cx="490" cy="' + y2 + '" r="10" fill="#e8503d" stroke="#fff" stroke-width="3"/>' +
+      '<g font-size="16" font-weight="800" text-anchor="middle"><text x="90" y="' + (y0 - 18) + '" fill="#071f4a">' + base + '</text><text x="290" y="' + (y1 - 18) + '" fill="#071f4a">' + v5 + '</text><text x="490" y="' + (y2 - 21) + '" fill="#e8503d">' + v10 + '</text><text x="490" y="' + (y0 + 26) + '" fill="#007b68">' + base + '</text></g>' +
+      '<path d="M514 ' + y2 + 'H524V' + y0 + 'H514" fill="none" stroke="#e8503d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<text x="534" y="' + ((y0 + y2) / 2 - 2).toFixed(1) + '" font-size="19" font-weight="800" fill="#e8503d">+' + (v10 - base) + '</text>' +
+      '<text x="534" y="' + ((y0 + y2) / 2 + 18).toFixed(1) + '" font-size="13" font-weight="700" fill="#e8503d">만원</text>' +
+      '<g font-size="15" font-weight="700" fill="#071f4a" text-anchor="middle"><text x="90" y="322">지금</text><text x="290" y="322">5년 후</text><text x="490" y="322">10년 후</text></g>';
+    $('gap-num').dataset.to = v10 - base;
+    $('gap-num').textContent = v10 - base;
+    $('chart-note').textContent = '*' + ge.name + ' 참고가격 기준 수치*';
+  })();
+
+  // 상담 폼 장례 유형 선택지
+  var prodSel = $('prodsel');
+  PRICING.types.forEach(function(t){
+    var o = document.createElement('option');
+    o.textContent = t.name;
+    prodSel.insertBefore(o, prodSel.lastElementChild);
+  });
+
+  // 등장 효과(스크롤) · 그래프 숫자 카운트
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js');
+    ['.sec-head','.tcard','.ph','.calc','.rise-copy','.chart-card','.srow','.check','.apply-grid > *','.faq-head','.faq > div:last-child'].forEach(function(sel){
+      document.querySelectorAll(sel).forEach(function(el, i){
+        el.classList.add('reveal');
+        el.style.setProperty('--d', Math.min(i % 3, 2) * 0.1 + 's');
+      });
+    });
+    var rio = new IntersectionObserver(function(es){
+      es.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); rio.unobserve(en.target); } });
+    }, {threshold: 0.12, rootMargin: '0px 0px -5% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ rio.observe(el); });
+
+    var cio = new IntersectionObserver(function(es){
+      es.forEach(function(en){
+        if (!en.isIntersecting) return;
+        cio.unobserve(en.target);
+        var el = en.target, to = parseFloat(el.dataset.to), t0 = performance.now();
+        (function tick(now){
+          var p = Math.min((now - t0) / 1600, 1), e = 1 - Math.pow(1 - p, 3);
+          el.textContent = Math.round(to * e);
+          if (p < 1) requestAnimationFrame(tick);
+        })(t0);
+      });
+    }, {threshold: 0.6});
+    document.querySelectorAll('.cnt').forEach(function(el){ el.textContent = '0'; cio.observe(el); });
+  }
+
+  // 납입 계산기 (가격 데이터를 참조, 금액은 참고가격 기준 예시)
+  var kEl = $('k');
+  function pickType(){ return typeById(document.querySelector('input[name="prod"]:checked').value); }
+  function renderProd(){
+    $('prod-opts').innerHTML = PRICING.types.map(function(t, i){
+      var m = mainOf(t);
+      return '<label class="opt"><input type="radio" name="prod" value="' + t.id + '"' + (i === 0 ? ' checked' : '') + '><span class="tile"><b>' + t.name + '</b><em>' + man(m.amount) + '</em><small>' + m.label + '</small></span></label>';
+    }).join('');
+  }
+  function renderTerms(t){
+    var box = $('term-opts');
+    if (usesSchedule(t)) {
+      var n = countOf(planOf(t));
+      box.className = 'opts one';
+      box.innerHTML = '<label class="opt"><input type="radio" name="term" value="' + n + '" checked><span class="tile pill">' + n + '개월<small>' + t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + '</small></span></label>';
+    } else {
+      box.className = 'opts three';
+      box.innerHTML = t.terms.map(function(n, i){
+        return '<label class="opt"><input type="radio" name="term" value="' + n + '"' + (i === 1 ? ' checked' : '') + '><span class="tile pill">' + n + '개월<small>' + (i === 0 ? '빨리 완납' : i === 1 ? '균형' : '월 부담 적게') + '</small></span></label>';
+      }).join('');
+    }
+  }
+  function calc(resetK){
+    var t = pickType(), term = +document.querySelector('input[name="term"]:checked').value;
+    var p = planOf(t, term), N = countOf(p);
+    if (resetK) { kEl.max = N; kEl.value = N; }
+    var k = +kEl.value, paid = paidAfter(p, k), bal = Math.max(p.total - paid, 0);
+    $('o-month').innerHTML = Math.round(p.ins[0].amount).toLocaleString('ko-KR') + '<span>원</span>';
+    $('o-sub').textContent = p.ins.length > 1 ? '마지막 ' + p.ins[1].count + '회는 ' + krw(p.ins[1].amount) : '';
+    $('o-total').textContent = won(p.total);
+    $('o-paid').textContent = won(paid);
+    $('o-bal').textContent = won(bal);
+    $('o-bar').style.width = (paid / p.total * 100) + '%';
+    $('k-label').textContent = k >= N ? '완납 후' : (k === 0 ? '가입 직후' : k + '개월 납입 후');
+    kEl.style.setProperty('--p', (N ? k / N * 100 : 0) + '%');
+    kEl.setAttribute('aria-valuetext', $('k-label').textContent + ', 행사 시 잔금 ' + won(bal));
+    $('calc-note').textContent = t.own ? '싹딜 판매가격으로 계산한 예시입니다.' : '싹딜 판매가격 확정 전이라 타사 참고가격으로 계산한 예시입니다.';
+  }
+  $('prod-opts').addEventListener('change', function(){ renderTerms(pickType()); calc(true); });
+  $('term-opts').addEventListener('change', function(){ calc(true); });
+  kEl.addEventListener('input', function(){ calc(false); });
+  renderProd();
+  renderTerms(PRICING.types[0]);
+  calc(true);
+
+  // 신청 폼 (전송 기능 미연결: 접수된 것처럼 안내하지 않음)
+  var nameEl = $('name'), phone = $('phone'), consent = $('consent'), result = $('result'), form = $('form');
+  var PHONE_RE = /^01[016789]-?\d{3,4}-?\d{4}$/;
+
+  document.querySelectorAll('[data-cta]').forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      if (a.dataset.type) { var tt = typeById(a.dataset.type); if (tt) prodSel.value = tt.name; }
+      $('apply').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
+      setTimeout(function(){ nameEl.focus({preventScroll: true}); }, reduce ? 0 : 500);
+    });
+  });
+
+  var pb = $('privacy-btn'), pv = $('privacy');
+  pb.addEventListener('click', function(){
+    pv.hidden = !pv.hidden;
+    pb.setAttribute('aria-expanded', String(!pv.hidden));
+    pb.textContent = pv.hidden ? '동의 내용 보기' : '동의 내용 접기';
+  });
+
+  phone.addEventListener('input', function(){
+    var n = phone.value.replace(/\D/g, '').slice(0, 11);
+    phone.value = n.length <= 3 ? n : n.length <= 7 ? n.slice(0,3) + '-' + n.slice(3) : n.slice(0,3) + '-' + n.slice(3, n.length - 4) + '-' + n.slice(-4);
+  });
+  form.addEventListener('input', function(){ result.hidden = true; });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var msg = '', target = null;
+    if (!nameEl.value.trim()) { msg = '이름을 입력해주세요.'; target = nameEl; }
+    else if (!PHONE_RE.test(phone.value)) { msg = '연락처를 확인해주세요. 예: 010-1234-5678'; target = phone; }
+    else if (!consent.checked) { msg = '개인정보 수집·이용 동의가 필요합니다.'; target = consent; }
+    result.hidden = false;
+    result.className = 'result' + (msg ? ' err' : '');
+    if (msg) { result.textContent = msg; target.focus(); return; }
+    // TODO: 실제 신청 API 연결 — 전송 항목: { name, phone, type: prodSel.value } (연결 전까지는 접수 완료 안내를 하지 않음)
+    result.textContent = '입력 내용은 확인했습니다.' + (prodSel.value ? ' (선택한 장례 유형: ' + prodSel.value + ')' : '') + ' 아직 신청 접수 기능이 연결되지 않아 내용이 전송되지 않았습니다.';
+    result.focus({preventScroll: true});
+  });
+
+  // 모바일 하단 버튼: 첫 화면·신청 영역에서는 숨김
+  var dock = $('dock');
+  if ('IntersectionObserver' in window) {
+    var seen = {};
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(en){ seen[en.target.id] = en.isIntersecting; });
+      dock.classList.toggle('off', !!(seen.top || seen.apply));
+    }, {threshold: 0.15});
+    ['top', 'apply'].forEach(function(id){ io.observe($(id)); });
+    dock.classList.toggle('off', true);
+  } else dock.classList.remove('off');
+})();
+</script>
+</body>
+</html>
