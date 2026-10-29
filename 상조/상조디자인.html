@@ -98,6 +98,22 @@ header .top{display:flex;align-items:center;justify-content:space-between;height
 
 /* ---------- 3 calculator ---------- */
 .plan{background:var(--brand-tint)}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.tcard{display:flex;flex-direction:column;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:34px 32px 30px;box-shadow:var(--shadow)}
+.tcard h3{font-size:clamp(26px,3vw,32px)}
+.tcard .tdesc{margin-top:8px;color:var(--ink-2);font-size:17.5px}
+.tprice{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);flex:1}
+.tprice small{display:block;font-size:15px;font-weight:700;color:var(--mute)}
+.tprice strong{display:block;margin-top:2px;font-size:clamp(44px,5.4vw,62px);font-weight:800;letter-spacing:-.05em;line-height:1.1;color:var(--brand-deep)}
+.tprice .tsrc{margin-top:4px;font-size:16px;font-weight:600;color:var(--ink-2)}
+.tprice .tsub{margin-top:8px;font-size:14.5px;color:var(--mute)}
+.tprice .tsave{margin-top:8px;font-size:15.5px;font-weight:700;color:var(--brand-deep)}
+.tcard .btn{margin-top:26px;width:100%}
+.types-note{max-width:900px;margin:22px auto 0;text-align:center;font-size:13.5px;line-height:1.6}
+.calc-wrap{margin-top:72px}
+.calc-title{margin-bottom:20px;font-size:clamp(22px,2.6vw,26px)}
+.opts.one{grid-template-columns:1fr}
+.o-sub{margin-top:2px;min-height:1.6em}
 .calc{display:grid;grid-template-columns:1.05fr .95fr;border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow);background:#fff}
 .calc-in{padding:36px 34px 32px}
 .q{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:17px;font-weight:800}
@@ -171,7 +187,7 @@ header .top{display:flex;align-items:center;justify-content:space-between;height
 .kit li{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;font-size:15.5px;font-weight:700;line-height:1.35}
 .kit .art{display:block;width:76px;height:76px}
 .kit li.plus .art{opacity:.95}
-.kit li.plus span:after{content:'일반형';display:block;margin:2px auto 0;width:max-content;font-size:12px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:5px;padding:0 6px}
+.kit li.plus span:after{content:'일반 상조형';display:block;margin:2px auto 0;width:max-content;font-size:12px;font-weight:700;color:var(--amber);background:var(--amber-soft);border-radius:5px;padding:0 6px}
 .kit-legend{margin-top:16px;font-size:14.5px;color:var(--mute)}
 .plain{display:grid;gap:8px}
 .plain li{position:relative;padding-left:18px;font-size:17.5px}
@@ -240,6 +256,7 @@ footer p+p{margin-top:8px}
   .hero{padding:52px 0 80px}
   .ledger{margin-top:36px}
   .calc{grid-template-columns:1fr}
+  .types{grid-template-columns:1fr}
   .kit{grid-template-columns:repeat(4,1fr)}
   .srow{grid-template-columns:1fr;gap:16px}
   .check ul{grid-template-columns:1fr}
@@ -463,11 +480,11 @@ footer p+p{margin-top:8px}
     <div class="ledger" aria-label="상조 한눈에 보기 예시">
       <span class="ex-chip">가상 예시</span>
       <img class="consultant" src="images/consultant-3d-transparent.webp" alt="" width="256" height="256">
-      <div class="ledger-head"><b>내 상조 한눈에</b><small>무빈소 간소형 기준</small></div>
+      <div class="ledger-head"><b>내 상조 한눈에</b><small id="l-sub"></small></div>
       <div class="led-grid">
-        <div class="led-cell"><small>월 납입액</small><strong class="num">35,000<span>원</span></strong></div>
-        <div class="led-cell"><small>납입 기간</small><strong class="num">100<span>개월</span></strong></div>
-        <div class="led-cell"><small>총 납입액</small><strong class="num">350<span>만원</span></strong></div>
+        <div class="led-cell"><small>월 납입액</small><strong class="num" id="l-month"></strong></div>
+        <div class="led-cell"><small>납입 기간</small><strong class="num" id="l-term"></strong></div>
+        <div class="led-cell"><small>총 납입액</small><strong class="num" id="l-total"></strong></div>
         <div class="led-cell"><small>중간에 해지하면</small><strong><span class="tbd">약관 기준</span></strong></div>
       </div>
       <div class="led-last"><small>완납 후 이용하면<br>행사 시 잔금</small><strong class="num">0원</strong></div>
@@ -501,36 +518,36 @@ footer p+p{margin-top:8px}
   </div>
 </section>
 
-<!-- 3. 상품 선택 + 납입 계산 -->
+<!-- 3. 장례 형태 선택 + 가격 비교 -->
 <section class="plan" id="plan">
   <div class="wrap">
-    <div class="sec-head"><h2>어떤 장례를 원하세요?<br>낸 돈과 남는 돈을 바로 계산합니다.</h2></div>
-    <div class="calc">
-      <div class="calc-in">
-        <p class="q"><span class="n">1</span>장례 형태</p>
-        <div class="opts two" role="radiogroup" aria-label="장례 형태">
-          <label class="opt"><input type="radio" name="prod" value="3500000" checked><span class="tile"><b><span class="tbd">무빈소 간소형</span></b><em>350만원</em><small><span class="tbd">빈소 없이 가족 중심으로 치르는 구성</span></small></span></label>
-          <label class="opt"><input type="radio" name="prod" value="7000000"><span class="tile"><b><span class="tbd">빈소 일반형</span></b><em><span class="tbd">700만원</span></em><small><span class="tbd">빈소를 차리고 조문객을 맞는 구성</span></small></span></label>
+    <div class="sec-head"><h2>원하는 장례 형태에 맞춰 준비하세요</h2></div>
+    <div class="types" id="types"></div>
+    <p class="note types-note" id="types-note"></p>
+
+    <div class="calc-wrap">
+      <h3 class="calc-title">납입 방식 미리 계산해 보기</h3>
+      <div class="calc">
+        <div class="calc-in">
+          <p class="q"><span class="n">1</span>장례 형태</p>
+          <div class="opts two" id="prod-opts" role="radiogroup" aria-label="장례 형태"></div>
+          <p class="q"><span class="n">2</span>납입 기간</p>
+          <div class="opts three" id="term-opts" role="radiogroup" aria-label="납입 기간"></div>
+          <p class="q"><span class="n">3</span>장례가 생기는 시점</p>
+          <div class="slide-label"><span>가입 직후</span><b id="k-label">완납 후</b><span>완납</span></div>
+          <input class="slider" id="k" type="range" min="0" max="100" step="1" value="100" aria-label="장례가 생기는 시점(납입 개월 수)">
         </div>
-        <p class="q"><span class="n">2</span>납입 기간</p>
-        <div class="opts three" role="radiogroup" aria-label="납입 기간">
-          <label class="opt"><input type="radio" name="term" value="70"><span class="tile pill">70개월<small>빨리 완납</small></span></label>
-          <label class="opt"><input type="radio" name="term" value="100" checked><span class="tile pill">100개월<small>균형</small></span></label>
-          <label class="opt"><input type="radio" name="term" value="140"><span class="tile pill">140개월<small>월 부담 적게</small></span></label>
+        <div class="calc-out" aria-live="polite">
+          <small>월 납입액</small>
+          <div class="big num" id="o-month"></div>
+          <small id="o-sub" class="o-sub"></small>
+          <div class="out-row"><small>총 납입액</small><strong class="num" id="o-total"></strong></div>
+          <div class="split">
+            <div class="bar" aria-hidden="true"><div class="paid" id="o-bar" style="width:100%"></div><div class="left"></div></div>
+            <div class="legend"><span>그동안 낸 금액<b class="num" id="o-paid"></b></span><span>행사 시 잔금<b class="num" id="o-bal"></b></span></div>
+          </div>
+          <p class="note"><span class="ex-chip">예시</span> <span id="calc-note"></span></p>
         </div>
-        <p class="q"><span class="n">3</span>장례가 생기는 시점</p>
-        <div class="slide-label"><span>가입 직후</span><b id="k-label">완납 후</b><span>완납</span></div>
-        <input class="slider" id="k" type="range" min="0" max="100" step="1" value="100" aria-label="장례가 생기는 시점(납입 개월 수)">
-      </div>
-      <div class="calc-out" aria-live="polite">
-        <small>월 납입액</small>
-        <div class="big num" id="o-month">35,000<span>원</span></div>
-        <div class="out-row"><small>총 납입액</small><strong class="num" id="o-total">350만원</strong></div>
-        <div class="split">
-          <div class="bar" aria-hidden="true"><div class="paid" id="o-bar" style="width:100%"></div><div class="left"></div></div>
-          <div class="legend"><span>그동안 낸 금액<b class="num" id="o-paid">350만원</b></span><span>행사 시 잔금<b class="num" id="o-bal">0원</b></span></div>
-        </div>
-        <p class="note"><span class="ex-chip">가상 예시</span> 금액과 납입 방식은 예시이며, 실제 상품은 상담 때 안내됩니다.</p>
       </div>
     </div>
   </div>
@@ -541,30 +558,14 @@ footer p+p{margin-top:8px}
   <div class="wrap rise-grid">
     <div class="rise-copy">
       <h2>지금 정하면,<br>가격도 <em>지금 그대로.</em></h2>
-      <div class="gap"><small>10년 뒤 차이</small><strong>+<i class="cnt" data-to="194">194</i><span>만원</span></strong><span class="ex-chip">가상 예시</span></div>
+      <div class="gap"><small>10년 뒤 차이</small><strong>+<i class="cnt" id="gap-num" data-to="0">0</i><span>만원</span></strong><span class="ex-chip">가상 예시</span></div>
     </div>
     <figure class="chart-card">
-      <svg class="lc" viewBox="0 0 620 340" role="img" aria-label="장례비 변화 예시 선 그래프. 가입 시점 가격 고정은 350만원, 평균 상승 가격 기준 5년 뒤 436만원, 10년 뒤 544만원">
-        <g stroke="#dbe7e3" stroke-width="1"><line x1="64" x2="540" y1="290" y2="290"/><line x1="64" x2="540" y1="210" y2="210"/><line x1="64" x2="540" y1="130" y2="130"/><line x1="64" x2="540" y1="50" y2="50"/></g>
-        <g font-size="13" fill="#53635e" text-anchor="end"><text x="54" y="295">300</text><text x="54" y="215">400</text><text x="54" y="135">500</text><text x="54" y="55">600</text></g>
-        <text x="64" y="34" font-size="13" fill="#53635e">만원</text>
-        <path class="gapfill" d="M90 250L290 181L490 95.2V250Z" fill="#e8503d" fill-opacity=".13"/>
-        <path class="draw" pathLength="1" d="M90 250L290 181L490 95.2" fill="none" stroke="#e8503d" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-        <path class="draw" pathLength="1" d="M90 250H490" fill="none" stroke="#007b68" stroke-width="4.5" stroke-linecap="round"/>
-        <circle cx="90" cy="250" r="8" fill="#fff" stroke="#007b68" stroke-width="4"/>
-        <circle cx="290" cy="181" r="8" fill="#fff" stroke="#e8503d" stroke-width="4"/>
-        <circle cx="490" cy="250" r="8" fill="#fff" stroke="#007b68" stroke-width="4"/>
-        <circle cx="490" cy="95.2" r="10" fill="#e8503d" stroke="#fff" stroke-width="3"/>
-        <g font-size="16" font-weight="800" text-anchor="middle"><text x="90" y="232" fill="#071f4a">350</text><text x="290" y="163" fill="#071f4a">436</text><text x="490" y="74" fill="#e8503d">544</text><text x="490" y="276" fill="#007b68">350</text></g>
-        <path d="M514 95.2H524V250H514" fill="none" stroke="#e8503d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="534" y="168" font-size="19" font-weight="800" fill="#e8503d">+194</text>
-        <text x="534" y="188" font-size="13" font-weight="700" fill="#e8503d">만원</text>
-        <g font-size="15" font-weight="700" fill="#071f4a" text-anchor="middle"><text x="90" y="322">지금</text><text x="290" y="322">5년 후</text><text x="490" y="322">10년 후</text></g>
-      </svg>
+      <svg class="lc" id="lc" viewBox="0 0 620 340" role="img" aria-label="장례비 변화 예시 선 그래프"></svg>
       <figcaption class="legend2"><span><i></i>가입 시점 가격 고정</span><span class="up"><i></i><span class="tbd">평균 상승 가격</span></span></figcaption>
     </figure>
   </div>
-  <p class="note">*무빈소장례상품 기준 수치*</p>
+  <p class="note" id="chart-note"></p>
 </section>
 
 <!-- 5. 계약 전 확인표 -->
@@ -573,7 +574,7 @@ footer p+p{margin-top:8px}
     <div class="sec-head"><h2>가입 전에 보셔야 할 것,<br>한 표로 정리했습니다.</h2></div>
     <div class="sheet">
       <div class="srow">
-        <h3>포함 구성<small>무빈소 간소형 기준</small></h3>
+        <h3>포함 구성<small>무빈소 기본형 기준</small></h3>
         <div>
           <ul class="kit">
             <li><svg class="art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg><span>장례지도사</span></li>
@@ -589,7 +590,7 @@ footer p+p{margin-top:8px}
             <li class="plus"><svg class="art" role="img" aria-label="장례 도우미"><use href="#a-helper"/></svg><span>장례 도우미</span></li>
             <li class="plus"><svg class="art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg><span>의전 차량</span></li>
           </ul>
-          <p class="kit-legend"><span class="ex-chip">그림은 임시 시안</span> '일반형' 표시는 빈소 일반형에만 더해지는 구성입니다.</p>
+          <p class="kit-legend"><span class="ex-chip">그림은 임시 시안</span> '일반 상조형' 표시는 일반 상조형에만 더해지는 구성입니다.</p>
         </div>
       </div>
       <div class="srow">
@@ -643,11 +644,11 @@ footer p+p{margin-top:8px}
         <p class="demo-flag">시안이라 신청이 접수되지 않습니다. 입력한 내용은 전송·저장되지 않아요.</p>
         <label class="f">이름 <i>*</i><input id="name" name="name" type="text" autocomplete="off" maxlength="30" placeholder="이름을 입력해주세요"></label>
         <label class="f">연락처 <i>*</i><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="off" maxlength="13" placeholder="010-0000-0000"></label>
-        <label class="f">관심 상품 <span class="opt-txt">선택</span>
-          <select id="prodsel" name="product"><option value="">선택 안 함</option><option>무빈소 간소형</option><option>빈소 일반형</option><option>아직 잘 모르겠어요</option></select></label>
+        <label class="f">장례 유형 <span class="opt-txt">선택</span>
+          <select id="prodsel" name="product"><option value="">선택 안 함</option><option>아직 잘 모르겠어요</option></select></label>
         <label class="consent"><input type="checkbox" id="consent"><span>[필수] 개인정보 수집·이용에 동의합니다.</span></label>
         <button type="button" class="link" id="privacy-btn" aria-expanded="false" aria-controls="privacy">동의 내용 보기</button>
-        <div class="privacy" id="privacy" hidden>수집 항목은 이름, 연락처(선택 시 관심 상품)이며 상담 연락에만 사용합니다.</div>
+        <div class="privacy" id="privacy" hidden>수집 항목은 이름, 연락처(선택 시 장례 유형)이며 상담 연락에만 사용합니다.</div>
         <button class="btn submit" type="submit">상담신청하기</button>
         <p class="result" id="result" role="status" tabindex="-1" hidden></p>
       </form>
@@ -689,10 +690,121 @@ footer p+p{margin-top:8px}
   var hd = document.querySelector('header');
   addEventListener('scroll', function(){ hd.classList.toggle('scrolled', scrollY > 8); }, {passive: true});
 
+  // ---------- 가격 데이터: 화면의 모든 금액은 이 한 곳에서만 가져옵니다 ----------
+  // own   : 싹딜 판매가격이 확정되면 { amount: 숫자(원) }로 입력합니다.
+  //         입력하면 카드의 메인 가격이 싹딜 판매가격으로 바뀌고, 타사 참고가격은 별도 라벨로 남습니다.
+  // comparable : 타사와 동등한 제공 조건이 확인된 경우에만 true. 그때만 절약액을 계산합니다.
+  var PRICING = {
+    surveyDate: '2026.10.29',
+    types: [
+      {
+        id: 'mubinso', name: '무빈소 기본형', desc: '빈소 없이, 필수 장례 절차 중심으로', button: '무빈소 상담하기',
+        ref: { label: '타사 비교 참고가격', amount: 1190000, source: '아정당 무빈소 기본상품 기준', note: '공식 변경 공지: 2026.8.14부터 99만 원 → 119만 원' },
+        own: null, comparable: false, terms: [70, 100, 140]
+      },
+      {
+        id: 'general', name: '일반 상조형', desc: '조문을 받는 장례에 필요한 인력·차량·용품을 함께 비교', button: '일반 상조 상담하기',
+        ref: { label: '조사 상품 중 최저가', amount: 3490000, source: '교원라이프 다이렉트 349 기준', note: '' },
+        schedule: [{ amount: 15000, count: 232 }, { amount: 10000, count: 1 }],
+        own: null, comparable: false, terms: [100, 150, 200]
+      }
+    ]
+  };
+
+  var $ = function(id){ return document.getElementById(id); };
+  function krw(v){ return Math.round(v).toLocaleString('ko-KR') + '원'; }
+  function won(v){ return v === 0 ? '0원' : (v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만원' : krw(v)); }
+  function man(v){ return v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만 원' : krw(v); }
+  function typeById(id){ return PRICING.types.filter(function(t){ return t.id === id; })[0]; }
+  function mainOf(t){ return t.own ? { label: '싹딜 판매가격', amount: t.own.amount } : t.ref; }
+  function usesSchedule(t){ return !!t.schedule && !t.own; }
+  function planOf(t, term){
+    var total = mainOf(t).amount;
+    return usesSchedule(t) ? { total: total, ins: t.schedule } : { total: total, ins: [{ amount: total / term, count: term }] };
+  }
+  function countOf(p){ return p.ins.reduce(function(a, x){ return a + x.count; }, 0); }
+  function paidAfter(p, k){
+    var s = 0, left = k;
+    p.ins.forEach(function(x){ var c = Math.min(left, x.count); s += c * x.amount; left -= c; });
+    return s;
+  }
+  function schedText(t){
+    return t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + ' = 총 납입금 ' + man(mainOf(t).amount);
+  }
+
+  // 가격 카드
+  $('types').innerHTML = PRICING.types.map(function(t){
+    var m = mainOf(t), extra = '';
+    if (t.own) {
+      extra += '<p class="tsub">' + t.ref.label + ' ' + man(t.ref.amount) + ' · ' + t.ref.source + '</p>';
+      if (t.comparable && t.ref.amount > t.own.amount) extra += '<p class="tsave">타사 참고가격보다 ' + man(t.ref.amount - t.own.amount) + ' 낮습니다</p>';
+    } else {
+      if (t.schedule) extra += '<p class="tsub">' + schedText(t) + '</p>';
+      if (t.ref.note) extra += '<p class="tsub">' + t.ref.note + '</p>';
+    }
+    return '<article class="tcard"><h3>' + t.name + '</h3><p class="tdesc">' + t.desc + '</p>' +
+      '<div class="tprice"><small>' + m.label + '</small><strong class="num">' + man(m.amount) + '</strong>' +
+      (t.own ? '' : '<p class="tsrc">' + m.source + '</p>') + extra + '</div>' +
+      '<a class="btn" href="#apply" data-cta data-type="' + t.id + '">' + t.button + '</a></article>';
+  }).join('');
+  var mu = PRICING.types[0], ge = typeById('general');
+  $('types-note').textContent = PRICING.surveyDate + ' 공개가격 조사 기준. ' + man(mu.ref.amount) + '은 아정당 무빈소 기본상품, ' + man(ge.ref.amount) +
+    '은 조사한 4개 브랜드·13개 상품 중 최저가입니다. 두 상품은 제공 범위가 다르며, 장례식장 시설비·음식비·화장료·장지 비용 및 추가 선택사항 등은 계약에 따라 별도 발생할 수 있습니다.';
+
+  // 첫 화면 한눈에 보기 (무빈소 기본형, 중간 납입 기간 기준 예시)
+  (function(){
+    var p = planOf(mu, mu.terms[1]);
+    $('l-sub').textContent = mu.name + ' · ' + (mu.own ? '판매가격' : '참고가격') + ' 기준 납입 예시';
+    $('l-month').innerHTML = Math.round(p.ins[0].amount).toLocaleString('ko-KR') + '<span>원</span>';
+    $('l-term').innerHTML = countOf(p) + '<span>개월</span>';
+    $('l-total').innerHTML = (p.total % 10000 === 0 ? (p.total / 10000).toLocaleString('ko-KR') + '<span>만원</span>' : krw(p.total));
+  })();
+
+  // 가격 상승 그래프 (일반 상조형 가격을 기준으로, 평균 연 4.5% 상승 가정)
+  (function(){
+    var base = Math.round(mainOf(ge).amount / 10000);
+    var v5 = Math.round(base * Math.pow(1.045, 5)), v10 = Math.round(base * Math.pow(1.045, 10));
+    var lo = Math.floor((base - 1) / 100) * 100, hi = Math.ceil((v10 + 10) / 100) * 100;
+    var y = function(v){ return +(290 - (v - lo) / (hi - lo) * 240).toFixed(1); };
+    var y0 = y(base), y1 = y(v5), y2 = y(v10), lines = '', labels = '';
+    for (var v = lo; v <= hi; v += 100) {
+      lines += '<line x1="64" x2="540" y1="' + y(v) + '" y2="' + y(v) + '"/>';
+      labels += '<text x="54" y="' + (y(v) + 5) + '">' + v + '</text>';
+    }
+    $('lc').setAttribute('aria-label', '장례비 변화 예시 선 그래프. 가입 시점 가격 고정은 ' + base + '만원, 평균 상승 가격 기준 5년 뒤 ' + v5 + '만원, 10년 뒤 ' + v10 + '만원');
+    $('lc').innerHTML =
+      '<g stroke="#dbe7e3" stroke-width="1">' + lines + '</g>' +
+      '<g font-size="13" fill="#53635e" text-anchor="end">' + labels + '</g>' +
+      '<text x="64" y="34" font-size="13" fill="#53635e">만원</text>' +
+      '<path class="gapfill" d="M90 ' + y0 + 'L290 ' + y1 + 'L490 ' + y2 + 'V' + y0 + 'Z" fill="#e8503d" fill-opacity=".13"/>' +
+      '<path class="draw" pathLength="1" d="M90 ' + y0 + 'L290 ' + y1 + 'L490 ' + y2 + '" fill="none" stroke="#e8503d" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<path class="draw" pathLength="1" d="M90 ' + y0 + 'H490" fill="none" stroke="#007b68" stroke-width="4.5" stroke-linecap="round"/>' +
+      '<circle cx="90" cy="' + y0 + '" r="8" fill="#fff" stroke="#007b68" stroke-width="4"/>' +
+      '<circle cx="290" cy="' + y1 + '" r="8" fill="#fff" stroke="#e8503d" stroke-width="4"/>' +
+      '<circle cx="490" cy="' + y0 + '" r="8" fill="#fff" stroke="#007b68" stroke-width="4"/>' +
+      '<circle cx="490" cy="' + y2 + '" r="10" fill="#e8503d" stroke="#fff" stroke-width="3"/>' +
+      '<g font-size="16" font-weight="800" text-anchor="middle"><text x="90" y="' + (y0 - 18) + '" fill="#071f4a">' + base + '</text><text x="290" y="' + (y1 - 18) + '" fill="#071f4a">' + v5 + '</text><text x="490" y="' + (y2 - 21) + '" fill="#e8503d">' + v10 + '</text><text x="490" y="' + (y0 + 26) + '" fill="#007b68">' + base + '</text></g>' +
+      '<path d="M514 ' + y2 + 'H524V' + y0 + 'H514" fill="none" stroke="#e8503d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '<text x="534" y="' + ((y0 + y2) / 2 - 2).toFixed(1) + '" font-size="19" font-weight="800" fill="#e8503d">+' + (v10 - base) + '</text>' +
+      '<text x="534" y="' + ((y0 + y2) / 2 + 18).toFixed(1) + '" font-size="13" font-weight="700" fill="#e8503d">만원</text>' +
+      '<g font-size="15" font-weight="700" fill="#071f4a" text-anchor="middle"><text x="90" y="322">지금</text><text x="290" y="322">5년 후</text><text x="490" y="322">10년 후</text></g>';
+    $('gap-num').dataset.to = v10 - base;
+    $('gap-num').textContent = v10 - base;
+    $('chart-note').textContent = '*' + ge.name + ' 참고가격 기준 수치*';
+  })();
+
+  // 상담 폼 장례 유형 선택지
+  var prodSel = $('prodsel');
+  PRICING.types.forEach(function(t){
+    var o = document.createElement('option');
+    o.textContent = t.name;
+    prodSel.insertBefore(o, prodSel.lastElementChild);
+  });
+
   // 등장 효과(스크롤) · 그래프 숫자 카운트
   if (!reduce && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js');
-    ['.sec-head','.ph','.calc','.rise-copy','.chart-card','.srow','.check','.apply-grid > *','.faq-head','.faq > div:last-child'].forEach(function(sel){
+    ['.sec-head','.tcard','.ph','.calc','.rise-copy','.chart-card','.srow','.check','.apply-grid > *','.faq-head','.faq > div:last-child'].forEach(function(sel){
       document.querySelectorAll(sel).forEach(function(el, i){
         el.classList.add('reveal');
         el.style.setProperty('--d', Math.min(i % 3, 2) * 0.1 + 's');
@@ -718,27 +830,49 @@ footer p+p{margin-top:8px}
     document.querySelectorAll('.cnt').forEach(function(el){ el.textContent = '0'; cio.observe(el); });
   }
 
-  // 납입 계산기 (가상 예시 금액)
-  var $ = function(id){ return document.getElementById(id); };
+  // 납입 계산기 (가격 데이터를 참조, 금액은 참고가격 기준 예시)
   var kEl = $('k');
-  function krw(v){ return Math.round(v).toLocaleString('ko-KR') + '원'; }
-  function won(v){ return v === 0 ? '0원' : (v % 10000 === 0 ? (v / 10000).toLocaleString('ko-KR') + '만원' : krw(v)); }
-  function pick(name){ return +document.querySelector('input[name="' + name + '"]:checked').value; }
+  function pickType(){ return typeById(document.querySelector('input[name="prod"]:checked').value); }
+  function renderProd(){
+    $('prod-opts').innerHTML = PRICING.types.map(function(t, i){
+      var m = mainOf(t);
+      return '<label class="opt"><input type="radio" name="prod" value="' + t.id + '"' + (i === 0 ? ' checked' : '') + '><span class="tile"><b>' + t.name + '</b><em>' + man(m.amount) + '</em><small>' + m.label + '</small></span></label>';
+    }).join('');
+  }
+  function renderTerms(t){
+    var box = $('term-opts');
+    if (usesSchedule(t)) {
+      var n = countOf(planOf(t));
+      box.className = 'opts one';
+      box.innerHTML = '<label class="opt"><input type="radio" name="term" value="' + n + '" checked><span class="tile pill">' + n + '개월<small>' + t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + '</small></span></label>';
+    } else {
+      box.className = 'opts three';
+      box.innerHTML = t.terms.map(function(n, i){
+        return '<label class="opt"><input type="radio" name="term" value="' + n + '"' + (i === 1 ? ' checked' : '') + '><span class="tile pill">' + n + '개월<small>' + (i === 0 ? '빨리 완납' : i === 1 ? '균형' : '월 부담 적게') + '</small></span></label>';
+      }).join('');
+    }
+  }
   function calc(resetK){
-    var P = pick('prod'), N = pick('term'), m = P / N;
+    var t = pickType(), term = +document.querySelector('input[name="term"]:checked').value;
+    var p = planOf(t, term), N = countOf(p);
     if (resetK) { kEl.max = N; kEl.value = N; }
-    var k = +kEl.value, paid = m * k, bal = Math.max(P - paid, 0);
-    $('o-month').innerHTML = Math.round(m).toLocaleString('ko-KR') + '<span>원</span>';
-    $('o-total').textContent = won(P);
+    var k = +kEl.value, paid = paidAfter(p, k), bal = Math.max(p.total - paid, 0);
+    $('o-month').innerHTML = Math.round(p.ins[0].amount).toLocaleString('ko-KR') + '<span>원</span>';
+    $('o-sub').textContent = p.ins.length > 1 ? '마지막 ' + p.ins[1].count + '회는 ' + krw(p.ins[1].amount) : '';
+    $('o-total').textContent = won(p.total);
     $('o-paid').textContent = won(paid);
     $('o-bal').textContent = won(bal);
-    $('o-bar').style.width = (paid / P * 100) + '%';
+    $('o-bar').style.width = (paid / p.total * 100) + '%';
     $('k-label').textContent = k >= N ? '완납 후' : (k === 0 ? '가입 직후' : k + '개월 납입 후');
     kEl.style.setProperty('--p', (N ? k / N * 100 : 0) + '%');
     kEl.setAttribute('aria-valuetext', $('k-label').textContent + ', 행사 시 잔금 ' + won(bal));
+    $('calc-note').textContent = t.own ? '싹딜 판매가격으로 계산한 예시입니다.' : '싹딜 판매가격 확정 전이라 타사 참고가격으로 계산한 예시입니다.';
   }
-  document.querySelectorAll('input[name="prod"],input[name="term"]').forEach(function(r){ r.addEventListener('change', function(){ calc(true); }); });
+  $('prod-opts').addEventListener('change', function(){ renderTerms(pickType()); calc(true); });
+  $('term-opts').addEventListener('change', function(){ calc(true); });
   kEl.addEventListener('input', function(){ calc(false); });
+  renderProd();
+  renderTerms(PRICING.types[0]);
   calc(true);
 
   // 신청 폼 (전송 기능 미연결: 접수된 것처럼 안내하지 않음)
@@ -748,6 +882,7 @@ footer p+p{margin-top:8px}
   document.querySelectorAll('[data-cta]').forEach(function(a){
     a.addEventListener('click', function(e){
       e.preventDefault();
+      if (a.dataset.type) { var tt = typeById(a.dataset.type); if (tt) prodSel.value = tt.name; }
       $('apply').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block: 'start'});
       setTimeout(function(){ nameEl.focus({preventScroll: true}); }, reduce ? 0 : 500);
     });
@@ -775,8 +910,8 @@ footer p+p{margin-top:8px}
     result.hidden = false;
     result.className = 'result' + (msg ? ' err' : '');
     if (msg) { result.textContent = msg; target.focus(); return; }
-    // TODO: 실제 신청 API 연결 (연결 전까지는 접수 완료 안내를 하지 않음)
-    result.textContent = '입력 내용은 확인했습니다. 아직 신청 접수 기능이 연결되지 않아 내용이 전송되지 않았습니다.';
+    // TODO: 실제 신청 API 연결 — 전송 항목: { name, phone, type: prodSel.value } (연결 전까지는 접수 완료 안내를 하지 않음)
+    result.textContent = '입력 내용은 확인했습니다.' + (prodSel.value ? ' (선택한 장례 유형: ' + prodSel.value + ')' : '') + ' 아직 신청 접수 기능이 연결되지 않아 내용이 전송되지 않았습니다.';
     result.focus({preventScroll: true});
   });
 
