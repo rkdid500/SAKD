@@ -603,10 +603,6 @@ footer p+p{margin-top:8px}
 <!-- 3. 장례 형태 선택 + 가격 비교 -->
 <section class="plan" id="plan">
   <div class="wrap">
-    <div class="sec-head"><h2>원하는 장례 형태에 맞춰 준비하세요</h2></div>
-    <div class="types" id="types"></div>
-    <p class="note types-note" id="types-note"></p>
-
     <div class="calc-wrap">
       <h3 class="calc-title">납입 방식 미리 계산해 보기</h3>
       <div class="calc">
@@ -823,23 +819,8 @@ footer p+p{margin-top:8px}
     return t.schedule.map(function(x){ return krw(x.amount) + ' × ' + x.count + '회'; }).join(' + ') + ' = 총 납입금 ' + man(mainOf(t).amount);
   }
 
-  // 가격 카드
-  $('types').innerHTML = PRICING.types.map(function(t){
-    var m = mainOf(t), extra = '';
-    if (t.own) {
-      extra += '<p class="tsub">' + t.ref.label + ' ' + man(t.ref.amount) + ' · ' + t.ref.source + '</p>';
-      if (t.comparable && t.ref.amount > t.own.amount) extra += '<p class="tsave">타사 참고가격보다 ' + man(t.ref.amount - t.own.amount) + ' 낮습니다</p>';
-    } else {
-    }
-    return '<article class="tcard"><h3>' + t.name + '</h3><p class="tdesc">' + t.desc + '</p>' +
-      '<div class="tprice"><small>' + m.label + '</small><strong class="num">' + man(m.amount) + '</strong>' +
-      extra + '</div>' +
-      '<a class="btn" href="#apply" data-cta data-type="' + t.id + '">' + t.button + '</a></article>';
-  }).join('');
   var mu = PRICING.types[0], ge = typeById('general');
   $('fam-note').textContent = PRICING.surveyDate + ' 공개가격 조사 기준 참고용입니다. 두 형태는 제공 범위가 다릅니다.';
-  $('types-note').textContent = PRICING.surveyDate + ' 공개가격 조사 기준. ' + man(mu.ref.amount) + '은 아정당 무빈소 기본상품, ' + man(ge.ref.amount) +
-    '은 조사한 4개 브랜드·13개 상품 중 최저가입니다. 두 상품은 제공 범위가 다르며, 장례식장 시설비·음식비·화장료·장지 비용 및 추가 선택사항 등은 계약에 따라 별도 발생할 수 있습니다.';
 
   // 첫 화면 한눈에 보기 (무빈소 기본형, 중간 납입 기간 기준 예시)
   (function(){
