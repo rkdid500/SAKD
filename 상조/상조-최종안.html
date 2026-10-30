@@ -86,9 +86,9 @@ header .top{display:flex;align-items:center;justify-content:space-between;height
 /* ---------- 2 timeline ---------- */
 .when{background:#fff}
 .rail{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px}
-.rail:before{content:'';position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:linear-gradient(90deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
-.ph{position:relative;padding-top:48px}
-.ph:before{content:'';position:absolute;left:0;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--brand-deep)}
+.rail:before{content:'';position:absolute;left:0;right:0;top:40px;height:4px;border-radius:2px;background:linear-gradient(90deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
+.ph{position:relative;padding-top:98px}
+.ph-art{position:absolute;left:0;top:0;width:84px;height:84px;padding:0 10px 0 0;background:#fff;box-sizing:content-box}
 .ph .tag{display:inline-block;font-size:14px;font-weight:700;color:var(--brand-deep);background:var(--brand-soft);border-radius:999px;padding:2px 12px}
 .ph h3{margin-top:12px;font-size:clamp(24px,2.5vw,30px)}
 .ph ul{margin-top:16px;display:grid;gap:10px}
@@ -278,9 +278,9 @@ footer p+p{margin-top:8px}
   .ledger-head{padding-right:96px}
   .led-cell:nth-child(odd){padding-right:10px}.led-cell:nth-child(even){padding-left:14px}
   .rail{grid-template-columns:1fr;gap:0}
-  .rail:before{left:10px;right:auto;top:8px;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
-  .ph{padding:0 0 34px 46px}
-  .ph:before{left:0;top:2px}
+  .rail:before{left:40px;right:auto;top:40px;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
+  .ph{padding:6px 0 34px 112px;min-height:84px}
+  .ph-art{top:0;padding:6px 0}
   .ph:last-child{padding-bottom:0}
   .calc-in,.calc-out{padding:28px 20px 26px}
   .opts.two{grid-template-columns:1fr}
@@ -313,8 +313,8 @@ footer p+p{margin-top:8px}
   .led-cell{text-align:center}
   .led-last{flex-direction:column;text-align:center;gap:2px}
   .rail:before{display:none}
-  .ph{text-align:center;padding:42px 0 34px}
-  .ph:before{left:50%;margin-left:-11px;top:6px}
+  .ph{text-align:center;padding:98px 0 34px;min-height:0}
+  .ph-art{left:50%;margin-left:-42px;padding:0}
   .ph li{padding-left:0}
   .ph li:before{display:none}
   .tcard{text-align:center}
@@ -581,16 +581,19 @@ footer p+p{margin-top:8px}
     <div class="sec-head"><h2>가입한 뒤 받는 것,<br>장례 때 받는 것</h2></div>
     <div class="rail">
       <article class="ph">
+        <svg class="ph-art" role="img" aria-label="장례지도사"><use href="#a-guide"/></svg>
         <span class="tag">매달</span>
         <h3>가입한 뒤</h3>
         <ul><li>정해진 월 납입액을 냅니다</li><li><span class="tbd">납입 현황과 상품 내용을 문의할 수 있습니다</span></li><li><span class="tbd">제휴 생활 혜택은 상품별로 다릅니다</span></li></ul>
       </article>
       <article class="ph">
+        <svg class="ph-art" role="img" aria-label="의전 차량"><use href="#a-limo"/></svg>
         <span class="tag">그날</span>
         <h3>장례가 생겼을 때</h3>
         <ul><li><span class="tbd">전화 한 통으로 상담이 시작됩니다</span></li><li><span class="tbd">전담 장례지도사가 진행을 맡습니다</span></li><li><span class="tbd">용품·차량·인력이 정해진 구성대로 준비됩니다</span></li></ul>
       </article>
       <article class="ph">
+        <svg class="ph-art" role="img" aria-label="헌화"><use href="#a-flower"/></svg>
         <span class="tag">이후</span>
         <h3>장례를 마친 뒤</h3>
         <ul><li><span class="tbd">조문 답례와 부고 알림을 도와드립니다</span></li><li><span class="tbd">사후 행정 절차를 안내합니다</span></li><li><span class="tbd">기일을 미리 알려드립니다</span></li></ul>
