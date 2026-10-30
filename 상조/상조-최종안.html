@@ -86,13 +86,13 @@ header .top{display:flex;align-items:center;justify-content:space-between;height
 /* ---------- 2 timeline ---------- */
 .when{background:#fff}
 .rail{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px}
-.rail:before{content:'';position:absolute;left:0;right:0;top:40px;height:4px;border-radius:2px;background:linear-gradient(90deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
-.ph{position:relative;padding-top:98px}
-.ph-art{position:absolute;left:0;top:0;width:84px;height:84px;padding:0 10px 0 0;background:#fff;box-sizing:content-box}
+.rail:before{content:'';position:absolute;left:0;right:0;top:66px;height:4px;border-radius:2px;background:linear-gradient(90deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
+.ph{position:relative;padding-top:126px}
+.ph-art{position:absolute;left:0;top:0;width:112px;height:112px;padding:0 10px 0 0;background:#fff;box-sizing:content-box}
 @media(min-width:961px){
   .rail:before{left:calc(100%/6);right:calc(100%/6)}
   .ph{text-align:center}
-  .ph-art{left:50%;margin-left:-47px}
+  .ph-art{left:50%;margin-left:-61px}
   .ph li{padding-left:0}
   .ph li:before{display:none}
 }
@@ -285,8 +285,8 @@ footer p+p{margin-top:8px}
   .ledger-head{padding-right:96px}
   .led-cell:nth-child(odd){padding-right:10px}.led-cell:nth-child(even){padding-left:14px}
   .rail{grid-template-columns:1fr;gap:0}
-  .rail:before{left:40px;right:auto;top:40px;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
-  .ph{padding:6px 0 34px 112px;min-height:84px}
+  .rail:before{left:54px;right:auto;top:66px;bottom:0;width:4px;height:auto;background:linear-gradient(180deg,#bfe8dc,var(--brand) 55%,var(--brand-deep))}
+  .ph{padding:6px 0 34px 140px;min-height:112px}
   .ph-art{top:0;padding:6px 0}
   .ph:last-child{padding-bottom:0}
   .calc-in,.calc-out{padding:28px 20px 26px}
@@ -320,8 +320,8 @@ footer p+p{margin-top:8px}
   .led-cell{text-align:center}
   .led-last{flex-direction:column;text-align:center;gap:2px}
   .rail:before{display:none}
-  .ph{text-align:center;padding:98px 0 34px;min-height:0}
-  .ph-art{left:50%;margin-left:-42px;padding:0}
+  .ph{text-align:center;padding:126px 0 34px;min-height:0}
+  .ph-art{left:50%;margin-left:-56px;padding:0}
   .ph li{padding-left:0}
   .ph li:before{display:none}
   .tcard{text-align:center}
